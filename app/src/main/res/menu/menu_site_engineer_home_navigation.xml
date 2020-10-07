@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_siteEngineer_calendar"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_calendar_icon_white_01"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_siteEngineer_notification"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_notification_inactive_icon"
+        android:title="@string/notifications"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_siteEngineer_notificationBadge"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_notification_active_icon"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+
+</menu>

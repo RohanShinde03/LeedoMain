@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto">
+    <!-- android:background="@drawable/bg_claim_popup" -->
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- ll close icon & date -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_close_claimNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_close_black_24dp"
+                android:layout_gravity="top|center"
+                android:padding="10dp"/>
+
+
+
+            <!--Lead Date-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_claimNow_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:text="@string/card_text_date"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center|end"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/color_card_sub_title"
+                android:textSize="12sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_claimNow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- new lead added -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="5dp">
+
+
+                    <!--Lead-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/new_lead_added"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        android:theme="@style/styleFontBoldText" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- tag, elapsed time -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <!-- tag & elapsed time  -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center|start">
+
+                        <!-- tag -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@color/color_tag_background"
+                            android:padding="10dp"
+                            android:gravity="center">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_claimNow_tag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="@string/tag_r_n_l"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"/>
+
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_claimNow_tagIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_tag"
+                                android:scaleType="centerCrop"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--Lead Elapsed time -->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_claimNow_elapsedTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/just_now"
+                            android:maxLines="1"
+                            android:paddingTop="1dp"
+                            android:paddingBottom="1dp"
+                            android:gravity="center|start"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/color_card_sub_title"
+                            android:textSize="14sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Project Name-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_claimNow_projectName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/project_name"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/main_black"
+                    android:textSize="22sp"
+                    android:theme="@style/styleFontBoldText" />
+
+                <!-- cu-id -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_claimNow_cu_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/def_cuID_number"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:paddingTop="5dp"
+                    android:theme="@style/styleFontMediumText" />
+                <!--Lead Name-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_claimNow_lead_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:text="@string/lead_name"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <!--Unit Type-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_claimNow_unitType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/def_unit_type"
+                    android:textColor="@color/main_medium_grey"
+                    android:textSize="17sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:theme="@style/styleFontRegularText" />
+
+                <!-- added by -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/added_by"
+                    android:textColor="@color/main_grey"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:theme="@style/styleFontMediumText" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_claimNow_addedBy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/added_by"
+                    android:maxLines="2"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:padding="2dp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nsv_claimNow"
+                    app:layout_anchor="@id/nsv_claimNow"
+                    app:layout_anchorGravity="bottom"
+                    android:orientation="vertical"
+                    android:gravity="bottom|center">
+
+                    <com.tribeappsoft.leedo.util.RipplePulseLayout
+                        android:id="@+id/rp_layout"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:clipChildren="false"
+                        ripple:rippleColor="@color/color_claim_now_red"
+                        ripple:rippleType="fill"
+                        ripple:strokeWidth="2dp"
+                        ripple:startRadius="42dp"
+                        ripple:endRadius="100dp"
+                        ripple:duration="2000"
+                        android:layout_marginTop="12dp">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_claimNow_popup"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_gravity="center"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/claim_button_drawable"
+                            android:text="@string/claimNow"
+                            android:letterSpacing="0.1"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/main_white"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="30dp">
+                        </androidx.appcompat.widget.AppCompatButton>
+
+                    </com.tribeappsoft.leedo.util.RipplePulseLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--&lt;!&ndash;Release Button&ndash;&gt;
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_claim_now_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:padding="13dp"
+        />
+-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:id="@+id/ll_blockType_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <!--Block Name-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_rectangle_pb_bg_white_more_round"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_block_name_flat"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_block_name"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:theme="@style/styleFontBoldText"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:padding="13dp"
+                android:text="@string/block_name_hint"
+                android:layout_gravity="center" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

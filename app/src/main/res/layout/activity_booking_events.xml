@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/sr_frag_salesPersonEvents"
+tools:context="com.tribeappsoft.leedo.salesPerson.bookings.BookingEventsActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_frag_salesPersonEvents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="56dp"
+        android:paddingBottom="75dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_layout_event" />
+
+
+    <!--ll_Event_List-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_frag_salesPersonEventsList"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+
+            <!--Ongoing Event-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_frag_salesPersonEvents_ongoing"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:theme="@style/coloredButton"
+                android:text="@string/ongoing"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:cornerRadius="50dp"
+                android:textSize="16sp"/>
+
+            <!--Upcoming Event-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_frag_salesPersonEvents_upcoming"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:theme="@style/styleFontRegularText"
+                android:text="@string/upcoming"
+                android:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_black"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:cornerRadius="50dp"
+                android:textSize="16sp"/>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_frag_salesPersonEvents_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerInParent="true">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_event_black_128dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_frag_salesPerson_noEventsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:textColor="@color/main_medium_grey"
+            android:text="@string/you_have_no_ongoing_events"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

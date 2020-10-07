@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_clear_selection"
+        android:orderInCategory="100"
+        android:title="@string/proceed"
+        android:icon="@drawable/ic_clear_all_white_24dp"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_proceed"
+        android:orderInCategory="100"
+        android:title="@string/proceed"
+        android:icon="@drawable/ic_forword_icon_white"
+        app:showAsAction="always" />
+
+
+</menu>

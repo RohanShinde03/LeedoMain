@@ -1,0 +1,2403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_generateToken"
+    tools:context="com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity"
+    android:background="@color/bg_grey">
+
+    <!--ll_Generate Token View-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_generateToken_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <!--Token Generation Form-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/bg_grey">
+
+                <!--Select Customer id-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:background="@color/main_white">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_customer_id_hint"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+                    <!--Select Customer ID-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_generateToken_select_customer_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/styleFontRegularText"
+                            android:hint="@string/select_customer_id_hint"
+                            android:textSize="16sp"
+                            android:padding="17dp"
+                            android:background="@drawable/bg_outline_border_round_my_dob"
+                            android:textColor="@color/main_black"/>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_generateToken_searchCustomerId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="17dp"
+                            app:srcCompat="@drawable/ic_arrow_right_black"
+                            android:background="@drawable/ripple_effect"
+                            android:layout_alignEnd="@+id/tv_generateToken_select_customer_id"
+                            />
+                    </RelativeLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Selected Customer name-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    android:background="@color/main_white">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selected_customer_name_hint"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+                    <!--Selected Customer name-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_generateToken_select_customer_name"
+                        android:text="@string/selected_customer_name_hint"
+                        android:theme="@style/styleFontRegularText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="17dp"
+                        android:paddingBottom="17dp"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_outline_border_round_my_dob"
+                        android:textColor="@color/main_black"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Select Project-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+                    <!--Select Event-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/select_project_name_star">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_generateToken_select_project"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:layout_margin="3dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontRegularText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Select Event-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+                    <!--Select Event-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/selected_event_hint">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_generateToken_select_event"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:layout_margin="3dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontRegularText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Select Token-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+                    <!--Select Token-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/selected_ghp_hint"
+                        >
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_generateToken_select_token"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:layout_margin="3dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontRegularText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Edit customer option -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_GenerateToken_editCustomerDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- edit customer text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_edtCustomerMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <!--Edit Customer Details-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_confirm_contact_edit"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="15sp"/>
+
+                            <RadioGroup
+                                android:id="@+id/rgrp_customer_edit_contact"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rbtn_customer_edit_contact_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/yes"
+                                    android:theme="@style/styleFontRegularText"
+                                    android:layout_marginEnd="5dp"
+                                    />
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rbtn_customer_edit_contact_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontRegularText"
+                                    android:layout_marginStart="5dp"
+                                    android:text="@string/no"
+                                    android:checked="true"
+                                    />
+                            </RadioGroup>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view edt customer details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_ShareToken_edit_customerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+
+                        <!--Edit Customer info-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="visible">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_details"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_dark_grey"
+                                android:textSize="16sp"/>
+
+                            <!-- Customer First name -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+
+                                <!-- mr/miss -->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="6.5"
+                                    android:hint="@string/mr_mrs">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv__shareToken_Customer_mrs"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:textSize="15sp"
+                                        android:theme="@style/styleFontRegularText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <View
+                                    android:layout_width="0.5dp"
+                                    android:layout_height="0.5dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginRight="3dp">
+
+                                </View>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_shareToken_Customer_Name"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3.5">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_shareToken_Customer_First_Name"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/first_name"
+                                        android:inputType="textPersonName"
+                                        android:textColorHint="@color/main_grey"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            <!-- Customer middle name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:theme="@style/textInputLayoutAppearance"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColorHint="@color/main_grey">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_shareToken_Customer_Middle_Name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:textColorHint="@color/main_grey"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"
+                                    android:hint="@string/middle_name"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- Customer last name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_shareToken_Customer_Last_Name"
+                                android:theme="@style/textInputLayoutAppearance"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_shareToken_Customer_Last_Name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:textColorHint="@color/main_grey"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"
+                                    android:hint="@string/last_name"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- country code and mobile no -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:gravity="center">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_ccp_generateToken"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="3dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp">
+
+                                    <!-- country code picker -->
+                                    <include layout="@layout/ccp_layout_code_picker" />
+
+                                    <!-- country code picker -->
+                                    <com.tribeappsoft.leedo.util.ccp.CountryCodePicker
+                                        android:id="@+id/ccp_generateToken"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:clickable="false"
+                                        app:ccp_clickable="false"
+                                        android:visibility="gone"
+                                        app:ccp_textSize="14dp"
+                                        app:ccp_defaultCode="91"
+                                        app:ccp_defaultNameCode="in"
+                                        app:ccp_textColor="@color/main_black"
+                                        app:ccp_backgroundColor="@color/main_white"
+                                        android:gravity="center_vertical" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <View
+                                    android:layout_width="0.5dp"
+                                    android:layout_height="0.5dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginRight="3dp">
+
+                                </View>
+
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_shareToken_Customer_MobileNo"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_shareToken_Customer_MobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:hint="@string/mobile_number"
+                                        android:singleLine="true"
+                                        android:textSize="16sp"/>
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- Customer customer_email -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_shareToken_Customer_Email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/email_hint"
+                                    android:inputType="textEmailAddress"
+                                    android:textColorHint="@color/grey_m"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!--Submit-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_shareToken_submit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/submit"
+                                style="@style/coloredButton"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:textAllCaps="false"
+                                android:paddingLeft="80dp"
+                                android:paddingRight="80dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+                <!-- site visit Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_site_visit_generate_token"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/main_white"
+                        android:orientation="vertical">
+
+                        <!-- site visit text-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_generate_token_projectDetailsMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="15dp"
+                            android:gravity="center">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Site Visit Details"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="20sp"
+                                android:layout_weight="1"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_generate_token_viewProjectDetails_ec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|end"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!-- site visit details -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_generate_token_viewProjectDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:gravity="center">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.4dp"
+                                android:background="@color/lighter" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="15dp"
+                                android:orientation="vertical">
+
+                                <!--Project Name-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="10dp">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        >
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_generate_token_project_name"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/project_name"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:textSize="16sp"
+                                            android:textColorHint="@color/main_grey"
+                                            android:textColor="@color/colorPrimary"
+                                            android:singleLine="true"
+                                            android:editable="false"/>
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--Flat Type-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="10dp">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        >
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_generate_token_flat_type"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/flat_type"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:textSize="16sp"
+                                            android:textColorHint="@color/main_grey"
+                                            android:textColor="@color/colorPrimary"
+                                            android:singleLine="true"
+                                            android:editable="false"/>
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!-- pref site visit dates -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        app:endIconDrawable="@drawable/ic_date"
+                                        app:endIconMode="custom">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_generate_token_visit_date"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/visited_date"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:textSize="15sp"
+                                            android:textColorHint="@color/main_grey"
+                                            android:textColor="@color/colorPrimary"
+                                            android:singleLine="true"
+                                            android:editable="false"/>
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        app:endIconDrawable="@drawable/ic_access_time_black_24dp"
+                                        app:endIconMode="custom">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_generate_token_visit_time"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/visited_time"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:textSize="15sp"
+                                            android:textColorHint="@color/main_grey"
+                                            android:textColor="@color/colorPrimary"
+                                            android:singleLine="true"
+                                            android:editable="false"/>
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!-- remarks-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:hint="@string/site_visit_remarks"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_generate_token_siteVisitRemarks"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="90dp"
+                                        android:textColor="@color/colorPrimary"
+                                        android:maxLines="5"
+                                        android:ellipsize="end"
+                                        android:gravity="start"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:editable="false"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- KYC Documents -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_GenerateToken_kycDocsMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- kyc doc text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_kycDocsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/kyc_documents"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="20sp"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/any_one_mandatory"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp"
+                                android:gravity="center|start"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_generateToken_kycDocs_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view kyc doc details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_viewKycDoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+                        <!-- add kyc doc dynamically -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_generateToken_addKYCDoc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Payment Mode -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Payment Mode text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_paymentModeMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_modes_hint"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_generateToken_paymentMode_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view Payment Modes -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_paymentModes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- GHP amount -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="15dp"
+                                android:background="@color/main_white">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_generate_token_ghp_amount"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/ghp_amount_title"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- select pay mode -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/select_paid_by"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginBottom="5dp"
+                                    android:textSize="15sp"/>
+
+                                <RadioGroup
+                                    android:id="@+id/rGrp_generate_token_payMode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_generateToken_pay_manual"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/manual"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        />
+
+                                    <!-- manual payment modes -->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:id="@+id/ll_generate_token_payMode_manual"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <!--Payment Mode Types-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="3dp"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="20dp">
+
+                                            <!--Add Payment Mode Dynamically-->
+                                            <androidx.appcompat.widget.LinearLayoutCompat
+                                                android:id="@+id/ll_generateToken_addPaymentMode"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+                                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Cheque LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_cheque_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone">
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/cheque_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"/>
+                                            <!--Cheque Number-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_cheque_number"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_cheque_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/cheque_number_hint"
+                                                    android:maxLength="6"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"
+                                                    />
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Cheque Date-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_cheque_date"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:endIconDrawable="@drawable/ic_date"
+                                                app:endIconMode="custom">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_cheque_date"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:hint="@string/select_cheque_date"
+                                                    android:inputType="none"
+                                                    android:cursorVisible="false"
+                                                    android:focusable="false"
+                                                    android:focusableInTouchMode="false"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"
+                                                    android:textColorHint="@color/main_grey"
+                                                    android:textColor="@color/colorPrimary"
+                                                    />
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                            <!--Cheque Issuer's Name -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_cheque_issuer_name"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_cheque_issuer_name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserName"
+                                                    android:hint="@string/enter_cheque_issuer"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Bank Name -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_cheque_bank_name"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_cheque_bank_name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserName"
+                                                    android:hint="@string/enter_cheque_bank_name"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Online LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_online_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone"
+                                            >
+                                            <!--UTR Number-->
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/online_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"/>
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_utr_number"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_utr_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_utr_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Card LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_card_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone">
+
+                                            <!--Payment Transaction No.-->
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/card_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"/>
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_payment_transaction_number"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_payment_transaction_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_payment_transaction_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Invoice No.-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/til_generateToken_payment_invoice_number"
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_generateToken_payment_invoice_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_payment_invoice_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_paymentModeFocus"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_generateToken_pay_payGateway"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:text="@string/pay_gateway"
+                                        />
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_generateToken_pay_viaPayLink"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/via_link"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        android:checked="true"
+                                        />
+                                </RadioGroup>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            <!-- site visit remarks -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:hint="@string/ghp_remarks"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_remarks"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:inputType="textPersonName|textMultiLine"
+                                    android:textColor="@color/colorPrimary"
+                                    android:maxLines="5"
+                                    android:ellipsize="end"
+                                    android:gravity="start"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Refund Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <!-- Refund Details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_refundDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/refundDetails"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_generateToken_refundDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Refund details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_generateToken_addRefundDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                            <!-- Ac holder name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/ac_holder_name_star"
+                                android:textColorHint="@color/main_grey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_refundAcHolderName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextUserName"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- bank name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/bank_name_text_star"
+                                android:textColorHint="@color/main_grey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_refundBankName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextUserName"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- branch name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/branch_name_text_star"
+                                android:textColorHint="@color/main_grey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_refundBranchName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextUserName"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- IFSC number -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/ifsc_code_text_start"
+                                android:textColorHint="@color/main_grey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_refundIFSCNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextNormal"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- AC type-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@color/main_white"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ac_type_star">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv_generateToken_acType"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:textSize="16sp"
+                                        android:theme="@style/styleFontRegularText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- Account number -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/account_number_text_star"
+                                android:textColorHint="@color/main_grey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_generateToken_refundACNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextPhone"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:visibility="gone"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--Token Generation Button-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_generateToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/generate_ghp"
+                style="@style/coloredButton"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:textAllCaps="false"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:cornerRadius="50dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--ll_Share Token View-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_shareToken_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/main_white"
+        android:visibility="gone">
+
+        <!--Close View-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_shareToken_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_black_24dp"
+            android:layout_gravity="start"
+            android:padding="15dp" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <!--ll_main-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_shareToken_successImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_success"
+                    android:layout_gravity="center"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_shareToken_successMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sales_ghp_success"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="#78B348" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_shareToken_paymentPendingMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment_pending"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/color_pending" />
+
+
+                <!--Customer Mobile-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_ShareToken_itemCustomer_GHPNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/def_ghp_number"
+                    android:visibility="visible"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/color_token_generated"
+                    android:textSize="20sp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:theme="@style/styleFontBoldText"
+                    />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mBtn_generateToken_upgradeToGHPPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upgrade_to_ghp_plus"
+                    style="@style/coloredButton"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:textAllCaps="false"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    app:cornerRadius="50dp"/>
+
+                <!--Customer info-->
+                <!-- <androidx.appcompat.widget.LinearLayoutCompat
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:layout_marginTop="20dp"
+                     android:paddingTop="15dp"
+                     android:paddingBottom="15dp"
+                     android:background="@drawable/bg_token_success"
+                     android:layout_margin="10dp"
+                     android:backgroundTint="@color/color_backdrop"
+                     android:orientation="vertical">
+
+                     &lt;!&ndash;Customer Name&ndash;&gt;
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tv_ShareToken_itemCustomer_name"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="3dp"
+                         android:layout_marginBottom="3dp"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="5dp"
+                         android:text="@string/customer_name_new"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/colorAccent"
+                         android:textSize="18sp"
+                         android:drawableStart="@drawable/ic_user"
+                         android:drawablePadding="7dp"
+                         android:theme="@style/styleFontMediumText" />
+
+                     &lt;!&ndash;Customer Mobile&ndash;&gt;
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tv_ShareToken_itemCustomer_mobile"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="5dp"
+                         android:text="@string/def_mob_number"
+                         android:visibility="gone"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginBottom="2dp"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/dark_grey"
+                         android:textSize="16sp"
+                         android:paddingLeft="2dp"
+                         android:paddingRight="2dp"
+                         android:drawableStart="@drawable/ic_call_grey"
+                         android:drawablePadding="7dp"
+                         android:theme="@style/styleFontMediumText"
+                         />
+
+                     &lt;!&ndash;Customer Email&ndash;&gt;
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tv_ShareToken_itemCustomer_email"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="5dp"
+                         android:text="@string/email_hint"
+                         android:visibility="gone"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginBottom="2dp"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/dark_grey"
+                         android:textSize="16sp"
+                         android:paddingLeft="2dp"
+                         android:paddingRight="2dp"
+                         android:drawableStart="@drawable/ic_email_grey_24dp"
+                         android:drawablePadding="7dp"
+                         android:theme="@style/styleFontMediumText" />
+
+
+                     &lt;!&ndash;GHP Number&ndash;&gt;
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tv_ShareToken_itemCustomer_ProjectName"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="5dp"
+                         android:text="@string/email_hint"
+                         android:visibility="gone"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginBottom="2dp"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/dark_grey"
+                         android:textSize="16sp"
+                         android:paddingLeft="2dp"
+                         android:paddingRight="2dp"
+                         android:drawableStart="@drawable/ic_project_gray_24dp"
+                         android:drawablePadding="7dp"
+                         android:theme="@style/styleFontMediumText" />
+
+
+                     &lt;!&ndash;Project Name&ndash;&gt;
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/tv_ShareToken_itemCustomer_EventName"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="5dp"
+                         android:text="@string/email_hint"
+                         android:visibility="gone"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginBottom="2dp"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/dark_grey"
+                         android:textSize="16sp"
+                         android:paddingLeft="2dp"
+                         android:paddingRight="2dp"
+                         android:drawableStart="@drawable/ic_event_icon_gray"
+                         android:drawablePadding="7dp"
+                         android:theme="@style/styleFontMediumText" />
+                 </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:layout_margin="10dp"
+                    app:cardElevation="0dp">
+
+                    <!--Customer info-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:background="@drawable/bg_token_success"
+                        android:backgroundTint="@color/light_grey"
+                        android:orientation="vertical">
+
+                        <!--Customer Name-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_ShareToken_itemCustomer_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/customer_name_new"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp"
+                            android:drawableStart="@drawable/ic_user"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <!--Customer Mobile-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_ShareToken_itemCustomer_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/def_mob_number"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_call_grey"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText"
+                            />
+
+                        <!--Customer Email-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_ShareToken_itemCustomer_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_email_grey_24dp"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <!--GHP Number-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_ShareToken_itemCustomer_ProjectName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_project_gray_24dp"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <!--Project Name-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_ShareToken_itemCustomer_EventName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_event_icon_gray"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <View
+                            android:id="@+id/view_ghpDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.2dp"
+                            android:layout_marginTop="5dp"
+                            android:visibility="gone"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/main_medium_grey" />
+
+                        <!--ghp date-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ShareToken_ghpDate"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_ghp_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghp_date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_itemCustomer_GHP_Date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp amount-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ShareToken_ghpAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_ghp_amount_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghp_amount_"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_itemCustomer_GHP_Amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/_0_00"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp plus date-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ShareToken_ghpPlusDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_ghp_plus_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghplus_date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_itemCustomer_GHPPlus_Date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp plus amount-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ShareToken_ghpPlusAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_ghp_plus_amount_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghplus_amount"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_itemCustomer_GHPPlus_Amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/_0_00"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--Remarks-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ShareToken_remarks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/remarks_"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_ShareToken_remarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:visibility="visible"
+                                android:text="@string/no_remarks"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--Share or View or download-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_ShareToken_View_share_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center">
+
+
+                    <!-- download document -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ProgressBar
+                            android:id="@+id/pb_generateToken_downloadDoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:visibility="gone"
+                            android:indeterminateDuration="2000"
+                            android:indeterminate="true"
+                            android:indeterminateTintMode="src_atop"
+                            android:indeterminateTint="@color/colorAccent"
+                            android:layout_gravity="center"
+                            android:layout_above="@id/mBtn_shareToken_download"/>
+
+                        <!--Download-->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_shareToken_download"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/ic_get_app_black_24dp"
+                            app:iconTint="@color/main_white"
+                            style="@style/coloredButton"
+                            android:backgroundTint="@color/color_site_visit"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:textAllCaps="false"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            app:cornerRadius="50dp"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            />
+
+                    </RelativeLayout>
+
+                    <!--View-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_shareToken_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_remove_red_eye_black_24dp"
+                        app:iconTint="@color/main_white"
+                        android:gravity="center"
+                        android:backgroundTint="@color/color_flat_sold"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+                    <!--Share-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_shareToken_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_whatsapp_white"
+                        android:gravity="center"
+                        android:backgroundTint="@color/color_claim_now_success_green"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+                    <!-- more apps Share-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_shareToken_MoreShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_apps_white_24dp"
+                        android:gravity="center"
+                        android:backgroundTint="@color/secondaryColor"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_shareToken_paymentPending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/payment_link_generated_successfully"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/color_pending" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="12dp"
+                        android:gravity="center|start">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/note_colon"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="18sp"
+                            android:gravity="center|start|top"
+                            android:textColor="@color/main_black" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/msg_note_send_pay_link"
+                            android:theme="@style/styleFontRegularText"
+                            android:textSize="16sp"
+                            android:gravity="center|start"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/main_grey" />
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_margin="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/share_pay_link_using"
+                            android:theme="@style/styleFontRegularText"
+                            android:textSize="18sp"
+                            android:gravity="center|start"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/main_black" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <!-- WA Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_sharePayLink_waShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_whatsapp_white"
+                                android:gravity="center"
+                                android:backgroundTint="@color/color_claim_now_success_green"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                            <!-- mail Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_sharePayLink_mailShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_email_white_24dp"
+                                android:gravity="center"
+                                android:backgroundTint="@color/google"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                            <!-- more apps Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_sharePayLink_moreShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_apps_white_24dp"
+                                android:gravity="center"
+                                android:backgroundTint="@color/secondaryColor"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

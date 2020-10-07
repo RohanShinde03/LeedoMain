@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefresh_ProjectQuotationActivity"
+        android:background="@color/main_white">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsv_projectQuotation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:isScrollContainer="true">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- Select Project -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_ProjectQuotationActivity_projectNameMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="vertical">
+
+                        <!-- select Project text-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center">
+
+                            <!--Select Project Name-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/select_project"
+                                android:theme="@style/styleFontMediumText">
+                                <AutoCompleteTextView
+                                    android:id="@+id/tv_ProjectQuotationActivity_select_project"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:layout_margin="3dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/main_black"
+                                    android:focusable="false"
+                                    android:theme="@style/styleFontMediumText" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_ProjectQuotationActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="80dp"
+                        android:visibility="visible"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:clipToPadding="false"
+                        tools:listitem="@layout/item_layout_project_docs" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/exFab_ProjectQuotationActivity_addQuotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:contentDescription="@string/app_name"
+        android:text="@string/add_quotation"
+        android:layout_gravity="bottom|end"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        app:iconTint="@color/white"
+        app:icon="@drawable/ic_developer_board_black_24dp"
+        app:iconSize="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/metropolis_medium"
+        android:shadowColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:fabSize="normal"
+        android:scaleType="center"
+        android:textAllCaps="false"
+        android:layout_margin="@dimen/fab_margin"
+        android:letterSpacing="0.02"
+        app:fabCustomSize="56dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:visibility="visible"
+        app:iconGravity="start"/>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_ProjectQuotationActivity_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_developer_board_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_quotations"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

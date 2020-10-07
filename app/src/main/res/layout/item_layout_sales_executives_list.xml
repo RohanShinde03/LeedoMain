@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/cv_salesExecutiveList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/card_outline"
+    app:strokeWidth="1dp"
+    app:cardCornerRadius="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginLeft="12dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!--Main Linear layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="6dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_itemLeadName_dot"
+                        android:layout_width="@dimen/dimen_12dp"
+                        android:layout_height="@dimen/dimen_12dp"
+                        android:gravity="center|start"
+                        android:layout_gravity="center|start"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:textSize="12sp"
+                        android:text="@string/icon_circleFill"
+                        android:textColor="@color/colorPrimary" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemLayout_salesExeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lead_name"
+                        android:gravity="center|start"
+                        android:textSize="18sp"
+                        style="@style/styleFontBoldText" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <!--Mark as done Button-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|end"
+                    android:orientation="horizontal">
+
+                    <!--Edit Button-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_item_editSalesExecutive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_edit_black_24dp"
+                        android:layout_gravity="start|center"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="4dp"
+                        android:paddingEnd="6dp"
+                        android:paddingStart="10dp"
+                        tools:ignore="PrivateResource" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemLeadEmail_dot"
+                    android:layout_width="@dimen/dimen_10dp"
+                    android:layout_height="@dimen/dimen_10dp"
+                    android:gravity="center|start"
+                    android:layout_marginLeft="6dp"
+                    android:visibility="invisible"
+                    android:layout_marginRight="6dp"
+                    android:textSize="@dimen/dimen_10dp"
+                    android:text="@string/icon_circleFill"
+                    android:textColor="@color/colorPrimary" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_itemLayout_salesExeEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:textSize="14sp"
+                    android:text="@string/support_mail"
+                    style="@style/styleFontRegularText"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemLeadNumber_dot"
+                    android:layout_width="@dimen/dimen_12dp"
+                    android:layout_height="@dimen/dimen_12dp"
+                    android:gravity="center|start"
+                    android:layout_gravity="center|start"
+                    android:layout_marginLeft="6dp"
+                    android:visibility="invisible"
+                    android:layout_marginRight="6dp"
+                    android:textSize="@dimen/dimen_10dp"
+                    android:text="@string/icon_circleFill"
+                    android:textColor="@color/colorPrimary" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_itemLayout_salesExeMob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:text="@string/mobile_no"
+                    android:gravity="center|start"
+                    android:textSize="14sp"
+                    style="@style/styleFontRegularText"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_itemLayout_salesExeCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:drawableStart="@drawable/ic_people_grey_24dp"
+                android:drawablePadding="10dp"
+                android:theme="@style/styleFontRegularText"
+                android:text="@string/_0"
+                android:maxLines="1"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorAccent"
+                android:ellipsize="end"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_TeamLeadStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Lead"
+            android:visibility="visible"
+            android:theme="@style/styleFontMediumText"
+            android:paddingTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:textSize="14sp"
+            android:background="@color/black_background"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center|start"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|end"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_item_updateTeamMember1"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                app:iconGravity="end"
+                android:visibility="gone"
+                app:icon="@drawable/ic_people_black_24dp"
+                android:gravity="center|end"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:focusable="true" />
+
+
+            <!--Mark as done Button-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <!--Edit Button-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_item_editSalesExecutive1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_edit_black_24dp"
+                    android:layout_gravity="start|center"
+                    android:padding="15dp"
+                    tools:ignore="PrivateResource" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>
+
+
+<!--<androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemLeadName_dot"
+                    android:layout_width="@dimen/dimen_12dp"
+                    android:layout_height="@dimen/dimen_12dp"
+                    android:gravity="center|start"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:textSize="@dimen/dimen_10dp"
+                    android:text="@string/icon_circleFill"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_itemLayout_salesExeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lead_name"
+                    android:gravity="center|start"
+                    android:textSize="18sp"
+                    style="@style/styleFontBoldText" />
+            </androidx.appcompat.widget.LinearLayoutCompat>-->

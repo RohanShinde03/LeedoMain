@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_itemSelectLeads_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:elevation="0dp">
+
+    <!--Main Linear layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center|start">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.2"
+            android:gravity="center">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/mCb_itemSelectLeads"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.2">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_itemSelectLeads_leadName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lead_name"
+                android:textSize="18sp"
+                android:textColor="@color/colorAccent"
+                style="@style/styleFontBoldText" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_itemSelectLeads_projectName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_name"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/BlackLight"
+                android:layout_marginTop="5dp"
+                style="@style/styleFontMediumText"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_itemSelectLeads_leadMob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_no"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/main_grey"
+                android:layout_marginBottom="5dp"
+                style="@style/styleFontMediumText"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>
+

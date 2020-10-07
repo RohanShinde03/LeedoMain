@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_Login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.tribeappsoft.leedo.loginModule.LoginActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:visibility="visible"
+                    android:src="@drawable/leedo"
+                    android:contentDescription="@string/app_name"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name_login_screen"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="30sp"
+                    android:visibility="visible"
+                    android:gravity="center_horizontal"/>
+
+                <!-- ll-login-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="top">
+
+                    <!-- country code and mobile no -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <!-- cpp layout -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_ccpLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_border_round_my_dob"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginRight="3dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp">
+
+                            <!-- country code picker -->
+                            <include layout="@layout/ccp_layout_code_picker" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--mobile no-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_Login_mobNo"
+                            android:theme="@style/textInputLayoutAppearance"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_Login_mobileNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:freezesText="true"
+                                style="@style/editTextPhone"
+                                android:maxLength="10"
+                                android:hint="@string/mobile_number"
+                                android:singleLine="true"
+                                android:textSize="16dp"/>
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- password -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_Login_password"
+                        android:theme="@style/textInputLayoutAppearance"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="0dp"
+                        app:errorEnabled="true"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_Login_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/editTextPassword"
+                            android:hint="@string/password_hint"
+                            android:textSize="16dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- ll-register -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                    <!--  btn_login  -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="80dp"
+                        android:paddingRight="80dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"/>
+
+
+
+                    <!-- forget password -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btn_Login_forgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.Theme.Button.TextButton"
+                        android:theme="@style/styleFontMediumText"
+                        android:layout_gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="@string/forgot_password"
+                        app:textAllCaps="false"
+                        android:textAllCaps="false"
+                        android:textSize="16dp"/>
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--  -OR-  -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="gone"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:background="@color/main_light_grey"
+                        android:layout_weight="4"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/or"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:gravity="center_horizontal"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.8dp"
+                        android:background="@color/main_light_grey"
+                        android:layout_weight="4"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- Social login new -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <!-- FB Login Button -->
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/fb_login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:visibility="gone"/>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_studentLogin_loginFB"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/fb_m"
+                        android:padding="12dp" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_studentLogin_google"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="5dp"
+                        android:src="@drawable/google_mm" />
+
+                    <!-- Sign In Button -->
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/sign_in_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout_new"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

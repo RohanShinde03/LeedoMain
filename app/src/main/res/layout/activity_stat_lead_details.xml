@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipeRefresh_statLeadDetails"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/cl_statLeadDetails"
+        android:background="@color/main_white">
+
+        <!-- ll-main -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_statLeadDetails_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_filters_applied"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- lead status details filter text -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_LeadDetailsFilterMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:orientation="horizontal">
+
+                    <!-- lead status -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_itemLeadDetails_filter_count_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_weight="2"
+                        android:padding="15dp"
+                        android:text="@string/_4_filters_applied"
+                        android:textColor="@color/BlackLight"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_itemLead_LeadDetails_ec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_keyboard_arrow_down_violet_24dp" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- Filter details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_statLeadDetails_appliedFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="5dp"
+                    android:visibility="gone">
+
+                    <!-- name filter -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_filterNameLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/name_"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_full_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Name"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- project filter -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_projectLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/project_name__"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_project_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/styleFontMediumText"
+                            android:text="@string/Name"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- from date -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_fromDateLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/from_date_"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_from_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- to date -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_toDateLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/to_date_"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_to_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- cp name  -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_cpNameLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CP Name : "
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_cp_full_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Name"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- event name -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_eventNameLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Event Name : "
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_event_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Name"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_leadStatusLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:background="@drawable/baground_border_primary_dark_more_rounded"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lead Status : "
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_statLeadDetails_lead_status_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Name"
+                            android:textColor="@color/white"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <!-- nsv stat Lead details -->
+            <com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView
+                android:id="@+id/stv_statLeadDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_statLeadDetails_add_lead_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!-- add filtered feed -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_statLeadDetails_addLeadData_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="30dp"
+                        android:visibility="visible">
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- loading content -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_leadDetails_loadingContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp"
+                        android:layout_gravity="center|bottom"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:text="@string/hang_on_loading_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/BlackLight"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <ProgressBar
+                            style="@style/Widget.AppCompat.ProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:indeterminate="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminateDuration="2000"
+                            android:indeterminateTint="@color/colorAccent"
+                            android:indeterminateTintMode="src_atop" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- pb layout -->
+        <include layout="@layout/pb_layout"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- ll-noData -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_LeadDetails_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_leads_available"
+                android:gravity="center"
+                android:textColor="@color/BlackLight"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

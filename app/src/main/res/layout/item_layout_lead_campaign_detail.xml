@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!--<com.google.android.material.chip.Chip
+        android:id="@+id/chip_leadCampaignDetail"
+        style="@style/Widget.MaterialComponents.Chip.Action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:fontFamily="@font/metropolis_light"
+        app:chipStartPadding="10dp"
+        app:chipEndPadding="10dp"
+        android:textColor="@color/main_black"
+        android:checked="false"
+       />-->
+
+    <!--
+         app:chipSurfaceColor="@color/main_black"
+        android:textColor="@color/main_white"
+         app:chipBackgroundColor="@color/main_light_grey"
+    -->
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_leadCampaignDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/metropolis_medium"
+        android:background="@drawable/ripple_cat_selected"
+        android:textColor="@color/main_white"
+        android:text="@string/title" />
+
+</RelativeLayout>

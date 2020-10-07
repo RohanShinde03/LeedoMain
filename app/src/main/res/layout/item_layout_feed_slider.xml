@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_itemFeedSlider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:transitionName="@string/transition_string"
+    app:cardCornerRadius="0dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_itemFeedSlider_Image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="200dp"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:srcCompat="@color/main_light_grey" />
+
+
+
+        <!-- ll tribe Video -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_tribeVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/banner_gradient"
+            android:layout_alignBottom="@id/iv_itemFeedSlider_Image"
+            android:layout_marginTop="5dp"
+            android:weightSum="10"
+            android:padding="5dp"
+            android:gravity="center"
+            android:visibility="visible"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_FeedSlider_EventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/card_title"
+                android:gravity="center|start"
+                android:layout_gravity="bottom"
+                android:textColor="@color/main_white"
+                android:textSize="20sp"
+                android:maxLines="2"
+                android:padding="2dp"
+                android:theme="@style/styleFontBoldText"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

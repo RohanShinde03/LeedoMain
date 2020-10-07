@@ -1,0 +1,964 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="textInputStyle">@style/CustomFontTextInputLayout</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>   <!-- def tool bar title text color -->
+
+        <!-- set action bar title color style -->
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <item name="colorSecondary">?attr/colorPrimary</item>
+        <item name="scrimBackground">@color/mtrl_scrim_color</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1
+        </item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2
+        </item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4
+        </item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+        <!-- set style for all editText/textInputLayout -->
+        <!--  <item name="android:editTextStyle">@style/editTextStyle</item>-->
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- <item name="android:spinnerItemStyle">@style/MooSpinnerItem</item>-->
+        <!--   <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>-->
+    </style>
+
+
+    <!-- Transparent Window Activity -->
+    <style name="AppTheme.TransparentWindow" >
+        <!--
+        We want the translucent background painted by the root layout instead
+        of painted by the window.
+        -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <!-- Transparent activity -->
+    <style name="Theme.Transparent" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="ActionBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:titleTextStyle">@style/ActionBar.Title</item>
+        <item name="android:subtitleTextStyle">@style/ActionBar.Subtitle</item>
+    </style>
+
+    <style name="ActionBar.Title">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="ActionBar.Subtitle">
+        <item name="android:textColor">@color/secondaryLightColor</item>
+    </style>
+
+    /////////////////////////////// Text Styles ////////////////////////////////////////////////
+
+    <!-- Bold style-->
+    <style name="styleFontBoldText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/metropolis_semi_bold</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+    <!-- Regular style-->
+    <style name="styleFontRegularText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+    <!-- medium style-->
+    <style name="styleFontMediumText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+
+ <!-- Bold style-->
+    <style name="styleFontBold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/metropolis_semi_bold</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+    <!-- Regular style-->
+    <style name="styleFontRegular">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+    <!-- medium style-->
+    <style name="styleFontMedium">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+    </style>
+
+    <style name="TextAppearance.Theme.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="textAllCaps">true</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    ////////////////////// Button Styles ///////////////////////////////////////////////
+
+    <!-- primary button-->
+    <style name="primaryButton" parent="Widget.AppCompat.Button">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/main_white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <!-- <item name="android:letterSpacing">0.1</item>-->
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- colored button -->
+    <style name="coloredButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/main_white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <!--<item name="android:letterSpacing">0.1</item>-->
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- outlined button-->
+    <style name="outlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:buttonStyle">@style/Widget.MaterialComponents.Button.OutlinedButton
+        </item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:gravity">center</item>
+        <!-- <item name="android:letterSpacing">0.1</item>-->
+    </style>
+
+
+    <!-- normal borderless button-->
+    <style name="normalBorderLessButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+        <item name="colorButtonNormal">@color/white_full_transparent</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <!-- <item name="android:letterSpacing">0.1</item>-->
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- normal borderless colored button-->
+    <style name="normalBorderLessColoredButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Text Button -->
+    <style name="Widget.Theme.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <!--<item name="android:letterSpacing">0.1</item>-->
+    </style>
+
+    <!--Solid color buttons-->
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    <!--Flat buttons-->
+    <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <!--  outlined button -->
+    <style name="outlinedButtonForgot" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:buttonStyle">
+            @style/Widget.MaterialComponents.Button.OutlinedButton
+        </item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    <!--style="@style/Widget.AppCompat.Button"
+    style="@style/Widget.AppCompat.Button.Colored"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    //////////////////////////// TextInputLayout ////////////////////////////////////////////
+
+    <!--
+    1. colorControlActivated is the floating label, underline and cursor colors, when focused. If you don’t define it, it will fall back to use your colorAccent
+
+    2. colorControlNormal is the underline color, when the view is NOT focused. If you don’t define it, it will fall back to use your textColorSecondary which is a bit.
+
+    3. textColorPrimary is the color of the user-input text
+
+    4. textColorHint is the hint color when the field is empty and NOT focused.-->
+
+
+    <style name="temp_textInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <!-- reference our hint & error styles -->
+        <item name="boxStrokeColor">@color/text_input_box_stroke</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="hintTextAppearance">@style/textInputLayoutHintText</item>
+        <item name="errorTextAppearance">@style/textInputLayoutErrorText</item>
+        <item name="helperTextTextAppearance">@style/textInputLayoutHelperText</item>
+        <item name="android:textColorPrimary">@color/main_white</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="colorControlNormal">@color/main_medium_grey</item>
+        <item name="colorControlActivated">@color/main_white</item>
+        <item name="colorControlHighlight">@color/main_white</item>
+        <item name="hintTextColor">@color/main_white</item>
+    </style>
+
+
+
+    <style name="textInputLayoutAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- reference our hint & error styles -->
+        <item name="android:theme">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="hintTextAppearance">@style/textInputLayoutHintText</item>
+        <item name="errorTextAppearance">@style/textInputLayoutErrorText</item>
+        <item name="helperTextTextAppearance">@style/textInputLayoutHelperText</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="colorControlNormal">@color/main_grey</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+
+    <style name="TextInputEditText.OutlinedBox.CustomFont" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+    <style name="ThemeOverlay.TextInputEditText.OutlinedBox.CustomFont" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="editTextStyle">@style/TextInputEditText.OutlinedBox.CustomFont</item>
+    </style>
+
+
+    <style name="textInputLayoutHintText" parent="TextAppearance.Design.Hint">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColorPrimary">@color/main_medium_grey</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textInputLayoutHelperText" parent="TextAppearance.Design.HelperText">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColorPrimary">@color/colorMain_light_blue</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textInputLayoutErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColorPrimary">@color/main_errorColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textInputLayoutBorderStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/main_medium_grey</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+
+    <!-- region TextInputLayout & TextInputEditText styles -->
+
+    <!--
+    <style name="TextInputLayout.OutlineBox.CustomFont" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+      <item name="android:theme">@style/ThemeOverlay.TextInputEditText.OutlinedBox.CustomFont</item>
+    </style>
+    <style name="CustomFontTextInputLayout" parent="Widget.Design.TextInputLayout">
+          <item name="hintTextAppearance">@style/textInputLayoutHintText</item>
+          <item name="helperTextTextAppearance">@style/TextInputLayoutHelperText</item>
+          <item name="errorTextAppearance">@style/TextInputLayoutErrorText</item>
+    </style>
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+   -->
+
+
+    <style name="TextInputLayout.OutlineBox.CustomFont" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:theme">@style/ThemeOverlay.TextInputEditText.OutlinedBox.CustomFont
+        </item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    <style name="Widget.Theme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="TextAppearance.Theme.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <!-- endregion -->
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    //////////////////////////// EditText Styles /////////////////////////////////////////
+
+
+    <!-- editTextStyle-->
+    <!--<style name="editTextStyle" parent="@android:style/Widget.EditText">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_black</item>
+        <item name="android:textColor">@color/colorMain_light_blue</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style> -->
+
+    <style name="editTextStyle" parent="Base.Widget.MaterialComponents.TextInputEditText">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+
+    <!-- normal edit text-->
+    <style name="editTextNormal" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+    <!-- user name edit text-->
+    <style name="editTextUserName" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">textPersonName|textCapSentences</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:digits">@string/digits_username</item>
+    </style>
+
+    <!-- user address multiline edit text-->
+    <style name="editTextMultiline" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:gravity">center|top</item>
+        <item name="android:lines">3</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:minLines">2</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+
+    <!-- phone/mobile edit text-->
+    <style name="editTextPhone" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">phone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:lines">1</item>
+        <!--  <item name="android:maxLength">10</item> //TODO removed bcoz all country code selection -->
+        <item name="android:digits">1234567890</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+
+    <!-- email edit text-->
+    <style name="editTextEmail" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    <!-- password edit text-->
+    <style name="editTextPassword" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+
+    <!-- user Cheque Number edit text-->
+    <style name="editTextUserCheckNumber" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Theme.TextInputLayout.HintText</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////// Dialogs Style ////////////////////////////////////////////////
+
+
+    <!--Bottom Sheet-->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_dialog_fragment</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+
+    <!-- Rounded bottom sheet dialog -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>-->
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+
+    <style name="Widget.Theme.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorAccent</item>
+        <item name="android:theme">@style/Theme.Theme</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Theme.Toolbar</item>
+    </style>
+
+    <style name="TextAppearance.Theme.Toolbar" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <!-- Style for custom alert dialogs -->
+    <style name="MyCustomAnim" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/AlertAnimation.Window</item>
+    </style>
+
+    <style name="AlertAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/open_enter</item>
+        <item name="android:windowExitAnimation">@anim/open_exit</item>
+    </style>
+
+
+    <!-- alert dialog theme -->
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@android:color/holo_orange_dark</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+    </style>
+
+    <!-- full screen dialog theme-->
+    <style name="FullScreenDialogTheme" parent="Base.Theme.MaterialComponents.DialogWhenLarge">
+        <item name="android:statusBarColor">@color/cardBackground</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+    </style>
+
+
+    <!-- full screen alert dialog-->
+    <style name="Theme_Dialog" parent="android:Theme.Holo.Dialog">
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+    </style>
+
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/open_enter</item>
+        <item name="android:windowExitAnimation">@anim/open_exit</item>
+    </style>
+
+    <style name="FullTheme_Dialog" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+
+    </style>
+
+    <!-- claim now dialog anim -->
+    <!--<style name="claimDialogAnim" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/claimAnimation.Window</item>
+    </style>-->
+
+    <style name="claimDialogAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/trans_right_in</item>
+        <item name="android:windowExitAnimation">@anim/trans_left_out</item>
+    </style>
+
+        <!-- reminder dialog -->
+    <style name="reminderDialogAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+    </style>
+
+
+    <!-- for materialComponents dialog -->
+    <style name="material_AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/material_NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/material_PositiveButtonStyle</item>
+    </style>
+
+    <style name="material_NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="material_PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+    <!-- for appCompact theme -->
+    <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#f00</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#00f</item>
+    </style>
+
+
+    <!-- Style for DateTime Picker -->
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+
+
+    <!-- android.R.style.Theme_Black_NoTitleBar_Fullscreen-->
+
+    /////////////////////////////// ProgressBar ////////////////////////////////////////////////
+
+    <style name="customprogressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:indeterminateTint">@color/colorPrimary</item>
+    </style>
+
+
+    /////////////////////////////// TabLayout ////////////////////////////////////////////////
+
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+    <!--Style For BottomBar text-->
+    <style name="menu_text_style" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="listPreferredItemPaddingLeft">18dp</item>
+    </style>
+
+
+    <!--Style for Tabs-->
+    <style name="CustomTabText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+    <!--Style for Bottom Navigation Tabs-->
+    <style name="CustomBottomNavTabText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">40dp</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+    <!--Style for Tabs-->
+    <style name="MineCustomTabText1" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">9.5dp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <!-- <item name="android:letterSpacing">0.2</item>-->
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    <!--Style for Radio button-->
+    <style name="MyRaidoButtonTwo" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal" tools:targetApi="lollipop">#8F939B</item>
+        <item name="android:colorControlActivated" tools:ignore="NewApi">#9DAD55</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">#9DAD55</item>
+        <item name="android:textColorPrimaryDisableOnly">#9DAD55</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
+
+
+    <!--Toolbar-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <!-- <item name="android:letterSpacing">0.1</item>-->
+    </style>
+
+    <!--SeekBar-->
+    <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">#969696</item>
+        <item name="android:progressTint">#B42726</item>
+        <item name="android:colorControlActivated">#B42726</item>
+        <item name="android:secondaryProgressTint">#e36964</item>
+    </style>
+
+
+    <!-- switch control -->
+    <style name="MySwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
+
+    </style>
+
+    <style name="MyRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/radio_button_selector</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+    <!--Style for Radio button edit profile-->
+    <style name="MyRadioButtonStyleProfileSelected" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/radio_button_selector_white</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+
+
+    <!-- Splash Theme --> <!--  parent ="Theme.AppCompat.Light.NoActionBar" -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- <item name="windowActionBar">false</item>
+         <item name="windowNoTitle">true</item>
+         -->
+    </style>
+
+
+    <style name="ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <!-- color of box ONLY, not dropdown -->
+        <item name="boxBackgroundColor">@color/main_white</item>
+        <!-- supposed to set the background color of the dropdown menu - does nothing -->
+        <item name="android:popupBackground">@color/main_white</item>
+        <!--
+         Works partially, only the item background color is set
+         leaving the actual background around the top and bottom showing
+        -->
+        <!-- <item name="android:background">@color/dialog_bg_color</item>-->
+        <!-- does nothing -->
+        <!-- <item name="android:colorBackground">@color/dialog_bg_color</item>-->
+        <item name="boxStrokeColor">@color/main_medium_grey</item>
+        <item name="android:textColorHint">@color/main_medium_grey</item>
+        <item name="hintTextColor">@color/main_medium_grey</item>
+        <item name="android:textStyle">bold</item>
+        <item name="errorEnabled">true</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ExposedDropdownMenu.DropdownItem">
+        <!-- sets the background of a single item, but background of dropdown still shows -->
+        <!-- <item name="android:background">@color/dialog_bg_color</item>-->
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/colorPrimary</item>
+    </style>
+
+
+    <!-- Nav Drawer Style-->
+    <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColor">@color/main_grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+
+    </style>
+
+
+    <!-- Bold style-->
+    <style name="FontMediumTextGoogleSan">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/fb</item>
+    </style>
+
+    <!--Button Theme-->
+    <style name="Widget.Theme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/fb</item>
+    </style>
+
+    <!--Button Theme-->
+    <style name="Widget.Theme.Button1" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/metropolis_light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/google</item>
+    </style>
+
+
+    <style name="CustomFontTextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="hintTextAppearance">@style/TextInputLayoutHintText</item>
+        <item name="helperTextTextAppearance">@style/TextInputLayoutHelperText</item>
+        <item name="errorTextAppearance">@style/TextInputLayoutErrorText</item>
+    </style>
+
+    <style name="TextInputLayoutHintText" parent="TextAppearance.Design.Hint">
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+    <style name="TextInputLayoutHelperText" parent="TextAppearance.Design.HelperText">
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+    <style name="TextInputLayoutErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+    <!-- endregion -->
+
+
+    //////////////////////////// Toolbar /////////////////////////////////////////
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
+        <item name="android:textColorPrimary">@android:color/holo_blue_light</item>
+        <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
+        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
+        <!-- Tints the input fields like checkboxes and text fields -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Applies to views in their normal state. -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <!-- Applies to views in their activated state (i.e checked or switches) -->
+        <item name="colorControlActivated">@color/secondaryColor</item>
+        <!-- Applied to framework control highlights (i.e ripples or list selectors) -->
+        <item name="colorControlHighlight">@color/secondaryColor</item>
+
+        <!-- Enable these below if you want clicking icons to trigger a ripple effect -->
+        <!--
+        <item name="selectableItemBackground">?android:selectableItemBackground</item>
+        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
+        -->
+    </style>
+
+    <style name="pay_slip">Pay Slip</style>
+
+    <!-- This configures the styles for the title within the Toolbar  -->
+    <!--<style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">-->
+    <!--<item name="android:textSize">21sp</item>-->
+    <!--<item name="android:textStyle">italic</item>-->
+    <!--</style>-->
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    <style name="Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+        <!-- parent="android:style/Theme.Dialog" -->
+    <style name="Theme.UserDialog" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <!-- Theme.MaterialComponents.Dialog -->
+    </style>
+
+
+    <!--ll_textbox-->
+    <style name="textStyle_ll_textBox">
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColor">@color/BlackLight</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <!--Linelayout Custom Dropdown or Textbox-->
+    <style name="textStyle_ll_">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:background">@drawable/my_rectangle_moreround</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <!--textStyle-->
+    <style name="textStyle_TextBox_Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColor">@color/text_hint</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <!--tabs-->
+    <style name="CustomTabStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+    </style>
+
+    <style name="MyDatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:buttonBarButtonStyle">@style/MyDatePicker.buttonStyle</item>
+    </style>
+    <style name="MyDatePicker.buttonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:theme">@style/styleFontBoldText</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+</resources>

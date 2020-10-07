@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.SelectTeamMembersActivity">
+
+    <!-- rv -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sr_team_member_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_team_member_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="65dp"
+            android:paddingBottom="70dp"
+            android:visibility="visible"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_team_member_list"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_team_memberActivity_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/ic_rectangle_light_grey_round">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_team_memberActivity_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.73"
+            android:background="@color/black_full_transparent"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:hint="@string/search"
+            android:textColorHint="@color/main_grey"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp"
+            android:theme="@style/styleFontMediumText"
+            android:imeOptions="actionSearch"
+            android:iconifiedByDefault="false"
+            />
+        <!--     -->
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_team_memberActivity_clearSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:padding="4dp"
+            android:visibility="gone"
+            android:tint="@color/main_medium_grey"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_close_black_24dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_team_memberActivity_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:tint="@color/color_Gray"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_people_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_sales_executives_found"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/main_medium_grey"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_cpFOSList_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:textColor="@color/main_white"
+            app:backgroundTint="@color/main_medium_grey"
+            app:cornerRadius="24dp"
+            android:paddingRight="40dp"
+            android:paddingLeft="40dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:theme="@style/styleFontMediumText"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

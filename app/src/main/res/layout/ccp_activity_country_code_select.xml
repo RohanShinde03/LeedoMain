@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    tools:context="com.tribeappsoft.leedo.util.ccp.CountryCodeSelectActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_countryCode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_countryCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="65dp"
+            android:paddingBottom="70dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/ccp_item_country"/>
+
+        <!-- Search bar & Filter  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_countryCode_searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Search bar -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|top"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:background="@drawable/ic_rectangle_light_grey_round">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_searchCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.73"
+                    android:background="@color/black_full_transparent"
+                    android:drawableStart="@drawable/ic_search_icon"
+                    android:drawablePadding="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center|start"
+                    android:hint="@string/search_country"
+                    android:inputType="textPersonName|textCapSentences"
+                    android:lines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="18sp"
+                    android:theme="@style/styleFontRegularText" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_countryCode_clearSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="end|center"
+                    android:src="@drawable/ic_search_close_icon"
+                    android:visibility="gone" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- ll no Data Found -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_countryCode_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:contentDescription="@string/app_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_result_found"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- country code picker -->
+        <com.tribeappsoft.leedo.util.ccp.CountryCodePicker
+            android:id="@+id/ccp_selectCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:ccp_textSize="14dp"
+            app:ccp_defaultNameCode="in"
+            app:ccp_defaultCode="91"
+            app:ccp_textColor="@color/main_black"
+            app:ccp_backgroundColor="@color/main_white"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

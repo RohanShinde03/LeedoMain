@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/ll_itemSiteVisitDetailsList"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp">
+
+
+    <!--Lead Date-->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_itemSiteVisit_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center|end"
+        android:text="@string/card_text_date"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:gravity="center|end"
+        android:theme="@style/styleFontMediumText"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv_itemSiteVisitDetailsList"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="false"
+        android:focusable="false"
+        app:strokeColor="@color/card_outline"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <!--Lead Details-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+                <!-- tag, elapsed time, popup menu -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <!-- tag & elapsed time  -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center|start"
+                        android:layout_weight="2">
+
+                        <!-- tag -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_tag_background"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:gravity="center">
+
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemSiteVisit_tagIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_tag_general"
+                                android:scaleType="centerCrop"/>
+
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mtv_itemSiteVisit_tag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="@string/tag_r_n_l"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- cuID number -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_itemSiteVisit_cuIdNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/def_cuID_number"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="center|start"
+                    android:gravity="center|start"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:paddingTop="5dp"
+                    android:theme="@style/styleFontMediumText" />
+
+
+                <!--Lead Name-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_itemSiteVisit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/lead_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp"
+                    android:theme="@style/styleFontBoldText" />
+
+                <!--Lead Mobile-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_itemSiteVisitDetails_mobileNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/def_mob_number"
+                    android:visibility="visible"
+                    android:drawableStart="@drawable/ic_call_green_24dp"
+                    android:drawablePadding="7dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_grey"
+                    android:textSize="16sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:theme="@style/styleFontRegularText" />
+
+                <!--Lead Email-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_itemSiteVisitDetails_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/email"
+                    android:visibility="gone"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawableTint="@color/color_claim_now_success_green"
+                    android:drawablePadding="7dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_grey"
+                    android:textSize="16sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:theme="@style/styleFontRegularText" />
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--Project Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_itemSiteVisitDetails_projectName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="@string/project_name"
+                        android:textAlignment="textStart"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="14sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <View
+                        android:layout_width="0.8dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/color_card_sub_title" />
+
+                    <!--Unit Type-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_itemSiteVisitDetails_unitType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:visibility="visible"
+                        android:layout_marginBottom="2dp"
+                        android:text="@string/def_unit_type"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="14sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:theme="@style/styleFontMediumText" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_CpNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--Project Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_itemSiteVisitDetails_cp_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/cp_name"
+                        android:textAlignment="textStart"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="14sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <!--Unit Type-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_itemSiteVisitDetails_cpName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:visibility="visible"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/Name"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="14sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:theme="@style/styleFontMediumText" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

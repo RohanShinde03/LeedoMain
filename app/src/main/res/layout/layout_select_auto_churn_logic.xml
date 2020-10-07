@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="@string/auto_assignment"
+            android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/styleFontMediumText"
+            android:textSize="20sp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_selectAutoChurnLogic_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_black_24dp"
+            android:padding="@dimen/dimen_12dp"
+            android:layout_gravity="end">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:text="@string/select_auto_churn_by"
+            android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/styleFontRegularText"
+            android:textSize="16sp"/>
+
+
+        <!-- assignment logic selection -->
+        <RadioGroup
+            android:id="@+id/rdoGrp_selectAutoAssignment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/mRb_selectAutoAssignmentLogic_meriGoRound"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/meri_go_round"
+                android:theme="@style/styleFontRegularText" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/mRb_selectAutoAssignmentLogic_random"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/random"
+                android:theme="@style/styleFontRegularText" />
+
+        </RadioGroup>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_selectAutoAssignmentLogic_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/churn_leads"
+            style="@style/coloredButton"
+            app:backgroundTint="@color/main_light_grey"
+            android:textColor="@color/main_white"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:textAllCaps="false"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:cornerRadius="50dp"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

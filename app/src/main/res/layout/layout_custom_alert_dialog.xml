@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:elevation="24dp"
+    android:elevation="24dp">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_layout_custom_alert_dialog_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontRegularText"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="9"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/message"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="visible"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/divider_color"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_negativeButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:text="@string/cancel"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_layout_custom_alert_dialog_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_positiveButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:text="@string/ok"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_weight="1"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

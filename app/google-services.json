@@ -1,0 +1,859 @@
+{
+  "project_info": {
+    "project_number": "253322705508",
+    "firebase_url": "https://tribe-testing-e41d8.firebaseio.com",
+    "project_id": "tribe-testing-e41d8",
+    "storage_bucket": "tribe-testing-e41d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:b5414e60a92193e6d53d71",
+        "android_client_info": {
+          "package_name": "com.brainyconstruction.ERPapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:8d3b4a891b60348c",
+        "android_client_info": {
+          "package_name": "com.cicosolutions.cico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:07011fa9bdaf1a6fd53d71",
+        "android_client_info": {
+          "package_name": "com.credainashik.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:378182589b9369e1",
+        "android_client_info": {
+          "package_name": "com.example.cico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:9f107ff14c195b29",
+        "android_client_info": {
+          "package_name": "com.example.tas9.credaimaharashtra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:d98053603e014c10d53d71",
+        "android_client_info": {
+          "package_name": "com.nandedcity.customerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:deb798a5d0738880",
+        "android_client_info": {
+          "package_name": "com.ramsinaprojects.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:91520b2e97980e94d53d71",
+        "android_client_info": {
+          "package_name": "com.sonigarahomes.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-lrictfihj1680pm8u6et1v2bqtkgpceh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sonigarahomes.crm",
+            "certificate_hash": "8c3b222837950385429c045ff7e3250925082cd6"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:bb299db4de8cb609",
+        "android_client_info": {
+          "package_name": "com.suryawanshiconstructions.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-tvgeo2puh1l94lbrp1jhsgtglpne38di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suryawanshiconstructions.crm",
+            "certificate_hash": "e6759280fb493bf30fdec762c3e1574df315d69c"
+          }
+        },
+        {
+          "client_id": "253322705508-vln9ah7qnmu0glj2ai2fe3959at757sf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suryawanshiconstructions.crm",
+            "certificate_hash": "c90bc109421b55600a841bccdae35b64fe5cb9ff"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:10a387ff2630cce3",
+        "android_client_info": {
+          "package_name": "com.theidealconstruction.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:3d138a004db897b9",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.androidrepository"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:fee1cff1c07d7ae3d53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.belong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:01ee2315707ec424d53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.chatbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:ac9d60d9c6d86b35",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:d40e9cf2a0a36ef0d53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.leado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-5nauo6rsd9ngv35652g3tgjpsleck3r7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tribeappsoft.leado",
+            "certificate_hash": "8c3b222837950385429c045ff7e3250925082cd6"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:7e693f002af4e7d7d53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.leedo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-jf1974nimq5a39tind5c2ffq17n9l95n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tribeappsoft.leedo",
+            "certificate_hash": "8c3b222837950385429c045ff7e3250925082cd6"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:c16482a3bf754b02d53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.salesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:344303bcb33cc0edd53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.tap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-jjflftpp6v7kanu0ltck0c1s19q6eccr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tribeappsoft.tap",
+            "certificate_hash": "252568e3dfbd46b2e0078dfa31420bf5c2321581"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:81ec2b11f23d986b",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.times"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:623724342a9ce29dd53d71",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.tribeworksapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-eib7gab73j4buf1q5tgfcqga6b6ulcb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tribeappsoft.tribeworksapp",
+            "certificate_hash": "252568e3dfbd46b2e0078dfa31420bf5c2321581"
+          }
+        },
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:5dd3bf42d9f1231a",
+        "android_client_info": {
+          "package_name": "com.tribeappsoft.vjd.vendorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253322705508:android:8c6a28c49bd1f59b",
+        "android_client_info": {
+          "package_name": "com.udayrajdevelopers.crm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD42sYxOEEAfSyFGNIxORYKL5oqVpoe4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253322705508-ar9ofosbeldtgs9ur352lq490i8mfl8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253322705508-e75rn6p69j9bupg7vlflr2pteqm15i0l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.credainashik.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

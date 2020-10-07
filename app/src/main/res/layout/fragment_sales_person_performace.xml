@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_sales_person_achievements"
+    android:background="@color/main_white">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".salesPerson.homeFragments.FragmentSalesPersonAchievements">
+
+        <!-- app bar layout -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_sales_person_achievements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:statusBarForeground="@color/main_black"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_achievements"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/Toolbar.TitleText"
+                app:title="@string/title"
+                app:titleTextColor="@color/main_white"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- nested scroll view -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_salesPersonStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- ll-main -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_myPerformance_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:hint="@string/project_name"
+                        android:background="@color/main_white">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tv_performance_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="3dp"
+                            android:padding="15dp"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText"
+                            android:background="@color/main_white" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- performance visit dates -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_performance_FromDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/from_date"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/colorPrimary"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_performance_ToDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/to_date"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/colorPrimary"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--Project Slots-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_lead_block"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_leads"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/lead_count"
+                                        android:textSize="30sp"
+                                        android:textColor="@color/color_lead_added"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="5dp"
+                                        android:theme="@style/styleFontBoldText"
+                                        android:fontFamily="@font/metropolis_extra_bold"/>
+
+
+                                    <!--Lead Text-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/performance_leads"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:maxLines="2"
+                                        android:lines="2"
+                                        android:ellipsize="end"
+                                        android:paddingTop="2dp"
+                                        android:paddingBottom="5dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_site_visit_block"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:focusable="true"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <!--Site Visit Count-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_site_Visit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visit_count"
+                                        android:textSize="30sp"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/color_site_visit"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Text Site Visit-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visits"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:paddingTop="2dp"
+                                        android:lines="2"
+                                        android:paddingBottom="2dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+
+                            <!--GHP-->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_token_generated_block"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_token_generated"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/lead_count"
+                                        android:textSize="30sp"
+                                        android:textColor="@color/color_token_generated"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="5dp"
+                                        android:theme="@style/styleFontBoldText"
+                                        android:fontFamily="@font/metropolis_extra_bold"/>
+
+
+                                    <!--Lead Text-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/ghp_generated"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:maxLines="2"
+                                        android:lines="2"
+                                        android:ellipsize="end"
+                                        android:paddingTop="2dp"
+                                        android:paddingBottom="5dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <!--GHP Plus +-->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_ghp_plus_generated_block"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:focusable="true"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_token_plus_generated"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visit_count"
+                                        android:textSize="30sp"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/color_token_plus_generated"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Text Site Visit-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/ghp_plus_generated"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:paddingTop="2dp"
+                                        android:lines="2"
+                                        android:paddingBottom="2dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+
+                            <!--on  hold-->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_flat_holds"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:focusable="true"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <!--Site Visit Count-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_hold"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/onhold_count"
+                                        android:textSize="30sp"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/color_flat_onHold"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Text Site Visit-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/onHolds"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:paddingTop="2dp"
+                                        android:lines="2"
+                                        android:paddingBottom="2dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <!--allotments-->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_booking_block"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:focusable="true"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <!--Site Visit Count-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_bookings"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visit_count"
+                                        android:textSize="30sp"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/color_flat_sold"
+                                        android:gravity="center"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Text Site Visit-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/performance_booking"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:paddingTop="2dp"
+                                        android:lines="2"
+                                        android:paddingBottom="2dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/my_inventory_status_performance"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:visibility="gone"
+                        android:gravity="start"
+                        android:theme="@style/styleFontBoldText"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <!-- ll_Sold-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_performance_sold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:background="@drawable/ripple_drawable_color">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_status_sold"
+                                android:layout_width="match_parent"
+                                android:text="@string/sold_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/color_flat_sold"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/perf_s"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:gravity="center"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <!-- ll_On_Hold -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_perforamnce_onhold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:background="@drawable/ripple_drawable_color">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_status_onhold"
+                                android:layout_width="match_parent"
+                                android:text="@string/onhold_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/color_flat_onHold"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/onHolds"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:gravity="center"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!-- ll_Reserved-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_performance_reserved"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:background="@drawable/ripple_drawable_color">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_status_reserved"
+                                android:layout_width="match_parent"
+                                android:text="@string/reserved_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/color_flat_reserved"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/perf_r"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:gravity="center"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        >
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_sold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_on_hold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_reserved"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--Loading Progress Bar -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_achievements_pb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:elevation="24dp"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/pb_itemProjectDocs_downloadDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center|end"
+                style="?android:attr/progressBarStyleInverse"
+                android:visibility="visible"
+                android:indeterminateDuration="2000"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorAccent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/sfl_myPerformance_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <include layout="@layout/layout_sales_person_performance_shimmer" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <!-- ll no Data Found -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_myPerformance_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name"
+                android:tint="@color/color_Gray"
+                app:srcCompat="@drawable/ic_assessment_grey_128dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/your_performance_not_available"
+                android:textColor="@color/main_medium_grey"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+    <!--<com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="160dp"
+                                    app:strokeWidth="1dp"
+                                    app:cardCornerRadius="16dp"
+                                    android:id="@+id/material_blank"
+                                    app:cardElevation="0dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="12dp"
+                                    android:layout_weight="1">
+                                </com.google.android.material.card.MaterialCardView>-->
+
+
+
+

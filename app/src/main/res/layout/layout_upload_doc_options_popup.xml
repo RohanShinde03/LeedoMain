@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+   <!--Upload -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_layout_select_popup_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:theme="@style/styleFontBoldText"
+            android:text="@string/selectUsing"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="10"
+        android:baselineAligned="false">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_layout_select_popup_option1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_camera_icon_black_01"
+                tools:ignore="VectorDrawableCompat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/camera"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_layout_select_popup_option2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_gallery_icon_black_01"
+                tools:ignore="VectorDrawableCompat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:text="@string/gallery" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_layout_select_popup_option3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_document_icon_black_01"
+                tools:ignore="VectorDrawableCompat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:text="@string/documents" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

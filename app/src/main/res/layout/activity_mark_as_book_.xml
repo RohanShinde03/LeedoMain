@@ -1,0 +1,450 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_siteVisit"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/main_white">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+
+                <!-- sales representative-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_markAsBook_salesRepName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/def_sales_person_name"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:gravity="center|start"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sales_representative"
+                        android:textColor="@color/colorPrimary"
+                        android:theme="@style/styleFontRegularText"
+                        android:textSize="14sp"
+                        android:gravity="center|start"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+                <!-- Customer selection -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/main_white">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/select_customer_mobile_star"
+                            android:textColorHint="@color/grey_m"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="15sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"/>
+
+                        <!--Select Customer ID-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_markAsBook_select_customer_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/styleFontMediumText"
+                            android:padding="12dp"
+                            android:hint="@string/customer_mobile"
+                            android:singleLine="true"
+                            android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                            android:background="@drawable/bg_outline_border_round_my_dob"
+                            android:textSize="16sp"
+                            android:focusable="false"
+                            tools:ignore="PrivateResource" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/main_white">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/selected_customer_name"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="15sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_customerName_markAsBook"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/styleFontMediumText"
+                            android:padding="15dp"
+                            android:hint="@string/full_name"
+                            android:singleLine="true"
+                            android:background="@drawable/bg_outline_border_round_my_dob"
+                            android:textSize="16sp"
+                            android:focusable="false"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_siteVisit_project_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColorHint="@color/grey_m"
+                        android:hint="@string/project_name_"
+                        android:background="@color/main_white">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acTv_markAsBook_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="3dp"
+                            android:textColor="@color/BlackLight"
+                            android:padding="15dp"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText"
+                            android:background="@color/main_white"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- select unit type -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColorHint="@color/grey_m"
+                        android:theme="@style/styleFontMediumText"
+                        android:hint="@string/select_unit_type_star">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acTv_markAsBook_selectUnitType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:ellipsize="end"
+                            android:textSize="15dp"
+                            android:textColor="@color/BlackLight"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!-- unit no-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:layout_marginBottom="10dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_markAsBook_unitNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select_unit_no_star"
+                            android:textColorHint="@color/grey_m"
+                            android:textColor="@color/BlackLight"
+                            android:theme="@style/styleFontMediumText"
+                            android:visibility="visible"
+                            android:textSize="15dp"
+                            android:ellipsize="end"
+                            android:gravity="start"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--booking date and time-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_markAsBook_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/book_date_compulsory"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/BlackLight"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_access_time_black_24dp"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_markAsBook_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/book_time_compulsory"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/BlackLight"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- site visit remarks -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="@string/mark_book_remarks"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColorHint="@color/grey_m">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_markAsBook_remarks"
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:inputType="textPersonName|textMultiLine"
+                            android:textColor="@color/BlackLight"
+                            android:theme="@style/styleFontMediumText"
+                            android:maxLines="5"
+                            android:ellipsize="end"
+                            android:gravity="start"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- booking Application -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/cv_item_BrochureDocs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white">
+
+                    <!--brochure Documents-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="vertical"
+                        android:background="@color/main_white">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="start"
+                                android:gravity="start"
+                                android:layout_weight="1">
+
+                                <!--project_brochure doc-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_markAsBook"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_gravity="start"
+                                    android:textSize="17sp"
+                                    android:text="@string/booking_application"
+                                    android:maxLines="2"/>
+                                <!--Choose File-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_markAsBook_select_file"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_gravity="start"
+                                    android:padding="1dp"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/main_grey"
+                                    android:text="@string/no_file_choose"
+                                    android:maxLines="2" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:layout_gravity="end"
+                                android:gravity="end">
+
+                                <!--Upload File-->
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_markAsBook_browse"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:gravity="center"
+                                    android:paddingRight="5dp"
+                                    android:paddingLeft="15dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingBottom="5dp"
+                                    android:src="@drawable/ic_attach"
+                                    />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            android:layout_marginTop="5dp"
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- submit  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_markAsBook_markAsBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mark_as_book"
+                style="@style/coloredButton"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:cornerRadius="50dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        android:visibility="visible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

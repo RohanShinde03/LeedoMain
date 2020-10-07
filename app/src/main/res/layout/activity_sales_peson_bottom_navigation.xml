@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.SalesPersonBottomNavigationActivity">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_home"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fl_salesPerson_homeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+    <!--<fragment
+        android:id="@+id/fl_salesPerson_homeContainer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />-->
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav_view_salesPerson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@drawable/nav_item_icon_bg"
+        app:itemTextColor="@drawable/nav_item_icon_bg"
+        />
+    <!--
+    app:itemBackground="@color/main_white"
+      android:background="?android:attr/windowBackground"
+    app:layout_behavior="com.tribeappsoft.vjsalesapp.util.BottomNavigationBehavior"
+     -->
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/bottomNav_view_salesPerson"
+        app:layout_anchorGravity="top|end"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
+
+    <View
+        android:id="@+id/view_salesPerson_disableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+
+    <!-- direct booking text -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_salesPerson_titleDirectBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/direct_allotment"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="330dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center|end"
+        android:padding="3dp"
+        android:textSize="16sp" />
+
+    <!-- fab direct booking -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_salesPerson_directBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:tint="@null"
+        app:fabSize="normal"
+        android:visibility="invisible"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_direct_allotment_fab_icon"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="320dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+    <!-- add token text -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_salesPerson_titleAddToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/generate_ghp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="275dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center|end"
+        android:padding="3dp"
+        android:textSize="16sp" />
+
+    <!-- fab add token -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_salesPerson_addToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:tint="@null"
+        app:fabSize="normal"
+        android:visibility="invisible"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_note_add_black_24dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="260dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- add site visit text -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_salesPerson_titleAddSiteVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/add_site_visit"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="215dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center|end"
+        android:padding="3dp"
+        android:textSize="16sp" />
+    <!-- fab add token -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_salesPerson_addSiteVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:tint="@null"
+        app:fabSize="normal"
+        android:visibility="invisible"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_business_black_24dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- aAdd reminder text -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_salesPerson_titleAddReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/add_reminder"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="155dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center|end"
+        android:padding="3dp"
+        android:textSize="16sp" />
+    <!-- add reminder fab-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_salesPerson_addReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:tint="@null"
+        app:fabSize="normal"
+        android:visibility="invisible"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_add_reminder"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="140dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- add new lead text -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_salesPerson_titleAddLead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/new_lead"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="85dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center|end"
+        android:padding="3dp"
+        android:textSize="16sp" />
+
+    <!-- new lead fab -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_salesPerson_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        app:backgroundTint="@color/main_white"
+        app:tint="@null"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_add_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

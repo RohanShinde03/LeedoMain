@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bNav_salesPerson_leads">
+
+    <fragment
+        android:id="@+id/bNav_salesPerson_leads"
+        android:name="com.tribeappsoft.leedo.salesPerson.homeFragments.FragmentSalesPersonHomeFeeds"
+        android:label="@string/feeds"
+        tools:layout="@layout/fragment_sales_person_home_feeds" >
+        <action
+            android:id="@+id/action_bNav_salesPerson_leads_to_bNav_salesPerson_myPerformance"
+            app:destination="@id/bNav_salesPerson_myPerformance" />
+        <action
+            android:id="@+id/action_bNav_salesPerson_leads_to_bNav_salesPerson_reminders"
+            app:destination="@id/bNav_salesPerson_reminders" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bNav_salesPerson_myPerformance"
+        android:name="com.tribeappsoft.leedo.salesPerson.homeFragments.FragmentSalesPersonPerformance"
+        android:label="@string/my_performance"
+        tools:layout="@layout/fragment_sales_person_performace"/>
+
+    <fragment
+        android:id="@+id/bNav_salesPerson_reminders"
+        android:name="com.tribeappsoft.leedo.salesPerson.homeFragments.FragmentSalesPersonReminders"
+        android:label="@string/reminder"
+        tools:layout="@layout/fragment_sales_person_reminders"/>
+</navigation>

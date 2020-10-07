@@ -1,0 +1,51 @@
+<string name="add_floor_plan">Add Floor Plan</string>
+    <string name="submit_floor_plan">Submit Floor Plan</string>
+    <string name="update_floor_plan">Update Floor Plan</string>
+
+    <string name="add_quotation">Add Quotation</string>
+    <string name="submit_quotation">Submit Quotation</string>
+    <string name="update_quotation">Update Quotation</string>
+
+    <string name="quotation">Quotations</string>
+    <string name="floor_plan">Floor Plans</string>
+
+    <string name="title_add_quotation">Add New Quotation</string>
+    <string name="title_update_quotation">Update Quotation</string>
+
+    <string name="title_add_floor_plan">Add New Floor Plan</string>
+    <string name="title_update_floor_plan">Update Floor Plan</string>
+
+    <string name="no_floor_plans">Project floor plans not available!</string>
+    <string name="no_quotations">Project quotations not available!</string>
+
+    <string name="project_floor_plan_title">Project Floor Plan Title<font color="#cc0029">*</font></string>
+    <string name="project_quotation_title">Project Quotation Title<font color="#cc0029">*</font></string>
+
+    <string name="project_floor_plan_description">Project Floor Plan Description</string>
+    <string name="project_quotation_description">Project Quotation Description</string>
+
+    <string name="project_floor_plan_">Project Floor Plan</string>
+    <string name="project_quotation_">Project Quotation</string>
+
+
+    <string name="submit_project_quotation_question">Submit Quotation?</string>
+    <string name="update_project_quotation_question">Update Quotation?</string>
+    <string name="update_project_quotation_confirmation">Are you sure you want to update Project Quotation?</string>
+    <string name="submit_project_quotation_confirmation">Are you sure you want to submit Project Quotation?</string>
+    <string name="updating_projectQuotation_details">Updating Project Quotation details…</string>
+    <string name="submitting_projectQuotation_details">Submitting Project Quotation details…</string>
+
+
+    <string name="submit_project_floor_plan_question">Submit Floor Plan?</string>
+    <string name="update_project_floor_plan_question">Update Floor Plan?</string>
+    <string name="update_project_floor_plan_confirmation">Are you sure you want to update Project Floor Plan?</string>
+    <string name="submit_project_floor_plan_confirmation">Are you sure you want to submit Project Floor Plan?</string>
+    <string name="updating_project_floor_plan_details">Updating Project Floor Plan details…</string>
+    <string name="submitting_project_floor_plan_details">Submitting Project Floor Plan details…</string>
+
+    <string name="delete_project_floor_plan_question">Delete Floor Plan?</string>
+    <string name="delete_floor_plan_confirmation">Are you sure you want to delete this project floor plan?</string>
+
+    <string name="delete_project_quotation_question">Delete Quotation?</string>
+    <string name="delete_quotation_confirmation">Are you sure you want to delete this project quotation?</string>
+

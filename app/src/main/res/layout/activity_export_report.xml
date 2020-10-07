@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_expExport"
+    tools:context=".admin.reports.ExportReportActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- report from and to date -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_report_date"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="17sp"
+                    android:gravity="center|start"/>
+
+                <!-- select from date -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconDrawable="@drawable/ic_date"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/grey_m"
+                    android:theme="@style/styleFontMediumText"
+                    android:hint="@string/select_from_date"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_expReport_fromDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="none"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textSize="15sp"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- select to date -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconDrawable="@drawable/ic_date"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/grey_m"
+                    android:theme="@style/styleFontMediumText"
+                    android:hint="@string/select_to_date"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_expReport_toDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="none"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textSize="15sp"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- btn view report  -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/main_white">
+
+                <!-- mBtn export report -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mBtn_expReport_exportReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/export_report"
+                    style="@style/coloredButton"
+                    app:backgroundTint="@color/main_light_grey"
+                    app:cornerRadius="50dp"
+                    android:textColor="@color/main_white"
+                    app:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="80dp"
+                    android:paddingRight="80dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- view recent exported report -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_expReport_viewReportMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/report_exported_successfully"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/color_claim_now_success_green"
+                    android:textSize="16sp"
+                    android:gravity="center"/>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/main_light_grey"
+                    />
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_expReport_viewReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:padding="@dimen/dimen_5dp"
+                        android:src="@drawable/img_google_sheets"/>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:orientation="vertical">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_expReport_docName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/styleFontMediumText"
+                            android:text="@string/title"
+                            android:gravity="center|start"
+                            android:maxLines="2"
+                            android:paddingTop="@dimen/dimen_5dp"
+                            android:paddingBottom="@dimen/dimen_5dp"
+                            android:layout_marginLeft="@dimen/dimen_5dp"
+                            android:layout_marginRight="@dimen/dimen_5dp"
+                            android:ellipsize="end"
+                            android:textColor="@color/main_dark_grey"
+                            android:textSize="15sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_expReport_docSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/styleFontMediumText"
+                            android:text="@string/title"
+                            android:gravity="center|start"
+                            android:maxLines="1"
+                            android:layout_marginLeft="@dimen/dimen_5dp"
+                            android:layout_marginRight="@dimen/dimen_5dp"
+                            android:ellipsize="end"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="12sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/main_light_grey"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mBtn_expReport_shareReport"
+                    style="@style/Widget.Theme.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/_share"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:focusable="true" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/note_report_download_success"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/main_grey"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center|start"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

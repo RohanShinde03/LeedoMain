@@ -1,0 +1,469 @@
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/nsv_bookingEventDetails"
+    android:isScrollContainer="true"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_booking_event_details">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/main_white"
+        android:layout_marginBottom="75dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_content_bookingEventDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_content_bookingEventDtl_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/booking_event"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:theme="@style/styleFontMediumText" />
+
+            <!-- date time-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_content_bookingEventDtl_DateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="15dp"
+                    android:drawableStart="@drawable/ic_date"
+                    android:drawablePadding="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="25 Aug 2019 - 27 Aug 2019"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontRegularText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_content_bookingEventDtl_Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="15dp"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="YahOne Hinjewadi , Pune"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontRegularText" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- about event -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_content_bookingEventDtl_About"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abt_the_Event"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_content_bookingEventDtl_AboutEvent_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abt_the_Event_text"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="5dp"
+                    android:gravity="center|start"
+                    android:textColor="@color/primaryLightColor"
+                    android:theme="@style/styleFontRegularText" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <View
+                android:id="@+id/view_stats"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:layout_marginBottom="15dp"
+                android:background="@color/gray_text" />
+
+            <!-- Stats -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Statistics:"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:theme="@style/styleFontBoldText" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <!-- total registrations -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_content_bookingEventDtl_totalRegistrationCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="256"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_lead_added"
+                                android:theme="@style/styleFontBoldText" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Leads"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:gravity="center"
+                                android:textColor="@color/primaryColor"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_content_bookingEventDtl_totalBookingCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="120"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_sold"
+                                android:theme="@style/styleFontBoldText" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bookings"
+                                android:textSize="14sp"
+                                android:layout_margin="1dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_sold"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_content_bookingEventDtl_totalOnHoldCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="15"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_onHold"
+                                android:theme="@style/styleFontBoldText" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On Holds"
+                                android:textSize="14sp"
+                                android:layout_margin="1dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_onHold"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Statistics:"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:theme="@style/styleFontBoldText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <!-- total registrations -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_my_leads"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="10"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_lead_added"
+                                android:theme="@style/styleFontBoldText" />
+
+
+                            <!-- <androidx.appcompat.widget.AppCompatTextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:text="Total"
+                                 android:textSize="14sp"
+                                 android:layout_margin="3dp"
+                                 android:gravity="center"
+                                 android:textColor="@color/primaryColor"
+                                 android:theme="@style/styleFontRegularText" />
+         -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Leads"
+                                android:textSize="14sp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_lead_added"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!-- total bookings -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_my_booking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="5"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_sold"
+                                android:theme="@style/styleFontBoldText" />
+
+
+                            <!--  <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="Total"
+                                  android:textSize="14sp"
+                                  android:layout_margin="3dp"
+                                  android:gravity="center"
+                                  android:textColor="@color/primaryColor"
+                                  android:theme="@style/styleFontRegularText" />
+          -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bookings"
+                                android:textSize="14sp"
+                                android:layout_margin="1dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_sold"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!-- total on Hold-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_my_holds"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:text="3"
+                                android:textSize="25sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_onHold"
+                                android:theme="@style/styleFontBoldText" />
+
+
+                            <!--<androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total"
+                                android:textSize="16sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/primaryColor"
+                                android:theme="@style/styleFontRegularText" />-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On Holds"
+                                android:textSize="14sp"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="@color/color_flat_onHold"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/gray_text" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Documents"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/styleFontBoldText" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <include layout="@layout/layout_project_brochures_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_content_bookingEventDetail"/>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,175 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.tribeappsoft.leedo"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 20          // 20-04-2019 19 => 20
+        versionName "2.0"       // 20-04-2019 1.9 => 2.0
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //AndroidX
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-beta02', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    //Extended floating action button
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    //recyclerView
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+    //butterKnife
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
+    //fontAwesome
+    implementation 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+
+    //support
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    //support for appCompact
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //design
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.6'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+
+    //CardView
+    //noinspection GradleCompatible
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    //circleImageView
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    //glide --//For smooth images loading
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // FireBase
+    //noinspection GradleCompatible
+    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
+
+    //UpdateAppNotification
+    implementation 'org.jsoup:jsoup:1.11.3'
+
+    //Firebase For Barcode
+    //implementation 'com.google.firebase:firebase-ml-vision:19.0.3'
+
+    //Gmail Login
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+
+    //FB Login & Share
+    implementation 'com.facebook.android:facebook-login:4.41.0'
+
+    //RazorPay
+    implementation 'com.razorpay:checkout:1.5.12'
+
+    //image cropping
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    //JSR-310 was included in Java 8 as the java.time.* package. It is a full replacement for the ailing Date and Calendar APIs in both Java and Android
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+    // Shimmer effect - loading progress
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+
+    //ccp - Phone Validations
+    api 'io.michaelrocks:libphonenumber-android:8.10.7'
+
+    //Support in-app update
+    implementation 'com.google.android.play:core:1.8.2'
+
+
+    //zXing scanner
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
+    //implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+
+
+    //implementation 'androidx.room:room-runtime:2.1.0'
+    //annotationProcessor 'androidx.room:room-compiler:2.1.0'
+
+    //image slider
+    implementation 'com.github.smarteist:autoimageslider:1.3.2-appcompat'
+
+    //JetPack navigation controller
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+
+    //swipe dismiss dialog
+    //implementation 'com.github.andreilisun:swipedismissdialog:0.1'
+
+    //ExoPlayer //2.7.2
+    //implementation 'com.google.android.exoplayer:exoplayer:r2.X.X'
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.2'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.2'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.8.2'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.2'
+
+    //gif imageView
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+
+    //round imageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Custom Chrome Tab
+    //noinspection GradleCompatible
+    implementation 'com.android.support:customtabs:23.3.0'
+
+
+}
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

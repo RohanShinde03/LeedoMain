@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tribeappsoft.leedo.admin.leadreassign.LeadReAssign_Activity">
+
+
+    <!-- Customer selection -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/main_white"
+        android:padding="15dp"
+        tools:ignore="MissingConstraints">
+        
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="@color/main_white">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_from_sales_person_name"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <!--Select Customer ID-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_leadReassign_FromSalesPerson"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/styleFontMediumText"
+                android:padding="12dp"
+                android:hint="@string/sales_person_"
+                android:theme="@style/styleFontMediumText"
+                android:singleLine="true"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:background="@drawable/bg_outline_border_round_my_dob"
+                android:textSize="16sp"
+                android:textColor="@color/BlackLight"
+                android:focusable="false"
+                tools:ignore="PrivateResource" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/main_white">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_to_sales_person_name"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <!--Select Customer ID-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_leadReassign_ToSalesPerson"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/styleFontMediumText"
+                android:padding="12dp"
+                android:hint="@string/sales_person_"
+                android:textColor="@color/BlackLight"
+                android:singleLine="true"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:background="@drawable/bg_outline_border_round_my_dob"
+                android:textSize="16sp"
+                android:focusable="false"
+                tools:ignore="PrivateResource" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- add team lead -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_leadReassign_SearchLeads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_leads"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

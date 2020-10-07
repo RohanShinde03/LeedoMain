@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_upgradeGHP"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    tools:context="com.tribeappsoft.leedo.salesPerson.token.UpgradeGHPPlusActivity">
+
+    <!--ll_Generate Token View-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_upgradeGHP_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Customer info-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <!-- cuId number -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_upgradeGHP_cuIdNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="@string/def_cuID_number"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorAccent"
+                        android:layout_gravity="center|start"
+                        android:gravity="center|start"
+                        android:textSize="14sp"
+                        android:theme="@style/styleFontMediumText" />
+
+
+
+                    <!--Lead Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_upgradeGHP_leadName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lead_name"
+                        android:textAlignment="textStart"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        android:theme="@style/styleFontBoldText" />
+
+                    <!--Project Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_upgradeGHP_projectName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="@string/project_name"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <!--Lead Mobile-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_upgradeGHP_leadMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="@string/def_mob_number"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_grey"
+                        android:textSize="15sp"
+                        android:theme="@style/styleFontMediumText" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/event_name_"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_upgradeGHP_eventName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/event_name_"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/current_ghp_type"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_upgradeGHP_ghpType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/ghp_type"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/ghp_number_text"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_upgradeGHP_ghpNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/ghp_type"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <!-- Payment Mode -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Payment Mode text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_upgradeGHP_paymentModeMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_modes_hint"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_upgradeGHP_paymentMode_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view Payment Modes -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_upgradeGHP_paymentModes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- GHP amount -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="15dp"
+                                android:background="@color/main_white">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_upgradeGHP_ghp_amount"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/ghp_amount_title"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- select pay mode -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/select_paid_by"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginBottom="5dp"
+                                    android:textSize="15sp"/>
+
+                                <RadioGroup
+                                    android:id="@+id/rGrp_upgradeGHP_payMode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_upgradeGHP_pay_manual"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/manual"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        />
+
+                                    <!-- manual payment modes -->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:id="@+id/ll_upgradeGHP_payMode_manual"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <!--Payment Mode Types-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="3dp"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="20dp">
+
+                                            <!--Add Payment Mode Dynamically-->
+                                            <androidx.appcompat.widget.LinearLayoutCompat
+                                                android:id="@+id/ll_upgradeGHP_addPaymentMode"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+                                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Cheque LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_upgradeGHP_cheque_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone">
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/cheque_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"/>
+                                            <!--Cheque Number-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_cheque_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/cheque_number_hint"
+                                                    android:maxLength="6"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"
+                                                    />
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Cheque Date-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                app:endIconDrawable="@drawable/ic_date"
+                                                app:endIconMode="custom">
+
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_cheque_date"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:hint="@string/select_cheque_date"
+                                                    android:inputType="none"
+                                                    android:cursorVisible="false"
+                                                    android:focusable="false"
+                                                    android:focusableInTouchMode="false"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"
+                                                    android:textColorHint="@color/main_grey"
+                                                    android:textColor="@color/colorPrimary"
+                                                    />
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                            <!--Cheque Issuer's Name -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_cheque_issuer_name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserName"
+                                                    android:hint="@string/enter_cheque_issuer"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Bank Name -->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_cheque_bank_name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserName"
+                                                    android:hint="@string/enter_cheque_bank_name"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Online LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_upgradeGHP_online_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone"
+                                            >
+                                            <!--UTR Number-->
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/online_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"/>
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_utr_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_utr_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--Payment Card LinearLayout-->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_upgradeGHP_card_payment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:visibility="gone">
+                                            <!--Payment Transaction No.-->
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/card_details"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="17sp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"/>
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_payment_transaction_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_payment_transaction_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+                                            <!--Invoice No.-->
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:theme="@style/textInputLayoutAppearance"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edt_upgradeGHP_payment_invoice_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    style="@style/editTextUserCheckNumber"
+                                                    android:hint="@string/enter_payment_invoice_number"
+                                                    android:singleLine="true"
+                                                    android:textSize="16sp"/>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_upgradeGHP_pay_payGateway"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:text="@string/pay_gateway"
+                                        />
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rBtn_upgradeGHP_pay_viaPayLink"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/via_link"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        android:checked="true"
+                                        />
+
+                                </RadioGroup>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            <!-- site visit remarks -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:hint="@string/ghp_remarks"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_upgradeGHP_remarks"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:inputType="textPersonName|textMultiLine"
+                                    android:textColor="@color/colorPrimary"
+                                    android:maxLines="5"
+                                    android:ellipsize="end"
+                                    android:gravity="start"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--Token Generation Button-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_upgradeGHP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upgrade_to_ghp"
+                style="@style/coloredButton"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:textAllCaps="false"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:cornerRadius="50dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--ll_Share Token View-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_upgradeGHP_shareToken_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/main_white"
+        android:visibility="gone">
+
+        <!--Close View-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_upgradeGHP_shareToken_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_black_24dp"
+            android:layout_gravity="start"
+            android:padding="15dp" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <!--ll_main-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_upgradeGHP_shareToken_successImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_success"
+                    android:layout_gravity="center"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_upgradeGHP_shareToken_successMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ghp_upgrade_success"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="#78B348" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_upgradeGHP_shareToken_paymentPendingMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment_pending"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/color_pending" />
+
+                <!--Customer Mobile-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_GHPNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/def_ghp_number"
+                    android:visibility="visible"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/color_token_generated"
+                    android:textSize="20sp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:theme="@style/styleFontBoldText"
+                    />
+
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:layout_margin="10dp"
+                    app:cardElevation="0dp">
+
+                    <!--Customer info-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:background="@drawable/bg_token_success"
+                        android:backgroundTint="@color/light_grey"
+                        android:orientation="vertical">
+
+                        <!--Customer Name-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/customer_name_new"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp"
+                            android:drawableStart="@drawable/ic_user"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <!--Customer Mobile-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/def_mob_number"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_call_grey"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText"
+                            />
+
+                        <!--Customer Email-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_email_grey_24dp"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <!--GHP Number-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_ProjectName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_project_gray_24dp"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <!--Project Name-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_EventName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="@string/email_hint"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:drawableStart="@drawable/ic_event_icon_gray"
+                            android:drawablePadding="7dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <View
+                            android:id="@+id/view_upgradeGHP_ghpDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.2dp"
+                            android:layout_marginTop="5dp"
+                            android:visibility="gone"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/main_medium_grey" />
+
+                        <!--ghp date-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_upgradeGHP_ShareToken_ghpDate"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_ghp_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghp_date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_GHP_Date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp amount-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_upgradeGHP_ShareToken_ghpAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_ghp_amount_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghp_amount_"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_GHP_Amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/_0_00"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp plus date-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_upgradeGHP_ShareToken_ghpPlusDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_ghp_plus_date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghplus_date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_GHPPlus_Date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/date"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--ghp plus amount-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_upgradeGHP_ShareToken_ghpPlusAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_ghp_plus_amount_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/ghplus_amount"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_itemCustomer_GHPPlus_Amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:text="@string/_0_00"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--Remarks-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_upgradeGHP_ShareToken_remarks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="@string/remarks_"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:singleLine="true"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_upgradeGHP_ShareToken_remarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:textColor="@color/main_black"
+                                android:visibility="visible"
+                                android:text="@string/no_remarks"
+                                android:theme="@style/styleFontMediumText"
+                                android:textSize="16sp"
+                                android:gravity="center|start"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--Share or View or download-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_upgradeGHP_ShareToken_View_share_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center">
+
+
+                    <!-- download document -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ProgressBar
+                            android:id="@+id/pb_upgradeGHP_downloadDoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:visibility="gone"
+                            android:indeterminateDuration="2000"
+                            android:indeterminate="true"
+                            android:indeterminateTintMode="src_atop"
+                            android:indeterminateTint="@color/colorAccent"
+                            android:layout_gravity="center"
+                            android:layout_above="@id/mBtn_upgradeGHP_shareToken_download"/>
+
+                        <!--Download-->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_upgradeGHP_shareToken_download"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/ic_get_app_black_24dp"
+                            app:iconTint="@color/main_white"
+                            style="@style/coloredButton"
+                            android:backgroundTint="@color/color_site_visit"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:textAllCaps="false"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            app:cornerRadius="50dp"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            />
+
+                    </RelativeLayout>
+
+                    <!--View-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_upgradeGHP_shareToken_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_remove_red_eye_black_24dp"
+                        app:iconTint="@color/main_white"
+                        android:gravity="center"
+                        android:backgroundTint="@color/color_flat_sold"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+                    <!--Share-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_upgradeGHP_shareToken_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_whatsapp_white"
+                        android:gravity="center"
+                        android:backgroundTint="@color/color_claim_now_success_green"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+                    <!-- more apps Share-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_upgradeGHP_shareToken_MoreShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:icon="@drawable/ic_apps_white_24dp"
+                        android:gravity="center"
+                        android:backgroundTint="@color/secondaryColor"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:textAllCaps="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        app:cornerRadius="50dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <!-- payment pending -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_upgradeGHP_shareToken_paymentPending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/payment_link_generated_successfully"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/color_pending" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="12dp"
+                        android:gravity="center|start">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/note_colon"
+                            android:theme="@style/styleFontMediumText"
+                            android:textSize="18sp"
+                            android:gravity="center|start|top"
+                            android:textColor="@color/main_black" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/msg_note_send_pay_link"
+                            android:theme="@style/styleFontRegularText"
+                            android:textSize="16sp"
+                            android:gravity="center|start"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/main_grey" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_margin="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/share_pay_link_using"
+                            android:theme="@style/styleFontRegularText"
+                            android:textSize="18sp"
+                            android:gravity="center|start"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/main_black" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <!-- WA Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_upgradeGHP_sharePayLink_waShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_whatsapp_white"
+                                android:gravity="center"
+                                android:backgroundTint="@color/color_claim_now_success_green"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                            <!-- mail Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_upgradeGHP_sharePayLink_mailShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_email_white_24dp"
+                                android:gravity="center"
+                                android:backgroundTint="@color/google"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                            <!-- more apps Share-->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_upgradeGHP_sharePayLink_moreShare"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:icon="@drawable/ic_apps_white_24dp"
+                                android:gravity="center"
+                                android:backgroundTint="@color/secondaryColor"
+                                style="@style/coloredButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                app:cornerRadius="50dp"
+                                app:iconGravity="textStart"
+                                app:iconPadding="0dp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_upgradeGHP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_ghp_plus_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <!-- ll no GHP Plus option -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_upgradeGHP_noGHPPlus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_highlight_off_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/msg_ghp_plus_not_available"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_upgradeGHP_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_note_add_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/ghp_details_not_available"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

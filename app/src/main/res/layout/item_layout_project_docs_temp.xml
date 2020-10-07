@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_itemProjectDocs_mainList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:padding="5dp">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:padding="5dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_itemProjectDocs_DocType"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        style="@style/styleFontMediumText"
+                        android:text="Type"
+                        android:gravity="center"
+                        android:layout_gravity="center|top"
+                        android:background="@drawable/bg_circle_shape_document"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/main_black"
+                        android:textSize="14sp" />
+                    <!-- <de.hdodenhof.circleimageview.CircleImageView
+                         android:id="@+id/iv_hospital_Image"
+                         android:layout_width="55dp"
+                         android:layout_height="55dp"
+                         android:layout_centerInParent="true"
+                         android:src="@drawable/img_def_image_small_120"
+                         app:civ_border_color="@color/GrayLight"
+                         app:civ_border_width="0.5dp" />-->
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="6dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_itemProjectDocs_projectName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginTop="5dp"
+                                android:letterSpacing="0.1"
+                                android:gravity="center|start"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="12sp"/>
+
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_itemProjectDocs_docName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title"
+                                android:gravity="center|start"
+                                android:layout_marginTop="5dp"
+                                android:textSize="16sp"
+                                style="@style/styleFontMediumText" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_itemProjectDocs_docDesc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title"
+                                android:theme="@style/styleFontRegularText"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center|start"
+                                android:textColor="@color/main_grey"
+                                android:textSize="14sp"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#BABABA"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center|start">
+
+                <!--Edit Button-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_itemProjectDocs_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_edit_black_24dp"
+                    android:layout_gravity="start|center"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingEnd="6dp"
+                    android:paddingStart="10dp"
+                    tools:ignore="PrivateResource" />
+                <!--Edit Button-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_itemProjectDocs_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_delete_grey_24dp"
+                    android:layout_gravity="start|center"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingLeft="10dp"
+                    tools:ignore="PrivateResource" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center|end">
+
+                    <!-- download document -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:clickable="true">
+
+                        <ProgressBar
+                            android:id="@+id/pb_itemProjectDocs_downloadDoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center|end"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:visibility="gone"
+                            android:indeterminateDuration="2000"
+                            android:indeterminate="true"
+                            android:indeterminateTintMode="src_atop"
+                            android:indeterminateTint="@color/colorAccent" />
+                        <!--  style="@style/Widget.AppCompat.ProgressBar" -->
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_itemProjectDocs_view"
+                        style="@style/Widget.Theme.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:text="@string/view_"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textAllCaps="true"
+                        android:focusable="true" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_itemProjectDocs_share"
+                        style="@style/Widget.Theme.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/_share"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textAllCaps="true"
+                        android:focusable="true" />
+                    <!-- share document -->
+                    <!--<androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_itemProjectDocs_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="5dp"
+                        android:gravity="center|end"
+                        android:drawableStart="@drawable/ic_share_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16dp"/>-->
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <View
+            android:id="@+id/hospitalList_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone"
+            android:background="@color/divider_color" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

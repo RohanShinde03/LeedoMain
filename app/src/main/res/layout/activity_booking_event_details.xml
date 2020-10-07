@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/cl_student_eventDtl_main"
+    android:visibility="visible"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+    <!--  android:transitionName="@string/transition_string"-->
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_bookingEventDtl"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbarLayout_bookingEventDtl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            android:background="@color/black_full_transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar_bookingEventDetails">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_bookingEventDtl_bannerImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:minHeight="200dp"
+                android:background="@color/primaryColor"/>
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/eventDetails_imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:sliderAnimationDuration="800"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderCircularHandlerEnabled="true"
+                app:sliderIndicatorAnimationDuration="800"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="2dp"
+                app:sliderIndicatorRadius="1dp"
+                app:sliderIndicatorSelectedColor="@color/white"
+                app:sliderIndicatorUnselectedColor="@color/GrayLight"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="true"
+                android:minHeight="200dp"
+                android:fitsSystemWindows="true" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_bookingEventDtl_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@color/primaryColor"
+                android:fitsSystemWindows="true"
+                android:minHeight="200dp"
+                android:visibility="gone"
+                android:contentDescription="@string/app_name" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_bookingEventDetails"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_booking_event_details" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_salesPerson_eventDtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:orientation="vertical">
+        <include layout="@layout/layout_event_detail_placeholder" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_bookingEventDtl_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar_bookingEventDtl"
+        app:layout_anchorGravity="bottom|end"
+        app:tint="@null"
+        app:srcCompat="@drawable/ic_share_white_24dp" />
+
+
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- ll-no details-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:id="@+id/ll_bookingEventDtl_noDetails"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:textColor="@color/main_medium_grey"
+            android:theme="@style/styleFontRegularText"
+            android:text="@string/no_event_details_found"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_bookingEventDtl_viewHoldFlats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cornerRadius="50dp"
+        android:gravity="center"
+        android:visibility="gone"
+        style="@style/coloredButton"
+        android:layout_gravity="bottom|center"
+        app:icon="@drawable/ic_remove_red_eye_black_24dp"
+        app:iconTint="@color/main_white"
+        android:text="@string/view_all_hold_flats"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="13dp"
+        android:textColor="@color/main_white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="60dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

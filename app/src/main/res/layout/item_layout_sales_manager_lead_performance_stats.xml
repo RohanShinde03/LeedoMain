@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ll_teamStats"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--All Stats -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5.8">
+
+
+            <!--Name -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_spName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Name"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="3"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8"
+                />
+
+
+            <!--Leads -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1.2">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_leads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:maxLines="15"
+                    android:textColor="@color/colorPrimary"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8"
+                />
+
+            <!--Site Visits -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1.2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_siteVisits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:maxLines="15"
+                    android:textColor="@color/colorAccent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8"
+                />
+
+<!--
+            &lt;!&ndash;Ghp  &ndash;&gt;
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1.2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_ghp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:maxLines="15"
+                    android:textColor="@color/color_token_generated"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8" />
+
+            &lt;!&ndash; ghp + &ndash;&gt;
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1.2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_ghpPlus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:maxLines="15"
+                    android:textColor="@color/color_token_plus_generated"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8" />
+-->
+
+
+            <!--Allotments -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1.2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_allotments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_claim_now_success_green"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#D8D8D8"
+                />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1.2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_tl_stats_cancelledAllotments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    android:theme="@style/styleFontBoldText"
+                    android:textSize="12sp"
+                    android:textColor="@color/main_grey"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <View
+            android:id="@+id/view_line_tl_stats"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="#D8D8D8"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

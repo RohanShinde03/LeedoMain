@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_cp_fos_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="0dp">
+
+        <!--Main Linear layout-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                >
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/chb_cp_fos_list"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_margin="10dp"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.2"
+
+                >
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_cp_fos_list_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/lead_name"
+                    style="@style/styleFontBoldText"
+                    android:textSize="18sp"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_mTv_cp_fos_list_mob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile_no"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    style="@style/styleFontRegularText"
+                    android:textSize="16sp"
+                    />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

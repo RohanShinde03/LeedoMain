@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/rbtn_generateToken_payment_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/payment_by_cheque"
+        android:theme="@style/styleFontRegularText"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_cuidlist"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:gravity="center|start"
+                android:text="@string/user_name"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cuid_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/styleFontMediumText"
+                android:paddingTop="4dp"
+                android:text="@string/cuid_no"
+                android:textColor="@color/main_black"
+                android:textSize="14sp" />
+
+            <!--Assigned By-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_CUID_assigned_by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/added_by"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingTop="2dp"
+                android:gravity="start"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/divider_color"
+                android:textSize="12sp"
+                android:visibility="gone"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/cuid_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:visibility="visible"
+            android:background="@color/divider_color"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

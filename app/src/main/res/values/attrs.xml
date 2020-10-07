@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- crop ImageView-->
+    <declare-styleable name="CropImageView">
+        <attr name="cropGuidelines">
+            <enum name="off" value="0"/>
+            <enum name="onTouch" value="1"/>
+            <enum name="on" value="2"/>
+        </attr>
+        <attr name="cropScaleType">
+            <enum name="fitCenter" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="centerCrop" value="2"/>
+            <enum name="centerInside" value="3"/>
+        </attr>
+        <attr name="cropShape">
+            <enum name="rectangle" value="0"/>
+            <enum name="oval" value="1"/>
+        </attr>
+        <attr name="cropAutoZoomEnabled" format="boolean"/>
+        <attr name="cropMaxZoom" format="integer"/>
+        <attr name="cropMultiTouchEnabled" format="boolean"/>
+        <attr name="cropFixAspectRatio" format="boolean"/>
+        <attr name="cropAspectRatioX" format="integer"/>
+        <attr name="cropAspectRatioY" format="integer"/>
+        <attr name="cropInitialCropWindowPaddingRatio" format="float"/>
+        <attr name="cropBorderLineThickness" format="dimension"/>
+        <attr name="cropBorderLineColor" format="color"/>
+        <attr name="cropBorderCornerThickness" format="dimension"/>
+        <attr name="cropBorderCornerOffset" format="dimension"/>
+        <attr name="cropBorderCornerLength" format="dimension"/>
+        <attr name="cropBorderCornerColor" format="color"/>
+        <attr name="cropGuidelinesThickness" format="dimension"/>
+        <attr name="cropGuidelinesColor" format="color"/>
+        <attr name="cropBackgroundColor" format="color"/>
+        <attr name="cropSnapRadius" format="dimension"/>
+        <attr name="cropTouchRadius" format="dimension"/>
+        <attr name="cropSaveBitmapToInstanceState" format="boolean"/>
+        <attr name="cropShowCropOverlay" format="boolean"/>
+        <attr name="cropShowProgressBar" format="boolean"/>
+        <attr name="cropMinCropWindowWidth" format="dimension"/>
+        <attr name="cropMinCropWindowHeight" format="dimension"/>
+        <attr name="cropMinCropResultWidthPX" format="float"/>
+        <attr name="cropMinCropResultHeightPX" format="float"/>
+        <attr name="cropMaxCropResultWidthPX" format="float"/>
+        <attr name="cropMaxCropResultHeightPX" format="float"/>
+        <attr name="cropFlipHorizontally" format="boolean"/>
+        <attr name="cropFlipVertically" format="boolean"/>
+    </declare-styleable>
+
+
+
+    <!-- compact calendar view -->
+    <attr name="compactCalendarEventIndicatorStyle" format="enum">
+        <enum name="fill_large_indicator" value="1" />
+        <enum name="no_fill_large_indicator" value="2" />
+        <enum name="small_indicator" value="3" />
+    </attr>
+    <attr name="compactCalendarCurrentDayIndicatorStyle" format="enum">
+        <enum name="fill_large_indicator" value="1" />
+        <enum name="no_fill_large_indicator" value="2" />
+    </attr>
+    <attr name="compactCalendarCurrentSelectedDayIndicatorStyle" format="enum">
+        <enum name="fill_large_indicator" value="1" />
+        <enum name="no_fill_large_indicator" value="2" />
+    </attr>
+    <declare-styleable name="CompactCalendarView">
+        <attr name="compactCalendarTextSize" format="dimension"/>
+        <attr name="compactCalendarBackgroundColor" format="color"/>
+        <attr name="compactCalendarCurrentDayBackgroundColor" format="color"/>
+        <attr name="compactCalendarCurrentDayTextColor" format="color"/>
+        <attr name="compactCalendarCurrentSelectedDayBackgroundColor" format="color"/>
+        <attr name="compactCalendarCurrentSelectedDayTextColor" format="color"/>
+        <attr name="compactCalendarTextColor" format="color"/>
+        <attr name="compactCalendarMultiEventIndicatorColor" format="color"/>
+        <attr name="compactCalendarTargetHeight" format="dimension"/>
+        <attr name="compactCalendarEventIndicatorStyle"/>
+        <attr name="compactCalendarCurrentDayIndicatorStyle"/>
+        <attr name="compactCalendarCurrentSelectedDayIndicatorStyle"/>
+        <attr name="compactCalendarDisplayOtherMonthDays" format="boolean"/>
+        <attr name="compactCalendarShouldSelectFirstDayOfMonthOnScroll" format="boolean"/>
+        <attr name="compactCalendarOtherMonthDaysTextColor" format="color"/>
+    </declare-styleable>
+
+
+    <!-- My Date Picker-->
+    <declare-styleable name="MyDatePicker">
+        <attr name="mdp_text_color" format="color" />
+        <attr name="mdp_hint_color" format="color" />
+        <attr name="mdp_date_format">
+            <flag name="mm-dd-yyyy" value="1" />
+            <flag name="dd-mm-yyyy" value="2" />
+        </attr>
+        <attr name="mdp_show_full_date" format="boolean" />
+    </declare-styleable>
+
+
+
+    <!-- ccp -->
+    <declare-styleable name="CountryCodePicker">
+        <attr format="integer" name="ccp_defaultCode"/>
+        <attr format="color" name="ccp_textColor"/>
+        <attr format="color" name="ccp_backgroundColor"/>
+        <attr format="dimension" name="ccp_textSize"/>
+        <attr format="string" name="ccp_textFont"/>
+        <attr format="dimension" name="ccp_arrowSize"/>
+        <attr format="string" name="ccp_countryPreference"/>
+        <attr format="string" name="ccp_defaultNameCode"/>
+        <attr format="boolean" name="ccp_hideNameCode"/>
+        <attr format="boolean" name="ccp_keyboardAutoPopOnSearch"/>
+        <attr format="string" name="ccp_customMasterCountries"/>
+        <attr format="boolean" name="ccp_showFlag"/>
+        <attr format="boolean" name="ccp_showFullName"/>
+        <attr format="boolean" name="ccp_selectionDialogShowSearch"/>
+        <attr format="boolean" name="ccp_clickable"/>
+        <attr format="boolean" name="ccp_hidePhoneCode"/>
+        <attr format="boolean" name="ccp_enableHint"/>
+        <attr format="boolean" name="ccp_enablePhoneAutoFormatter"/>
+        <attr format="boolean" name="ccp_setCountryByTimeZone"/>
+
+        <!--For dialog-->
+        <attr format="color" name="ccp_dialogTextColor"/>
+    </declare-styleable>
+
+
+    <!-- zXing Scanner -->
+    <declare-styleable name="BarcodeScannerView">
+        <attr name="shouldScaleToFill" format="boolean" />
+        <attr name="laserEnabled" format="boolean" />
+        <attr name="laserColor" format="color" />
+        <attr name="borderColor" format="color" />
+        <attr name="maskColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderLength" format="dimension" />
+        <attr name="roundedCorner" format="boolean" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="squaredFinder" format="boolean" />
+        <attr name="borderAlpha" format="float" />
+        <attr name="finderOffset" format="dimension" />
+    </declare-styleable>
+
+
+    <!--Plus Effect-->
+    <declare-styleable name="RipplePulseLayout">
+        <attr name="rippleColor" format="color" />
+        <attr name="rippleType" format="enum">
+            <enum name="fill" value="0" />
+            <enum name="stroke" value="1" />
+        </attr>
+        <attr name="startRadius" format="dimension" />
+        <attr name="endRadius" format="dimension" />
+        <attr name="duration" format="integer" />
+        <attr name="strokeWidth" format="dimension" />
+    </declare-styleable>
+
+
+    <!-- sticky scrollView -->
+    <declare-styleable name="StickyScrollView">
+        <attr name="stickyFooter" format="reference" />
+        <attr name="stickyHeader" format="reference" />
+    </declare-styleable>
+
+
+    <!-- discrete scrollView-Carousel -->
+    <declare-styleable name="DiscreteScrollView">
+        <attr name="dsv_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+</resources>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/customer_ghp_scan_in"
+                android:textColor="@color/grey_m"
+                android:theme="@style/styleFontRegularText"
+                android:textSize="16sp"
+                android:gravity="center|start"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_holdScanIn_eventTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:gravity="center|start"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:maxLines="2"
+                android:ellipsize="start"/>
+
+            <!-- date time-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/main_white">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:drawablePadding="10dp"
+                        android:text="@string/selected_flat"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:gravity="center|start"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/grey_m"
+                        android:textSize="16sp" />
+
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_holdScanIn_selectedFlat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:drawablePadding="10dp"
+                        android:text="A-801 | 2Bhk"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:gravity="center|start"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16sp" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_holdScanIn_scanBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_event_location"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/card_outline" />
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/secondary_text_light"
+            android:layout_margin="10dp"/>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.tribeappsoft.leedo.util.zxingScanner.ZXingScannerView
+                android:id="@+id/scannerView_holdFlatScanIn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:squaredFinder="true"
+                app:borderColor="@color/main_light_grey">
+
+            </com.tribeappsoft.leedo.util.zxingScanner.ZXingScannerView>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_holdScanIn_scannerOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_alignBottom="@id/scannerView_holdFlatScanIn"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_holdFlatScanIn_flashOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_flash_on_black_24dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_holdFlatScanIn_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_menu_gallery"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_holdFlatScanIn_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_menu_camera"
+                    android:layout_marginTop="40dp"
+                    android:layout_margin="40dp"
+                    android:visibility="gone" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

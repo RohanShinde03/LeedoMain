@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_reminder"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_white">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cl_fragSalesPerson_reminder"
+        android:fitsSystemWindows="true"
+        tools:context="com.tribeappsoft.leedo.salesPerson.homeFragments.FragmentSalesPersonReminders">
+
+    <!-- app bar layout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:statusBarForeground="@color/main_black"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_reminders"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            style="@style/Toolbar.TitleText"
+            app:title="@string/title"
+            app:titleTextColor="@color/main_white"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <!--<com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/toolbar_reminders"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary">
+
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <RelativeLayout
+        android:id="@+id/rl_ll_CustomerIDActivity_searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="56dp"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_reminder" />
+
+
+        <!-- ll no Data Found -->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/exFab_hold_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/main_white"
+            android:contentDescription="@string/hold_flat"
+            android:text="@string/reminder"
+            android:textAllCaps="true"
+            android:padding="16dp"
+            android:visibility="gone"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            app:iconTint="@color/main_white"
+            app:icon="@drawable/ic_add_black_24dp"
+            app:iconSize="26dp"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/primaryColor"
+            android:shadowColor="@color/primaryColor"
+            android:textSize="18sp"
+            app:fabSize="normal"
+            app:fabCustomSize="56dp"
+            android:scaleType="center"/>
+
+        <!-- ll-no data -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_reminder_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerInParent="true">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:tint="@color/color_Gray"
+                app:srcCompat="@drawable/ic_notifications_bell_grey_128dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_reminder_list_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_reminder_list_available"
+                android:textColor="@color/main_medium_grey"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/pb_reminder"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_drawable"
+            android:indeterminateDuration="2000"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_atop"
+            android:layout_alignBottom="@id/rv_reminder"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+
+        <!--<com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_ReminderBackToTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/rv_reminder"
+            android:layout_alignEnd="@id/rv_reminder"
+            android:text="@string/back_to_top"
+            android:layout_margin="12dp"
+            style="@style/coloredButton"
+            app:icon="@drawable/ic_arrow_upward_white_24dp"
+            app:iconPadding="5dp"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:cornerRadius="50dp"/>-->
+
+        <!-- ll-back to top -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_reminder_backToTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_alignBottom="@id/rv_reminder"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="70dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/bg_feed_back_to_top"
+            android:orientation="horizontal">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_upward_white_24dp"
+                android:contentDescription="@string/app_name"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back_to_top"
+                android:textAlignment="center"
+                android:textColor="@color/main_white"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:theme="@style/styleFontMediumText" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

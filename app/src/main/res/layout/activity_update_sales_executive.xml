@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.salesExecutiveList.Update_SalesExecutiveActivity">
+
+    <!-- ll_add team lead main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_updateSalesExecutive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+
+                <!-- lead details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+
+                    <!-- lead details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewLeadDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                            <!-- lead first name -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- mr/miss -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_marginRight="3dp"
+                                    android:layout_weight="7"
+                                    android:background="@color/main_white">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/mr_mrs">
+
+                                        <AutoCompleteTextView
+                                            android:id="@+id/acTv_updateSalesExecutive_mrs"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:editable="false"
+                                            android:ellipsize="end"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="10dp"
+                                            android:textSize="14sp"
+                                            android:theme="@style/styleFontRegularText" />
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_updateSalesExecutive_leadFirstName"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:layout_marginLeft="3dp"
+                                    android:hint="@string/first_name">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_updateSalesExecutive_FirstName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPersonName|textCapSentences"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- member middle name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_updateSalesExecutive_middleName"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/middle_name"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_updateSalesExecutive_middleName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- member last name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_updateSalesExecutive_lastName"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/last_name"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_updateSalesExecutive_lastName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!-- lead mob number  -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_updateSalesExecutive_leadMobCcp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:gravity="center|start"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingLeft="14dp"
+                                    android:paddingRight="14dp"
+                                    android:paddingTop="17dp"
+                                    android:paddingBottom="17dp">
+
+                                    <!-- country code picker -->
+                                    <include layout="@layout/ccp_layout_def_country_code" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_updateSalesExecutive_leadMobile"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/mobile_no_star"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_updateSalesExecutive_MobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:singleLine="true"
+                                        android:maxLength="10"
+                                        android:textSize="16sp"/>
+
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            <!-- lead email -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_updateSalesExecutive_Email"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/email_address_star"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_updateSalesExecutive_Email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textEmailAddress"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!-- password -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_updateSalesExecutive_password"
+                                android:theme="@style/textInputLayoutAppearance"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_updateSalesExecutive_password"
+                                    style="@style/editTextPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/password_"
+                                    android:textSize="16sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- confirm password -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_updateSalesExecutive_confirmPassword"
+                                android:theme="@style/textInputLayoutAppearance"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_updateSalesExecutive_confirmPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextPassword"
+                                    android:hint="@string/confirm_password"
+                                    android:textSize="16sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <androidx.appcompat.widget.AppCompatCheckBox
+                                android:id="@+id/checkBox_AddAsTeamLead"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                style="@style/styleFontMediumText"
+                                android:text="Is Team Lead" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- add team lead -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_updateSalesExecutive_submitTeamLead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_as_team_lead"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+

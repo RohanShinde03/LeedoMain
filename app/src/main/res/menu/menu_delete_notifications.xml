@@ -1,0 +1,28 @@
+<!--
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_clear_notifications"
+        android:orderInCategory="100"
+        android:title="@string/clear_notifications"
+        android:icon="@drawable/ic_delete_white_24dp"
+        app:showAsAction="always" />
+
+
+</menu>
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_clear_notifications"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_delete_grey_24dp"
+        android:title="CLEAR ALL"
+        app:showAsAction="always" />
+
+</menu>
+

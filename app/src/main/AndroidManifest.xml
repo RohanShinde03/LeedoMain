@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tribeappsoft.leedo">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.telephony" /> <!-- These 2 permissions needed for Android 10 Open Activity as in Background -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="info.androidhive.googlemapsv2.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <dist:module dist:instant="true" />
+
+    <application
+        android:name="com.tribeappsoft.leedo.application.LeadoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon_leedo_round"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/app_icon_leedo_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.tribeappsoft.leedo.admin.reports.ExportReportActivity"></activity>
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.model.LeadReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_brochures.ProjectBrochuresActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_floor_plans.ProjectFloorPlanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_quotations.ProjectQuotationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.LeadReportsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.ViewReportActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.users.AddNewUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_creation.AllProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reminder.AllReminderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reminder.AddReminderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.booked_customers.BookedCustomersActivity"
+            android:screenOrientation="unspecified"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.site_visits.AllSiteVisitsActivity"
+            android:screenOrientation="unspecified"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.users.AllUsersActivity"
+            android:screenOrientation="unspecified"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_quotations.AddNewQuotationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_floor_plans.AddNewFloorPlanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_creation.CreateProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.util.crop_image.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.util.ccp.CountryCodeSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" /> <!-- FB SDK -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBNksI3Cr_PghQI3xrDCtoJZgNfBdap98U" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity> <!-- End FB SDK -->
+        <!-- Splash Screen -->
+        <activity
+            android:name="com.tribeappsoft.leedo.SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- zXing scan -->
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- app web intent -->
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="vjsalesapp.org" />
+                <data android:scheme="vjsalesapp.com" />
+
+                <!-- Student Event details -->
+                <!-- https://privateedukolhapur.org/studentevent/39 -->
+                <!-- http://admin.privateedukolhapur.com/#/studentevent/3 -->
+                <data
+                    android:host="vjsalesapp.org"
+                    android:pathPrefix="/bookingevent/"
+                    android:scheme="https" />
+                <data
+                    android:host="vjsalesapp.org"
+                    android:scheme="http" />
+
+                <!-- Staff Event details -->
+                <!-- https://privateedukolhapur.org/staffevent/39 -->
+                <!--
+                    <data
+                    android:host="privateedukolhapur.org"
+                    android:pathPrefix="/staffevent/"
+                    android:scheme="https" />
+                -->
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.loginModule.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" /> <!-- FCM -->
+        <activity
+            android:name="com.tribeappsoft.leedo.accountsHead.AccountsHeadHomeNavigationActivity"
+            android:label="@string/title_activity_accounts_head_home_navigation"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- <service -->
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity"
+            android:label="@string/title_activity_sales_person_home_navigation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+Set color used with incoming notification messages. This is used when no color is set for the incoming
+     notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/app_icon_leedo_foreground" />
+        <!--
+~
+Set custom default icon. This is used when no icon is set for incoming notification messages.
+           See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" /> <!-- RazorPay Key -->
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="@string/razorPay_live_key" /> <!-- android:name=".firebase.FirebaseIDService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="false" -->
+        <!-- android:stopWithTask="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <service
+            android:name="com.tribeappsoft.leedo.firebase.FireBaseMessageService"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- END Firebase -->
+        <!-- Alarm broadcast receiver -->
+        <receiver
+            android:name="com.tribeappsoft.leedo.admin.reminder.AlarmReceiver"
+            android:process=":remote" /> <!-- File Provider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider> <!-- End File Provider -->
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.user_profile.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.profile.ViewProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.notifications.NotificationsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" /> <!-- RazorPay Api key -->
+        <activity
+            android:name="com.tribeappsoft.leedo.loginModule.ChangePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.loginModule.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.siteEngineer.SiteEngineerHomeNavigationActivity"
+            android:label="@string/title_activity_site_engineer_home_navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.SalesPersonBottomNavigationActivity"
+            android:label="@string/title_activity_sales_person_bottom_navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.BookingEventDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.HoldScanInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.inventory.InventoryHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.callLog.CallLogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leads.AllLeadsActivity"
+            android:screenOrientation="unspecified"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.claimNow.ClaimNowActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UserDialog"
+            tools:ignore="LockedOrientationActivity" /> <!-- android:theme="@style/Theme.Transparent" -->
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reminder.ShowReminderPopupActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UserDialog"
+            tools:ignore="LockedOrientationActivity" />
+        <!--
+ android:theme="@style/Theme.Transparent"
+        android:theme="@style/Theme.MaterialComponents.Dialog"
+        -->
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.BookingEventsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.HoldFlatListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.HoldFlatDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.bookings.AddHoldFlatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.profile.EditProfileActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" /> <!-- claim now receiver -->
+        <!--
+  <receiver android:name=".salesPerson.claimNow.ClaimNowReceiver" >
+            <intent-filter>
+&lt;!&ndash;                Attributes that can be supplied in an AndroidManifest.xml action tag, &ndash;&gt;
+&lt;!&ndash;                a child of the intent-filter tag. &ndash;&gt;
+&lt;!&ndash;                android:name &ndash;&gt;
+&lt;!&ndash;                The name of an action that is handled, using the Java-style naming convention. &ndash;&gt;
+                <action android:name="com.vjd.salesapp.ClaimNow"/>
+            </intent-filter>
+        </receiver>
+        -->
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leads.CustomerIdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.scaleImage.ScaleImageActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.FlatAllotmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.AddFlatOnHoldActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.ConfirmHoldFlat_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.AllottedFlats_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.AllottedFlatDetail_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.direct_allotment.DirectHoldFlatsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.teamStats.TeamStatsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.token.UpgradeGHPPlusActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.SelectTeamMembersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeadStatsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.AddTeamLeadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeaderList"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeadDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectLeadsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectSalesPersonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.CPReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.FOSReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leadreassign.LeadReAssign_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leadreassign.SelectLeadsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.leadreassign.SelectSalesPersonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.LeadReAssign_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.cp_filter.AllProjectsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesExecutiveList.SalesExecutivesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesExecutiveList.Update_SalesExecutiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.project_brochures.AddNewBrochureActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.filterFeed.FeedFilterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.openSaleBlocks.BlockForOpenSaleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.churnedLeads.SelectAssignmentLogicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.churnedLeads.UnClaimedLeadsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.holdFlats.SHHoldFlatListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.churnedLeads.filter.FilterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.churnedLeads.SelectMultiSalesPersonsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.claimedList.ClaimedLeads_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesHeadDashboard.SalesHeadDashboard_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatSiteVisitDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.siteVistStat.SiteVisitStatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatGHPDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatBookingDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatCancelBookingDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesHeadDashboard.filter.Filter_SalesHeadStats"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" /> <!-- This part is inside the application -->
+        <!--
+ &lt;!&ndash; Phone call receiver &ndash;&gt;
+        <receiver android:name=".salesPerson.callLog.PhoneCallReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        -->
+        <!-- Device Admin receiver -->
+        <receiver
+            android:name="com.tribeappsoft.leedo.admin.callLog.DeviceAdminDemoReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/my_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLE_REQUESTED" />
+            </intent-filter>
+        </receiver> <!-- register service here -->
+        <service
+            android:name="com.tribeappsoft.leedo.admin.callLog.TelephonyCallService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="TelephonyCallService"
+            android:process=":Leado_Sales" />
+
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.SiteVisitList_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.SelectedSiteVisitMark_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.SelectSalesPersonsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.ghpList.GhpList_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.ghpList.SelectedGhpLeadsReAssign_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.ghpList.filter.GhpFilterMore_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.filter.SiteVisitFilter_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.claimedList.filter.FilterMore_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.callSchedule.CallScheduleMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.callSchedule.ShowScheduleCallPopupActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.UserDialog"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!--
+  <activity
+              android:name=".salesPerson.callSchedule.ShowScheduleCallPopupActivity"
+              android:excludeFromRecents="true"
+              android:screenOrientation="portrait"
+              android:theme="@style/Theme.MaterialComponents.Dialog"
+              tools:ignore="LockedOrientationActivity" />
+        -->
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.callSchedule.filter.FilterCallScheduleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.AllCallLogStats_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.filter.Filter_SalesHeadCallLogs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.teamLeaderDashboard.TeamLeaderDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.tribeappsoft.leedo.salesPerson.teamLeaderDashboard.filter.Filter_TeamLeaderStats"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity" />
+        <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallStatsDetailsActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sr_holdFlatList">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_holdFlat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_hold_flat_list" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <!-- no data -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_holdFlatList_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_event_black_128dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/you_haven_t_added_any_flat_on_hold"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_holdFlat">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_holdFlat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_holdFlat_addHoldFlat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:clipToPadding="false"
+                android:visibility="visible">
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        &lt;!&ndash; <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/rv_holdFlat_list"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingTop="30dp"
+             android:paddingBottom="75dp"
+             android:cacheColorHint="@android:color/transparent"
+             android:clipToPadding="false"
+             tools:listitem="@layout/item_layout_hold_flat_list" />&ndash;&gt;
+
+
+        &lt;!&ndash; no data &ndash;&gt;
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_holdFlat_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_event_black_128dp"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/you_haven_t_added_any_flat_on_hold"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/exFab_holdFlat_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/main_white"
+            android:contentDescription="@string/app_name"
+            android:text="@string/hold_flat"
+            android:padding="19.5dp"
+            android:layout_gravity="bottom|end"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            app:iconTint="@color/main_white"
+            app:icon="@drawable/ic_add_icon"
+            app:iconSize="26dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/metropolis_medium"
+            android:shadowColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:fabSize="normal"
+            app:fabCustomSize="34dp"
+            android:scaleType="center"
+            android:textAllCaps="false" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+

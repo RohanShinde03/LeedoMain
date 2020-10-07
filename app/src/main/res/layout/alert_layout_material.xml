@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:elevation="24dp"
+    android:elevation="24dp">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:gravity="center"
+        android:paddingRight="12dp"
+        android:background="@color/main_white">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_google_calendar_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:visibility="gone"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/google_calendar_icon"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_layout_custom_alert_dialog_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontBoldText"
+                android:gravity="center|start"
+                android:ellipsize="end"
+                android:maxLines="9"
+                android:layout_gravity="center|start"
+                android:text="@string/change_profile"
+                android:textColor="@color/main_black"
+                android:textSize="20sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_layout_custom_alert_dialog_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontMediumText"
+        android:gravity="start"
+        android:ellipsize="end"
+        android:maxLines="9"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/change_profile"
+        android:textColor="@color/main_black"
+        android:textSize="16sp"
+        android:lineSpacingExtra="8dp"/>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_custom_alert_negativeButton"
+            style="@style/Widget.Theme.Button.TextButton"
+            android:theme="@style/styleFontBoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/cancel"
+            android:textSize="16sp"
+            android:textAllCaps="false"/>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_custom_alert_positiveButton"
+            style="@style/Widget.Theme.Button.TextButton"
+            android:theme="@style/styleFontBoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ok"
+            android:textAllCaps="false"
+            android:textSize="16sp"/>
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_cuIdList"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_white">
+
+    <RelativeLayout
+        android:id="@+id/rl_ll_CustomerIDActivity_searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cuIdList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="56dp"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_cu_id"
+            />
+        <!-- Search bar & Filter  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_cuIdList_searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--search-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/ic_rectangle_light_grey_round">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edt_cuIdList_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:gravity="center|start"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:hint="@string/search"
+                    android:background="@color/black_full_transparent"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="16sp"
+                    android:inputType="textPersonName"
+                    android:drawableStart="@drawable/ic_search_icon"
+                    android:drawablePadding="@dimen/dimen_5dp"
+                    android:lines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:imeOptions="actionSearch"
+                    />
+                <!--     -->
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_cuIdList_clearSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:padding="4dp"
+                    android:visibility="gone"
+                    android:tint="@color/main_medium_grey"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:src="@drawable/ic_close_black_24dp"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- ll no Data Found -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_cuIdList_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_people_black_128dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cuIdList_noData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_customer_id_available"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/pb_cuIdList"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_drawable"
+            android:indeterminateDuration="2000"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_atop"
+            android:layout_alignBottom="@id/rv_cuIdList"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+
+       <!-- <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_cuIDListBackToTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/rv_cuIdList"
+            android:layout_alignEnd="@id/rv_cuIdList"
+            android:text="@string/back_to_top"
+            android:layout_margin="12dp"
+            style="@style/coloredButton"
+            app:icon="@drawable/ic_arrow_upward_white_24dp"
+            app:iconPadding="5dp"
+            android:textSize="16sp"
+            android:visibility="visible"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:cornerRadius="50dp"/>-->
+
+        <!-- ll-back to top -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_cuIDList_backToTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_alignBottom="@id/rv_cuIdList"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="70dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/bg_feed_back_to_top"
+            android:orientation="horizontal">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_upward_white_24dp"
+                android:contentDescription="@string/app_name"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back_to_top"
+                android:textAlignment="center"
+                android:textColor="@color/main_white"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:theme="@style/styleFontMediumText" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+
+    <!-- &lt;!&ndash; Search bar &ndash;&gt;
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center|top"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/ic_rectangle_light_grey_round">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_cuIdList_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.73"
+                        android:background="@color/black_full_transparent"
+                        android:drawableStart="@drawable/ic_search_icon"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:textColor="@color/textColorPrimary"
+                        android:gravity="center|start"
+                        android:hint="@string/search_customer"
+                        android:lines="1"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="18sp"
+                        android:inputType="textPersonName"
+                        android:imeOptions="actionSearch"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_cuIdList_clearSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="end|center"
+                        android:src="@drawable/ic_search_close_icon"
+                        android:visibility="gone" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+
+
+
+
+
+
+
+

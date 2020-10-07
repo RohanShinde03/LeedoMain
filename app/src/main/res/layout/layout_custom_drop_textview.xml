@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_customDrop_tv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="24dp"
+    app:elevation="24dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_customDropTv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:theme="@style/styleFontRegularText"
+            android:text="This is custom toast message"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_customDropTv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:theme="@style/styleFontRegularText"
+            android:text="Available"
+            android:textSize="14sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:id="@+id/customDrop_View"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_margin="5dp"
+        android:background="@color/main_medium_grey"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

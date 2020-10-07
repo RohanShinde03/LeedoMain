@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv_siteVisits"
+    android:clickable="true"
+    android:onClick="animateIntent"
+    android:transitionName="@string/transition_string"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_siteVisit_visitType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_title"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:theme="@style/styleFontMediumText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_siteVisit_timeSlot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:drawableStart="@drawable/ic_access_time_black_24dp"
+                android:drawablePadding="5dp"
+                app:drawableTint="@color/main_grey"
+                android:text="@string/card_text_date"
+                android:maxLines="1"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:gravity="center|start"
+                android:theme="@style/styleFontRegularText"
+                android:textColor="@color/main_grey"
+                android:textSize="15dp" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_siteVisit_customerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:drawableStart="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="5dp"
+                    app:drawableTint="@color/main_grey"
+                    android:text="@string/user_name"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:gravity="center|start"
+                    android:theme="@style/styleFontRegularText"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_siteVisit_customerUnitType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/def_block_unit_type"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:gravity="center|start"
+                    android:theme="@style/styleFontRegularText"
+                    android:textColor="@color/main_black"
+                    android:textSize="13dp"
+                    android:maxLines="1"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_siteVisit_customerMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawableStart="@drawable/ic_call_green_24dp"
+                    android:drawablePadding="5dp"
+                    android:text="@string/user_mobile"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:gravity="center|start"
+                    android:theme="@style/styleFontRegularText"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/lighter"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <!-- Scan_in & check_in -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1">
+
+                        <!-- Scan-In  Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_siteVisit_scanIn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/coloredButton"
+                            android:textAllCaps="false"
+                            android:text="@string/scan_in"
+                            android:visibility="gone"
+                            app:cornerRadius="50dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+
+                        <!-- check-In time-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_siteVisit_checkIn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/check_in_colon"
+                                android:maxLines="1"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp"
+                                android:gravity="center|start"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/black"
+                                android:textSize="13dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_siteVisit_checkInTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/check_in_colon"
+                                android:maxLines="1"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center|start"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/black"
+                                android:textSize="14dp" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Scan_out & check-Out -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1">
+
+
+                        <!-- Scan-out Button -->
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/mBtn_siteVisit_scanOut"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/coloredButton"
+                            android:visibility="gone"
+                            android:textAllCaps="false"
+                            android:text="@string/scan_out"
+                            app:cornerRadius="50dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+
+
+                        <!-- check-Out time-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_siteVisit_checkOut"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/check_in_colon"
+                                android:maxLines="1"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp"
+                                android:gravity="center|start"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/black"
+                                android:textSize="13dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_siteVisit_checkOutTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/user_name"
+                                android:maxLines="1"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center|start"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/black"
+                                android:textSize="14dp" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</com.google.android.material.card.MaterialCardView>

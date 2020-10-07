@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputLayout.OutlineBox.CustomFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/layout_myDatePicker">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_mDatePicker_date"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:drawableEnd="@drawable/ic_date_picker"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="@string/date_of_birth"
+            android:fontFamily="@font/metropolis_light"
+            android:cursorVisible="false"
+            android:digits="0123456789"
+            android:inputType="number|none"
+            android:textSize="0sp"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+  <!--  <EditText
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_lazy_date_picker"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:digits="0123456789"
+        android:inputType="number|none"
+        android:textSize="0sp"
+        tools:ignore="Autofill,LabelFor,TextFields" />-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_myDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:layout_marginRight="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_day"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_day"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Space
+            android:layout_width="@dimen/my_date_picker_width_space"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_month"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_month"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Space
+            android:layout_width="@dimen/my_date_picker_width_space"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_year"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_year"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_year"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_7"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/my_date_picker_width_case"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/my_date_picker_width_margin"
+            android:layout_marginEnd="@dimen/my_date_picker_width_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_date_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdp_year"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_my_date_8"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/my_date_picker_height_focus"
+                android:background="@android:color/darker_gray" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_my_date_picker_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="01 jav. 1900" />
+
+    <View
+        android:id="@+id/btn_my_date_picker_on_focus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/layout_myDatePicker"
+        android:layout_alignLeft="@+id/layout_myDatePicker"
+        android:layout_alignTop="@+id/layout_myDatePicker"
+        android:layout_alignEnd="@+id/layout_myDatePicker"
+        android:layout_alignRight="@+id/layout_myDatePicker"
+        android:layout_alignBottom="@+id/layout_myDatePicker" />
+
+</RelativeLayout>

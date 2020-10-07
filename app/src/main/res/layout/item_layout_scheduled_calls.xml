@@ -1,0 +1,1907 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_CallList_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_CallList_ownDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/card_text_date"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:gravity="center|end"
+            android:theme="@style/styleFontMediumText"
+            android:textColor="@color/color_menu_deactivate"
+            android:textSize="12sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:id="@+id/cv_CallList_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="@dimen/dimen_12dp"
+            android:layout_marginRight="@dimen/dimen_12dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_cardMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- android:background="@drawable/cardview_full" -->
+
+                <!--Lead Details-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp">
+
+
+                    <!-- cuID number & reminder icon -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center|start"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp">
+
+                        <!-- cuId number -->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_CallList_MobileNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="@string/def_cuID_number"
+                            android:visibility="gone"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:layout_gravity="center|start"
+                            android:gravity="center|start"
+                            android:textSize="12sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <!-- reminder icon -->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_CallList_ownReminderIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_reminder_red"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            android:contentDescription="@string/app_name"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--Lead Name Unit & Type-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="start"
+                            android:gravity="start">
+
+
+                            <!-- tag, elapsed time, popup menu -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|start"
+                                android:orientation="horizontal">
+
+                                <!-- tag -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_tag_ownElapsedTime1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|start"
+                                    android:layout_weight="2">
+
+                                    <!-- tag -->
+                                  <!--  <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:id="@+id/ll_CallList_LeadType"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/color_tag_background"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="15dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:gravity="center">
+
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/iv_CallList_TagIcon"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:src="@drawable/ic_tag"
+                                            android:tint="@color/color_lead_claimed"
+                                            android:scaleType="centerCrop"/>
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/tv_CallList_Tag"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="2dp"
+                                            android:text="@string/tag_r_n_l"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textSize="16sp"
+                                            android:layout_gravity="center"/>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+                                    <!--Lead Name-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_LeadName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/lead_name"
+                                        android:textAlignment="textStart"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="5dp"
+                                        android:textColor="@color/main_black"
+                                        android:textSize="18sp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Total Calls-->
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/mTv_CallList_TotalCallsCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/_0"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:background="@drawable/badge_churn_count"
+                                        android:layout_marginLeft="@dimen/dimen_12dp"
+                                        android:layout_marginRight="@dimen/dimen_12dp"
+                                        android:textColor="@color/main_white"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:gravity="center"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:visibility="gone"
+                                        android:textSize="14sp" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="end"
+                                    android:gravity="center">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_LeadCall"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:src="@drawable/ic_call_24dp"
+                                        android:paddingLeft="16dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:visibility="visible"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="8dp"/>
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_LeadWhatsApp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:src="@drawable/ic_whats_app"
+                                        android:visibility="gone"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingTop="16dp"
+                                        android:paddingBottom="16dp"
+                                        />
+
+
+                                    <!-- popup menu -->
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_ownLeadOptions"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        android:src="@drawable/ic_more_vert_black_24dp"
+                                        android:scaleType="centerCrop"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="16dp"
+                                        android:paddingTop="16dp"
+                                        android:paddingBottom="16dp" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Lead Mobile-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_CallList_LeadMobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_marginRight="5dp"
+                                android:text="@string/def_mob_number"
+                                android:visibility="gone"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/color_card_sub_title"
+                                android:textSize="14sp"
+                                android:theme="@style/styleFontMediumText" />
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <!--Project Name-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_CallList_ProjectName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_marginRight="5dp"
+                                    android:text="@string/project_name"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/color_card_sub_title"
+                                    android:textSize="14sp"
+                                    android:theme="@style/styleFontMediumText" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_CallList_Tag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="2dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="@string/tag_r_n_l"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="16sp"
+                                    android:layout_gravity="center"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Project Name-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_CallList_SalesPersonName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="5dp"
+                                android:visibility="gone"
+                                android:layout_marginLeft="0dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Sales Person Name"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/color_claim_now_red"
+                                android:textSize="14sp"
+                                android:theme="@style/styleFontMediumText" />
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <!-- Call Scheduled By -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_CallList_scheduledBy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="1dp"
+                                        android:paddingLeft="2dp"
+                                        android:paddingRight="2dp"
+                                        android:text="Scheduled By: "
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textColor="@color/main_grey"
+                                        android:textSize="12dp"
+                                        android:singleLine="true"
+                                        android:gravity="center|start"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_ScheduledBy"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="1dp"
+                                        android:paddingLeft="2dp"
+                                        android:paddingRight="2dp"
+                                        android:textColor="@color/color_claim_now_red"
+                                        android:text="NA"                                                android:theme="@style/styleFontMediumText"
+                                        android:textSize="14dp"
+                                        android:gravity="center|start"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--Scheduled On-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_schedule_on"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="1dp"
+                                        android:paddingLeft="2dp"
+                                        android:paddingRight="2dp"
+                                        android:text="Scheduled On: "
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textColor="@color/main_grey"
+                                        android:textSize="12dp"
+                                        android:singleLine="true"
+                                        android:gravity="center|start"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_ScheduledOnDate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="1dp"
+                                        android:paddingLeft="2dp"
+                                        android:paddingRight="2dp"
+                                        android:textColor="@color/main_black"
+                                        android:text="NA"                                                android:theme="@style/styleFontMediumText"
+                                        android:textSize="14dp"
+                                        android:gravity="center|start"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!-- cur. status & reschedule  -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_schedule_button"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|start">
+
+                                    <!-- status -->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible"
+                                        android:layout_weight="1"
+                                        android:gravity="center">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="1dp"
+                                            android:paddingLeft="2dp"
+                                            android:paddingRight="2dp"
+                                            android:text="Status: "
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textColor="@color/main_grey"
+                                            android:textSize="12sp"
+                                            android:singleLine="true"
+                                            android:gravity="center|start"/>
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/tv_CallList_ScheduledStatus"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="1dp"
+                                            android:paddingLeft="2dp"
+                                            android:paddingRight="2dp"
+                                            android:textColor="@color/main_black"
+                                            android:text="NA"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textSize="14sp"
+                                            android:gravity="center|start"/>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/mBtn_callList_reschedule"
+                                        style="@style/Widget.Theme.Button.TextButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center|start"
+                                        android:textColor="@color/color_call_reminder"
+                                        android:text="@string/reschedule_que"
+                                        android:gravity="center"
+                                        android:textSize="14sp"
+                                        android:textAllCaps="false"
+                                        android:focusable="true" />
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <!-- lead status details text -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_CallList_leadDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="2dp"
+                        android:visibility="visible"
+                        android:gravity="center|start"
+                        android:weightSum="3">
+                        <!-- tag -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_tag_ownElapsedTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:gravity="center|start"
+                            android:layout_weight="2">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="2">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_leadDetails_ec1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|end"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:visibility="visible"
+                                    android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--  Call Remark -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemLayout_ProjectsClick"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|start"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_CallList_ownStatus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="3dp"
+                                    android:paddingBottom="3dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingRight="3dp"
+                                    android:gravity="center|start"
+                                    android:layout_weight="0.76"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/colorPrimary"
+                                    android:text="@string/more_details"
+                                    android:textSize="14dp" />
+
+                                <!--<androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontRegularText"
+                                    android:textColor="@color/colorPrimary"
+                                    android:gravity="center"
+                                    android:text="@string/vertical_dash"
+                                    android:padding="3dp"
+                                    android:layout_weight="1.05"
+                                    android:textSize="11dp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_item_doctorDtl_Time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:gravity="center|start"
+                                    android:padding="3dp"
+                                    android:layout_weight="0.58"
+                                    android:theme="@style/styleFontRegularText"
+                                    android:textColor="@color/colorPrimary"
+                                    android:text="@string/lorem"
+                                    android:textSize="11dp"/>-->
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_Remark_ec"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:layout_marginRight="8dp"
+                                    android:background="@drawable/ripple_effect"
+                                    android:layout_gravity="center"
+                                    android:scaleType="fitCenter"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_keyboard_arrow_down_violet_24dp" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="2">
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_homeFeed_own_leadDetails_ec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|end"
+                                android:scaleType="centerCrop"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- lead details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_CallList_ownViewLeadDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="gone"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_CallList_ownAddLeadDetailsSchedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="Remark: "
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_CallList_Remarks1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/main_black"
+                                    android:text="NA"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View
+                           android:id="@+id/view_callScheduleMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_CallList_ownAddLeadDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="Remark: "
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_CallList_Remarks"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/main_black"
+                                    android:text="NA"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="cp executive name: "
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_cp_executive_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/main_black"
+                                    android:text="NA"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <!--Lead Elapsed time -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_CallList_ownElapsedTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/card_elapsed_time"
+                        android:maxLines="1"
+                        android:visibility="gone"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:gravity="center|start"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="12sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+    <!--
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_CallList_main"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        &lt;!&ndash; gravity start &ndash;&gt;
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_CallList_ownView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="start">
+
+
+            &lt;!&ndash;Date&ndash;&gt;
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_CallList_ownDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/card_text_date"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:maxLines="1"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:gravity="center|end"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/color_tag_background"
+                android:textSize="12sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.MaterialComponents.CardView"
+                android:id="@+id/cv_itemUnCallList_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="@dimen/dimen_12dp"
+                android:layout_marginRight="@dimen/dimen_12dp">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_cardMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cardview_full"
+                    android:orientation="vertical">
+
+                    &lt;!&ndash;Lead Details&ndash;&gt;
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="10dp">
+
+
+                            &lt;!&ndash; tag, elapsed time, popup menu &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|start"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="end"
+                                    android:gravity="center">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_LeadWhatsApp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:src="@drawable/ic_whats_app"
+                                        android:visibility="gone"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingTop="16dp"
+                                        android:paddingBottom="16dp"/>
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_LeadCall"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:src="@drawable/ic_call_24dp"
+                                        android:visibility="gone"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingTop="16dp"
+                                        android:paddingBottom="16dp"
+                                        />
+
+                                    &lt;!&ndash;   &lt;!&ndash; popup menu &ndash;&gt;
+                                       <androidx.appcompat.widget.AppCompatImageView
+                                           android:id="@+id/iv_CallList_ownLeadOptions"
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="wrap_content"
+                                           android:src="@drawable/ic_more_vert_black_24dp"
+                                           android:scaleType="centerCrop"
+                                           android:paddingLeft="8dp"
+                                           android:paddingRight="16dp"
+                                           android:visibility="gone"
+                                           android:paddingTop="16dp"
+                                           android:paddingBottom="16dp" />&ndash;&gt;
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            &lt;!&ndash; cuID number & reminder icon &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|start"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="0dp">
+
+                                &lt;!&ndash; cuId number &ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_CallListCuIdNumber"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="0.1"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="@string/def_cuID_number"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/colorAccent"
+                                    android:layout_gravity="center|start"
+                                    android:gravity="center|start"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText" />
+
+                                &lt;!&ndash; reminder icon &ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_ownReminderIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_reminder_red"
+                                    android:scaleType="centerCrop"
+                                    android:visibility="gone"
+                                    android:contentDescription="@string/app_name"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            &lt;!&ndash;Lead Name Unit & Type&ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_gravity="start"
+                                    android:gravity="start">
+
+                                    &lt;!&ndash;Lead Name&ndash;&gt;
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_LeadName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/lead_name"
+                                        android:textAlignment="textStart"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="5dp"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="20sp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    &lt;!&ndash;Lead Mobile&ndash;&gt;
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_LeadMobile"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text="@string/def_mob_number"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/color_card_sub_title"
+                                        android:textSize="14sp"
+                                        android:theme="@style/styleFontMediumText" />
+                                    &lt;!&ndash;Project Name&ndash;&gt;
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_ProjectName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text="@string/project_name"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/color_card_sub_title"
+                                        android:textSize="14sp"
+                                        android:theme="@style/styleFontMediumText" />
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        &lt;!&ndash; First Call Made View &ndash;&gt;
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:text="First Call Made: "
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/main_grey"
+                                                android:textSize="12dp"
+                                                android:singleLine="true"
+                                                android:gravity="center|start"/>
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/tv_CallList_FirstCallMade"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:textColor="@color/main_black"
+                                                android:text="NA"                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="14dp"
+                                                android:gravity="center|start"/>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        &lt;!&ndash;No of Calls Made &ndash;&gt;
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/tv_itemLeadDetails_text"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:text="No. of Calls Made: "
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/main_grey"
+                                                android:textSize="12dp"
+                                                android:singleLine="true"
+                                                android:gravity="center|start"/>
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/tv_CallList_NoOfCallMade"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:textColor="@color/main_black"
+                                                android:text="NA"                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="14dp"
+                                                android:gravity="center|start"/>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        &lt;!&ndash;No of Calls Made &ndash;&gt;
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:text="Avg call Duration of Call: "
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/main_grey"
+                                                android:textSize="12dp"
+                                                android:singleLine="true"
+                                                android:gravity="center|start"/>
+
+                                            <androidx.appcompat.widget.AppCompatTextView
+                                                android:id="@+id/tv_CallList_AvgCallDuration"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="1dp"
+                                                android:paddingLeft="2dp"
+                                                android:paddingRight="2dp"
+                                                android:textColor="@color/main_black"
+                                                android:text="NA"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textSize="14dp"
+                                                android:gravity="center|start"/>
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            &lt;!&ndash; lead status details text &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_CallList_leadDetailsMain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginBottom="5dp"
+                                android:visibility="visible"
+                                android:gravity="center|start"
+                                android:weightSum="3">
+                                &lt;!&ndash; tag &ndash;&gt;
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_tag_ownElapsedTime"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|start"
+                                    android:layout_weight="2">
+
+                                    &lt;!&ndash; tag &ndash;&gt;
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/color_tag_background"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="15dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:gravity="center">
+
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/iv_CallList_TagIcon"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:src="@drawable/ic_tag"
+                                            android:backgroundTint="@color/main_black"
+                                            android:scaleType="centerCrop"/>
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/tv_CallListTag"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="2dp"
+                                            android:text="@string/tag_r_n_l"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textSize="16sp"
+                                            android:layout_gravity="center"/>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="2">
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/iv_CallList_leadDetails_ec"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center|end"
+                                            android:scaleType="centerCrop"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:visibility="visible"
+                                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                &lt;!&ndash;&lt;!&ndash; lead status &ndash;&gt;
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:visibility="invisible"
+                                    android:orientation="horizontal">
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_ownStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tag_r_n_l"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingStart="15dp"
+                                        android:paddingEnd="15dp"
+                                        android:textSize="14sp"
+                                        android:background="@color/color_lead_assigned"
+                                        android:textColor="@color/main_white"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"/>
+                                    &lt;!&ndash;Token Number&ndash;&gt;
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_ownTokenNumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:textSize="12dp"
+                                        android:text="@string/ghp"
+                                        android:textAlignment="textStart"
+                                        android:letterSpacing="0.1"
+                                        android:textColor="@color/colorAccent"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="2">
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_leadDetails_ec1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center|end"
+                                        android:scaleType="centerCrop"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:visibility="visible"
+                                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>&ndash;&gt;
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="2">
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_homeFeed_own_leadDetails_ec"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center|end"
+                                        android:scaleType="centerCrop"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:visibility="gone"
+                                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            &lt;!&ndash;Lead Elapsed time &ndash;&gt;
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_CallList_ownElapsedTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/card_elapsed_time"
+                                android:maxLines="1"
+                                android:visibility="gone"
+                                android:paddingTop="1dp"
+                                android:paddingBottom="1dp"
+                                android:gravity="center|start"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/color_card_sub_title"
+                                android:textSize="12sp" />
+
+                            &lt;!&ndash; lead details &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_CallList_ownViewLeadDetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:visibility="gone"
+                                android:gravity="center">
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.4dp"
+                                    android:background="@color/lighter" />
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_CallList_ownAddLeadDetails"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:orientation="vertical">
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        &lt;!&ndash; gravity end postMsg &ndash;&gt;
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_CallList_othersView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            &lt;!&ndash;Lead Date&ndash;&gt;
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_CallList_othersDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/card_text_date"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:gravity="center|end"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/color_tag_background"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/cardview_leftside">
+
+                &lt;!&ndash;Lead Details&ndash;&gt;
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_CallList_othersMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="10dp">
+
+                        &lt;!&ndash; tag, elapsed time, popup menu &ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp">
+
+                            &lt;!&ndash; tag &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|start"
+                                android:layout_weight="2">
+
+                                &lt;!&ndash; tag &ndash;&gt;
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/color_tag_background"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="15dp"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="8dp"
+                                    android:paddingEnd="8dp"
+                                    android:gravity="center">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_CallList_othersTagIcon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_tag"
+                                        android:scaleType="centerCrop"/>
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_CallList_othersTag"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="2dp"
+                                        android:text="@string/tag_r_n_l"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="end"
+                                android:gravity="center">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_othersLeadWhatsApp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_whats_app"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp"
+                                    />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_OthersLeadCall"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_call_24dp"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp"
+                                    />
+
+                                &lt;!&ndash; popup menu &ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_CallList_othersLeadOptions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_more_vert_black_24dp"
+                                    android:scaleType="centerCrop"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        &lt;!&ndash; cuID number & reminder icon &ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center|start"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="0dp">
+
+                            &lt;!&ndash; cuId number &ndash;&gt;
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_CallList_othersCuIdNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="0.1"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="10dp"
+                                android:text="@string/def_cuID_number"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/colorAccent"
+                                android:layout_gravity="center|start"
+                                android:gravity="center|start"
+                                android:textSize="12sp"
+                                android:theme="@style/styleFontMediumText" />
+
+                            &lt;!&ndash; reminder icon &ndash;&gt;
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_CallList_othersReminderIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_reminder_red"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/app_name"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            &lt;!&ndash; Right aligned &ndash;&gt;
+            &lt;!&ndash;<androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/cardview_leftside">
+
+                &lt;!&ndash;Lead Details&ndash;&gt;
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_homeFeed_othersMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="10dp">
+
+                        &lt;!&ndash; tag, elapsed time, popup menu &ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                &lt;!&ndash; popup menu &ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_homeFeed_othersLeadOptions"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_more_vert_black_24dp"
+                                    android:scaleType="centerCrop"
+                                    android:paddingLeft="16dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp"/>
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_homeFeedOthersLeadCall"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_call_icon"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp"
+                                    />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_homeFeed_othersLeadWhatsApp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_whatsapp_icon"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="16dp"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            &lt;!&ndash; tag & elapsed time  &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|end"
+                                android:layout_weight="2">
+
+                                &lt;!&ndash; tag &ndash;&gt;
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/color_others_tag_background"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="15dp"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="8dp"
+                                    android:paddingEnd="8dp"
+                                    android:gravity="center">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_homeFeed_othersTag"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="10dp"
+                                        android:text="@string/tag_r_n_l"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textSize="16sp"
+                                        android:layout_gravity="center"/>
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_homeFeed_othersTagIcon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_tag"
+                                        android:scaleType="centerCrop"/>
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        &lt;!&ndash; cuID number &ndash;&gt;
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_homeFeed_othersCuIdNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.1"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/def_cuID_number"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/colorAccent"
+                            android:layout_gravity="center|end"
+                            android:gravity="center|end"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:paddingTop="5dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        &lt;!&ndash;Lead Name Unit & Type&ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="horizontal">
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="end"
+                                android:gravity="end">
+
+                                &lt;!&ndash;Lead Name&ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_homeFeed_othersLeadName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/lead_name"
+                                    android:textAlignment="textEnd"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="3dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="0dp"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="20sp"
+                                    android:theme="@style/styleFontBoldText" />
+
+                                &lt;!&ndash;Project Name&ndash;&gt;
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_homeFeed_othersProjectName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="3dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="0dp"
+                                    android:text="@string/project_name"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/color_card_sub_title"
+                                    android:textSize="14sp"
+                                    android:theme="@style/styleFontMediumText" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        &lt;!&ndash;Lead Mobile&ndash;&gt;
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_homeFeed_othersLeadMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/def_mob_number"
+                            android:visibility="gone"
+                            android:drawableStart="@drawable/ic_call_green_24dp"
+                            android:drawablePadding="7dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/main_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:theme="@style/styleFontRegularText" />
+
+
+                        &lt;!&ndash;Unit Type&ndash;&gt;
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_homeFeed_othersUnitType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:text="@string/def_unit_type"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="17sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:theme="@style/styleFontRegularText" />
+
+                        &lt;!&ndash; claim now button &ndash;&gt;
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_homeFeed_othersClaimNow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/claimNow"
+                            android:gravity="center"
+                            style="@style/coloredButton"
+                            android:shadowColor="@color/google"
+                            app:backgroundTint="@color/google"
+                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            app:textAllCaps="false"
+                            android:paddingLeft="45dp"
+                            android:paddingRight="45dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:visibility="gone"
+                            app:cornerRadius="50dp"/>
+
+                        &lt;!&ndash; lead status details text &ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_homeFeed_others_leadDetailsMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center|start"
+                            android:weightSum="3"
+                            android:visibility="visible">
+
+                            &lt;!&ndash; lead status &ndash;&gt;
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="2">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_homeFeed_others_leadDetails_ec"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|start"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:visibility="gone"
+                                    android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="end"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_homeFeed_othersTokenNumber"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:textSize="12dp"
+                                    android:text="@string/ghp"
+                                    android:textAlignment="textStart"
+                                    android:letterSpacing="0.1"
+                                    android:textColor="@color/colorAccent"
+                                    />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_homeFeed_othersLeadStatus"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tag_r_n_l"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:textSize="14sp"
+                                    android:background="@color/color_lead_generated"
+                                    android:textColor="@color/main_white"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        &lt;!&ndash;Lead Elapsed time &ndash;&gt;
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_homeFeed_othersElapsedTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/card_elapsed_time"
+                            android:maxLines="1"
+                            android:paddingTop="1dp"
+                            android:paddingBottom="1dp"
+                            android:layout_gravity="end"
+                            android:gravity="center|end"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/color_card_sub_title"
+                            android:textSize="12sp" />
+
+                        &lt;!&ndash; lead details &ndash;&gt;
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_homeFeed_othersViewLeadDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="gone"
+                            android:gravity="center">
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.4dp"
+                                android:background="@color/main_medium_grey" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_homeFeed_othersAddLeadDetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>&ndash;&gt;
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    -->

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/ImageView_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        tools:ignore="contentDescription"/>
+
+    <com.tribeappsoft.leedo.util.crop_image.CropOverlayView
+        android:id="@+id/CropOverlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
+
+    <ProgressBar
+        android:id="@+id/CropProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/progress_drawable"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_drawable"
+        android:indeterminateDuration="2000"
+        android:indeterminateTint="@color/secondaryColor"
+        android:indeterminateTintMode="multiply"
+
+        />
+
+</merge>

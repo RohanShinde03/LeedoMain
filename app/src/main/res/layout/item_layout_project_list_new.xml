@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_ProjectList_mainList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cIv_itemLayout_UserImg"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_centerInParent="true"
+                    android:tint="@color/GrayLight"
+                    android:src="@drawable/ic_inventory_grey_light_128dp"
+                    app:civ_border_color="@color/GrayLight"
+                    app:civ_border_width="0.5dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <!--Mark as done Button-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_itemList_ProjectName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/styleFontBoldText"
+                        android:text="@string/title"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
+
+
+                    <!--Edit Button-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_itemList_editProjectDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_edit_black_24dp"
+                        android:layout_gravity="start|center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        tools:ignore="PrivateResource" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_itemList_ProjectAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontRegularText"
+                    android:gravity="center|start"
+                    android:text="@string/project_address"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/main_dark_grey"
+                    android:textSize="16sp" />
+
+
+                <HorizontalScrollView
+                    android:id="@+id/hs_Horizontal_scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+                    <!--project Names-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_itemList_AssignedRoles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:orientation="horizontal">
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </HorizontalScrollView>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_itemLayout_UserRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_role_type"
+                    android:visibility="gone"
+                    android:theme="@style/styleFontMediumText"
+                    android:paddingTop="6dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="3dp"
+                    android:paddingBottom="6dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="14sp"
+                    android:background="@drawable/bg_rectangle_round"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="center|start"
+                    android:gravity="center"/>
+
+                <!--project Names-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_itemList_AssignedProjects"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:lines="3"
+                        android:visibility="gone"
+                        android:text="@string/projects"
+                        android:theme="@style/styleFontRegularText"
+                        android:textColor="@color/main_dark_grey"
+                        android:textSize="14sp"
+                        android:singleLine="true"
+                        android:gravity="center"/>
+
+                    <!-- project details click -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_itemList_projectDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_itemLayout_ProjectsClick"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:gravity="center|start"
+                                android:layout_weight="0.76"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/colorPrimary"
+                                android:text="@string/project_details"
+                                android:textSize="14dp" />
+
+                            <!--<androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/colorPrimary"
+                                android:gravity="center"
+                                android:text="@string/vertical_dash"
+                                android:padding="3dp"
+                                android:layout_weight="1.05"
+                                android:textSize="11dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_item_doctorDtl_Time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="3dp"
+                                android:gravity="center|start"
+                                android:padding="3dp"
+                                android:layout_weight="0.58"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/colorPrimary"
+                                android:text="@string/lorem"
+                                android:textSize="11dp"/>-->
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemList_ProjectDetails_ec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/dimen_5dp"
+                                android:background="@drawable/ripple_effect"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:tint="@color/colorAccent"
+                                android:src="@drawable/ic_keyboard_arrow_down_violet_24dp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- project details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_itemList_ViewProjectDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:gravity="center|start"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:visibility="gone"
+                            android:background="@color/lighter" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+
+                            <!--project description-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectDescription"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:orientation="horizontal">
+
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/description"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectDescription"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/main_black"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--project RERA Registration No-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ReraRegNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/rera_registration_no_title"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ReraRegNo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/main_black"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- Project CS No. -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectCSNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/project_cs_no_title"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectCSNo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Permission Date -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectPermissionDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemLeadDetails_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/permission_date_title"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectPermissionDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Project Head -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectHead"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="Type :"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Project Latitude -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectLatitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/project_latitude_title"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectLatitude"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--Project Longitude -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_itemList_ProjectLongitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:text="@string/project_longitude_title"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_grey"
+                                    android:textSize="12dp"
+                                    android:singleLine="true"
+                                    android:gravity="center|start"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemList_ProjectLongitude"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="1dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingRight="2dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:text="@string/na"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="14dp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemLayout_AssignedProjects"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:visibility="gone"
+                        android:textColor="@color/main_black"
+                        android:text="@string/no_projects_assigned"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="14sp"
+                        android:gravity="center|start"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <View
+            android:id="@+id/hospitalList_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="gone"
+            android:background="@color/divider_color" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

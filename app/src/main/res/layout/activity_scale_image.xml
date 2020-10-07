@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_black"
+    android:fitsSystemWindows="true"
+    android:transitionName="@string/transition_string">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!-- ll-title  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/fab_margin"
+            android:gravity="start"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_scaleImage_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_close_white_24dp"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/main_grey"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_scaleImage_eventTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/main_white"
+                android:fontFamily="@font/metropolis_medium"
+                android:letterSpacing="0.2"
+                android:padding="2dp"
+                android:gravity="center|start"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+            <com.tribeappsoft.leedo.util.TouchImageView
+                android:id="@+id/iv_scaleImage_touchThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="200dp"
+                android:scaleType="fitCenter"
+                android:fitsSystemWindows="true"
+                android:layout_gravity="center"
+                android:src="@drawable/leedo_splash"
+                android:clickable="true"
+                android:focusable="true" />
+
+
+
+
+            <!-- <androidx.appcompat.widget.AppCompatImageView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:minHeight="200dp"
+                 android:scaleType="centerCrop"
+                 android:src="@color/primaryColor"
+                 android:fitsSystemWindows="true"
+                 android:layout_gravity="center" />-->
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

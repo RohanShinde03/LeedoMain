@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tribeappsoft.leedo.salesPerson.inventory.InventoryHomeActivity"
+    android:background="@color/main_white">
+
+    <com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView
+        android:id="@+id/nsv_salesperson_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="70dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        app:stickyHeader="@+id/ll_inventory_tableHeads"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <!--Leedo Inventory Module-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_inventory_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp"
+            android:background="@color/main_white">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_inventory_project_wings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_white"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+                <!-- Select Project -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:orientation="vertical">
+
+                    <!-- select Project text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_InventorySystemActivity_projectNameMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select Project Name-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select_project"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_InventorySystemActivity_select_project"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:layout_margin="3dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--Block stats-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <!--ll_block_stats-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_InventorySystemActivity_blockStats"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textSize="20sp"
+                                android:layout_gravity="center"
+                                android:theme="@style/styleFontMediumText"
+                                android:text="@string/wings" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--Total Units-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="vertical">
+
+                            <HorizontalScrollView
+                                android:id="@+id/hsv_inventory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="none">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_InventorySystemActivity_total_wings"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp">
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </HorizontalScrollView>
+
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_inventory_noWings"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:text="@string/no_wings_added"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_margin="15dp"
+                                android:textSize="16sp"
+                                android:visibility="gone"
+                                android:textColor="@color/main_grey"
+                                android:layout_gravity="center"
+                                android:gravity="center" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_inventory_blockName"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:background="@drawable/ic_fill_rounded_circle"
+                                android:backgroundTint="@color/bg_grey"
+                                android:theme="@style/styleFontBoldText"
+                                android:textColor="@color/main_white"
+                                android:gravity="center"
+                                android:textSize="20sp"
+                                android:text="@string/count"/>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <!-- total within block hidden -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:visibility="gone"
+                            android:padding="10dp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/total_flats_colon"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:textSize="16sp"
+                                android:textColor="@color/main_black"
+                                android:layout_gravity="end"
+                                android:gravity="center" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_inventoryHome_totalAllFlatsCount"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/count"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:theme="@style/styleFontBoldText"
+                                android:textSize="17sp"
+                                android:layout_gravity="end"
+                                android:gravity="center" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--ll_Total_stats-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_inventory_tableHeads"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_inventory_top"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+                <!--All Wings & Floors-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+
+                    <!--Floors-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_total_floors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/floors"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="#CFCFCF"
+                        />
+
+
+                    <!--Total-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_totalFlats"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/main_black"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total__"
+                            android:theme="@style/styleFontBoldText"
+                            android:textColor="@color/main_black"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="#CFCFCF"
+                        android:visibility="gone"
+                        />
+
+                    <!--Reserved-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_total_reserved"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="18sp"
+                            android:textColor="@color/color_flat_reserved"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reserved"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_flat_reserved"
+                            android:gravity="center"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="#CFCFCF"
+                        android:visibility="gone"
+                        />
+
+
+                    <!--Sold-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_total_sold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="18sp"
+                            android:textColor="@color/color_flat_sold"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/booked"
+                            android:theme="@style/styleFontBoldText"
+                            android:textColor="@color/color_flat_sold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:visibility="gone"
+                        android:background="#CFCFCF"
+                        />
+
+
+                    <!--hold-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_total_hold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textSize="18sp"
+                            android:textColor="@color/color_flat_onHold"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/onHolds"
+                            android:theme="@style/styleFontBoldText"
+                            android:textColor="@color/color_flat_onHold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="#CFCFCF"
+                        />
+
+
+
+                    <!--Available-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inventory_total_available"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:theme="@style/styleFontBoldText"
+                            android:textColor="@color/color_flat_available"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/available"
+                            android:theme="@style/styleFontBoldText"
+                            android:textColor="@color/color_flat_available"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:visibility="gone"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- Floors view  -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_inventory_tableRows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_inventory_bottom"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+                <!--ll_add_floors-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_add_floors"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_inventory_noFloors"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:text="@string/no_floors_added"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_margin="15dp"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    android:textColor="@color/main_grey"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--<androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_inventory_floorsMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+            <com.tribeappsoft.leedo.util.ZoomLinearLayout
+                android:id="@+id/zll_inventoryHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_inventory_stats"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.tribeappsoft.leedo.util.ZoomLinearLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_inventory_pb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:elevation="24dp"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/pb_itemProjectDocs_downloadDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|end"
+            style="?android:attr/progressBarStyleInverse"
+            android:visibility="visible"
+            android:indeterminateDuration="2000"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/colorAccent" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_inventory_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_inventory_grey_128dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/inventory_details_not_available"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <!-- pb layout -->
+    <include layout="@layout/layout_custom_pregress_dialog"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_salesPerson_inventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_inventory_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

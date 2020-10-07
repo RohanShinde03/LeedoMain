@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_salesPerson_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_salesPerson_inventory"
+            android:icon="@drawable/ic_business_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_inventory" />
+
+        <item
+            android:id="@+id/nav_salesPerson_project_list"
+            android:icon="@drawable/ic_business_black_24dp"
+            android:title="@string/all_projects" />
+
+        <item
+            android:id="@+id/nav_salesPerson_users"
+            android:icon="@drawable/ic_contacts_black_24dp"
+            android:title="@string/menu_user_list" />
+
+        <item
+            android:id="@+id/nav_salesPerson_Reports"
+            android:icon="@drawable/ic_baseline_bar_chart_24"
+            android:title="@string/reports" />
+
+        <item
+            android:id="@+id/nav_salesPerson_leads"
+            android:icon="@drawable/ic_person_add_white_24dp"
+            android:title="@string/menu_leads" />
+
+        <item
+            android:id="@+id/nav_salesPerson_reminders"
+            android:icon="@drawable/ic_reminder_icon_black"
+            android:title="@string/menu_all_reminders"/>
+
+        <item
+            android:id="@+id/nav_salesPerson_callSchedule"
+            android:icon="@drawable/ic_call_white_24dp"
+            android:title="@string/menu_all_call_logs"/>
+
+        <item
+            android:id="@+id/nav_salesPerson_callRecordings"
+            android:icon="@drawable/ic_record_voice_over_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_call_recordings" />
+
+        <item
+            android:id="@+id/nav_salesPerson_siteVisitList"
+            android:icon="@drawable/ic_nature_people_black_24dp"
+            android:title="@string/menu_site_visitList" />
+
+        <item
+            android:id="@+id/nav_salesPerson_bookedCustomers"
+            android:icon="@drawable/ic_direct_allotment_fab_icon"
+            android:title="@string/menu_booked_customers" />
+
+        <item
+            android:id="@+id/nav_salesPerson_leadReassign"
+            android:icon="@drawable/ic_transfer_within_a_station_black_24dp"
+            android:visible="true"
+            android:title="@string/menu_lead_re_assign" />
+
+        <item
+            android:id="@+id/nav_salesPerson_projectBrochures"
+            android:icon="@drawable/ic_description_black_24dp"
+            android:title="@string/menu_project_brochures" />
+
+        <item
+            android:id="@+id/nav_salesPerson_projectQuotations"
+            android:icon="@drawable/ic_developer_board_black_24dp"
+            android:title="@string/menu_quotations" />
+
+        <item
+            android:id="@+id/nav_salesPerson_projectFloorPlans"
+            android:icon="@drawable/ic_baseline_burst_mode_24"
+            android:title="@string/menu_project_floor_plans" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_unClaimedLeads"
+            android:icon="@drawable/ic_contacts_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_unclaimed_leads" />
+
+        <item
+            android:id="@+id/nav_salesPerson_claimedLeads"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_claimed_leads" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_siteVisitStat"
+            android:icon="@drawable/ic_business_black_24dp"
+            android:visible="false"
+            android:title="@string/site_visit_stats" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_ghpList"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_ghp_List" />
+
+        <item
+            android:id="@+id/nav_salesPerson_salesHeadDashboard"
+            android:icon="@drawable/ic_business_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_salesHeadDashboard" />
+
+        <item
+            android:id="@+id/nav_salesPerson_teamLeaderDashboard"
+            android:icon="@drawable/ic_business_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_teamLeaderDashboard" />
+
+        <item
+            android:id="@+id/nav_salesPerson_openSaleBlocks"
+            android:icon="@drawable/ic_lock_open_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_blocks_for_open_sale" />
+
+        <item
+            android:id="@+id/nav_salesPerson_allottedFlats"
+            android:icon="@drawable/ic_allotted_flats_icon"
+            android:visible="false"
+            android:title="@string/menu_allottedFlats" />
+
+        <item
+            android:id="@+id/nav_salesPerson_holdFlats"
+            android:icon="@drawable/ic_hold_flats_icon"
+            android:visible="false"
+            android:title="@string/menu_holdFlats" />
+
+        <item
+            android:id="@+id/nav_salesPerson_teamLeadList"
+            android:icon="@drawable/ic_group_add_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_team_list" />
+        <item
+            android:id="@+id/nav_salesPerson_salesExecutiveList"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_sales_executive" />
+
+        <item
+            android:id="@+id/nav_salesPerson_cpFOSReports"
+            android:icon="@drawable/ic_recent_actors_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_cp_fos_report" />
+
+        <item
+            android:id="@+id/nav_salesPerson_teamLeadStats"
+            android:icon="@drawable/ic_show_chart_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_teamLeadStats" />
+
+        <item
+            android:id="@+id/nav_salesPerson_teamStats"
+            android:icon="@drawable/ic_show_chart_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_team_stats" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_booking"
+            android:icon="@drawable/ic_event_icon"
+            android:visible="false"
+            android:title="@string/menu_booking_events" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_allCustomers"
+            android:icon="@drawable/ic_assessment_black_24dp"
+            android:visible="false"
+            android:title="@string/menu_my_performance" />
+
+        <item
+            android:id="@+id/nav_salesPerson_notifications"
+            android:icon="@drawable/ic_notification_active_icon"
+            android:title="@string/menu_notifications" />
+
+
+        <item
+            android:id="@+id/nav_salesPerson_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout" />
+
+        <!-- <item
+             android:icon="@drawable/ic_menu_manage"
+             android:title="@string/menu_tools" />
+         <item
+             android:icon="@drawable/ic_menu_manage"
+             android:title="@string/menu_tools" />
+         <item
+             android:icon="@drawable/ic_menu_manage"
+             android:title="@string/menu_tools" />
+         <item
+             android:icon="@drawable/ic_menu_manage"
+             android:title="@string/menu_tools" />
+         <item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" /><item
+             android:icon="@drawable/ic_menu_slideshow"
+             android:title="@string/menu_slideshow" />-->
+
+
+    </group>
+
+    <item android:title="Communicate"
+        android:visible="false">
+        <menu>
+            <item
+                android:id="@+id/nav_salesPerson_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/menu_share" />
+            <item
+                android:id="@+id/nav_salesPerson_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_send" />
+        </menu>
+    </item>
+
+</menu>

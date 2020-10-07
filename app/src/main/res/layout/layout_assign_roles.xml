@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|start">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mTv_itemLayout_UserRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_role_type"
+        android:visibility="visible"
+        android:theme="@style/styleFontMediumText"
+        android:paddingTop="6dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="3dp"
+        android:paddingBottom="6dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:layout_marginRight="@dimen/dimen_5dp"
+        android:textSize="14sp"
+        android:background="@drawable/bg_rectangle_round"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center|start"
+        android:gravity="center"/>
+</LinearLayout>

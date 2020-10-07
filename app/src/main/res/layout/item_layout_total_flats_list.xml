@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--Expand Collapse-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_white"
+        android:orientation="vertical">
+
+        <!-- Wing Name-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_InventoryTotalBlocksListActivity_BlockName_dynamic_Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_InventoryTotalBlocksListActivity_BlockName_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="19sp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:theme="@style/styleFontBoldText"
+                android:text="@string/block_stat_hint"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_InventoryTotalBlocksListActivity_BlockName_dynamic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--  view Wing details -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_InventoryTotalBlocksListActivity_addBlock_dynamic_viewFloor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!--Add Floors-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_InventoryTotalBlocksListActivity_addBlock_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--Available Flats-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_InventoryTotalBlocksListActivity_available_flats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textSize="15sp"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:textColor="@color/color_flat_available"
+        android:theme="@style/styleFontMediumText"
+        android:text="@string/block_stat_hint" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/lighter"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--ll_Generate Token View-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Customer info-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <!-- cuId number -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:letterSpacing="0.1"
+                        android:background="@color/placeholder_bg"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:textAlignment="textStart"
+                        android:layout_gravity="center|start"
+                        android:gravity="center|start"
+                        android:textSize="14sp"
+                        android:theme="@style/styleFontMediumText" />
+
+
+
+                    <!--Lead Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/placeholder_bg"
+                        android:textAlignment="textStart"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="20sp"
+                        android:theme="@style/styleFontBoldText" />
+
+                    <!--Project Name-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@color/placeholder_bg"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <!--Lead Mobile-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/placeholder_bg"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_grey"
+                        android:textSize="15sp"
+                        android:theme="@style/styleFontMediumText" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:visibility="visible"
+                            android:gravity="center|start"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/placeholder_bg"
+                            android:gravity="center|start"
+                            android:visibility="visible"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="@color/main_black"
+                            android:textSize="16sp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <!-- Payment Mode -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Payment Mode text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:background="@color/placeholder_bg" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view Payment Modes -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- GHP amount -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="15dp"
+                                android:background="@color/main_white">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:background="@color/placeholder_bg"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- select pay mode -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/placeholder_bg"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginBottom="5dp"
+                                    android:textSize="15sp"/>
+
+                                <RadioGroup
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/placeholder_bg"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:background="@color/placeholder_bg"
+                                        />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/placeholder_bg"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_marginEnd="5dp"
+                                        />
+
+                                </RadioGroup>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            <!-- site visit remarks -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:background="@color/placeholder_bg"
+                                    android:inputType="textPersonName|textMultiLine"
+                                    android:textColor="@color/colorPrimary"
+                                    android:maxLines="5"
+                                    android:ellipsize="end"
+                                    android:gravity="start"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--Token Generation Button-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/placeholder_bg"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:textAllCaps="false"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:cornerRadius="50dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

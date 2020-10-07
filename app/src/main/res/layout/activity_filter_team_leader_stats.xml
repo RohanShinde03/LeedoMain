@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_filterTeamLeaderStats"
+    tools:context="com.tribeappsoft.leedo.salesPerson.teamLeaderDashboard.filter.Filter_TeamLeaderStats">
+
+    <!-- ll assignment logic main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_filterTeamLeaderStats_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+                <!--  project filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/project_filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <!-- select project text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select project name -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select_project_name"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/acTv_filterTeamLeaderStats_selectProject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <!--  project filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sales Person Filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <!-- select project text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select project name -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Sales Person Name"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_filterTeamLeaderStats_select_SalesPerson"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+                <!--  Event filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Event Filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <!-- select event text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select event name -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Event Name"
+                            android:theme="@style/styleFontMediumText">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_filterTeamLeaderStats_select_event"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <!--  Lead Status wise filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lead Status wise Filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <!-- select Lead Status wise text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select Lead Status wise name -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Lead Staus"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_filterTeamLeaderStats_select_leadStatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+                <!--  CP filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CP Filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <!-- select cp text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select cp name -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select CP Name"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/tv_filterTeamLeaderStats_select_cp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+                <!--  date  filter -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_filter"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp" />
+
+
+                    <!--  dates filters -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_12dp"
+                        android:layout_marginBottom="@dimen/dimen_12dp"
+                        android:orientation="horizontal">
+
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_filterTeamLeaderStats_fromDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/from_date"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/colorPrimary"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_filterTeamLeaderStats_toDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/to_date"
+                                android:inputType="none"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:textSize="15sp"
+                                android:textColorHint="@color/main_grey"
+                                android:textColor="@color/colorPrimary"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+                <!-- Apply and clear filters  -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:orientation="horizontal"
+                    android:background="@color/main_white">
+
+                    <!--Clear Filter -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_filterTeamLeaderStats_clearFilter"
+                        style="@style/outlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:theme="@style/styleFontMediumText"
+                        android:text="@string/clear_filter"
+                        android:textColor="@color/main_medium_grey"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textSize="16sp"
+                        app:cornerRadius="40dp"
+                        app:strokeColor="@color/card_outline" />
+
+                    <!-- Apply Filter  -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_filterTeamLeaderStats_applyFilter"
+                        style="@style/coloredButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        app:backgroundTint="@color/main_light_grey"
+                        android:textColor="@color/main_white"
+                        android:theme="@style/styleFontMediumText"
+                        android:text="@string/apply_filter"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textSize="16sp"
+                        app:cornerRadius="40dp" />
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

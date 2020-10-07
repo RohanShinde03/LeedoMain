@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/ll_itemFlatNumber_main"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--flat name -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_itemFlatNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/styleFontBoldText"
+        android:background="@drawable/bg_inventory_slot_rectangle"
+        android:textColor="@color/color_flat_available"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:elevation="3dp"
+        android:text="101"/>
+    <!--
+    android:background="@drawable/bg_available_slot_rectangle"
+      android:textColor="@color/white"
+    -->
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

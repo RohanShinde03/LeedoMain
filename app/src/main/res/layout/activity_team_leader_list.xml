@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeadDetailsActivity">
+
+    <!-- rv -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sr_teamLeadActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_teamLeadActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="12dp"
+            android:paddingBottom="80dp"
+            android:visibility="visible"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_team_lead_list_temp"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/exFab_TeamLeadList_addTeamLead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/main_white"
+        android:contentDescription="@string/app_name"
+        android:text="@string/team_lead"
+        android:padding="19.5dp"
+        android:layout_gravity="bottom|end"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        app:iconTint="@color/main_white"
+        app:icon="@drawable/ic_add_icon"
+        app:iconSize="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/metropolis_medium"
+        android:shadowColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:fabSize="normal"
+        app:fabCustomSize="34dp"
+        android:scaleType="center"
+        android:textAllCaps="false"/>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadActivity_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:tint="@color/color_Gray"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_people_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_team_leader_added"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/main_medium_grey"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

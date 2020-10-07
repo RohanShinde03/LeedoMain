@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tribeappsoft.leedo.salesPerson.direct_allotment.AllottedFlatDetail_Activity">
+
+    <!--Lead Details-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_projectBrochures"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:gravity="end">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_itemHoldFlat_holdDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="end"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:paddingTop="5dp"
+                        android:text="@string/duration"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@android:color/holo_red_dark"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <!-- cuID number -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_allottedFlatDtl_tokenNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:letterSpacing="0.1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/def_cuID_number"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontMediumText"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_allottedFlatDtl_customerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:maxLines="3"
+                    android:text="@string/lead_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp"
+                    android:theme="@style/styleFontBoldText" />
+
+                <!--Lead Mobile-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_allottedFlatDtl_mobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="15dp"
+                    android:paddingStart="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:drawableEnd="@drawable/ic_call_24dp"
+                    android:text="@string/def_mob_number"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_grey"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontMediumText"
+                    tools:ignore="RtlSymmetry" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_holdFlatDetails_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/user_email"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/main_dark_grey"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontMediumText" />
+                <!--Project Name-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_allottedFlatDtl_unitType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/project_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_grey"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/flat_amount_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_medium_grey"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_allottedFlatDtl_flatAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/_0"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- ll_applicant details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center|start"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/applicant_name_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlat_applicant_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:maxLines="2"
+                            android:text="@string/gene_doe"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/applicant_mobile_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlat_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/def_mob_number"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/applicant_email"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlat_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:maxLines="2"
+                            android:text="@string/genedoe_mail_com"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/card_outline" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/applicant_form_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_grey"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotmentDtl_images"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <HorizontalScrollView
+                            android:id="@+id/hsv_flatAllotmentDtl_allotmentForm"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:scrollbars="horizontal"
+                            android:fillViewport="true"
+                            tools:ignore="UselessParent">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_height="180dp"
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|start"
+                                android:visibility="visible"
+                                android:background="@color/main_white"
+                                android:id="@+id/fl_flatAllotmentDtl_formImagesList">
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </HorizontalScrollView>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_allottedFlat_noAttachments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/no_allotment_form_attachments_added"
+                        android:textAlignment="center"
+                        android:visibility="visible"
+                        android:textColor="@color/main_grey"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/card_outline" />
+
+                    <!--      Direct Lead      -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:letterSpacing="0.1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/lead_source_details_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_allottedFlatDtl_leadTypeName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/direct_lead"
+                        android:drawableStart="@drawable/ic_source_details_icon"
+                        android:drawablePadding="7dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/main_dark_grey"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/source_details_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlatDtl_leadTypeNameDtl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/gene_doe"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/card_outline" />
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_allotmentDtl_siteVisitDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <!--      Direct Lead      -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:letterSpacing="0.1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/site_visit_details_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_allotmentDtl_sitevisit_unitType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/a_101_2_bhk_yashone_wakad_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_grey"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText"/>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/source_details_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allotmentDtl_siteVisit_conductedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/gene_doe"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_flatAllotmentDtl_ghpDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/card_outline" />
+                    <!--      Direct Lead      -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:letterSpacing="0.1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/ghp_details_"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:theme="@style/styleFontMediumText" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/ghp_number_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlatDtl_ghp_number_"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/gene_doe"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/ghp_type_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlatDtl_ghp_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/gene_doe"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center|start"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/event_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/main_medium_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_allottedFlatDtl_event"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/lorem_ipsum_is_simply_dummy_text_"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <!--Release Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mBtn_allottedFlatDtl_cancelAllotment"
+                    style="@style/outlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:textSize="16sp"
+                    android:text="@string/cancel_allotment_"
+                    android:textAllCaps="false"
+                    app:cornerRadius="40dp"
+                    app:strokeColor="@color/card_outline" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

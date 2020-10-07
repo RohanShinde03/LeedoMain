@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_createProject"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tribeappsoft.leedo.admin.project_creation.CreateProjectActivity">
+<!--android:transitionName="@string/transition_string"-->
+
+    <!-- ll_create new project main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_createProject_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:orientation="vertical">
+
+                <!-- Project Title -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_ProjectTitle"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_title"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_projectTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Project Address -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:visibility="visible"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_ProjectAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:hint="@string/project_address"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPostalAddress|textMultiLine"
+                        android:textColorHint="@color/grey_m"
+                        android:textColor="@color/BlackLight"
+                        android:visibility="visible"
+                        android:maxLines="10"
+                        android:ellipsize="end"
+                        android:gravity="start"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Project Description -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_projectDescription"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_description"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_projectDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"
+                        android:gravity="start"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Project Registration No  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_projectRegistrationNo"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_registration_no"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_projectRegistrationNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Project CS No  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_ProjectCSNo"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_cs_no"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_ProjectCSNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Permission Date  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_PermissionDate"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconDrawable="@drawable/ic_date"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/permission_date"
+                    android:textColorHint="@color/grey_m"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_PermissionDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="none"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textSize="15sp"
+                        android:textColor="@color/main_black"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Project Head -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:visibility="visible"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/select_project_type"
+                    android:textColorHint="@color/grey_m"
+                    android:background="@color/main_white">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acTv_createProject_selectProjectType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/BlackLight"
+                        android:background="@color/main_white" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Project Latitude  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_ProjectLatitude"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_latitude"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_ProjectLatitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Project Longitude  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_createProject_ProjectLongitude"
+                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                    android:theme="@style/styleFontMediumText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/project_longitude"
+                    android:textColorHint="@color/grey_m">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_createProject_ProjectLongitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:textColor="@color/BlackLight"
+                        android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- create new project -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_createProject_submitProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_project"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout_new"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

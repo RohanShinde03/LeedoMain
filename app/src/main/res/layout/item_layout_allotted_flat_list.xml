@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll_itemHomeFeed_main"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
+
+        <!--Feed Section Card View-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <!--Date-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_allotted_ownDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/card_text_date"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:gravity="center|end"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/main_medium_grey"
+                android:textSize="12sp" />
+            <com.google.android.material.card.MaterialCardView
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cv_allottedFlatList"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:strokeColor="@color/card_outline"
+                app:strokeWidth="1dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+
+                <!--Lead Details-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:layout_gravity="end"
+                                android:gravity="end">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_itemHoldFlat_holdDuration"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:gravity="end"
+                                    android:padding="5dp"
+                                    android:visibility="gone"
+                                    android:paddingTop="5dp"
+                                    android:text="1 : 20s"
+                                    android:textSize="18sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@android:color/holo_red_dark"/>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <!-- cuID number -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_allottedFlat_tokenNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="3dp"
+                                android:letterSpacing="0.1"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/def_cuID_number"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="15sp"
+                                android:theme="@style/styleFontMediumText" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_allottedFlat_customerName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="3dp"
+                                android:maxLines="3"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/lead_name"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="20sp"
+                                android:theme="@style/styleFontBoldText" />
+
+                            <!--Lead Mobile-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_allottedFlat_mobileNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingStart="10dp"
+                                android:layout_marginBottom="3dp"
+                                android:drawableEnd="@drawable/ic_call_24dp"
+                                android:text="@string/def_mob_number"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:theme="@style/styleFontMediumText"
+                                tools:ignore="RtlSymmetry" />
+                            <!--Project Name-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_allottedFlat_unitType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginRight="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/project_name"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/main_grey"
+                                android:textSize="16sp"
+                                android:theme="@style/styleFontMediumText" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|start"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="@string/flat_amount_"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/main_medium_grey"
+                                    android:textSize="14sp"
+                                    android:theme="@style/styleFontMediumText" />
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_allottedFlat_flatAmount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="@string/_0"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="16sp"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|start"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="@string/applicant_name_"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/main_medium_grey"
+                                    android:textSize="14sp"
+                                    android:theme="@style/styleFontMediumText" />
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_allottedFlat_applicant_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="@string/gene_doe"
+                                    android:maxLines="3"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="16sp"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        <!--Release Button-->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_allottedFlat_cancelAllotment"
+                            style="@style/outlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:textSize="16sp"
+                            android:text="@string/cancel_allotment_"
+                            android:textAllCaps="false"
+                            app:cornerRadius="40dp"
+                            app:strokeColor="@color/card_outline" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <ProgressBar
+        android:id="@+id/pb_itemAllotFlats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyleInverse"
+        android:visibility="gone"
+        android:indeterminateDuration="2000"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/colorAccent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+

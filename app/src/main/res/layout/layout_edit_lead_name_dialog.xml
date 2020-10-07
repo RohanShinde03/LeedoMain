@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_12dp"
+    app:elevation="16dp"
+    android:elevation="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- lead first name -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="3dp"
+                android:layout_weight="6.5"
+                android:background="@color/main_white">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColorHint="@color/grey_m"
+                    android:hint="@string/mr_mrs">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acTv_prefix_mrs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/BlackLight"
+                        android:textSize="14sp"
+                        android:theme="@style/styleFontMediumText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- lead first name  -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_leadName"
+                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.5"
+                android:layout_marginLeft="3dp"
+                android:textColorHint="@color/grey_m"
+                android:theme="@style/styleFontMediumText"
+                android:hint="@string/first_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_leadName"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/BlackLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapSentences"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- lead middle name  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_leadMiddleName"
+            style="@style/TextInputLayout.OutlineBox.CustomFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/grey_m"
+            android:theme="@style/styleFontMediumText"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/middle_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_leadMiddleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/BlackLight"
+                android:inputType="textPersonName|textCapSentences"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- lead Last name  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_leadLastName"
+            style="@style/TextInputLayout.OutlineBox.CustomFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/grey_m"
+            android:theme="@style/styleFontMediumText"
+            android:hint="Last name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_leadLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:textColor="@color/BlackLight"
+                android:inputType="textPersonName|textCapSentences"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_negativeButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/cancel"
+                android:textSize="16sp"
+                android:textAllCaps="false"/>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_positiveButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textSize="16sp"/>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--<androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="visible"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/divider_color"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_negativeButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:text="@string/cancel"
+                android:letterSpacing="0"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_layout_custom_alert_dialog_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_positiveButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:letterSpacing="0"
+                android:layout_weight="1"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_leadOption_directBooking"
+        android:orderInCategory="100"
+        android:title="@string/direct_allotment"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_leadOption_cancelBooking"
+        android:orderInCategory="100"
+        android:title="@string/cancel_allotment_"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_leadOption_continueAllotment"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:title="@string/continue_allotment"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_leadOption_viewHoldFlat"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:title="@string/view_hold_flat"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_leadOption_releaseFlat"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:title="@string/release_flat"
+        app:showAsAction="withText" />
+
+
+    <item
+        android:id="@+id/menu_leadOption_addSiteVisit"
+        android:orderInCategory="100"
+        android:title="@string/add_site_visit"
+        app:showAsAction="withText"/>
+    <item
+        android:id="@+id/menu_leadOption_addToken"
+        android:orderInCategory="100"
+        android:title="@string/menu_generate_ghp"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/menu_leadOption_viewToken"
+        android:orderInCategory="100"
+        android:title="@string/view_ghp"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/menu_leadOption_addCallSchedule"
+        android:orderInCategory="100"
+        android:title="@string/add_call_schedule"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_leadOption_addCallLog"
+        android:orderInCategory="100"
+        android:title="@string/add_call_log"
+        android:visible="false"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_leadOption_addReminder"
+        android:orderInCategory="100"
+        android:title="@string/add_reminder"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/menu_leadOption_callNow"
+        android:orderInCategory="100"
+        android:title="@string/call_now"
+        app:showAsAction="withText" />
+
+</menu>

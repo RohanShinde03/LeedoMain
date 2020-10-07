@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:elevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Block Total-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_Total_Inventory_block_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_inventoryBlock_blockName"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_fill_rounded_circle"
+            android:theme="@style/styleFontBoldText"
+            android:textColor="@color/main_white"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="@string/count"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_inventoryBlock_totalFlats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/total_flats"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="16sp"
+                android:textColor="@color/main_black"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_inventoryBlock_totalFlats"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/count"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:theme="@style/styleFontBoldText"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

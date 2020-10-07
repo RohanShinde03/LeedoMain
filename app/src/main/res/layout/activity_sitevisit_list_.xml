@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_black"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.SiteVisitList_Activity">
+
+    <!-- rv -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sr_selectSiteVisit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_selectSiteVisit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="70dp"
+            android:visibility="visible"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_site_visit_list"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/pb_selectSiteVisit"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:indeterminate="true"
+        android:layout_gravity="center|bottom"
+        android:indeterminateDrawable="@drawable/progress_drawable"
+        android:indeterminateDuration="2000"
+        android:indeterminateTint="@color/main_white"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone" />
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_selectSiteVisit_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:tint="@color/color_Gray"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_assignment_ind_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_site_visit_leads_found_"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/main_medium_grey"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mBtn_selectSiteVisit_assign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/main_white"
+        app:backgroundTint="@color/main_medium_grey"
+        android:layout_gravity="center|bottom"
+        android:visibility="gone"
+        app:cornerRadius="24dp"
+        android:paddingRight="45dp"
+        android:paddingLeft="45dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Mark As Unclaimed"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:theme="@style/styleFontMediumText"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

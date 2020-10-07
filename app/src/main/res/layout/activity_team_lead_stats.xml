@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeadStatsActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_teamLeadStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="80dp"
+        android:paddingBottom="70dp"
+        android:visibility="visible"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false">
+
+        <!--Leedo Team Lead wise stats Module-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_teamLeadStats_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp"
+            android:background="@color/main_white">
+
+            <com.tribeappsoft.leedo.util.ZoomLinearLayout
+                android:id="@+id/zll_teamLeadStats"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--Inventory Stats Visibility-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_teamLeadStats_Stat"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <!-- performance  dates -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginBottom="@dimen/dimen_10dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_teamLeadStats_FromDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="@string/from_date"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimary"
+                                android:textColorHint="@color/main_grey"
+                                android:textSize="15sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayout.OutlineBox.CustomFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_date"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_teamLeadStats_ToDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="@string/to_date"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimary"
+                                android:textColorHint="@color/main_grey"
+                                android:textSize="15sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="visible"
+                            android:gravity="center|start">
+
+                            <!-- leads legend -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tint="@color/color_lead_claimed"
+                                    android:src="@drawable/ic_stop_black_24dp"/>
+
+
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/l_leads"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="14sp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- site visits -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tint="@color/color_site_visit"
+                                    android:src="@drawable/ic_stop_black_24dp"/>
+
+
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/s_site_visits"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="14sp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- ghp\ss -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tint="@color/color_token_generated"
+                                    android:src="@drawable/ic_stop_black_24dp"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/g_ghp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="14sp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="visible"
+                            android:gravity="center|start">
+
+                            <!-- ghp plus-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tint="@color/color_token_plus_generated"
+                                    android:src="@drawable/ic_stop_black_24dp"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/g_ghp_plus"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="14sp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- allotments -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tint="@color/color_flat_booked"
+                                    android:src="@drawable/ic_stop_black_24dp"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/a_allotments"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="14sp"
+                                    android:gravity="center|start"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <!-- Add team lead stats-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_teamLeadStats_addStats"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_noTeamLeads"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:text="@string/no_sales_team_lead_added"
+                        android:theme="@style/styleFontMediumText"
+                        android:layout_margin="25dp"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        android:textColor="@color/main_grey"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.tribeappsoft.leedo.util.ZoomLinearLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadStats_selectProject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Select Project -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <!-- select Project text-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_teamLeadStats_projectNameMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!--Select Project Name-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/select_project"
+                    android:theme="@style/styleFontMediumText">
+
+                    <com.google.android.material.textview.MaterialAutoCompleteTextView
+                        android:id="@+id/mAcTv_teamLeadStats_select_project"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:focusable="false"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textSize="16sp"
+                        android:theme="@style/styleFontMediumText" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadStats_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_Gray"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_show_chart_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/team_stats_not_available"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/main_medium_grey"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_teamLeadStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|start"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_team_stats_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <!--Loading Progress Bar -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadStats_pb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:elevation="24dp"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|end"
+            style="?android:attr/progressBarStyleInverse"
+            android:visibility="visible"
+            android:indeterminateDuration="2000"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/colorAccent" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

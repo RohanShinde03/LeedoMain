@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.TeamLeadDetailsActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadDtl_Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_white"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <!--ll_main-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <!--Customer info-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/main_light_grey"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <!--Customer Name-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_teamLeadDtl_member_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="3dp"
+                            android:drawableStart="@drawable/ic_user"
+                            android:drawablePadding="7dp"
+                            android:text="@string/customer_name_new"
+                            android:gravity="center|start"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <!--Customer Mobile-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_teamLeadDtl_member_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:drawableStart="@drawable/ic_call_grey"
+                            android:drawablePadding="7dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:text="@string/def_mob_number"
+                            android:gravity="center|start"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText"
+                            android:visibility="visible" />
+
+                        <!--Customer Email-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_teamLeadDtl_member_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:drawableStart="@drawable/ic_email_grey_24dp"
+                            android:drawablePadding="7dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:text="@string/email_hint"
+                            android:gravity="center|start"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:theme="@style/styleFontMediumText"
+                            android:visibility="visible" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_teamLeadDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/main_medium_grey"
+                    android:visibility="visible" />
+
+
+                <!-- team members list -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center|start">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_teamLeadDtl_ListTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center|start"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/team_members_list"
+                        android:textColor="@color/main_dark_grey"
+                        android:textSize="20sp"
+                        android:theme="@style/styleFontMediumText"
+                        android:visibility="visible" />
+
+                   <!-- <include layout="@layout/item_layout_team_member"/>-->
+
+
+                    <!-- add team members here -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_teamLeadDtl_members"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="2dp">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chip_group_teamLeadDtl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_teamLeadDtl_noTeamMembers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/styleFontMediumText"
+                        android:text="@string/no_team_members_assigned"
+                        android:textColor="@color/main_medium_grey"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mBtn_teamLeadDtl_addTeamMembers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cornerRadius="50dp"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        style="@style/coloredButton"
+                        android:layout_gravity="center"
+                        app:icon="@drawable/ic_add_black_24dp"
+                        app:iconTint="@color/main_white"
+                        android:text="@string/team_members_"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:paddingBottom="12dp"
+                        android:paddingTop="12dp"
+                        android:textColor="@color/main_white"
+                        android:textSize="20sp"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginBottom="60dp"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_teamLeadDtl_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/ic_people_black_128dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_team_lead_details_found"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

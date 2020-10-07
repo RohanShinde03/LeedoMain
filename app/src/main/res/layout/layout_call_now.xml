@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ll_mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    app:elevation="24dp"
+    android:elevation="24dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/main_white">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTv_layout_callNow_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontBoldText"
+            android:gravity="center|start"
+            android:ellipsize="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center|start"
+            android:text="Call Scheduled"
+            android:textColor="@color/main_black"
+            android:textSize="20sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontRegularText"
+            android:gravity="start"
+            android:ellipsize="end"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/msg_call_scheduled_lead"
+            android:textColor="@color/main_black"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp"/>
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="start"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_rectangle_light_grey_round"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:padding="@dimen/dimen_10dp"
+            android:gravity="start">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_layout_callNow_cuIdNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="@string/mobile_no"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center|start"
+                android:gravity="center|start"
+                android:textSize="12sp"
+                android:theme="@style/styleFontMediumText" />
+
+            <!--Lead Name-->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_layout_callNow_leadName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lead_name"
+                android:textAlignment="textStart"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/BlackLight"
+                android:textSize="20sp"
+                android:theme="@style/styleFontBoldText" />
+
+            <!--Project Name-->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_layout_callNow_projectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:text="@string/project_name"
+                android:textAlignment="textStart"
+                android:textColor="@color/color_card_sub_title"
+                android:textSize="14sp"
+                android:theme="@style/styleFontMediumText" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_callNowRemark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <!--Project Name-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/remarks__"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/color_card_sub_title"
+                    android:textSize="14sp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <!--Remarks-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mTv_layout_callNow_remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/remarks_ifAny"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_grey"
+                    android:textSize="14sp"
+                    android:theme="@style/styleFontMediumText" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_negativeButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/not_now"
+                android:textSize="16sp"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingRight="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:textAllCaps="false"/>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_custom_alert_positiveButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingRight="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                app:icon="@drawable/ic_call"
+                app:iconTint="@color/color_token_plus_generated"
+                android:text="@string/call"
+                android:textAllCaps="false"
+                android:textSize="16sp"/>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

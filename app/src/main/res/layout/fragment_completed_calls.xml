@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/cl_CompletedCalls"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    tools:context="com.tribeappsoft.leedo.admin.callSchedule.fragments.FragmentCompletedCalls">
+
+    <!-- rv -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sr_CompletedCalls"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_CompletedCalls"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="60dp"
+            android:paddingBottom="70dp"
+            android:visibility="visible"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_scheduled_calls"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Search bar -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_CompletedCalls_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|top"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@drawable/ic_rectangle_light_grey_round">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_CompletedCalls_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.73"
+            android:background="@color/black_full_transparent"
+            android:drawableStart="@drawable/ic_search_icon"
+            android:drawablePadding="5dp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:hint="@string/search"
+            android:lines="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionSearch"
+            android:theme="@style/styleFontRegularText" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_CompletedCalls_clearSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="end|center"
+            android:src="@drawable/ic_search_close_icon"
+            android:visibility="gone" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/pb_CompletedCalls"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:indeterminate="true"
+        android:layout_gravity="center|bottom"
+        android:indeterminateDrawable="@drawable/progress_drawable"
+        android:indeterminateDuration="2000"
+        android:indeterminateTint="@color/main_white"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone" />
+
+
+    <!-- ll-back to top -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_CompletedCalls_backToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_alignBottom="@id/rv_CompletedCalls"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/bg_feed_back_to_top"
+        android:orientation="horizontal">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_upward_white_24dp"
+            android:contentDescription="@string/app_name"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back_to_top"
+            android:textAlignment="center"
+            android:textColor="@color/main_white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:theme="@style/styleFontMediumText" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- ll-no data -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_CompletedCalls_noData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerInParent="true">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_Gray"
+            app:srcCompat="@drawable/lead_call"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_CompletedCalls_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_completed_list_available"
+            android:textColor="@color/main_medium_grey"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

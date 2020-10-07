@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Created By Sukrut on 12/10/2019 -->
+
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/main_medium_grey"
+    android:radius="38dp">
+
+    <item android:id="@android:id/mask">
+        <color android:color="@color/black"/>
+    </item>
+
+    <item>
+        <selector>
+
+            <item android:drawable="@drawable/ic_circle" />
+        </selector>
+    </item>
+</ripple>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv_itemKYCDocs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_white"
+    >
+    <!--KYC Documents-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:background="@color/main_white">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:layout_weight="1">
+
+                <!--Document Name-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_kyc_doc_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:layout_gravity="start"
+                android:textSize="17sp"
+                android:text="@string/kyc_documents"
+                android:maxLines="2"/>
+            <!--Choose File-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_kyc_doc_select_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontRegularText"
+                android:layout_gravity="start"
+                android:padding="1dp"
+                android:textSize="14sp"
+                android:textColor="@color/main_grey"
+                android:text="@string/no_file_choose"
+                android:maxLines="2"
+                />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:layout_gravity="end"
+                android:gravity="end"
+                >
+                <!--Upload File-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_kyc_doc_browse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:src="@drawable/ic_attach"
+                />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:background="@color/lighter"
+            android:layout_marginTop="5dp"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

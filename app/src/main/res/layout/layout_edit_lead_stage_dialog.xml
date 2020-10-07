@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_12dp"
+    app:elevation="16dp"
+    android:elevation="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- cuId number -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTv_updateLeadStage_cuIdNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/def_cuID_number"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center|start"
+            android:gravity="center|start"
+            android:textSize="12sp"
+            android:theme="@style/styleFontMediumText" />
+
+        <!--Lead Name-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTv_updateLeadStage_leadName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lead_name"
+            android:textAlignment="textStart"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:theme="@style/styleFontBoldText" />
+
+
+        <!-- lead stages dropdown -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_m"
+                android:theme="@style/styleFontMediumText"
+                android:hint="@string/select_lead_stage">
+
+                <AutoCompleteTextView
+                    android:id="@+id/acTv_updateLeadStage_leadStage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="16sp"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/BlackLight" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_updateLeadStage_negativeButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/cancel"
+                android:textSize="16sp"
+                android:textAllCaps="false"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_updateLeadStage_positiveButton"
+                style="@style/Widget.Theme.Button.TextButton"
+                android:theme="@style/styleFontBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textSize="16sp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

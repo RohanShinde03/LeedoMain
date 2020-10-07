@@ -1,0 +1,1586 @@
+<resources>
+    <integer name="viewfinder_border_width">4</integer>
+    <integer name="viewfinder_border_length">60</integer>
+    <string name="app_name">Leedo</string>
+    <string name="facebook">Facebook</string>
+
+
+    <string name="google">Google</string>
+    <string name="app_name_login_screen">Leedo</string>
+
+    <!--<string name="google_api_key">AIzaSyA7HbUpTQOqBR4MlURqgeudLgydjOSBpPs</string>-->
+    <string name="facebook_app_id">2437483646282269</string>
+    <!-- gmail sign in-->
+    <string name="fb_login_protocol_scheme">fb2437483646282269</string>
+    <string name="title_activity_student_navigation">StudentNavigationActivity</string>
+
+    <!-- RazorPay APi Key -->
+    <!--<string name="server_client_id">302870093066-kf7e2iofkn20r7vf475395aaigbid46n.apps.googleusercontent.com</string>
+    <string name="server_client_secret">C73OifhPpKlqkiFoNhFVVQC8</string>-->
+    <string name="razorPay_test_key">rzp_test_wN44N3LJbzWHQd</string>
+    <string name="razorPay_test_key_secrete">TJkCPNcMcCZIdW7gzXy1Y2AR</string>
+    <string name="razorPay_live_key">rzp_live_sbmcHXsJO1YdBQ</string>
+    <string name="razorPay_live_key_secrete">tJ6G1b0C7yI4ASZ8C5brDkpm</string>
+
+
+    <!-- Common Strings -->
+    <string name="hash"># &amp;</string>
+    <string name="str_concat_two_strings">%1$s %2$s</string>
+    <string name="please_wait">Please wait</string>
+    <string name="loading_content">Loading content…</string>
+    <string name="hang_on_loading_content">Hang on, Loading content…</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="Continue">Continue</string>
+    <string name="cancel">Cancel</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save">Save</string>
+    <string name="do_you_want_to_logout">Do you want to logout from app?</string>
+    <string name="do_you_want_to_exit_form">Do you want to exit from this form?</string>
+    <string name="ok">Ok</string>
+    <string name="message">Message</string>
+    <string name="app_exit_msg">Please click BACK again to exit!</string>
+    <string name="digits_username">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</string>
+    <string name="unknown_error_try_again">Unknown error occurred! Please try again.</string>
+    <string name="server_error_msg">A temporary server error has occurred. Please try again.</string>
+    <string name="something_went_wrong_try_again">Something went wrong! Please try again.</string>
+    <string name="no_project_assigned">No Projects Assigned!</string>
+    <string name="no_users_assigned">No Users Created!</string>
+    <string name="no_details_found">No details found!</string>
+    <string name="login_caps">LOGIN</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_google">Login with Google</string>
+    <string name="discard_reg_msg">Going back screen will discard your registration. Do you really want to discard registration?</string>
+    <string name="discard">Discard</string>
+    <string name="keep">Keep</string>
+    <string name="or">OR</string>
+    <string name="logout">Logout</string>
+    <string name="Sort">Sort</string>
+    <string name="Filter">Filter</string>
+    <string name="search">Search</string>
+    <string name="search_reminder">Search Reminder</string>
+    <string name="search_by">SearchBy</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="new_password_hint">Enter New Password</string>
+    <string name="confirm_password_hint">Enter Confirm Password</string>
+    <string name="change_password_hint">changing password…</string>
+    <string name="enter_email_hint">Enter Email Address</string>
+    <string name="submit">Submit</string>
+    <string name="na">NA</string>
+    <string name="location">Location</string>
+    <string name="date_of_birth">Date of Birth*</string>
+    <string name="title">Title</string>
+    <string name="ind_countryCode">+91</string>
+    <string name="user_information">User Information</string>
+    <string name="user_name">User name</string>
+    <string name="user_mobile">User mobile</string>
+    <string name="user_email">User email</string>
+    <string name="next">Next</string>
+    <string name="hint_enter_email_verification_otp">Enter email verification otp</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="reset_your_password">Reset Your Password</string>
+    <string name="hint_new_password">Enter new password</string>
+    <string name="hint_confirm_password">Enter confirm password</string>
+    <string name="change_password">Change Password</string>
+    <string name="retryOTP_text">In case you didn\'t received OTP, retry here</string>
+    <string name="enter_yourOTP">Enter your OTP</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="resending_otp">Resending OTP…</string>
+    <string name="updating_password">Updating password…</string>
+    <string name="transition_string">hello</string>
+    <string name="download">Download</string>
+    <string name="share">Share</string>
+    <string name="addNew">Add New</string>
+    <string name="holdNew">Hold New</string>
+    <string name="select_flat_on_hold">Select Unit On Hold</string>
+    <string name="select">Select</string>
+    <string name="feeds">Feeds</string>
+    <string name="reminders">Reminders</string>
+    <string name="reminder">Reminder</string>
+    <string name="address">Address</string>
+    <string name="selectUsing">Select Using</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="documents">Documents</string>
+    <string name="cleartext_communication_not_permitted">Unknown or Unsecured Network URL! ClearText HTTP traffic not permitted!</string>
+    <string name="connection_time_out">Connection Time out. Please try again!</string>
+    <string name="weak_connection">Weak Internet Connection! Please try again!</string>
+    <string name="_0">0</string>
+    <string name="updateReminder">Update Reminder</string>
+    <string name="mob_number_exists">Entered mobile number already exists!</string>
+    <string name="mobile_number_verified_success">Mobile number verified successfully!</string>
+    <string name="verify">Verify</string>
+    <string name="submit_otp">Submit OTP</string>
+    <string name="sending_otp">Sending OTP…</string>
+    <string name="email">Email</string>
+
+
+    <!-- my date picker -->
+    <string name="re_sending_otp">Re-Sending OTP…</string>
+    <string name="verifying">Verifying…</string>
+    <string name="mdp_day" translatable="false">D</string>
+
+    <!-- default Strings-->
+    <string name="mdp_month" translatable="false">M</string>
+    <string name="mdp_year" translatable="false">Y</string>
+
+
+    <string name="def_mob_number">9876543210</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="def_best_service_time">40 minutes</string>
+
+
+    <!-- Permissions -->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="file_writePerm_grant">File write permission granted successfully!</string>
+    <string name="permission_grant_success">Permission granted successfully!</string>
+    <string name="camera_permission_rationale">"Camera permissions is needed for capturing image through camera!"</string>
+    <string name="gallery_permission_rationale">"Gallery read permissions is needed for selecting image through gallery!"</string>
+    <string name="file_permissionRationale">File read write permission is needed for app to proceed!</string>
+    <string name="call_permissionRationale">Call permission is required to make a phone call!</string>
+    <string name="audio_permissionRationale">Record Audio permission is required to make a speech input!</string>
+    <string name="calendar_permissionRationale">Calendar read write permission is needed for app to proceed!</string>
+
+
+    <!-- Login -->
+    <string name="mobile_no_hint">Enter mobile number</string>
+    <string name="email_hint">Enter email address</string>
+    <string name="password_hint">Enter password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="please_use_website_for_login">Please use website for login!</string>
+    <string name="don_t_have_an_account">Don\'t have an account yet?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signIn">Sign In</string>
+    <string name="not_registered_yet">Not registered yet?</string>
+    <string name="register_caps">REGISTER NOW</string>
+    <string name="register_now">Register Now</string>
+
+
+    <!-- FilePicker -->
+    <string name="signing_in">Signing in…</string>
+    <string name="registering_user">Registering user…</string>
+    <string name="selectDocument">Select Document</string>
+    <string name="file_picker_app_name" translatable="false">MaterialFilePicker</string>
+    <string name="action_close">Close</string>
+    <string name="empty_directory_hint">No Document in this Directory</string>
+    <string name="type_archive">Archive</string>
+    <string name="type_certificate">Certificate</string>
+    <string name="type_directory">Directory</string>
+    <string name="type_document">File</string>
+    <string name="type_drawing">Picture</string>
+    <string name="type_excel">Spreadsheet</string>
+    <string name="type_image">Image</string>
+    <string name="type_music">Music</string>
+    <string name="type_video">Video</string>
+    <string name="type_pdf">PDF document</string>
+    <string name="type_power_point">Presentation</string>
+
+
+    <!-- ccp -->
+    <string name="type_word">Document</string>
+    <string name="type_apk">APK</string>
+    <string name="phone_code" translatable="false">+%s</string>
+    <string name="country_name_and_code" translatable="false">%1$s (%2$s)</string>
+    <string name="search_hint">Search&#8230;</string>
+    <string name="no_result_found">No result found</string>
+    <string name="select_country">Select Country</string>
+    <string name="country_code_and_phone_code" translatable="false">(%1$s) +%2$s</string>
+    <string name="country_full_name_and_phone_code" translatable="false">%1$s +%2$s</string>
+
+
+    <!-- Nav Drawer Strings -->
+    <string name="error_unregister_carrier_number" translatable="false">EditText for carrier number is not registered. Register it using registerPhoneNumberTextView() before getFullNumber() or setFullNumber().</string>
+    <string name="search_country">Search your country</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+
+    <!-- bank details strings -->
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="account_details">Account details:</string>
+    <string name="account_name_text">AC Name</string>
+    <string name="account_name">: Private Education Society</string>
+    <string name="bank_name_text">Bank Name</string>
+    <string name="bank_name">: Shri Mahalaxmi Co-op Bank Ltd. Kolhapur</string>
+    <string name="branch_name_text">Branch Name</string>
+    <string name="branch_name">: Main Branch, Kolhapur</string>
+    <string name="account_number_text">Account Number</string>
+    <string name="account_number">: 002201000022593</string>
+    <string name="ifsc_code_text">IFSC Code</string>
+    <string name="ifsc_code">: IBKLO116MCO</string>
+
+    <!-- bank details compulsory -->
+    <string name="micr_code_text">MICR Code</string>
+    <string name="micr_code">: 41604004</string>
+    <string name="ac_holder_name_star">Name of account holder*</string>
+    <string name="bank_name_text_star">Bank Name<font color="#cc0029">*</font></string>
+    <string name="branch_name_text_star">Branch Name<font color="#cc0029">*</font></string>
+    <string name="ac_type_star">Account type<font color="#cc0029">*</font></string>
+
+
+    <!--Card Info-->
+    <string name="account_number_text_star">Account Number<font color="#cc0029">*</font></string>
+    <string name="ifsc_code_text_start">IFSC Code<font color="#cc0029">*</font></string>
+    <string name="card_title">card_title</string>
+    <string name="card_text_date">date_text</string>
+    <string name="card_elapsed_time">1 Hrs ago</string>
+    <string name="card_text_location">location_text</string>
+    <string name="card_text">card_text</string>
+    <string name="desc">Writing an event description that wins over attendees is both a science and an art. … You can write an event description that helps you reach more people and sell more tickets.</string>
+    <string name="organization_details">Organization Details</string>
+
+
+    <!-- Font Awesome icons -->
+    <string name="committee_members">Committee Members</string>
+    <string name="event_registrations">Event Registration</string>
+    <string name="eye_open">&#xf06e;</string>
+    <string name="eye_slash">&#xf070;</string>
+    <string name="icon_trash">&#xf1f8;</string>
+    <string name="icon_edit">&#xf044;</string>
+    <string name="icon_close">&#xf00d;</string>
+    <string name="icon_clock">&#xf017;</string>
+    <string name="icon_dashboard">&#xf0e4;</string>
+    <string name="icon_visitors">&#xf1b9;</string>
+    <string name="icon_neighbours">&#xf0c0;</string>
+    <string name="icon_vendors">&#xf07a;</string>
+    <string name="icon_documents">&#xf1c1;</string>
+    <string name="icon_settings">&#xf013;</string>
+    <string name="icon_logout">&#xf08b;</string>
+    <string name="rightSide">&#xf054;</string>
+    <string name="star">&#xf123;</string>
+    <string name="phone_square">&#xf098;</string>
+    <string name="clock">&#xf017;</string>
+    <string name="right_arrow">&#xf105;</string>
+    <string name="icon_myFlat">&#xf015;</string>
+    <string name="icon_notification">&#xf0a2;</string>
+    <string name="icon_events">&#xf073;</string>
+    <string name="icon_bookings">&#xf274;</string>
+    <string name="icon_maintenance">&#xf0d6;</string>
+    <string name="edit_image">&#xf040;</string>
+    <string name="icon_plus_square">&#xf196;</string>
+    <string name="icon_refresh">&#xf021;</string>
+    <string name="icon_check">&#xf00c;</string>
+    <string name="icon_check_square">&#xf14a;</string>
+    <string name="icon_check_circle_fill">&#xf058;</string>
+    <string name="icon_square">&#xf0c8;</string>
+    <string name="icon_envelope">&#xf0e0;</string>
+    <string name="icon_cloudDownload">&#xf0ed;</string>
+    <string name="icon_circleFill">&#xf111;</string>
+    <string name="icon_facebook">&#xf082;</string>
+    <string name="icon_twitter">&#xf081;</string>
+    <string name="icon_youtube">&#xf166;</string>
+    <string name="icon_briefcase">&#xf0b1;</string>
+    <string name="icon_money">&#xf0d6;</string>
+    <string name="icon_phone">&#xf095;</string>
+    <string name="icon_envelope_open">&#xf2b6;</string>
+    <string name="icon_thumb_forumLike">&#xf164;</string>
+    <string name="icon_thumb_forumUnLike">&#xf087;</string>
+    <string name="icon_comment_forum">&#xf0e5;</string>
+    <string name="icon_views_forum">&#xf06e;</string>
+    <string name="icon_circleBadge_forum">&#xf111;</string>
+    <string name="icon_forum_bottomSheet_arrowRight">&#xf054;</string>
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_close_circle">&#xf057;</string>
+
+
+    <!-- Share Strings  -->
+    <string name="icon_plus">&#xf067;</string>
+    <string name="icon_rupee">&#xf156;</string>
+    <string name="shareUsing">Share Using</string>
+    <string name="WhatsApp">WhatsApp</string>
+    <string name="Facebook">Facebook</string>
+    <string name="moreApps">More Apps</string>
+
+
+    <!-- Apps Package Names Strings  -->
+    <string name="no_downloaded_videos_available">No Downloads Available!</string>
+    <string name="support_mail">share@tribeappsoft.com</string>
+    <string name="pkg_fb">com.facebook.katana</string>
+    <string name="pkg_twitter">com.twitter.android</string>
+    <string name="pkg_insta">com.instagram.android</string>
+    <string name="pkg_mms">mms</string>
+    <string name="pkg_pinterest">com.pinterest</string>
+    <string name="pkg_whatsapp">com.whatsapp</string>
+    <string name="pkg_business_whatsapp">com.whatsapp.w4b</string>
+    <string name="pkg_linkedIn">com.linkedin.android</string>
+    <string name="pkg_telegram">org.telegram.messenger</string>
+    <string name="pkg_dropbox">com.dropbox.android</string>
+    <string name="pkg_bluetooth">com.android.bluetooth</string>
+    <string name="pkg_email">com.android.email</string>
+    <string name="pkg_gmail">com.google.android.gm</string>
+    <string name="pkg_skydrive">com.microsoft.skydrive</string>
+
+
+    <!-- Crop Image Strings -->
+    <string name="pkg_gDrive">com.google.android.apps.docs</string>
+    <string name="pkg_hangouts">com.google.android.talk</string>
+    <string name="pick_image_intent_chooser_title">Select source</string>
+    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_activity_title"> </string>
+    <string name="crop_image_menu_crop">Crop</string>
+    <string name="crop_image_menu_flip">Flip</string>
+    <string name="crop_image_menu_flip_horizontally">Flip horizontally</string>
+    <string name="crop_image_menu_flip_vertically">Flip vertically</string>
+    <string name="crop_image_activity_no_permissions">Cancelling, required permissions are not granted</string>
+
+
+    <!-- scanner view-->
+    <string name="free_of_cost">Free of cost!</string>
+    <string name="invite">Invite</string>
+    <string name="detector_initialisation_failed">Detector initialisation failed</string>
+    <string name="no_barcode_detected_try_again">No barcode could be detected. Please try again!</string>
+
+
+    <!-- Event related common strings -->
+    <string name="upcoming">Upcoming</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="previous">Previous</string>
+    <string name="event_list_not_available">Event list not available!</string>
+    <string name="already_registered">Already registered for this event!</string>
+    <string name="event_register_successfully">event register successfully!</string>
+    <string name="registering_event">Registering for event…</string>
+    <string name="event_location">Event Location</string>
+    <string name="event_date">Event Date</string>
+    <string name="event_fee">Event Fee :</string>
+    <string name="description">Description :</string>
+    <string name="attendings">Attending\'s</string>
+    <string name="no_">No</string>
+    <string name="maybe">Maybe</string>
+    <string name="events">Events</string>
+    <string name="event_Title">Event Title</string>
+    <string name="event_description">Event Description</string>
+    <string name="you_have_no_events">No events!</string>
+    <string name="you_have_no_upcoming_events">No Upcoming Events!</string>
+    <string name="you_have_no_ongoing_events">No Ongoing Events!</string>
+    <string name="you_have_no_previous_events">No Previous Events!</string>
+    <string name="abt_the_Event">About The Event</string>
+    <string name="abt_the_Event_text">Lorem ipsum, in graphical and textual context, refers to filler text that is placed in a document or visual presentation.</string>
+    <string name="no_event_details_found">no event details found</string>
+
+    <!-- menu strings -->
+    <string name="menu">Menu</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_inventory">Inventory</string>
+    <string name="menu_unclaimed_leads">UnClaimed Leads</string>
+    <string name="menu_select_assignment_logic">Select Assignment Logic</string>
+    <string name="menu_manual_assignment">Manual Assignment</string>
+    <string name="menu_blocks_for_open_sale">Blocks for Open Sale</string>
+    <string name="menu_teamLeadStats">Team Lead Stats</string>
+    <string name="menu_team_stats">Team Stats</string>
+    <string name="menu_sales_manager_report">Sales Manager Report</string>
+    <string name="menu_sales_team_report">Sales Team Report</string>
+    <string name="menu_team_list">Team Lead List</string>
+    <string name="menu_lead_re_assign">Lead Re-Assign</string>
+    <string name="menu_cp_fos_report">CP Wise FOS Reports</string>
+    <string name="menu_booking_events">Booking Events</string>
+    <string name="menu_all_customers">All Customers</string>
+    <string name="menu_my_performance">My Performance</string>
+    <string name="menu_unclaimed">Unclaimed Leads</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_from_sales_person">From Sales Person</string>
+    <string name="menu_to_sales_person">To Sales Person</string>
+    <string name="menu_select_leads">Select Leads</string>
+    <string name="menu_select_sales_executives">Select Sales Executive\'s</string>
+    <string name="menu_sales_executive">Sales Executive List</string>
+    <string name="menu_filter_by">Filter by</string>
+    <string name="menu_filter_leads_by">Filter Leads by</string>
+    <string name="menu_salesHeadDashboard">Lead Summary Report</string>
+    <string name="menu_LeadDetails">Lead Details</string>
+    <string name="menu_SiteVisitDetails">Site Visit Details</string>
+    <string name="menu_BookingDetails">Booking Details</string>
+    <string name="menu_cancelledBookingDetails">Cancelled Booking Details</string>
+    <string name="menu_claimed_leads">Claimed Leads</string>
+    <string name="menu_ghp_List">GHP Leads List</string>
+    <string name="menu_leads_assignments">Leads Reassignment</string>
+    <string name="menu_export_report">Export Report</string>
+
+    <string name="menu_schedule_call_log">Schedule Call</string>
+    <string name="menu_reschedule_call_log">ReSchedule Call</string>
+    <string name="menu_salesHeadCallLogStats">Call Log Reports</string>
+    <string name="menu_teamLeaderDashboard">Team Leader Dashboard</string>
+
+
+    <string name="no_team_leader_added">Team Leads list not Found!</string>
+    <string name="team_leaders">Team leaders</string>
+    <string name="team_lead_details">Team Lead Details</string>
+    <string name="add_team_lead_details">Add Team Lead</string>
+    <string name="update_team_lead_details">Update Team Lead</string>
+    <string name="select_team_members">Select Team Members</string>
+    <string name="title_activity_accounts_head_home_navigation">AccountsHeadHomeNavigationActivity</string>
+    <string name="title_activity_sales_person_home_navigation">SalesPersonHomeNavigationActivity</string>
+    <string name="title_activity_site_engineer_home_navigation">SiteEngineerHomeNavigationActivity</string>
+
+    <string name="you_have_no_site_visits_scheduled_today">You have no site visits scheduled today!</string>
+    <string name="no_site_visits_available">No site visits available!</string>
+    <string name="no_ghp_available">No GHP available!</string>
+    <string name="no_on_holds_available">No On Holds available!</string>
+    <string name="no_allotments_available">No Allotments available!</string>
+    <string name="all_site_visits">All Site Visits</string>
+    <string name="def_block_unit_type">A-102 | 2 BHK</string>
+    <string name="check_in_colon">Check In :</string>
+    <string name="check_out_colon">Check Out :</string>
+    <string name="scan_in">Scan-In</string>
+    <string name="scan_out">Scan-Out</string>
+
+    <string name="title_activity_sales_person_bottom_navigation">SalesPersonBottomNavigationActivity
+    </string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="leads">Leads</string>
+    <string name="site_visits">Site Visits</string>
+    <string name="ghps">GHP\'s</string>
+    <string name="ghp_plus">GHP+</string>
+    <string name="bookings">Bookings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="view_all_hold_flats">Hold Units</string>
+    <string name="total_registrations">Total Registrations</string>
+    <string name="total_bookings">Total Bookings</string>
+    <string name="total_onHold">Total On Holds</string>
+    <string name="project_brochures">Project Brochures</string>
+
+    <!-- Leads-->
+    <string name="new_lead">New Lead</string>
+    <string name="search_lead">Search Lead</string>
+    <string name="no_leads">No leads available!</string>
+    <string name="sales_representative">Sales Representative</string>
+    <string name="reference_name">Reference name<font color="#cc0029">*</font></string>
+    <string name="reference_mobile">Reference mobile<font color="#cc0029">*</font></string>
+    <string name="ref_project_name">Reference project name<font color="#cc0029">*</font></string>
+    <string name="select_ref_project_name">Select reference project name<font color="#cc0029">*</font></string>
+    <string name="ref_flat_number">Reference Unit number<font color="#cc0029">*</font></string>
+    <string name="enter_lead_otp">Enter otp sent on customer\'s mobile number</string>
+    <string name="select_ref_from">Select reference from<font color="#cc0029">*</font></string>
+    <string name="ref_remarks">Reference Remarks<font color="#cc0029">*</font></string>
+    <string name="lead_remarks_if_any">Lead Remarks(If Any)</string>
+
+
+    <string name="def_sales_person_name">Shweta Uplap</string>
+    <string name="first_name">First name<font color="#cc0029">*</font></string>
+    <string name="project_name_">Project Name<font color="#cc0029">*</font></string>
+    <string name="flat_type_">Unit Type<font color="#cc0029">*</font></string>
+    <string name="remind_me_to_">Remind me to<font color="#cc0029">*</font></string>
+
+    <string name="Last_name">Last name<font color="#cc0029">*</font></string>
+    <string name="email_address">Enter email address</string>
+    <!--<string name="email">Email<font fgcolor="red">*</font></string>-->
+    <string name="hints"><![CDATA[Member ID<font color=\'#cc0029\'>*</font>]]></string>
+    <string name="middle_name">Middle name</string>
+    <string name="last_name">Last name<font color="#cc0029">*</font></string>
+
+    <string name="gender">Gender</string>
+    <string name="mobile_no">Mobile number</string>
+    <string name="email_address_star">Enter email address<font color="#cc0029">*</font></string>
+    <string name="mobile_no_star">Enter mobile number<font color="#cc0029">*</font></string>
+    <string name="select_project_name_star">Select project name<font color="#cc0029">*</font></string>
+    <string name="select_unit_type_star">Select unit type<font color="#cc0029">*</font></string>
+    <string name="select_unit_no_star">Enter unit number<font color="#cc0029">*</font></string>
+    <string name="preferred_site_visit_star">Preferred site visit<font color="#cc0029">*</font></string>
+    <string name="visit_date_star">Visit Date<font color="#cc0029">*</font></string>
+    <string name="visit_time_star">Visit Time<font color="#cc0029">*</font></string>
+    <string name="conducted_by_star">Select Conducted by*</string>
+    <string name="lead_address">Lead Address</string>
+    <string name="address_star">Address<font color="#cc0029">*</font></string>
+    <string name="post_code">Post Code<font color="#cc0029">*</font></string>
+    <string name="reference_lead">Reference Lead</string>
+    <string name="lead_referred_by">Lead Referred by</string>
+    <string name="lead_details">Lead Details</string>
+    <string name="lead_profession">Lead Profession</string>
+    <string name="works_in">Works In</string>
+    <string name="select_lead_stage">Select Lead Status<font color="#cc0029">*</font></string>
+    <string name="enter_lead_profession">Enter lead profession</string>
+    <string name="kyc_documents">KYC Documents</string>
+    <string name="lead_campaign">Lead Campaign</string>
+    <string name="projectDetails">Project Details</string>
+    <string name="otherDetails">Other Details</string>
+    <string name="pref_site_visit">Preferred Site Visit</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="already_visited">Already Visited</string>
+    <string name="property_buying_for">Property buying for</string>
+    <string name="investment">Investment</string>
+    <string name="self_use">Self Use</string>
+    <string name="end_use">End Use</string>
+    <string name="other">Other</string>
+    <string name="enter_property_buy_for">Enter property buying for</string>
+    <string name="submit_lead_question">Submit Lead?</string>
+    <string name="add_team_lead_question">Add Team Lead?</string>
+
+    <string name="update_team_lead_question">Update Team Lead?</string>
+    <string name="submit_lead_confirmation">Are you sure you want to submit lead?</string>
+    <string name="add_team_lead_confirmation">Are you sure you want to add this team lead?</string>
+    <string name="update_team_lead_confirmation">Are you sure you want to update this team lead?</string>
+    <string name="submit_remainder_confirmation">Are you sure you want to submit reminder?</string>
+    <string name="submit_site_visit_confirmation">Are you sure you want to submit lead?</string>
+    <string name="submit_lead">Submit Lead</string>
+    <string name="confirm_details">Confirm Details?</string>
+    <string name="submitting_lead_details">Submitting Lead details…</string>
+    <string name="submitting_teamLead_details">Submitting Team Lead details…</string>
+    <string name="submitting_remainder">Adding Reminder…</string>
+    <string name="lead_added_successfully">Lead added successfully!</string>
+    <string name="reminder_added_successfully">Reminder added successfully!</string>
+    <string name="no_sales_executives_found">Sales Executives List not found!</string>
+    <string name="no_fos_found">FOS List not found!</string>
+
+    <!-- select mr.mrs -->
+    <string name="mr_mrs">Mr/Mrs</string>
+    <string name="select_project_name">Select Project Name</string>
+
+    <!-- select project name-->
+    <string name="select_unit_type">Select Unit Type</string>
+    <string name="select_annual_income">Select Annual Income</string>
+
+    <!-- select Unit type-->
+    <string name="select_when_to_buy">When would you like to Book</string>
+    <string name="select_conducted_by">Conducted By</string>
+
+
+    <!-- select annual income -->
+    <string name="select_lead_source">Select Lead Source</string>
+    <string name="select_source">Select source</string>
+
+
+    <!-- select when to buy -->
+    <string name="select_duration">Select Duration</string>
+    <string name="call_now">Call Now</string>
+
+
+    <!-- select conducted by-->
+
+    <string name="add_reminder">Add Reminder</string>
+
+    <!--Select Token-->
+
+
+    <!--Select Events-->
+    <string name="generate_ghp">Generate GHP</string>
+
+
+    <string name="menu_generate_ghp">Generate GHP/GHP+</string>
+
+    <string name="pay_n_generate_ghp">Pay &amp; Generate GHP</string>
+
+
+    <string name="view_ghp">View GHP/GHP+ Details</string>
+
+
+    <!-- select when to buy -->
+    <string name="search_customer">Search Customer</string>
+    <string name="lead_name">Lead Name</string>
+
+    <string name="lead_mobile">Lead Mobile</string>
+    <string name="project_name">Project Name</string>
+
+    <!-- select Unit type-->
+    <string name="block_type">Block type</string>
+    <string name="ref_by">Reference by</string>
+
+
+    <!-- lead options-->
+    <string name="tag_general">General</string>
+    <string name="tag_r_n_l">R &amp; L</string>
+    <string name="tag_site_visit">Site Visit</string>
+    <string name="tag_ghp">GHP</string>
+    <string name="details_here">Details here</string>
+    <string name="select_customer_id_hint">Select Customer ID</string>
+    <string name="selected_customer_name_hint">Selected Customer Name</string>
+    <string name="cuid_no">CUID Number</string>
+
+
+    <string name="date_of_birth_edit_profile">Date of Birth</string>
+    <string name="kyc_documents_hint">KYC Documents</string>
+    <string name="payment_modes_hint">Payment Mode</string>
+    <string name="payment_by_cheque">Cheque</string>
+    <string name="payment_by_online">Online</string>
+    <string name="payment_by_card">Card</string>
+    <string name="cheque_no_hint">Cheque No</string>
+    <string name="cheque_number_hint">Enter Cheque Number</string>
+    <string name="cheque_issuer_hint">Cheque Issuer\'s Name</string>
+    <string name="enter_cheque_issuer">Enter Cheque Issuer Name</string>
+    <string name="cheque_bank_name_hint">Bank Name</string>
+    <string name="enter_cheque_bank_name">Enter Bank Name</string>
+    <string name="utr_no_hint">UTR Number</string>
+    <string name="enter_utr_number">Enter UTR Number</string>
+    <string name="payment_transaction_number_hint">Payment Transaction No.</string>
+
+    <string name="enter_payment_transaction_number">Enter Payment Transaction No.</string>
+    <string name="payment_invoice_number_hint">Invoice No.</string>
+    <string name="enter_payment_invoice_number">Enter Invoice No.</string>
+    <string name="card_details">Card Details  :</string>
+    <string name="online_details">Online Details  :</string>
+    <string name="cheque_details">Cheque Details  :</string>
+    <string name="def_ghp_number">TEST3253</string>
+    <string name="def_cuID_number">TEST023–0007</string>
+    <string name="def_unit_type">2 BHK</string>
+    <string name="ghp_generated">GHP Generated</string>
+    <string name="ghp_details">GHP Details</string>
+    <string name="visit_time">Visit Time</string>
+    <string name="visit_time_compulsory">Visit Time<font color="#cc0029">*</font></string>
+    <string name="book_time_compulsory">Book Time<font color="#cc0029">*</font></string>
+    <string name="select_visited_time">Select Visited Time</string>
+    <string name="visit_date">Visit Date</string>
+    <string name="visit_date_compulsory">Visit Date<font color="#cc0029">*</font></string>
+    <string name="book_date_compulsory">Book Date<font color="#cc0029">*</font></string>
+    <string name="select_visited_date">Select Visited Date</string>
+    <string name="site_visit_details">Site Visit Details</string>
+    <string name="flat_type">Unit Type</string>
+    <string name="full_name">Customer Name</string>
+    <string name="selected_customer_name">Selected Customer Name</string>
+    <string name="customer_id">Customer ID</string>
+    <string name="customer_mobile">Customer Mobile</string>
+    <string name="select_customer">Select Customer</string>
+    <string name="claimNow">Claim Now</string>
+    <string name="upload">Upload</string>
+    <string name="no_file_choose">No file chosen</string>
+    <string name="hold_flat">Hold Unit</string>
+
+    <string name="no_hold_flat_list_available">No Hold Unit List Available!</string>
+    <string name="no_flat_available">No Units available!</string>
+    <string name="project_name_new">Project Name</string>
+    <string name="unit_category">Unit Type :</string>
+    <string name="unit_type_new">unit_category</string>
+    <string name="sales_person">Sales Person :</string>
+    <string name="sales_person_new">sales_person</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="customer_name_new">full_name</string>
+    <string name="sales_person_mobile">sales_person</string>
+    <string name="ghp">GHP :</string>
+
+    <string name="ghp_new">GHP</string>
+    <string name="release">Release</string>
+
+    <string name="ghp_doc_not_found">GHP document not found!</string>
+    <string name="any_one_mandatory"><font color="#cc0029">*</font> Any one Mandatory</string>
+    <string name="total__">Total</string>
+    <string name="total_flats_colon">Total Units :</string>
+    <string name="t_">T</string>
+    <string name="inventory">Inventory</string>
+    <string name="share_brochure">Share Brochure</string>
+    <string name="block_stat_hint">BLOCK STATS</string>
+    <string name="block_name_hint">A</string>
+    <string name="total_units_in_project">Total Units in Project -</string>
+    <string name="total_project">100</string>
+    <string name="count">10</string>
+    <string name="total_available">Total Available</string>
+    <string name="sold">Sold</string>
+    <string name="booked">Booked</string>
+    <string name="onHold">On Hold</string>
+    <string name="reserved">Reserved</string>
+    <string name="person_name">person name</string>
+    <string name="booking_by">Booking by</string>
+
+
+    <string name="total_units">Total Units  :</string>
+    <string name="select_block">Select Block</string>
+    <string name="no_blocks">No blocks available!</string>
+    <string name="block_name">Block Name</string>
+    <string name="total_available_blocks">Total Available Blocks  :</string>
+    <string name="search_floor">Search Floor</string>
+    <string name="available_blocks">A : Available blocks</string>
+    <string name="sold_blocks">S : Sold blocks</string>
+    <string name="on_hold_blocks">O : OnHold blocks</string>
+    <string name="reserved_blocks">R : Reserved blocks</string>
+    <string name="floor">Floor</string>
+    <string name="hold_flat_scan_in">Hold Unit Scan In</string>
+    <string name="feed_status">Feed Status</string>
+    <string name="no_feeds">No Feeds Available!</string>
+    <string name="available">Available</string>
+    <string name="onHolds">On Holds</string>
+
+    <string name="no_customer">No customer available!</string>
+    <string name="customer_list">Customer List</string>
+    <string name="blocks">Blocks</string>
+    <string name="total_flats">Total Units</string>
+    <string name="does_not_repeat">Does not repeat</string>
+    <string name="_25_august_2019">25 August 2019</string>
+    <string name="all_day">All Day</string>
+    <string name="mark_as_done">Mark as done</string>
+    <string name="_31_aug_2019_4_00_pm">31 Aug 2019 | 4.00 PM</string>
+
+
+    <string name="reminder_name">Reminder Name</string>
+    <string name="switch_text">switch text</string>
+    <string name="booking_event">Booking Event</string>
+    <string name="wings">Wings</string>
+    <string name="stats">Stats</string>
+    <string name="brochures">Brochures</string>
+    <string name="all">All</string>
+
+
+    <string name="all_blocks">All Blocks</string>
+    <string name="inventory_status">My Inventory</string>
+    <string name="performance_status">My Performance</string>
+    <string name="my_leads">My Leads</string>
+    <string name="my_ghps">My GHP\'s</string>
+    <string name="my_site_visit">My Site Visits</string>
+    <string name="my_customers">My Customers</string>
+    <string name="my_performance">My Performance</string>
+    <string name="performance">Performance</string>
+    <string name="achievements">Achievements</string>
+
+    <string name="my_inventory">My Inventory</string>
+    <string name="total">Total :</string>
+    <string name="floors">Floors</string>
+    <string name="available_short">A</string>
+    <string name="sold_short">S</string>
+
+    <string name="hold_short">H</string>
+    <string name="reserved_short">R</string>
+    <string name="no_brochures">Project brochures not available!</string>
+    <string name="count_text">100</string>
+    <string name="GHP_generated_by">GHP generated by</string>
+    <string name="leads_added_me">Leads added by me</string>
+    <string name="flat_plus">Unit +</string>
+    <string name="leads_added">Leads Added</string>
+    <string name="search_by_cuid_name">Search by name or CUID</string>
+    <string name="no_reminders_available">No reminders available!</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_designation">Enter Designation</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="enter_email">Enter Email ID</string>
+    <string name="edit_profile_confirm_text">Are you sure you want to do these changes in profile?</string>
+    <string name="date_claim_text">05 sep 2019 at 5.30 pm</string>
+    <string name="claim_cuid_popup">TEST190831-001</string>
+    <string name="claim_popup_name">Maruti Kesarkar</string>
+    <string name="claim_popup_projectname">YashOne,Wakad | 2Bhk</string>
+    <string name="site_visit_count">00</string>
+    <string name="performance_site_visit">Site Visits</string>
+
+    <string name="ghp_generated_count">00</string>
+    <string name="performance_ghp_generated">GHP Generated</string>
+    <string name="lead_count">00</string>
+    <string name="performance_leads">Leads</string>
+    <string name="booking_count">00</string>
+    <string name="performance_booking">Bookings</string>
+    <string name="sold_count">00</string>
+    <string name="perf_s">S</string>
+
+    <string name="onhold_count">00</string>
+    <string name="perf_h">H</string>
+    <string name="reserved_count">00</string>
+    <string name="perf_r">R</string>
+    <string name="status_sold">Sold</string>
+    <string name="status_on_hold">On Hold</string>
+    <string name="status_reserved">Reserved</string>
+    <string name="ghp_plus_generated">GHP Plus Generated</string>
+    <string name="my_inventory_status_performance">My Inventory Status</string>
+    <string name="getting_inventory_details">Getting inventory details</string>
+    <string name="inventory_details_not_available">Inventory details not available!</string>
+    <string name="sales_ghp_success">GHP Generated Successfully!</string>
+    <string name="sales_ghp_plus_success">GHP+ Generated Successfully!</string>
+    <string name="ghp_upgrade_success">GHP Upgraded Successfully!</string>
+    <string name="customer_confirm_contact">Have you confirmed Customer contact details?</string>
+    <string name="customer_confirm_contact_edit">Do you need to edit Customer contact details?</string>
+    <string name="view">View</string>
+    <string name="edit_customer_info_confirm_text">Are you sure you want to do these changes in customer info?</string>
+    <string name="no_reminder_list_available">No Reminder List Available!</string>
+    <string name="site_visit_message">Site Visit Added Successfully..</string>
+    <string name="submit_generate_ghp">Submit</string>
+    <string name="site_visit_remarks">Site Visit Remarks (If Any)</string>
+
+    <string name="ghp_remarks">GHP Remarks (If Any)</string>
+    <string name="would_you_like_to_generate_ghp">Would you like to generate GHP?</string>
+    <string name="ghp_yes">Yes</string>
+
+
+    <string name="ghp_no">No</string>
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="change_profile">Change Profile ?</string>
+    <string name="share_with">Share With</string>
+    <string name="no_customer_id_available">No Customer Available!</string>
+    <string name="no_member_list_available">No Members Found!</string>
+
+    <string name="getting_customer_id">Getting Customer ID</string>
+    <string name="no_lead_campaigns_available">No lead campaigns available!</string>
+    <string name="added_by">Added by</string>
+    <string name="back_to_top">Back to top</string>
+    <string name="hold_flats">Hold Units</string>
+    <string name="you_haven_t_added_any_flat_on_hold">You haven\'t added any Unit on hold!</string>
+    <string name="Update_Reminder">Reminder Update Successfully..</string>
+    <string name="Add_Reminder">Reminder Added Successfully..</string>
+
+    <!--Speech to text-->
+    <string name="selected_flat">Selected Unit</string>
+    <string name="proceed">Proceed</string>
+    <string name="customer_ghp_scan_in">Customer GHP Scan-In</string>
+    <string name="getting_event_details">getting  event details…</string>
+    <string name="getting_teamLead_details">getting team lead details…</string>
+
+    <string name="posting_doc">Uploading</string>
+    <string name="notifications">Notifications</string>
+    <string name="dateTIme">DateTime</string>
+    <string name="noNotifications">You have no notifications!</string>
+    <string name="notification_clear_alert">All notifications will be deleted!</string>
+    <string name="selected_notification_clear_alert">Selected %1$s notifications will be deleted!</string>
+    <string name="clear_notifications">Delete Notifications</string>
+    <string name="date">DateTime</string>
+
+    <string name="hint_enter_mobile_verification_otp">Enter mobile verification otp</string>
+    <string name="getting_ghp_details">Getting GHP details…</string>
+    <string name="ghp_number">GHP Number :</string>
+    <string name="selected_flat_colon">Selected Unit :</string>
+    <string name="confirm_hold_flat">Confirm Hold Unit</string>
+
+    <!--sales person event details-->
+
+    <string name="hold_flat_question">Hold Unit?</string>
+    <string name="hold_flat_confirmation">Are you sure you want to hold this Unit for customer %1$s?</string>
+
+    <!--Notification-->
+    <string name="my_performance_not_available">My Performance not available!</string>
+    <string name="contact_edit_success">Contact Details Updated Successfully!</string>
+    <string name="select_cheque_date">Select Cheque Date</string>
+    <string name="ghp_generate_confirm_text">Are you sure you want to generate GHP for customer %1$s?</string>
+    <string name="visited_date">Visited Date</string>
+    <string name="visited_time">Visited Time</string>
+    <string name="site_visit_confirm_text">Are you sure you want add site visit for customer %1$s?</string>
+
+
+    <string name="_000">000</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="logout_">Logout?</string>
+    <string name="exit_form">Exit Form?</string>
+    <string name="a_801_2bhk_">A-801 | 2BHK</string>
+    <string name="submitting_profile_details">Submitting Profile details…</string>
+    <string name="edit_profile_successfully">Profile edited successfully!</string>
+
+
+    <string name="booked_flats">Booked Units</string>
+    <string name="your_performance_not_available">Your performance not available!</string>
+    <string name="just_now">Just Now</string>
+    <string name="new_lead_added">New lead added!</string>
+    <string name="call_status">Call Status</string>
+    <string name="call_date_time">Call Log DateTime</string>
+    <string name="call_log_at">Call log at</string>
+
+    <string name="adding_call_log">Adding call log…</string>
+    <string name="rescheduling_call_log">ReScheduling call log…</string>
+    <string name="refundDetails">Refund Details</string>
+    <string name="you_dont_have_any_documents">No documents available!</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="reminder_date">Reminder Date</string>
+
+    <string name="reminder_time">Reminder Time</string>
+    <string name="remind_me_about">Remind me about</string>
+    <string name="flat_allotment">Unit Allotment</string>
+    <string name="direct_allotment">Mark As Booked</string>
+    <string name="form">Form</string>
+    <string name="sales_representative_name">Mr Kedar</string>
+    <string name="sales_representatives">Sales Representative</string>
+    <string name="customer_detailing">Customer Details</string>
+    <string name="customerId">TEST1005</string>
+    <string name="customer_name">Kedar Ashtekar</string>
+    <string name="customer_phone">+91 8624923010</string>
+    <string name="customer_email">kedar@gmail.com</string>
+    <string name="source">Source Details</string>
+    <string name="source_ref">R and L</string>
+    <string name="source_name">Ms Supriya Yadav</string>
+    <string name="flat_details">Unit Details</string>
+    <string name="flatType">A-208 | 2 BHK</string>
+    <string name="flat_amount">Unit Amount<font color="#cc0029">*</font></string>
+    <string name="enter_flat_amount">Enter Unit Amount<font color="#cc0029">*</font></string>
+    <string name="enter_flat_price">Enter Unit Price<font color="#cc0029">*</font></string>
+    <string name="flat_price">4400000</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="booking_price">30000</string>
+    <string name="payment_mode">Payment Mode</string>
+    <string name="cheque">Cheque</string>
+    <string name="online">Online</string>
+    <string name="card">Card</string>
+    <string name="remarks_ifAny">Remark (if any)</string>
+    <string name="allotment_form">Allotment Form</string>
+    <string name="allot_flat">Allot Unit</string>
+    <string name="release_flat">Release Unit</string>
+    <string name="booking_amount">Booking Amount</string>
+    <string name="enter_booking_amount">Enter booking amount<font color="#cc0029">*</font></string>
+    <string name="confirm_allotment">Confirm Allotment</string>
+    <string name="applicant_details">Applicant Details</string>
+    <string name="enter_applicant_name">Enter applicant name<font color="#cc0029">*</font></string>
+    <string name="enter_applicant_mobile">Enter applicant mobile<font color="#cc0029">*</font></string>
+    <string name="enter_applicant_email">Enter applicant email<font color="#cc0029">*</font></string>
+    <string name="applicant_details_cb_note">Applicant details are same as above customer details</string>
+    <string name="payslip_attachment">Pay Slip attachments</string>
+    <string name="available_flats">Available Units</string>
+    <string name="no_flat_available_for_booking">No Units are available for booking!</string>
+    <string name="hold_continue"><![CDATA[Hold & Continue]]></string>
+    <string name="hold_exit"><![CDATA[Hold & Exit]]></string>
+    <string name="flat_amount_">Unit Amount : </string>
+    <string name="applicant_name_">Applicant Name :</string>
+    <string name="applicant_mobile_">Applicant Mobile :</string>
+    <string name="applicant_email">Applicant Email :</string>
+    <string name="gene_doe">Gene Doe</string>
+    <string name="cancel_allotment_">Cancel Booking</string>
+    <string name="continue_allotment">Continue Allotment</string>
+    <string name="view_hold_flat">View Hold Unit</string>
+    <string name="genedoe_mail_com">genedoe@mail.com</string>
+    <string name="lead_source_details_">Lead Source Details</string>
+    <string name="direct_lead">Direct Lead</string>
+    <string name="cp_lead_">CP Lead</string>
+    <string name="site_visit_details_">Site Visit Details</string>
+    <string name="ghp_details_">GHP Details</string>
+
+
+    <!--    direct booking process-->
+    <string name="ghp_number_">GHP Number :</string>
+    <string name="ghp_number_text">GHP Number</string>
+    <string name="ghp_type_">GHP Type :</string>
+    <string name="event_">Event :</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_">Lorem Ipsum is simply dummy text</string>
+    <string name="source_details_">Source Details</string>
+    <string name="a_101_2_bhk_yashone_wakad_">A-101 | 2 Bhk | YashOne Wakad</string>
+    <string name="duration">1 : 20s</string>
+    <string name="menu_allottedFlats">Allotted Units</string>
+    <string name="menu_holdFlats">Hold Units</string>
+    <string name="payslip">Pay Slip</string>
+    <string name="hold_n_allotment">Hold and Allotment</string>
+    <string name="cancel_flat_allotment_que">Cancel Unit Booking?</string>
+    <string name="cancel_allotment_and_release_confirmation">Do you want to release Unit %1$s hold by this customer %2$s?</string>
+    <string name="release_confirm">Release Unit</string>
+    <string name="keep_on_hold">Keep on Hold</string>
+    <string name="submit_flat_allotment">Confirm Unit Allotment?</string>
+    <string name="submit_flat_allotment_confirmation">Are you sure you want to allot this Unit %1$s to customer %2$s?</string>
+    <string name="submitting_flat_allotment_details">Submitting Unit Allotment Details</string>
+    <string name="flat_allotted_successfully">Unit allotted successfully!</string>
+    <string name="flat_released_successfully">Unit Released Successfully!</string>
+    <string name="cancel_allotment_text">Are you sure you want to cancel this booking for customer %1$s?</string>
+    <string name="flat_allotment_dtl">Allotted Unit Details</string>
+    <string name="applicant_form_">Applicant Form :</string>
+    <string name="no_allotment_form_attachments_added">No allotment form attachments added!</string>
+    <string name="no_flats">You have not allotted any unit!</string>
+
+    <string name="cancelling_flat_allotment">Cancelling Unit booking…</string>
+    <string name="no_wings_added">No wings added for this project!</string>
+    <string name="no_floors_added">No floors added for this wing!</string>
+    <string name="team_stats_not_available">Team statistics not available!</string>
+
+    <string name="no_sales_team_added">You have not added any sales team for this project!</string>
+    <string name="no_sales_team_lead_added">You have not added any Sales Team Lead for this project!</string>
+    <string name="Name">Name</string>
+    <string name="sales_person_name">Sales Person</string>
+    <string name="allotments">Allotments</string>
+    <string name="submit_calendar_remainder_confirmation">Do you want to sync this reminder with Google Calendar?</string>
+
+    <string name="reminder_synced_successfully">Reminder successfully synced with Google Calendar!</string>
+    <string name="l">L</string>
+    <string name="l_leads">L - Leads</string>
+    <string name="s">S</string>
+    <string name="s_site_visits">S - Site Visits</string>
+    <string name="g">G</string>
+
+    <string name="g_ghp">G - GHP</string>
+    <string name="g_plus">G+</string>
+
+    <!-- Team stats -->
+    <string name="g_ghp_plus">G+ - GHP+</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="cb">CB</string>
+    <string name="a_allotments">A - Allotments</string>
+    <string name="b_bookings">B - Bookings</string>
+    <string name="cb_bookings">CB - Cancelled Bookings</string>
+    <string name="restart">Restart</string>
+    <string name="ghp_amount">GHP Amount</string>
+
+    <string name="manual">Manual</string>
+    <string name="pay_gateway">Payment Gateway</string>
+    <string name="via_link">Via Pay Link</string>
+    <string name="select_paid_by">Select Paid By</string>
+    <string name="upgrade_to_ghp_plus">Upgrade to GHP +</string>
+    <string name="upgrade_to_ghp">Upgrade to GHP +</string>
+    <string name="pay_upgrade"><![CDATA[Pay & Upgrade]]></string>
+    <string name="email_id">Email ID</string>
+    <string name="event_name_">Event Name</string>
+    <string name="current_ghp_type">Current GHP Type</string>
+    <string name="ghp_type">GHP Type</string>
+    <string name="pay_n_upgrade_ghp_plus"><![CDATA[Pay & Upgrade GHP+]]></string>
+    <string name="generate_ghp_plus">Generate GHP +</string>
+    <string name="pay_n_generate_ghp_plus">Pay &amp; Generate GHP+ </string>
+    <string name="ghp_upgrade_confirm_text">Are you sure you want to upgrade GHP+ for customer %1$s?</string>
+    <string name="ghp_date">GHP Date :</string>
+    <string name="ghp_amount_">GHP Amount :</string>
+    <string name="_0_00">0.00</string>
+    <string name="ghplus_date">GHP+ Date :</string>
+
+    <string name="ghplus_amount">GHP+ Amount :</string>
+    <string name="reminder_date_">Reminder Date<font color="#cc0029">*</font></string>
+    <string name="reminder_time_">Reminder Time<font color="#cc0029">*</font></string>
+    <string name="selected_event_hint">Select Event<font color="#cc0029">*</font></string>
+    <string name="selected_ghp_hint">Select GHP Type<font color="#cc0029">*</font></string>
+    <string name="ghp_amount_title">GHP Amount<font color="#cc0029">*</font></string>
+    <string name="call_status_">Call Status<font color="#cc0029">*</font></string>
+    <string name="call_remarks_star">Call Remarks<font color="#cc0029">*</font></string>
+    <string name="call_start_time_star">Call Start Time<font color="#cc0029">*</font></string>
+    <string name="call_end_time_star">Call End Time<font color="#cc0029">*</font></string>
+    <string name="team_members_list">Team Members List</string>
+    <string name="member_name_">Member Name</string>
+    <string name="team_lead">Team Lead</string>
+    <!--  <string name="password_">Password<font color="#cc0029">*</font></string>
+    <string name="confirm_password">Confirm Password<font color="#cc0029">*</font></string>-->
+    <string name="password_">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="add_team_lead">Add Team Lead</string>
+    <string name="team_members_">Team Members</string>
+    <string name="no_team_members_assigned">No Team members are assigned!</string>
+
+
+    <string name="team_members_added_successfully">Team Members Assigned Successfully!</string>
+    <string name="team_member_removed_successfully">Member Removed Successfully</string>
+    <string name="submit_member_question">Assign Team Members?</string>
+    <string name="submit_member_confirmation">Are you sure you want to assign these team members</string>
+    <string name="remove_member">Remove Team Member?</string>
+    <string name="remove_member_confirmation">Are you sure you want to remove member</string>
+
+    <string-array name="ary_mrs">
+        <item>Mr.</item>
+        <item>Mrs.</item>
+        <item>Smt.</item>
+    </string-array>
+    <string-array name="ary_project_name">
+        <item>YashOne,Wakad</item>
+        <item>YashOne,Hinjewadi</item>
+        <item>YashOne,Pirangut</item>
+    </string-array>
+    <string-array name="ary_flatType">
+        <item>1 Bhk</item>
+        <item>2 Bhk</item>
+        <item>Shop</item>
+    </string-array>
+    <string-array name="ary_annualIncome">
+        <item>Up to Rs.3,00,000</item>
+        <item>Rs.3,00,001 to 6,00,000</item>
+        <item>Rs.6,00,001 to 12,00,00</item>
+        <item>Rs.12,00,001 to 18,00,00</item>
+        <item>Rs.18,00,001 and above</item>
+    </string-array>
+    <string-array name="ary_whenToBuy">
+        <item>Within 15 days</item>
+        <item>Within a month</item>
+        <item>Within 3 months</item>
+        <item>Within 6 months</item>
+    </string-array>
+    <string-array name="ary_conductedBy">
+        <item>Mr.Shweta Uplap</item>
+        <item>Mr.Sachin Patil</item>
+        <item>Mr.Sukrut Mujumdar</item>
+    </string-array>
+    <string-array name="ary_ghp">
+        <item>Hinjewadi Event GHP</item>
+        <item>YashOne Event GHP</item>
+        <item>YashWin Event GHP</item>
+    </string-array>
+    <string-array name="ary_events">
+        <item>Hinjewadi Event</item>
+        <item>YashOne Event</item>
+        <item>YashWin Event</item>
+    </string-array>
+    <string-array name="single_choice_item">
+        <item>Does not repeat</item>
+        <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Every Month</item>
+        <item>Every Year</item>
+        <item>Custom...</item>
+    </string-array>
+    <string-array name="single_choice_item_release">
+        <item>Booked</item>
+        <item>Cancelled</item>
+    </string-array>
+    <string-array name="ary_block">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+    <string-array name="ary_leadSource">
+        <item>Direct Media</item>
+        <item>Company Website</item>
+        <item>Google Ads</item>
+        <item>Hoardings</item>
+        <item>NewsPaper</item>
+        <item>Pamphlet</item>
+        <item>Property Listing Website</item>
+    </string-array>
+    <string-array name="ary_subLeadSource">
+        <item>Facebook</item>
+        <item>WhatsApp</item>
+        <item>Cable</item>
+        <item>Radio Advertisement</item>
+    </string-array>
+    <string-array name="ary_duration">
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+        <item>year</item>
+    </string-array>
+
+
+    <string name="no_team_lead_details_found">Team lead details not found!</string>
+    <string name="no_sales_persons_found">Sales persons  not found!</string>
+    <string name="assigning_team_members">Assigning team members to team lead.....</string>
+    <string name="removing_team_member">Removing team member from list…</string>
+    <string name="no_customer_list_found">Customer list not found!</string>
+    <string name="no_leads_found_for_sales_person">No Leads found for this sales person!</string>
+    <string name="assign_leads">Assign Leads</string>
+    <string name="que_re_assign_team_members">Re-Assign Team Leads?</string>
+    <string name="re_assign_team_members_confirmation">Are you sure you want to Re-Assign these selected leads from %1$s to %2$s?</string>
+    <string name="search_sales_person">Search Sales Person</string>
+
+    <string name="select_from_sales_person_name">Select From Sales Person Name<font color="#cc0029">*</font></string>
+    <string name="sales_person_">Sales Person</string>
+    <string name="select_to_sales_person_name">Select To Sales Person Name<font color="#cc0029">*</font></string>
+    <string name="lead_re_assigned_successfully">Leads Re-Assigned Successfully!</string>
+    <string name="search_leads">Search Leads</string>
+    <string name="projects_not_found">Projects list not found!</string>
+    <string name="select_flat_from_available_floors">Select Unit from available Floors</string>
+    <string name="update_salesExecutive_question"> Update Sale\'s Executive?</string>
+    <string name="update_as_team_lead_confirmation">Are you sure you want to update this as team lead?</string>
+    <string name="update_as_sales_executive_confirmation">Are you sure you want to update this as sale\'s executive?</string>
+    <string name="update_sales_executive_title">Update Sale\'s Executive</string>
+    <string name="add_as_team_lead">Update</string>
+    <string name="payment_link_generated_successfully">Payment link generated successfully!</string>
+    <string name="note_colon">Note :</string>
+    <string name="msg_note_send_pay_link">Send payment link to the customer. So that they can pay the GHP amount and will get GHP generated.</string>
+    <string name="share_pay_link_using">Share pay link using :</string>
+    <string name="ghp_pending">GHP Pending!</string>
+    <string name="msg_add_ghp_without_site_visit">Generate GHP/GHP+ without Site Visit!</string>
+    <string name="que_add_ghp_without_site_visit">You are generating GHP without Site visit for the customer %1$s. Would you like to add site visit first?</string>
+    <string name="booking_documents">Booking Documents</string>
+    <string name="kyc_document">KYC Document</string>
+    <string name="pay_slip_document">Pay Slip Document</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="msg_ghp_plus_not_available">Unfortunately, GHP plus type is not available for this Event! \nPlease do inform Sales Head to add GHP Plus type for this event.</string>
+    <string name="ghp_details_not_available">GHP details not available!</string>
+
+    <string name="title_add_brochures">Add New Brochure</string>
+    <string name="title_update_brochures">Update Brochure</string>
+    <string name="project_brochure_description">Project Brochure Description</string>
+    <string name="project_brochure_">Project Brochure</string>
+    <string name="add_brochure">Add Brochure</string>
+    <string name="submit_brochure">Submit Brochure</string>
+    <string name="update_brochure">Update Brochure</string>
+    <string name="update_project_brochure_confirmation">Are you sure you want to update Project Brochure?</string>
+    <string name="updating_projectBrochure_details">Updating Project Brochure details…</string>
+    <string name="submitting_projectBrochure_details">Submitting Project Brochure details…</string>
+
+    <string name="submit_project_brochure_confirmation">Are you sure you want to submit Project Brochure?</string>
+    <string name="submit_project_brochure_question">Submit Brochure?</string>
+    <string name="update_project_brochure_question">Update Brochure?</string>
+    <string name="project_brochure_title">Project Brochure Title<font color="#cc0029">*</font></string>
+    <string name="delete_project_brochure_question">Delete Brochure?</string>
+    <string name="delete_brochure_confirmation">Are you sure you want to delete this project brochure?</string>
+    <string name="update">Update</string>
+    <string name="no_project_n_blocks_found_for_open_sale">Neither project nor blocks found for the Open Sale!</string>
+    <string name="no_blocks_for_this_project">No blocks available for this project!</string>
+    <string name="que_open_block_for_sustenance_sale">Update Blocks for Sustenance Sale?</string>
+    <string name="msg_open_block_confirmation">Are you sure you want to update these selected block(s) for Sustenance Sale?</string>
+    <string name="time_remaining_to_auto_release_colon">Time remaining to Auto Release :</string>
+    <string name="flat_hold_by_colon">Unit Hold By :</string>
+    <string name="hold_since_colon">Hold Since :</string>
+    <string name="msg_auto_release_time_passed_away">Auto release time has already been passed away! Please Release a Unit to make it available again!</string>
+    <string name="que_new_team_lead">New Team Lead?</string>
+    <string name="msg_add_existing_sales_executive_as_team_lead">Would like to make existing sales executive as a Team Lead?</string>
+    <string name="updating_sales_executive">Updating Sales Executive....</string>
+    <string name="view_">View</string>
+    <string name="_share">Share</string>
+    <string name="que_release_flat">Are you sure you want to release Unit hold for the customer %1$s?</string>
+    <string name="release_flat_question">Release Unit?</string>
+    <string name="releasing_flat">Releasing Unit…</string>
+    <string name="remarks_">Remarks :</string>
+    <string name="no_remarks">No Remarks Added!</string>
+    <string name="updating_blocks_for_open_sale">Updating blocks for open sale.....</string>
+    <string name="extend_time_que">Extend Time?</string>
+    <string name="extend_hold_time">Extend Hold Time</string>
+    <string name="hint_extend_time">Enter time in Minutes</string>
+    <string name="extend_hold_time_question">Extend Hold Time?</string>
+    <string name="que_extend_hold_flat">Do you really want to Extend hold time for the customer %1$s?</string>
+    <string name="hold_time_extend_success">Hold Time Extended Successfully!</string>
+    <string name="blocks_updated_successfully">Blocks successfully updated for sustenance sale!</string>
+
+    <!-- Customer input messages -->
+   <!-- <string name="cim_welcome_msg">Hello %1$s,\n\nGreetings from *Mukti Group.* You have been successfully registered with us. Myself, %2$s,
+        will always be at your service to help you book your *Dream Home with Mukti Group.* Looking forward to welcome you in our *Mukti Family!*
+        Please feel free to give me a call or drop in  message in case you want to plan a site visit or need any information about our projects.
+        \n\n\n%3$s\nSales Executive \Mukti Group \n%4$s</string>-->
+
+
+    <string name="cim_std_welcome_msg">Hello %1$s,\n\nGreetings from *%2$s.* You have been successfully registered with us. Myself, %3$s,
+        will always be at your service to help you book your *Dream Home with %4$s.* Looking forward to welcome you in our Family!
+        Please feel free to give me a call or drop in  message in case you want to plan a site visit or need any information about our projects.
+        \n\n\n\n%5$s\nSales Executive \n%6$s \n%7$s</string>
+
+
+    <string name="cim_ghp_pending_msg">Hello %1$s,\n\nGreetings from *Leedo Developers.* Thank you for showing your interest in the *‘Golden Hour Pass’* of the project *%2$s*.
+        \n\nYou are just one step ahead of becoming a member of the *Parivaar!*
+        \n\nKindly click on the below link and pay for your *Golden Hour Pass(GHP)*. Once done, you will be confirmed as the GHP holder for the *%3$s*.
+        \n%4$s \n\n\nThank You,\n Team Leedo</string>
+
+    <string name="cim_ghp_plus_pending_msg">Hello %1$s,\n\nGreetings from *Leedo Developers.* Thank you for showing your interest in the *‘Golden Hour Pass+’* of the project *%2$s*.
+        \n\nYou are just one step ahead of becoming a member of the *Parivaar!*
+        \n\nKindly click on the below link and pay for your *Golden Hour Pass+(GHP+)*. Once done, you will be confirmed as the GHP holder for the *%3$s*.
+        \n%4$s \n\n\nThank You,\n Team Leedo</string>
+
+    <string name="cim_upgrade_to_ghp_plus_pending_msg">Hello %1$s,\n\nGreetings from *Leedo Developers.* Thank you for showing your interest in upgrading your *‘Golden Hour Pass’* to  *‘Golden Hour Pass+’* of the project *%2$s*.
+        \n\nYou are now just 2 steps away from becoming a member of the *Parivaar!*
+        \n\nKindly click on the below link and pay balance amount to upgrade to *Golden Hour Pass+(GHP+)*. Once done, you will be confirmed as the GHP holder for the *%3$s*.
+        \n%4$s \n\n\nThank You,\n Team Leedo</string>
+
+
+    <string name="payment_pending">Payment Pending!</string>
+    <string name="ghp_request_date">GHP Request Date :</string>
+    <string name="ghp_amount_payable">GHP Amount Payable :</string>
+    <string name="ghp_paid_date">GHP Paid Date :</string>
+    <string name="ghp_paid_amount">GHP Paid Amount :</string>
+    <string name="ghp_plus_request_date">GHP+ Request Date :</string>
+    <string name="ghp_plus_amount_payable">GHP+ Amount Payable :</string>
+    <string name="ghp_plus_paid_date">GHP+ Paid Date :</string>
+    <string name="ghp_plus_paid_amount">GHP+ Paid Amount :</string>
+    <string name="ghp_request_generated">GHP Request Generated</string>
+    <string name="ghp_plus_request_generated">GHP+ Request Generated</string>
+
+    <string name="no_unclaimed_leads">No Unclaimed leads available!</string>
+    <string name="lead_details_colon">Lead Details :</string>
+    <string name="churn_leads">Churn Leads</string>
+    <string name="que_how_to_churn_lead">How would you like to churn the Leads?</string>
+    <string name="auto">Auto</string>
+    <string name="select_sales_person_name">Select Sales Person Name<font color="#cc0029">*</font></string>
+    <string name="select_auto_assignment_logic">Select Auto Assignment Logic<font color="#cc0029">*</font></string>
+    <string name="select_sales_persons">Select Sales Person\'s<font color="#cc0029">*</font></string>
+    <string name="note_select_multiple_sales_persons">Note : You can select more than one sales persons at a time.</string>
+    <string name="selected_leads">Selected Leads :</string>
+    <string name="confirm_selection">Confirm Selection</string>
+    <string name="que_auto_assignment">Auto Assignment?</string>
+    <string name="clear_filter">Clear Filter</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="project_filter">Project Filter</string>
+    <string name="date_filter">Date Filter</string>
+    <string name="que_auto_churn">Auto Churn Leads?</string>
+    <string name="msg_auto_churn_leads_confirmation">All the unclaimed leads will be assigned to Sales Executives by auto churned logic. Would you like to continue to Auto churn all the leads?</string>
+    <string name="select_auto_churn_by">Select auto churn by</string>
+    <string name="auto_assignment">Auto Assignment</string>
+    <string name="meri_go_round">Meri go round</string>
+    <string name="random">Random</string>
+    <string name="leads_auto_assigned_successfully">All Leads auto assigned Successfully!</string>
+
+    <string name="que_manual_churn">Manual Churn Leads?</string>
+    <string name="msg_manual_churn_leads_confirmation">Selected unclaimed leads will be assigned to these selected Sales Executives by manual churned logic. Are you sure you want to Manually churn these leads?</string>
+    <string name="manually_assigning_leads">Manually Assigning leads....</string>
+    <string name="auto_assigning_leads">Auto Assigning leads.....</string>
+    <string name="leads_manually_assigned_successfully">Leads manually assigned Successfully!</string>
+    <string name="cp_details_colon">CP Details :</string>
+    <string name="cp_name_colon">CP Name :</string>
+    <string name="cp_executive_colon">CP Executive :</string>
+    <string name="r_n_l_details_colon">Reference Details :</string>
+    <string name="ref_name_colon">Ref. Name :</string>
+    <string name="ref_mob_colon">Ref. Mobile :</string>
+    <string name="churn_details_colon">Churn Details :</string>
+    <string name="churn_sales_person_name_colon">Churn Sales Person :</string>
+    <string name="churn_assign_date_colon">Churn Assign Date :</string>
+
+    <string name="lead_unclaimed_confirmation">Are you sure you want to mark these selected leads as unclaimed?</string>
+    <string name="lead_unclaimed_successfully">Leads Unclaimed Successfully!</string>
+    <string name="no_leads_found_">No Leads found!</string>
+    <string name="leads_mark_as_unclaimed">Leads mark as unclaimed.....</string>
+    <string name="que_mark_as_unclaimed">Mark As Unclaimed?</string>
+
+    <string name="ghp_payment_pending">GHP Payment Pending</string>
+    <string name="lead_count_">0</string>
+    <string name="site_visit_count_">0</string>
+    <string name="salesPersons_Performance_not_available">Performance stats not available!</string>
+
+    <string name="cp_name">CP Name - </string>
+    <string name="_4_filters_applied">4 Filters Applied</string>
+    <string name="sales_person_name_">Sales Person Name -</string>
+
+    <string name="name_">"Name :"</string>
+    <string name="project_name__">Project Name :</string>
+    <string name="from_date_">From Date :</string>
+    <string name="to_date_">To Date :</string>
+
+    <string name="que_re_assign_leads">Re-Assign Leads?</string>
+    <string name="re_assign_leads_confirmation">Are you sure you want to Re-Assign these selected leads to %1$s?</string>
+    <string name="assigning_leads_to_sales_person">Assigning Leads to other sales person.....</string>
+    <string name="note_select_single_sales_persons">Note : You can select sales persons.</string>
+
+    <string name="reschedule">Reschedule</string>
+    <string name="def_today_date">03</string>
+    <string name="def_today_month">Aug</string>
+    <string name="def_today_day">Wednesday</string>
+    <string name="def_today_year">2020</string>
+    <string name="calendar">Calendar</string>
+    <string name="no_completed_list_available">No Completed Call List Available!</string>
+    <string name="reschedule_que">Reschedule?</string>
+    <string name="call_schedule_remarks">Call Schedule Remarks (If Any)</string>
+    <string name="call_reschedule_remarks">Call Reschedule Remarks (If Any)</string>
+    <string name="customer_id_star">Customer ID<font color="#cc0029">*</font></string>
+    <string name="mobile_number_star">Mobile Number<font color="#cc0029">*</font></string>
+    <string name="select_customer_id_star">Select Customer ID<font color="#cc0029">*</font></string>
+    <string name="select_customer_mobile_star">Select Mobile Number<font color="#cc0029">*</font></string>
+    <string name="call_schedule_date">Call Schedule Date<font color="#cc0029">*</font></string>
+    <string name="call_reschedule_date">Call Reschedule Date<font color="#cc0029">*</font></string>
+    <string name="call_schedule_time">Call Schedule Time<font color="#cc0029">*</font></string>
+    <string name="call_reschedule_time">Call Reschedule Time<font color="#cc0029">*</font></string>
+    <string name="add_call_schedule">Add Call Schedule</string>
+    <string name="add_call_reschedule">Add Call Reschedule</string>
+    <string name="que_secure_your_application">Secure your application?</string>
+    <string name="msg_secure_sales_app">"Set your 'Leedo' app as \"Device Admin\" to prevent it being uninstalled by accident. "</string>
+    <string name="secure">Secure</string>
+    <string name="not_now">Not Now</string>
+    <string name="call">Call</string>
+    <string name="msg_call_scheduled_lead">You have  scheduled call log for the lead :</string>
+
+    <string name="no_site_visit_leads_found_">No Site Visits found!</string>
+    <string name="no_claimed_leads_found_">No Claimed Leads found!</string>
+    <string name="no_users_found_">No Users found!</string>
+    <string name="no_ghp_leads_found_">No GHP  Generated Leads found!</string>
+
+    <string name="salesPersons_callLogs_not_available">Call Logs not available!</string>
+    <string name="completed_calls">Completed Calls</string>
+    <string name="scheduled_calls">Scheduled Calls</string>
+    <string name="rescheduled_calls">Rescheduled Calls</string>
+    <string name="cancelled_calls">Cancelled Calls</string>
+
+    <string name="update_lead_name">Update Lead Name</string>
+    <string name="update_lead_stage">Update Lead Status</string>
+    <string name="lead_stage">Lead Stage</string>
+
+
+    <string name="no_scheduled_list_available">No Call Details Available!</string>
+    <string name="filter_applied">" Filters Applied"</string>
+    <string name="scheduled">Scheduled</string>
+    <string name="rescheduled">Rescheduled</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="completed">Completed</string>
+
+    <string name="select_stage">select stage</string>
+    <string name="new_visit">New Visit</string>
+    <string name="today_s_site_visit">Today\'s Site Visit</string>
+    <string name="revisit">Revisit</string>
+    <string name="select_sales_manager">Select Sales Manager</string>
+    <string name="site_visit">Site Visit</string>
+    <string name="ghp_visit">GHP Visit</string>
+    <string name="site_visit_stats">Site Visit Stats</string>
+    <string name="nothing_to_select">Nothing to select!</string>
+    <string name="remarks__">Remarks :</string>
+    <string name="select_event_name_">Select Event Name</string>
+
+
+    <!-- Leedo-->
+    <string name="all_projects">All Projects</string>
+    <string name="all_Leads">All Leads</string>
+    <string name="all_site_visit">All Site Visit</string>
+    <string name="menu_leads">Leads</string>
+    <string name="menu_call_recordings">Call Recordings</string>
+    <string name="menu_project_brochures">Project Brochures</string>
+    <string name="menu_project_floor_plans">Project Floor Plans</string>
+    <string name="menu_quotations">Project Quotations</string>
+    <string name="menu_site_visitList">Site Visits</string>
+    <string name="menu_booked_customers">Booked Customers</string>
+    <string name="menu_user_list">All Users</string>
+    <string name="menu_all_call_logs">All Call Logs</string>
+    <string name="menu_all_reminders">All Reminders</string>
+    <string name="menu_add_reminders">Add Reminder</string>
+
+
+    <!--Create Project-->
+    <string name="create_project_">Create Project</string>
+    <string name="update_project_">Update Project</string>
+    <string name="add_site_visit">Add Site Visit</string>
+    <string name="update_site_visit">Update Site Visit</string>
+    <string name="project_title">Project Title<font color="#cc0029">*</font></string>
+    <string name="project_description">Project Description</string>
+    <string name="project_registration_no">RERA Registration No</string>
+    <string name="project_cs_no">Project CS No<font color="#cc0029">*</font></string>
+    <string name="permission_date">Permission Date</string>
+    <string name="project_address">Project Address<font color="#cc0029">*</font></string>
+    <string name="mark_book">Mark As Booked</string>
+    <string name="add_call_log">Add Call Log</string>
+    <string name="select_project">Select Project</string>
+    <string name="create_project_question">Create Project?</string>
+    <string name="update_project_question">Update Project?</string>
+    <string name="create_project_confirmation">Are you sure you want to create this project?</string>
+    <string name="update_project_confirmation">Are you sure you want to update this project details?</string>
+    <string name="update_user_question">Update User?</string>
+    <string name="update_user_confirmation">Are you sure you want to update this user details?</string>
+    <string name="submitting_project_details">Submitting Project details…</string>
+
+
+    <!--sales home page-->
+    <string name="dsv_ex_msg_adapter_wrong_recycler">InfiniteScrollAdapter is supposed to work only with DiscreteScrollView</string>
+    <string name="dsv_ex_msg_dont_set_lm">You should not set LayoutManager on DiscreteScrollView.class instance. Library uses a special one. Just don\'t call the method.</string>
+    <string name="create_project">Create Project</string>
+    <string name="no_projects_found">No Projects found!</string>
+    <string name="select_project_type">Select Project Type<font color="#cc0029">*</font></string>
+    <string name="project_latitude">Project Latitude</string>
+    <string name="project_longitude">Project Longitude</string>
+    <string name="project_details">Project Details</string>
+    <string name="project_description_title">project Description:</string>
+    <string name="rera_registration_no_title">RERA Registration No.:</string>
+    <string name="project_cs_no_title">CS No.:</string>
+    <string name="permission_date_title">Permission Date:</string>
+    <string name="project_type_title">Project Type:</string>
+    <string name="project_latitude_title">Project Latitude:</string>
+    <string name="project_longitude_title">Project Longitude:</string>
+    <string name="add_new_user">Add New User</string>
+    <string name="update_new_user">Update User</string>
+    <string name="full_name_star">Full name<font color="#cc0029">*</font></string>
+
+    <string name="password_star">Password<font color="#cc0029">*</font></string>
+    <string name="confirm_password_star">Confirm Password<font color="#cc0029">*</font></string>
+    <string name="user_role_type">User Role Type</string>
+    <string name="add_user_to_groups">Add User to groups</string>
+    <string name="no_projects_available">No Projects Available!</string>
+    <string name="project_name_title">Project Name</string>
+    <string name="projects_">Assign Projects to User</string>
+    <string name="submitting_user_details">submitting  user details…</string>
+    <string name="add_new_user_question">Add New User?</string>
+    <string name="add_new_user_confirmation">Are you sure you want to add this new User?</string>
+    <string name="assigned_projects_">Assigned Projects:</string>
+    <string name="projects">Projects:</string>
+    <string name="new_lead_title">New Lead</string>
+
+    <!--Add New Lead-->
+    <string name="add_new_lead">Add New Lead</string>
+    <string name="update_lead">Update Lead</string>
+    <string name="select_lead_status">Select Lead Status<font color="#cc0029">*</font></string>
+    <string name="basic_information">Basic Information</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="date_of_birth_title">Date of birth</string>
+    <string name="occupation">Occupation</string>
+    <string name="is_it_your_first_home">Is it your First home ?</string>
+    <string name="select_budget">Select Budget</string>
+    <string name="lorem">lorem</string>
+    <string name="no_projects_assigned">No Projects Assigned!</string>
+    <string name="no_projects_avail_to_assigned">No Projects Available to Assign!</string>
+    <string name="select_all_title">Select All</string>
+    <string name="assign_roles_to_user">Assign Roles to User</string>
+    <string name="no_roles_available">No Roles Available!</string>
+    <string name="assigned_projects">Assigned Projects</string>
+    <string name="other_sources">Other Sources</string>
+    <string name="no_leads_available">No Leads Available!</string>
+    <string name="add_lead">Add Lead</string>
+    <string name="reference_name_title">Reference Name</string>
+    <string name="referer_contact_no">Referer Contact No.</string>
+    <string name="site_visit_remark">Site Visit Remark</string>
+    <string name="enter_alternative_mobile_number">Enter Alternative Number</string>
+    <string name="more_details">More Details</string>
+    <string name="enter_ni_reason">Enter NI Reason</string>
+    <string name="add_site_visit_">Add Site Visit</string>
+    <string name="mark_as_book">Mark As Booked</string>
+    <string name="unit_number">Unit Number</string>
+    <string name="booking_application">Booking Application</string>
+    <string name="site_visit_confirm_mark_book">Are you sure you want book this unit for customer %1$s?</string>
+    <string name="mark_book_remarks">Booking Remarks (If Any)</string>
+
+    <string name="add_floor_plan">Add Floor Plan</string>
+    <string name="submit_floor_plan">Submit Floor Plan</string>
+    <string name="update_floor_plan">Update Floor Plan</string>
+
+    <string name="add_quotation">Add Quotation</string>
+    <string name="submit_quotation">Submit Quotation</string>
+    <string name="update_quotation">Update Quotation</string>
+
+    <string name="quotation">Quotations</string>
+    <string name="floor_plan">Floor Plans</string>
+
+    <string name="title_add_quotation">Add New Quotation</string>
+    <string name="title_update_quotation">Update Quotation</string>
+
+    <string name="title_add_floor_plan">Add New Floor Plan</string>
+    <string name="title_update_floor_plan">Update Floor Plan</string>
+
+    <string name="no_floor_plans">Project floor plans not available!</string>
+    <string name="no_quotations">Project quotations not available!</string>
+
+    <string name="project_floor_plan_title">Project Floor Plan Title<font color="#cc0029">*</font></string>
+    <string name="project_quotation_title">Project Quotation Title<font color="#cc0029">*</font></string>
+
+    <string name="project_floor_plan_description">Project Floor Plan Description</string>
+    <string name="project_quotation_description">Project Quotation Description</string>
+
+    <string name="project_floor_plan_">Project Floor Plan</string>
+    <string name="project_quotation_">Project Quotation</string>
+
+    <string name="submit_project_quotation_question">Submit Quotation?</string>
+    <string name="update_project_quotation_question">Update Quotation?</string>
+    <string name="update_project_quotation_confirmation">Are you sure you want to update Project Quotation?</string>
+    <string name="submit_project_quotation_confirmation">Are you sure you want to submit Project Quotation?</string>
+    <string name="updating_projectQuotation_details">Updating Project Quotation details…</string>
+    <string name="submitting_projectQuotation_details">Submitting Project Quotation details…</string>
+
+    <string name="submit_project_floor_plan_question">Submit Floor Plan?</string>
+    <string name="update_project_floor_plan_question">Update Floor Plan?</string>
+    <string name="update_project_floor_plan_confirmation">Are you sure you want to update Project Floor Plan?</string>
+    <string name="submit_project_floor_plan_confirmation">Are you sure you want to submit Project Floor Plan?</string>
+    <string name="updating_project_floor_plan_details">Updating Project Floor Plan details…</string>
+    <string name="submitting_project_floor_plan_details">Submitting Project Floor Plan details…</string>
+    <string name="delete_project_floor_plan_question">Delete Floor Plan?</string>
+    <string name="delete_floor_plan_confirmation">Are you sure you want to delete this project floor plan?</string>
+    <string name="delete_project_quotation_question">Delete Quotation?</string>
+    <string name="delete_quotation_confirmation">Are you sure you want to delete this project quotation?</string>
+    <string name="project_not_created_yet">Project not created yet</string>
+    <string name="call_list">Call List</string>
+    <string name="today">Today</string>
+    <string name="dash">-</string>
+    <string name="select_start_date_colon">Select Start Date  :</string>
+    <string name="select_end_date_colon">Select End Date  :</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="search_calls">search scheduled calls</string>
+    <string name="search_site_visits">search site visits</string>
+
+    <string name="news_paper_date">Newspaper Date<font color="#cc0029">*</font></string>
+    <string name="select_sales_person">Select Sales Person Name</string>
+    <string name="reports">Reports</string>
+    <string name="delete_notifications">Delete Notifications?</string>
+
+    <string name="update_lead_question">Update Lead?</string>
+    <string name="update_lead_confirmation">Are you sure you want to update lead details?</string>
+    <string name="schedule_call">Add Schedule Call</string>
+    <string name="sales_manager_s_statistics_not_available">Sales Manager\'s statistics not available!</string>
+    <string name="status">status</string>
+
+    <string name="lead_summary_report">Lead Summary Report</string>
+    <string name="call_log_reports">Call Log Reports</string>
+    <string name="sales_manager_report">Sales Manager Report</string>
+    <string name="select_report_date">Select Report Dates</string>
+    <string name="select_from_date">Select From Date<font color="#cc0029">*</font></string>
+    <string name="select_to_date">Select To Date<font color="#cc0029">*</font></string>
+    <string name="export_report">Export Report</string>
+
+    <!-- gmail sign in-->
+    <string name="server_client_id">118503696544-48j61mnc2k8qptnleesb6l488c2gab74.apps.googleusercontent.com</string>
+    <string name="server_client_secret">epFQ51Cee3gl52u6Fz34_1Tp</string>
+
+    <string name="export_lead_report"><u>Export Lead Report</u></string>
+    <string name="click_to_export_lead_report"><u>Click here to Export Lead Summary Report.</u></string>
+    <string name="share_report_using">Share Report Using</string>
+    <string name="report_exported_successfully">Report Exported Successfully!</string>
+    <string name="note_report_download_success"><![CDATA[Note :-  Recent Report have been successfully downloaded and stored in your Internal Storage location under folder \"Internal Storage -> Lead Management App -> Reports\"]]></string>
+
+
+    <string name="mobile_whatsAppNo_star">Enter WhatsApp number<font color="#cc0029">*</font></string>
+
+
+</resources>

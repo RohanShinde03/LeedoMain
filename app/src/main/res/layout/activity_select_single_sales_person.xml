@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_selectAssignmentLogic"
+    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.siteVisits.SelectedSiteVisitMark_Activity">
+
+
+    <!-- ll assignment logic main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_selectAssignmentLogic_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+
+                <!-- select Assignment logic -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/que_how_to_churn_lead"
+                        android:textColor="@color/colorPrimary"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="18sp"
+                        android:gravity="center|start"/>
+
+
+                    <!-- assignment logic selection -->
+                    <RadioGroup
+                        android:id="@+id/rdoGrp_selectAssignmentLogic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mRb_selectAssignmentLogic_manual"
+                            style="@style/MyRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/manual"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/mRb_selectAssignmentLogic_auto"
+                            style="@style/MyRadioButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:layout_marginRight="@dimen/dimen_10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/auto"
+                            android:theme="@style/styleFontMediumText" />
+
+                    </RadioGroup>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="8dp" />
+
+
+                <!-- ll assignment logic auto -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_selectAssignmentLogic_auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+
+                    <!-- select assignment logic  text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+                        <!--Select Logic type -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/select_auto_assignment_logic"
+                            android:theme="@style/styleFontMediumText">
+                            <AutoCompleteTextView
+                                android:id="@+id/acTv_selectAssignmentLogic_selectAutoLogicType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:layout_margin="3dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16sp"
+                                android:focusable="false"
+                                android:theme="@style/styleFontMediumText" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_sales_persons"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="@string/note_select_multiple_sales_persons"
+                        android:theme="@style/styleFontRegularText"
+                        android:textColor="@color/main_grey"
+                        android:gravity="start"
+                        android:drawableStart="@drawable/ic_attachment_24dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"/>
+
+
+
+                    <!--Select Sales person -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_selectAssignmentLogic_selectSingleSalesPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        style="@style/styleFontRegularText"
+                        android:padding="15dp"
+                        android:gravity="center|start"
+                        android:hint="@string/sales_person_"
+                        android:singleLine="true"
+                        android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:background="@drawable/bg_outline_border_round_my_dob"
+                        android:textSize="16sp"
+                        android:focusable="false" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <!-- ll assignment logic manual -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_selectAssignmentLogic_manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_sales_person_name"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/note_select_single_sales_persons"
+                        android:theme="@style/styleFontRegularText"
+                        android:textColor="@color/main_grey"
+                        android:gravity="start"
+                        android:visibility="gone"
+                        android:drawableStart="@drawable/ic_attachment_24dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"/>
+
+
+                    <!--Select Sales person -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_selectAssignmentLogic_selectMultiSalesPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/styleFontRegularText"
+                        android:padding="15dp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        android:gravity="center|start"
+                        android:hint="@string/sales_person_"
+                        android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:background="@drawable/bg_outline_border_round_my_dob"
+                        android:textSize="16sp"
+                        android:focusable="false" />
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <!-- ll selected leads -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_selectAssignmentLogic_selectedLeads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selected_leads"
+                        android:textColor="@color/colorPrimary"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="@dimen/dimen_12dp"
+                        android:gravity="center|start"/>
+
+                    <com.tribeappsoft.leedo.util.FlowLayout
+                        android:id="@+id/flowLayout_selectAssignmentLogic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </com.tribeappsoft.leedo.util.FlowLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <!-- confirm Assignment -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_selectAssignmentLogic_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reassign Leads"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

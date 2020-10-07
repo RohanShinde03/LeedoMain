@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_itemTeamLeadStats">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--ll_Total_stats-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_team_stats_top"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
+
+            <!--Table titles -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="7"
+                android:orientation="horizontal">
+
+                <!--sales person Name -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sales_person_name"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="13sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+
+                <!--Leads  -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:gravity="center"/>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/l"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+                <!--Site Visits -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:visibility="gone"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/s"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorAccent"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+
+                <!-- ghp -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:textColor="@color/color_token_generated"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/g"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/color_token_generated"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF" />
+
+
+                <!--ghp + -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:textColor="@color/color_token_plus_generated"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/g_plus"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/color_token_plus_generated"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF" />
+
+                <!--Allotted -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textColor="@color/color_claim_now_success_green"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/a"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/color_claim_now_success_green"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:visibility="gone"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="#CFCFCF"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Add stats view  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_inventory_bottom"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
+
+            <!--ll_add_stats-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_itemTeamLeadStats_addStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <View
+                android:id="@+id/view_line_itemTeamLeadStats"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CFCFCF"
+                />
+
+            <!-- Total stats-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_itemTeamLeadStats_totalStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="7"
+                android:orientation="horizontal">
+
+                <!--Total -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total__"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+
+                <!-- total Leads  -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_totalLeads"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+                <!-- total Site Visits -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_totalSiteVisits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF"
+                    />
+
+
+                <!-- total ghp -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_totalGHP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_token_generated"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF" />
+
+
+                <!-- total ghp + -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_totalGHP_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_token_plus_generated"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#CFCFCF" />
+
+                <!--total Allotted -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.2">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemTeamLeadStats_totalAllotments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:theme="@style/styleFontBoldText"
+                        android:textColor="@color/color_claim_now_success_green"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mTv_itemTeamLeadStats_noStats"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="@string/no_sales_team_added"
+                android:theme="@style/styleFontMediumText"
+                android:layout_margin="15dp"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:textColor="@color/main_grey"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

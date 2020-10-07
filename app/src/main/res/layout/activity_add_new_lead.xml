@@ -1,0 +1,2371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_addNewLead"
+    android:background="@color/color_backdrop"
+    tools:context="com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity">
+
+    <!-- ll_add lead main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_newLead_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_backdrop"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+                <!-- sales representative-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_newLead_salesRepName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/def_sales_person_name"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:gravity="center|start"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sales_representative"
+                        android:textColor="@color/colorPrimary"
+                        android:theme="@style/styleFontMediumText"
+                        android:textSize="14sp"
+                        android:gravity="center|start"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- lead details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+                    <!-- lead details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_leadDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/basic_information"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_leadDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_keyboard_arrow_down_violet_24dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- lead details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewLeadDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                            <!-- lead first name -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- mr/miss -->
+                                <!-- <com.google.android.material.textfield.TextInputLayout
+                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginLeft="0dp"
+                                     android:layout_marginRight="3dp"
+                                     android:layout_weight="6.5"
+                                     android:hint="@string/mr_mrs">
+
+                                     <AutoCompleteTextView
+                                         android:layout_width="match_parent"
+                                         android:layout_height="wrap_content"
+                                         android:editable="false"
+                                         android:ellipsize="end"
+                                         android:textSize="15dp"
+                                         android:theme="@style/styleFontMediumText" />
+
+                                 </com.google.android.material.textfield.TextInputLayout>-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_marginRight="3dp"
+                                    android:layout_weight="7"
+                                    android:background="@color/main_white">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:hint="@string/mr_mrs">
+
+                                        <AutoCompleteTextView
+                                            android:id="@+id/acTv_newLead_mrs"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:editable="false"
+                                            android:ellipsize="end"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="10dp"
+                                            android:textColor="@color/BlackLight"
+                                            android:textSize="14sp"
+                                            android:theme="@style/styleFontMediumText" />
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_leadFirstName"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginLeft="3dp"
+                                    android:hint="@string/full_name_star">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_leadFirstName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textColor="@color/BlackLight"
+                                        android:inputType="textPersonName|textCapSentences"
+                                        android:digits="@string/digits_username"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- lead email -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newLead_leadEmail"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/email_address"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_leadEmail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textEmailAddress"
+                                    android:textColor="@color/BlackLight"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- lead middle name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/middle_name"
+                                android:visibility="gone"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_leadMiddleName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:visibility="gone"
+                                    android:digits="@string/digits_username"
+                                    android:textColor="@color/BlackLight"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- lead last name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newLead_leadLastName"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_leadLastName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/last_name"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:visibility="gone"
+                                    android:digits="@string/digits_username"
+                                    android:textColorHint="@color/main_grey"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- lead mob number  -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_newLead_leadMobCcp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp">
+
+                                    <!-- country code picker -->
+                                    <include layout="@layout/ccp_layout_code_picker" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_leadMobile"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/mobile_whatsAppNo_star"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_leadMobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textColor="@color/BlackLight"
+                                        android:singleLine="true"
+                                        android:maxLength="10"
+                                        android:textSize="16dp"/>
+
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_addLead_existUSer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistUser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:text="@string/full_name"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistProject"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/project_name"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistLeadStatus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/status"/>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- lead other mob number  -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_newLead_leadOtherMobCcp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp">
+
+                                    <!-- country code picker -->
+                                    <include layout="@layout/ccp_layout_code_picker2" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_leadOtherMobile"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/enter_alternative_mobile_number"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_leadOtherMobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:singleLine="true"
+                                        android:maxLength="10"
+                                        android:textSize="16dp"/>
+
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_addLead_existUser_OtherNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistUser_OtherNo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:text="@string/full_name"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistProject_OtherNo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/project_name"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_addLead_ExistStatus_OtherNo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="12sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:digits="@string/digits_username"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/status"/>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <!-- Verify lead Mobile number -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_newLead_mobAlExists"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:text="@string/mob_number_exists"
+                                    android:gravity="center"
+                                    android:padding="7dp"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="@color/color_claim_now_red"
+                                    android:textSize="14sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_newLead_mobVerifySuccess"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:text="@string/mobile_number_verified_success"
+                                    android:gravity="center"
+                                    android:padding="7dp"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="@color/color_claim_now_success_green"
+                                    android:textSize="14sp" />
+
+
+                                <!-- <com.google.android.material.textfield.TextInputLayout
+                                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     app:boxBackgroundColor="@color/main_white"
+                                     android:layout_marginTop="10dp"
+                                     android:layout_marginBottom="10dp"
+                                     android:padding="10dp">
+
+                                     <com.google.android.material.textfield.TextInputEditText
+
+                                         android:layout_width="match_parent"
+                                         android:layout_height="wrap_content"
+                                         style="@style/editTextPhone"
+                                         android:visibility="gone"
+                                         android:lines="1"
+                                         android:maxLength="10"
+                                         android:gravity="center"
+                                         android:digits="1234567890"
+                                         android:textColorHint="@color/main_grey"
+                                         android:textColor="@color/colorPrimary"
+                                         android:singleLine="true"
+                                         android:ems="10"
+                                         android:paddingLeft="10dp"
+                                         android:paddingRight="10dp"
+                                         android:theme="@style/styleFontMediumText" />
+
+                                 </com.google.android.material.textfield.TextInputLayout>-->
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_leadOtp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:errorEnabled="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/enter_lead_otp"
+                                    android:theme="@style/styleFontMediumText"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_OTPNumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        android:digits="1234567890"
+                                        android:gravity="center"
+                                        android:background="@color/main_white"
+                                        android:ems="10"
+                                        android:inputType="number"
+                                        android:maxLines="1"
+                                        android:maxLength="6"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/mBtn_newLead_verifyLeadMob"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    style="@style/coloredButton"
+                                    app:backgroundTint="@color/main_black"
+                                    app:cornerRadius="50dp"
+                                    android:textColor="@color/main_white"
+                                    app:textAllCaps="false"
+                                    android:layout_margin="10dp"
+                                    android:visibility="gone"
+                                    android:padding="12dp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:gravity="center"
+                                    android:text="@string/verify"
+                                    android:textSize="16sp" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_newLead_resendOtp_msg"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:gravity="center"
+                                    android:visibility="gone"
+                                    android:paddingTop="10dp"
+                                    android:layout_margin="10dp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:text="@string/retryOTP_text"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_newLead_resendOtp_counter"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:gravity="center"
+                                    android:visibility="gone"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:text="00:00"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/mBtn_newLead_resendOTP"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    style="@style/coloredButton"
+                                    app:backgroundTint="@color/main_light_grey"
+                                    app:cornerRadius="50dp"
+                                    android:textColor="@color/main_white"
+                                    app:textAllCaps="false"
+                                    android:layout_margin="5dp"
+                                    android:visibility="gone"
+                                    android:padding="12dp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:gravity="center"
+                                    android:text="@string/resend_otp"
+                                    android:textSize="16sp" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- lead dob -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:visibility="gone"
+                                android:text="@string/date_of_birth"
+                                android:layout_marginTop="15dp"
+                                android:textColor="@color/colorAccent"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_gravity="start"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_outline_border_round_my_dob"
+                                android:gravity="center|start"
+                                android:padding="18dp"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <com.tribeappsoft.leedo.util.customDatePicker.MyLocalDatePicker
+                                    android:id="@+id/mdp_newLead_leadBirthDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:mdp_date_format="dd-mm-yyyy" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- lead Address -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:layout_marginTop="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginBottom="10dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_leadAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:hint="@string/lead_address"
+                                    android:inputType="textPersonName|textMultiLine"
+                                    android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:visibility="visible"
+                                    android:maxLines="10"
+                                    android:ellipsize="end"
+                                    android:gravity="start"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- lead stages dropdown -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@color/main_white"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:hint="@string/select_lead_status">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv_newLead_leadStage"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:textColor="@color/BlackLight"
+                                        android:textSize="16sp"
+                                        android:theme="@style/styleFontMediumText" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                                <!-- not interested reason-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_siteVisit_niReason"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="10dp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginBottom="10dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_siteVisit_niReason"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:hint="@string/enter_ni_reason"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:inputType="textEmailAddress|textMultiLine"
+                                        android:textColorHint="@color/grey_m"
+                                        android:textColor="@color/BlackLight"
+                                        android:visibility="visible"
+                                        android:maxLines="5"
+                                        android:ellipsize="end"
+                                        android:gravity="start"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--property_buying_for text -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="@string/property_buying_for"
+                                android:visibility="gone"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/colorAccent"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_gravity="start"
+                                android:gravity="center|start"/>
+
+                            <!-- property buy for selection -->
+                            <RadioGroup
+                                android:id="@+id/rdoGrp_newLead_propertyBuyFor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp">
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_newLead_selfUse"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/end_use"
+                                    android:theme="@style/styleFontMediumText" />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_newLead_investment"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="false"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/investment"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </RadioGroup>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Other Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <!-- Other Details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_otherDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_information"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_viewOtherDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_keyboard_arrow_down_violet_24dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- other details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewOtherDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_lead_dob"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    app:endIconDrawable="@drawable/ic_date"
+                                    app:endIconMode="custom">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_dob"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/date_of_birth_title"
+                                        android:inputType="none"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                         android:textColor="@color/BlackLight"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <!-- lead profession dropdown -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:background="@color/main_white"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:hint="@string/works_in">
+
+                                        <AutoCompleteTextView
+                                            android:id="@+id/acTv_newLead_leadProfession"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:editable="false"
+                                            android:ellipsize="end"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="10dp"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textColor="@color/BlackLight"
+                                            android:textSize="16sp"/>
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                <!-- lead profession  -->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp">
+
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_leadProfession"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/occupation"
+                                        android:inputType="text"
+                                        android:visibility="visible"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                         android:textColor="@color/BlackLight"
+                                        android:singleLine="true" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <!-- lead annual income -->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:hint="@string/select_annual_income"
+                                    android:background="@color/main_white">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv_newLead_selectAnnualIncome"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:textSize="16sp"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:textColor="@color/BlackLight"
+                                        android:background="@color/main_white" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                                <!--first home -->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="17sp"
+                                    android:text="@string/is_it_your_first_home"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_gravity="start"
+                                    android:gravity="center|start"/>
+
+                                <!-- first home yes no -->
+                                <RadioGroup
+                                    android:id="@+id/rdoGrp_newLead_firstHome"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rb_newLead_firstHome_yes"
+                                        style="@style/MyRadioButtonStyle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="15dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:text="@string/yes"
+                                        android:checked="false"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                    <androidx.appcompat.widget.AppCompatRadioButton
+                                        android:id="@+id/rb_newLead_FirstHome_no"
+                                        style="@style/MyRadioButtonStyle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:checked="true"
+                                        android:paddingLeft="15dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text="@string/no"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </RadioGroup>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- select when would like to you buy -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:visibility="gone"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/select_when_to_buy">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectWhenToBuy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="15sp"
+                                    android:visibility="gone"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- property buying for -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:visibility="gone"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/property_buying_for">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectPropertyBuyFor"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="15sp"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- other purpose  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:visibility="gone"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/enter_property_buy_for">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_otherPropertyBuyPurpose"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                     android:textColor="@color/BlackLight"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+                <!-- KYC Documents -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <!-- kyc doc text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_kycDocsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kyc_documents"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_kycDocs_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view kyc doc details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewKycDoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+
+                        <!-- add kyc doc dynamically -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_newLead_addKYCDoc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="6dp" />
+
+                <!-- reference details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- ref lead text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_refLeadMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reference_lead"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:visibility="gone"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_refLead_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/sm_newLead_leadRefBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:checked="false"
+                            android:textSize="20sp"
+                            style="@style/Widget.MaterialComponents.CompoundButton.Switch"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:fontFamily="@font/metropolis_medium"
+                            android:text="@string/lead_referred_by"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- ref lead details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_addRefData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <!-- details -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <!-- ref name  -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/reference_name"
+                                android:textColorHint="@color/main_grey">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_refName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:digits="@string/digits_username"
+                                     android:textColor="@color/BlackLight"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <!-- ref mob -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_newLead_refMobCcp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:orientation="horizontal">
+
+                                    <!-- country code picker -->
+                                    <!--<include layout="@layout/ccp_layout_code_picker" />-->
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_newLead_refCountry"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        style="@style/styleFontMediumText"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="(IN) +91"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="13dp" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_newLead_refCountryArrow"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:adjustViewBounds="true"
+                                        android:alpha="0.6"
+                                        android:background="@drawable/ripple_effect"
+                                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                                        android:tint="@android:color/black" />
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newLead_refMobile"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/reference_mobile"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_refMobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:singleLine="true"
+                                        android:maxLength="10"
+                                        android:textSize="16dp"/>
+
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- ref from name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/select_ref_from">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectRefProject"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="15sp"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <!-- ref remarks -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newLead_refFlatNumber"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/ref_remarks">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_refFlatNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:inputType="text"
+                                     android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:ellipsize="end"
+                                    android:gravity="top|start"
+                                    android:theme="@style/editTextMultiline"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:textSize="16sp"
+                                    android:scrollbars="vertical"
+                                    android:scrollbarStyle="insideInset"
+                                    android:overScrollMode="always"
+                                    android:singleLine="false"
+                                    android:lines="3"
+
+                                    />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="6dp" />
+
+                <!-- Lead Campaign -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- lead campaign text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_leadCampaignMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lead_campaign"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_leadCampaign_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view lead campaign details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewLeadCampaign"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+
+                        <!-- add lead campaign dynamically -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_newLead_addLeadCampaign"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Project Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Project Details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_projectDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/projectDetails"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_newLead_viewProjectDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_keyboard_arrow_down_violet_24dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- project details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newLead_viewProjectDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+                            <!--  <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_outline_border_round_my_dob"
+                                android:gravity="center|start"
+                                android:padding="18dp"
+                                android:orientation="vertical"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    &lt;!&ndash; income spinner &ndash;&gt;
+                                    <androidx.appcompat.widget.AppCompatSpinner
+                                        android:id="@+id/spn_newLead_selectProjectName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="3dp"
+                                        android:background="@null"
+                                        android:ellipsize="end"
+                                        android:popupBackground="@color/main_white"
+                                        android:gravity="center|start"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:prompt="@string/select"
+                                        android:textSize="18sp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        app:layout_anchor="@id/spn_newLead_selectProjectName"
+                                        app:layout_anchorGravity="center|end"
+                                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+
+                                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+                            <!--<androidx.appcompat.widget.LinearLayoutCompat
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/bg_outline_border_round_my_dob"
+                              android:gravity="center|start"
+                              android:padding="18dp"
+                              android:orientation="vertical"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp">
+
+                              <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  &lt;!&ndash; income spinner &ndash;&gt;
+                                  <androidx.appcompat.widget.AppCompatSpinner
+                                      android:id="@+id/spn_newLead_selectUnitType"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:layout_margin="3dp"
+                                      android:background="@null"
+                                      android:ellipsize="end"
+                                      android:popupBackground="@color/main_white"
+                                      android:gravity="center|start"
+                                      android:paddingLeft="10dp"
+                                      android:paddingRight="10dp"
+                                      android:prompt="@string/select"
+                                      android:textSize="18sp"
+                                      android:theme="@style/styleFontMediumText" />
+
+                                  <androidx.appcompat.widget.AppCompatImageView
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      app:layout_anchor="@id/spn_newLead_selectUnitType"
+                                      app:layout_anchorGravity="center|end"
+                                      app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+
+                              </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+                          </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+                            <!-- select project name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/select_project_name_star">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectProjectName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="15sp"
+                                    android:textColor="@color/BlackLight"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- select unit type -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/select_unit_type_star">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectUnitType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- pref site visit text -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:text="@string/preferred_site_visit_star"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="6dp"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="17sp"
+                                android:gravity="center|start"/>
+
+                            <!-- pref site visit dates -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1"
+                                    app:endIconDrawable="@drawable/ic_date"
+                                    app:endIconMode="custom">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_prefSiteVisitFromDate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/from_date"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                         android:textColor="@color/BlackLight"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="1"
+                                    app:endIconDrawable="@drawable/ic_date"
+                                    app:endIconMode="custom">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_prefSiteVisitToDate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/to_date"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                         android:textColor="@color/BlackLight"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!--already site visited text -->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_alreadyVisitedTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:text="@string/already_visited"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_gravity="start"
+                                android:gravity="center|start"/>
+
+                            <!-- site visited already or not -->
+                            <RadioGroup
+                                android:id="@+id/rdoGrp_newLead_alreadySiteVisited"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp">
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_newLead_alreadySiteVisited_yes"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/yes"
+                                    android:checked="false"
+                                    android:theme="@style/styleFontMediumText" />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_newLead_alreadySiteVisited_no"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:text="@string/no"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </RadioGroup>
+
+                            <!-- already site visit date -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_newLead_alreadySiteVisit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <!-- visit date time-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:hint="@string/visit_date_star"
+                                        app:endIconDrawable="@drawable/ic_date"
+                                        app:endIconMode="custom">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_newLead_alreadySiteVisitDate"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:textSize="14sp"
+                                             android:textColor="@color/BlackLight"
+                                            android:singleLine="true" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:hint="@string/visit_time_star"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        app:endIconDrawable="@drawable/ic_access_time_black_24dp"
+                                        app:endIconMode="custom">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_newLead_alreadySiteVisitTime"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:inputType="none"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:focusableInTouchMode="false"
+                                            android:textSize="14sp"
+                                             android:textColor="@color/BlackLight"
+                                            android:singleLine="true" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!-- site visit remarks-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newLead_alreadySiteVisitRemark"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:hint="@string/site_visit_remark"
+                                        android:inputType="textEmailAddress|textMultiLine"
+                                         android:textColor="@color/BlackLight"
+                                        android:visibility="visible"
+                                        android:maxLines="5"
+                                        android:ellipsize="end"
+                                        android:gravity="start"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <!-- select visit conducted by -->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/conducted_by_star">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv_newLead_selectVisitConductedBy"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:textSize="15sp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- budget range-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/select_budget"
+                                android:background="@color/main_white">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newLead_selectBudgetLimit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:background="@color/main_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!-- select lead source through -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:background="@color/main_white"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/select_lead_source"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:visibility="visible">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTv_newLead_selectLeadSource"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:editable="false"
+                                        android:ellipsize="end"
+                                        android:textSize="15sp"
+                                        android:visibility="visible"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:orientation="vertical"
+                                android:id="@+id/ll_leadGenMain_hideShow">
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_addEnquiry_title_LeadGeneration"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="16sp"
+                                        android:text="@string/lead_source_details_"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="@color/BlackLight"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_gravity="start"
+                                        android:gravity="center|start"/>
+
+
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:id="@+id/ll_addLead_LeadSources_Click"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        style="@style/textStyle_ll_">
+                                        <com.google.android.material.textview.MaterialTextView
+                                            android:id="@+id/tv_addLead_leadGen_thrw"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/select_lead_source"
+                                             android:textColor="@color/BlackLight"
+                                            style="@style/textStyle_ll_textBox"/>
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/iv_addLead_LeadSources_Dropdown"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/ic_down_arrow_drop_down_24" />
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_addLead_LeadSources_Dropdown"
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="5dp">
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- select resources-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone"
+                                android:id="@+id/ll_Reference_main">
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="vertical">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:id="@+id/til_newLead_RefName"
+                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_weight="3"
+                                        android:hint="@string/reference_name_title">
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/edt_addLead_fullName_referer"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText"
+                                            android:inputType="textPersonName|textCapSentences"
+                                            android:digits="@string/digits_username"
+                                            android:textColor="@color/BlackLight"
+                                            android:singleLine="true" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="vertical">
+
+                                    <!-- lead mob number  -->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp">
+
+                                        <!-- cpp layout -->
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:id="@+id/ll_newLead_leadMobCcpRefNo"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/bg_outline_border_round_my_dob"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginRight="3dp"
+                                            android:paddingLeft="5dp"
+                                            android:paddingRight="5dp"
+                                            android:paddingTop="14dp"
+                                            android:paddingBottom="14dp">
+
+                                            <!-- country code picker -->
+                                            <include layout="@layout/ccp_layout_code_picker" />
+
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                        <!--mobile no-->
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/til_newLead_refererMobile"
+                                            android:theme="@style/textInputLayoutAppearance"
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="@string/referer_contact_no"
+                                            android:textColorHint="@color/grey_m">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/edt_addLead_refererMobile_no"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:freezesText="true"
+                                                style="@style/editTextPhone"
+                                                android:textColorHint="@color/grey_m"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:singleLine="true"
+                                                android:maxLength="10"
+                                                android:textSize="16sp"/>
+
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- lead remarks -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_newLead_leadRemarks"
+                        style="@style/TextInputLayout.OutlineBox.CustomFont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:layout_marginBottom="10dp"
+                        android:hint="@string/lead_remarks_if_any"
+                        android:textColorHint="@color/grey_m">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_newLead_leadRemarks"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:inputType="text"
+                             android:textColor="@color/BlackLight"
+                            android:ellipsize="end"
+                            android:gravity="top|start"
+                            android:theme="@style/editTextMultiline"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textColorHint="@color/grey_m"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textSize="16sp"
+                            android:scrollbars="vertical"
+                            android:scrollbarStyle="insideInset"
+                            android:overScrollMode="always"
+                            android:singleLine="false"
+                            android:lines="3"
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- submit lead -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_newLead_submitLead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit_lead"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout_new"
+        android:visibility="visible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:id="@+id/view_addLead_disableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3F7F7F7"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_newLead_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif_newLead"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/gif_success"
+            />
+
+        <!-- <com.vjd.salesapp.util.GifImageView
+             android:layout_margin="5dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true" />-->
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

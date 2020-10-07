@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_frag_customerHome">-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/color_whiteGrey"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            android:fitsSystemWindows="true">
+            <!--android:background="@color/home_background"-->
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsv_fragSalesPersonHomeFeed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:fitsSystemWindows="true">
+                <!--  app:stickyHeader="@id/ll_home_category"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                -->
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_fragCustomerHome_addImagesSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="2dp"
+                        android:visibility="visible"
+                        android:elevation="32dp"
+                        android:layout_gravity="center|start"
+                        android:orientation="horizontal">
+
+                        <!--todays date time-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_callScheduleMain_curDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|start|top"
+                            android:layout_weight="2"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_callScheduleMain_todayDay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/styleFontBoldText"
+                                android:gravity="center"
+                                android:visibility="visible"
+                                android:layout_gravity="center"
+                                android:text="@string/today"
+                                android:textColor="@color/main_grey"
+                                android:textSize="22sp"
+                                android:ellipsize="end"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_fragHome_DayName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/styleFontMediumText"
+                                android:gravity="center|start"
+                                android:text="NA"
+                                android:layout_marginLeft="2dp"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="18sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="visible"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_fragHome_todayDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/def_today_date"
+                                    android:layout_weight="2"
+                                    android:gravity="center"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="14dp"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!--project and salesperson selection-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_callScheduleMain_dropdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="6dp"
+                            android:orientation="vertical">
+                            <!--  project filter -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/color_whiteGrey"
+                                android:padding="2dp"
+                                android:orientation="vertical">
+
+                                <!-- select project text-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="@color/color_whiteGrey"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center">
+
+                                    <!--Select project name -->
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:hint="@string/select_project_name"
+                                        android:textColorHint="@color/grey_m"
+                                        android:theme="@style/styleFontMediumText">
+                                        <AutoCompleteTextView
+                                            android:id="@+id/acTv_SalesHome_selectProject"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:editable="false"
+                                            android:ellipsize="end"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="10dp"
+                                            android:textSize="14sp"
+                                            android:focusable="false"
+                                            android:textColor="@color/BlackLight"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:id="@+id/ll_fragHome_salesPersonDropdown"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <!--select sales person-->
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="60dp"
+                                            android:layout_marginTop="8dp"
+                                            android:hint="@string/select_sales_person"
+                                            android:textColorHint="@color/grey_m"
+                                            android:theme="@style/styleFontMediumText">
+                                            <AutoCompleteTextView
+                                                android:id="@+id/acTv_SalesHome_selectSalesPerson"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:editable="false"
+                                                android:ellipsize="end"
+                                                android:paddingLeft="10dp"
+                                                android:paddingRight="10dp"
+                                                android:textSize="14sp"
+                                                android:focusable="false"
+                                                android:textColor="@color/BlackLight"
+                                                android:textColorHint="@color/grey_m"
+                                                android:theme="@style/styleFontMediumText" />
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.4dp"
+                        android:background="@color/grayColorCode"/>
+
+                    <!--tabs e.g today,yesterday-->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:background="@color/colorPrimary"
+                            android:orientation="horizontal"
+                            android:scrollbars="horizontal"
+                            tools:ignore="ScrollViewSize">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_FragHome_Today"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:text="Today"
+                                android:theme="@style/styleFontMedium"
+                                android:textColor="@color/GrayLight"
+                                android:ellipsize="end"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_FragHome_Yesterday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:theme="@style/styleFontMedium"
+                                android:text="Yesterday"
+                                android:textColor="@color/GrayLight"
+                                android:ellipsize="end"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_FragHome_LastWeek"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:theme="@style/styleFontMedium"
+                                android:text="This Week"
+                                android:textColor="@color/GrayLight"
+                                android:ellipsize="end"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_FragHome_LastMonth"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:theme="@style/styleFontMedium"
+                                android:text="30 Days"
+                                android:textColor="@color/GrayLight"
+                                android:ellipsize="end"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_FragHome_Custom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:theme="@style/styleFontMedium"
+                                android:text="Custom"
+                                android:textColor="@color/GrayLight"
+                                android:ellipsize="end"/>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.4dp"
+                        android:background="@color/grayColorCode"/>
+
+                    <!--tabs-->
+
+                    <!--<com.tribeappsoft.leado.util.CustomTabLayout
+                        android:id="@+id/tabLayout_callScheduleMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="fixed"
+                        app:tabGravity="fill"
+                        android:background="@color/color_whiteGrey"
+                        app:tabIndicatorColor="@color/colorPrimary"
+                        app:tabTextAppearance="@style/CustomTabStyle"
+                        android:elevation="16dp"
+                        app:tabSelectedTextColor="@color/colorPrimary"
+                        app:tabTextColor="@color/main_medium_grey"/>-->
+
+
+
+                    <!--  app:tabBackground="@drawable/tab_selector"-->
+                    <!--  <androidx.viewpager.widget.ViewPager
+                          android:id="@+id/viewPager_callScheduleMain"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+
+                    <!--<androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_fragCustomerHome_tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:background="@color/color_whiteGrey"
+                        android:elevation="16dp"
+                        android:orientation="vertical">
+                        &lt;!&ndash; <com.google.android.material.tabs.TabLayout
+                             android:id="@+id/tabLayout_callScheduleMain"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="top"
+                             android:background="@color/colorPrimary"
+                             app:layout_scrollFlags="scroll|enterAlways|snap"
+                             app:tabIndicatorColor="@color/white"
+                             app:tabSelectedTextColor="@color/white"
+                             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+                             app:tabTextColor="@color/main_medium_grey" />&ndash;&gt;
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+                    <!-- <View
+                         android:layout_width="match_parent"
+                         android:layout_height="0.4dp"
+                         android:background="@color/grayColorCode"/>-->
+
+
+                    <!--loading msg-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_fragCustomerHome_loadingContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:text="@string/hang_on_loading_content"
+                            android:textAlignment="center"
+                            android:visibility="gone"
+                            android:textColor="@color/main_light_grey"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:theme="@style/styleFontMediumText" />
+
+
+                        <ProgressBar
+                            style="@style/Widget.AppCompat.ProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:indeterminate="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminateDuration="2000"
+                            android:indeterminateTint="@color/main_white"
+                            android:indeterminateTintMode="src_atop" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.tribeappsoft.leedo.util.CustomTabLayout
+            android:id="@+id/tabLayout_FragHome"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="bottom"
+            android:scrollbars="horizontal"
+            android:background="@color/bg_grey"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextAppearance="@style/MineCustomTabText1"
+            app:tabTextColor="@color/GrayLight" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_FragHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+    <!-- ll no Data Found -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_customerHome_noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_add_lead"
+            app:tint="@color/color_Gray"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_customerHome_noDealsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/no_leads_available"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/main_white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->

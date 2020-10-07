@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.reports.LeadReportsActivity">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center|top"
+        android:layout_marginTop="@dimen/dimen_50dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/report_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/coloredButton"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="50dp"
+            android:textColor="@color/main_white"
+            app:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:padding="15dp"
+            android:theme="@style/styleFontMediumText"
+            android:gravity="center"
+            android:text="@string/lead_summary_report"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/report_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/coloredButton"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="50dp"
+            android:textColor="@color/main_white"
+            app:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:padding="15dp"
+            android:theme="@style/styleFontMediumText"
+            android:gravity="center"
+            android:text="@string/call_log_reports"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/report_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/coloredButton"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="50dp"
+            android:textColor="@color/main_white"
+            app:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:padding="15dp"
+            android:theme="@style/styleFontMediumText"
+            android:gravity="center"
+            android:text="@string/menu_sales_team_report"
+            android:textSize="16sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTv_leadReport_export"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:text="@string/export_lead_report"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:theme="@style/styleFontMedium"
+            android:textColor="@color/primaryDarkColor"
+            android:drawableEnd="@drawable/ic_baseline_import_export_24"
+            android:drawablePadding="@dimen/dimen_5dp"
+            />
+
+         <!-- for marquee text -->
+
+        <!--
+           android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+        -->
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:tint="@color/main_light_grey"
+        android:scaleType="centerCrop"
+        android:layout_gravity="bottom"
+        android:src="@drawable/ic_baseline_bar_chart_24"/>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

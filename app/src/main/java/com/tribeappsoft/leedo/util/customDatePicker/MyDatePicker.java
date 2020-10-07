@@ -1,0 +1,702 @@
+package com.tribeappsoft.leedo.util.customDatePicker;
+
+/*
+ * Created by ${ROHAN} on 20/6/19.
+ */
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.animation.CycleInterpolator;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.tribeappsoft.leedo.R;
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+
+public class MyDatePicker extends RelativeLayout
+{
+
+    protected static final int LENGTH_DATE_COMPLETE = 8;
+
+    private TextInputEditText editLazyDatePickerReal;
+    private LinearLayoutCompat layoutLazyDatePicker;
+    private AppCompatTextView textLazyDatePickerDate;
+
+    private AppCompatTextView textLazyDate1;
+    private View viewLazyDate1;
+    private AppCompatTextView textLazyDate2;
+    private View viewLazyDate2;
+    private AppCompatTextView textLazyDate3;
+    private View viewLazyDate3;
+    private AppCompatTextView textLazyDate4;
+    private View viewLazyDate4;
+    private AppCompatTextView textLazyDate5;
+    private View viewLazyDate5;
+    private AppCompatTextView textLazyDate6;
+    private View viewLazyDate6;
+    private AppCompatTextView textLazyDate7;
+    private View viewLazyDate7;
+    private AppCompatTextView textLazyDate8;
+    private View viewLazyDate8;
+
+    // Properties
+    protected String date;
+    private int textColor;
+    private int hintColor;
+    private Date minDate;
+    private Date maxDate;
+    protected DateFormat dateFormat;
+    private boolean keyboardVisible = false;
+    private boolean shakeAnimationDoing = false;
+    private boolean showFullDate = true;
+    private OnDatePickListener onDatePickListener;
+    private OnDateSelectedListener onDateSelectedListener;
+    private TextWatcher textWatcher;
+
+
+
+    //region CONSTRUCTORS
+    public MyDatePicker(Context context) {
+        this(context, null);
+    }
+
+    public MyDatePicker(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public MyDatePicker(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
+    }
+
+    protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
+        inflate(context, R.layout.layout_my_date_picker, this);
+
+        // Load the styled attributes and set their properties
+        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.MyDatePicker,
+                defStyleAttr, 0);
+        textColor = attributes.getColor(R.styleable.MyDatePicker_mdp_text_color, Color.BLACK);
+        hintColor = attributes.getColor(R.styleable.MyDatePicker_mdp_hint_color, Color.GRAY);
+        showFullDate = attributes.getBoolean(R.styleable.MyDatePicker_mdp_show_full_date, true);
+
+        int dateFormatValue = attributes.getInteger(R.styleable.MyDatePicker_mdp_date_format,
+                DateFormat.MM_DD_YYYY.getAttrValue());
+        dateFormat = DateFormat.fromValue(dateFormatValue);
+
+        attributes.recycle();
+    }
+    //endregion
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        initView();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!isInEditMode()) {
+
+            if (showFullDate) {
+                addKeyboardVisibilityListener(this, isVisible -> {
+                    if (keyboardVisible != isVisible) {
+                        keyboardVisible = isVisible;
+                        if (!keyboardVisible && editLazyDatePickerReal.isFocused()) {
+                            editLazyDatePickerReal.clearFocus();
+                        }
+                    }
+                });
+
+                editLazyDatePickerReal.setOnFocusChangeListener((v, hasFocus) -> {
+                    showDate(date, hasFocus);
+                    showFullDateLayout(hasFocus);
+                });
+            }
+
+            textWatcher = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (!shakeAnimationDoing) {
+                        if (before > 0) {
+                            // Remove last char
+                            if (date.length() > 0) {
+                                date = date.substring(0, date.length() - 1);
+                            }
+                        } else if (date.length() < LENGTH_DATE_COMPLETE && s.length() > 0 && charIsValid(date, s.charAt(s.length() - 1))) {
+                            char unicodeChar = s.charAt(s.length() - 1);
+                            date += unicodeChar;
+                            if (date.length() == LENGTH_DATE_COMPLETE) {
+                                onDatePick();
+                            }
+                        } else {
+                            shakeView(layoutLazyDatePicker);
+                        }
+
+                        showDate(date, true);
+                        onDateSelected();
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            };
+            editLazyDatePickerReal.addTextChangedListener(textWatcher);
+        }
+    }
+
+    //region PRIVATE METHOD
+    private void initView() {
+        date = "";
+
+        editLazyDatePickerReal = findViewById(R.id.edt_mDatePicker_date);
+        layoutLazyDatePicker = findViewById(R.id.layout_myDatePicker);
+        textLazyDatePickerDate = findViewById(R.id.tv_my_date_picker_date);
+
+        textLazyDate1 = findViewById(R.id.tv_my_date_1);
+        viewLazyDate1 = findViewById(R.id.view_my_date_1);
+        textLazyDate2 = findViewById(R.id.tv_my_date_2);
+        viewLazyDate2 = findViewById(R.id.view_my_date_2);
+        textLazyDate3 = findViewById(R.id.tv_my_date_3);
+        viewLazyDate3 = findViewById(R.id.view_my_date_3);
+        textLazyDate4 = findViewById(R.id.tv_my_date_4);
+        viewLazyDate4 = findViewById(R.id.view_my_date_4);
+        textLazyDate5 = findViewById(R.id.tv_my_date_5);
+        viewLazyDate5 = findViewById(R.id.view_my_date_5);
+        textLazyDate6 = findViewById(R.id.tv_my_date_6);
+        viewLazyDate6 = findViewById(R.id.view_my_date_6);
+        textLazyDate7 = findViewById(R.id.tv_my_date_7);
+        viewLazyDate7 = findViewById(R.id.view_my_date_7);
+        textLazyDate8 = findViewById(R.id.tv_my_date_8);
+        viewLazyDate8 = findViewById(R.id.view_my_date_8);
+
+        textLazyDate1.setTextColor(hintColor);
+        viewLazyDate1.setBackgroundColor(hintColor);
+        viewLazyDate1.setVisibility(View.GONE);
+        textLazyDate2.setTextColor(hintColor);
+        viewLazyDate2.setBackgroundColor(hintColor);
+        viewLazyDate2.setVisibility(View.GONE);
+        textLazyDate3.setTextColor(hintColor);
+        viewLazyDate3.setBackgroundColor(hintColor);
+        viewLazyDate3.setVisibility(View.GONE);
+        textLazyDate4.setTextColor(hintColor);
+        viewLazyDate4.setBackgroundColor(hintColor);
+        viewLazyDate4.setVisibility(View.GONE);
+        textLazyDate5.setTextColor(hintColor);
+        viewLazyDate5.setBackgroundColor(hintColor);
+        viewLazyDate5.setVisibility(View.GONE);
+        textLazyDate6.setTextColor(hintColor);
+        viewLazyDate6.setBackgroundColor(hintColor);
+        viewLazyDate6.setVisibility(View.GONE);
+        textLazyDate7.setTextColor(hintColor);
+        viewLazyDate7.setBackgroundColor(hintColor);
+        viewLazyDate7.setVisibility(View.GONE);
+        textLazyDate8.setTextColor(hintColor);
+        viewLazyDate8.setBackgroundColor(hintColor);
+        viewLazyDate8.setVisibility(View.GONE);
+
+        if (dateFormat == DateFormat.MM_DD_YYYY) {
+            textLazyDate1.setText(getContext().getString(R.string.mdp_month));
+            textLazyDate2.setText(getContext().getString(R.string.mdp_month));
+            textLazyDate3.setText(getContext().getString(R.string.mdp_day));
+            textLazyDate4.setText(getContext().getString(R.string.mdp_day));
+        } else if (dateFormat == DateFormat.DD_MM_YYYY) {
+            textLazyDate1.setText(getContext().getString(R.string.mdp_day));
+            textLazyDate2.setText(getContext().getString(R.string.mdp_day));
+            textLazyDate3.setText(getContext().getString(R.string.mdp_month));
+            textLazyDate4.setText(getContext().getString(R.string.mdp_month));
+        }
+
+        textLazyDate5.setText(getContext().getString(R.string.mdp_year));
+        textLazyDate6.setText(getContext().getString(R.string.mdp_year));
+        textLazyDate7.setText(getContext().getString(R.string.mdp_year));
+        textLazyDate8.setText(getContext().getString(R.string.mdp_year));
+
+        textLazyDatePickerDate.setTextColor(textColor);
+
+        findViewById(R.id.btn_my_date_picker_on_focus).setOnClickListener(v -> showKeyboard(editLazyDatePickerReal, getContext()));
+    }
+
+    private void showFullDateLayout(boolean hasFocus) {
+        if (!hasFocus && date.length() == LENGTH_DATE_COMPLETE) {
+            layoutLazyDatePicker.setVisibility(View.INVISIBLE);
+            textLazyDatePickerDate.setVisibility(View.VISIBLE);
+            textLazyDatePickerDate.setText(dateToString(getDate(),
+                    dateFormat.getCompleteFormatValue()));
+
+        } else if (layoutLazyDatePicker.getVisibility() == View.INVISIBLE) {
+            layoutLazyDatePicker.setVisibility(View.VISIBLE);
+            textLazyDatePickerDate.setVisibility(View.GONE);
+        }
+    }
+
+
+    private boolean charIsValid(String date, char unicodeChar)
+    {
+        // Check if char is a digit
+        if (!Character.isDigit(unicodeChar)) {
+            return false;
+        }
+
+        int length = date.length();
+
+        // Check Month & Day by dateFormat selected
+        int value = Character.getNumericValue(unicodeChar);
+        if (dateFormat == DateFormat.MM_DD_YYYY) {
+            if (length == 0 && value > 1) { // M1
+                return false;
+            } else if (length == 1 && ((Character.getNumericValue(date.charAt(0)) == 1 && value > 2)
+                    || (Character.getNumericValue(date.charAt(0)) == 0 && value == 0))) { // M2
+                return false;
+            } else if (length == 2 && value > 3) { // D1
+                return false;
+            } else if (length == 3 && ((Character.getNumericValue(date.charAt(2)) == 3 && value > 1)
+                    || (Character.getNumericValue(date.charAt(2)) == 0 && value == 0))) { // D2
+                return false;
+            }
+
+        } else if (dateFormat == DateFormat.DD_MM_YYYY) {
+            if (length == 0 && value > 3) { // D1
+                return false;
+            } else if (length == 1 && ((Character.getNumericValue(date.charAt(0)) == 3 && value > 1)
+                    || (Character.getNumericValue(date.charAt(0)) == 0 && value == 0))) { // D2
+                return false;
+            } else if (length == 2 && value > 1) { // M1
+                return false;
+            } else if (length == 3 && ((Character.getNumericValue(date.charAt(2)) == 1 && value > 2)
+                    || (Character.getNumericValue(date.charAt(2)) == 0 && value == 0))) { // M2
+                return false;
+            }
+        }
+
+        // Check if date is between min & max date
+        if (length > 3 && minDateIsNotNull()) {
+            StringBuilder dateToCheckTmp = new StringBuilder(date + unicodeChar);
+            while (dateToCheckTmp.length() < LENGTH_DATE_COMPLETE) {
+                dateToCheckTmp.append("9");
+            }
+            if (checkMinDate(dateToCheckTmp)) return false;
+        }
+
+        if (length > 3 && maxDateIsNotNull()) {
+            StringBuilder dateToCheckTmp = new StringBuilder(date + unicodeChar);
+            while (dateToCheckTmp.length() < LENGTH_DATE_COMPLETE) {
+                dateToCheckTmp.append("0");
+            }
+            if (checkMaxDate(dateToCheckTmp)) return false;
+        }
+
+        if (length > 6) {
+            StringBuilder dateToCheckTmp = new StringBuilder(date + unicodeChar);
+            while (dateToCheckTmp.length() < LENGTH_DATE_COMPLETE) {
+                dateToCheckTmp.append("9");
+            }
+            return checkSameDate(dateToCheckTmp);
+        }
+
+        return true;
+    }
+
+    private void showDate(String value, boolean hasFocus)
+    {
+        manageViewFocus(hasFocus, value.length());
+        switch (value.length()) {
+            case 0:
+                textLazyDate1.setText(getContext().getString(dateFormat == DateFormat.MM_DD_YYYY
+                        ? R.string.mdp_month : R.string.mdp_day));
+                textLazyDate1.setTextColor(hintColor);
+                break;
+            case 1:
+                textLazyDate1.setTextColor(textColor);
+                textLazyDate1.setText(getLetterAt(0, value));
+                textLazyDate2.setText(getContext().getString(dateFormat == DateFormat.MM_DD_YYYY
+                        ? R.string.mdp_month : R.string.mdp_day));
+                textLazyDate2.setTextColor(hintColor);
+                break;
+            case 2:
+                textLazyDate2.setTextColor(textColor);
+                textLazyDate2.setText(getLetterAt(1, value));
+                textLazyDate3.setText(getContext().getString(dateFormat == DateFormat.MM_DD_YYYY
+                        ? R.string.mdp_day : R.string.mdp_month));
+                textLazyDate3.setTextColor(hintColor);
+                break;
+            case 3:
+                textLazyDate3.setTextColor(textColor);
+                textLazyDate3.setText(getLetterAt(2, value));
+                textLazyDate4.setText(getContext().getString(dateFormat == DateFormat.MM_DD_YYYY
+                        ? R.string.mdp_day : R.string.mdp_month));
+                textLazyDate4.setTextColor(hintColor);
+                break;
+            case 4:
+                textLazyDate4.setTextColor(textColor);
+                textLazyDate4.setText(getLetterAt(3, value));
+                textLazyDate5.setText(getContext().getString(R.string.mdp_year));
+                textLazyDate5.setTextColor(hintColor);
+                break;
+            case 5:
+                textLazyDate5.setTextColor(textColor);
+                textLazyDate5.setText(getLetterAt(4, value));
+                textLazyDate6.setText(getContext().getString(R.string.mdp_year));
+                textLazyDate6.setTextColor(hintColor);
+
+                break;
+            case 6:
+                textLazyDate6.setTextColor(textColor);
+                textLazyDate6.setText(getLetterAt(5, value));
+                textLazyDate7.setText(getContext().getString(R.string.mdp_year));
+                textLazyDate7.setTextColor(hintColor);
+                break;
+            case 7:
+                textLazyDate7.setTextColor(textColor);
+                textLazyDate7.setText(getLetterAt(6, value));
+                textLazyDate8.setText(getContext().getString(R.string.mdp_year));
+                textLazyDate8.setTextColor(hintColor);
+                break;
+            case 8:
+                textLazyDate8.setTextColor(textColor);
+                textLazyDate8.setText(getLetterAt(7, value));
+                break;
+        }
+    }
+
+    private void manageViewFocus(boolean hasFocus, int valueLength) {
+        if (hasFocus) {
+            viewLazyDate1.setVisibility(View.VISIBLE);
+            viewLazyDate2.setVisibility(View.VISIBLE);
+            viewLazyDate3.setVisibility(View.VISIBLE);
+            viewLazyDate4.setVisibility(View.VISIBLE);
+            viewLazyDate5.setVisibility(View.VISIBLE);
+            viewLazyDate6.setVisibility(View.VISIBLE);
+            viewLazyDate7.setVisibility(View.VISIBLE);
+            viewLazyDate8.setVisibility(View.VISIBLE);
+
+            switch (valueLength) {
+                case 0:
+                    viewLazyDate1.setVisibility(View.VISIBLE);
+                    viewLazyDate1.setBackgroundColor(textColor);
+                    viewLazyDate2.setBackgroundColor(hintColor);
+                    break;
+                case 1:
+                    viewLazyDate1.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate2.setVisibility(View.VISIBLE);
+                    viewLazyDate2.setBackgroundColor(textColor);
+                    viewLazyDate3.setBackgroundColor(hintColor);
+                    break;
+                case 2:
+                    viewLazyDate2.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate3.setVisibility(View.VISIBLE);
+                    viewLazyDate3.setBackgroundColor(textColor);
+                    viewLazyDate4.setBackgroundColor(hintColor);
+                    break;
+                case 3:
+                    viewLazyDate3.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate4.setVisibility(View.VISIBLE);
+                    viewLazyDate4.setBackgroundColor(textColor);
+                    viewLazyDate5.setBackgroundColor(hintColor);
+                    break;
+                case 4:
+                    viewLazyDate4.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate5.setVisibility(View.VISIBLE);
+                    viewLazyDate5.setBackgroundColor(textColor);
+                    viewLazyDate6.setBackgroundColor(hintColor);
+                    break;
+                case 5:
+                    viewLazyDate5.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate6.setVisibility(View.VISIBLE);
+                    viewLazyDate6.setBackgroundColor(textColor);
+                    viewLazyDate7.setBackgroundColor(hintColor);
+                    break;
+                case 6:
+                    viewLazyDate6.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate7.setVisibility(View.VISIBLE);
+                    viewLazyDate7.setBackgroundColor(textColor);
+                    viewLazyDate8.setBackgroundColor(hintColor);
+                    break;
+                case 7:
+                    viewLazyDate7.setBackgroundColor(Color.TRANSPARENT);
+                    viewLazyDate8.setVisibility(View.VISIBLE);
+                    viewLazyDate8.setBackgroundColor(textColor);
+                    break;
+                case 8:
+                    viewLazyDate8.setBackgroundColor(Color.TRANSPARENT);
+                    break;
+            }
+        } else {
+            viewLazyDate1.setVisibility(View.GONE);
+            viewLazyDate2.setVisibility(View.GONE);
+            viewLazyDate3.setVisibility(View.GONE);
+            viewLazyDate4.setVisibility(View.GONE);
+            viewLazyDate5.setVisibility(View.GONE);
+            viewLazyDate6.setVisibility(View.GONE);
+            viewLazyDate7.setVisibility(View.GONE);
+            viewLazyDate8.setVisibility(View.GONE);
+        }
+    }
+    //endregion
+
+    //region PROTECTED METHOD
+    protected void onDatePick() {
+        if (onDatePickListener != null) {
+            onDatePickListener.onDatePick(getDate());
+        }
+    }
+
+    protected void onDateSelected() {
+        if (onDateSelectedListener != null) {
+            onDateSelectedListener.onDateSelected(getDate() != null);
+        }
+    }
+
+    protected boolean minDateIsNotNull() {
+        return minDate != null;
+    }
+
+    protected boolean maxDateIsNotNull() {
+        return maxDate != null;
+    }
+
+    protected boolean checkMinDate(StringBuilder dateToCheckTmp) {
+        Date realDateToCheckTmp = stringToDate(dateToCheckTmp.toString(), dateFormat.getValue());
+        return realDateToCheckTmp == null || realDateToCheckTmp.before(minDate);
+    }
+
+    protected boolean checkMaxDate(StringBuilder dateToCheckTmp) {
+        Date realDateToCheckTmp = stringToDate(dateToCheckTmp.toString(), dateFormat.getValue());
+        return realDateToCheckTmp == null || realDateToCheckTmp.after(maxDate);
+    }
+
+    protected boolean checkSameDate(StringBuilder dateToCheckTmp) {
+        Date realDateToCheckTmp = stringToDate(dateToCheckTmp.toString(), dateFormat.getValue());
+        return dateToString(realDateToCheckTmp, dateFormat.getValue()).equals(dateToCheckTmp.toString());
+    }
+
+    protected void fillDate() {
+        editLazyDatePickerReal.removeTextChangedListener(textWatcher);
+        editLazyDatePickerReal.setText(date);
+        editLazyDatePickerReal.addTextChangedListener(textWatcher);
+
+        textLazyDate1.setTextColor(textColor);
+        textLazyDate1.setText(getLetterAt(0, date));
+        textLazyDate2.setTextColor(textColor);
+        textLazyDate2.setText(getLetterAt(1, date));
+        textLazyDate3.setTextColor(textColor);
+        textLazyDate3.setText(getLetterAt(2, date));
+        textLazyDate4.setTextColor(textColor);
+        textLazyDate4.setText(getLetterAt(3, date));
+        textLazyDate5.setTextColor(textColor);
+        textLazyDate5.setText(getLetterAt(4, date));
+        textLazyDate6.setTextColor(textColor);
+        textLazyDate6.setText(getLetterAt(5, date));
+        textLazyDate7.setTextColor(textColor);
+        textLazyDate7.setText(getLetterAt(6, date));
+        textLazyDate8.setTextColor(textColor);
+        textLazyDate8.setText(getLetterAt(7, date));
+
+        viewLazyDate1.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate2.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate3.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate4.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate5.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate6.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate7.setBackgroundColor(Color.TRANSPARENT);
+        viewLazyDate8.setBackgroundColor(Color.TRANSPARENT);
+
+        if (showFullDate)
+            showFullDateLayout(editLazyDatePickerReal.isFocused());
+    }
+    //endregion
+
+    //region PUBLIC METHOD
+    public Date getDate() {
+        if (date.length() == LENGTH_DATE_COMPLETE) {
+            return stringToDate(date, dateFormat.getValue());
+        }
+        return null;
+    }
+
+    public boolean setDate(Date newDate) {
+        String tmpDate = dateToString(newDate, dateFormat.getValue());
+
+        if (tmpDate.length() != LENGTH_DATE_COMPLETE
+                || (minDate != null && newDate.before(minDate))
+                || (maxDate != null && newDate.after(maxDate))) {
+            return false;
+        }
+
+        this.date = tmpDate;
+
+        fillDate();
+
+        return true;
+    }
+
+    public void setMinDate(Date minDate) {
+        this.minDate = minDate;
+        clear();
+    }
+
+    public void setMaxDate(Date maxDate) {
+        this.maxDate = maxDate;
+        clear();
+    }
+
+    public void setDateFormat(DateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+        clear();
+    }
+
+    public void clear() {
+        initView();
+    }
+
+    public void shake() {
+        shakeView(layoutLazyDatePicker);
+    }
+
+    public void setOnDatePickListener(OnDatePickListener onDatePickListener) {
+        this.onDatePickListener = onDatePickListener;
+    }
+
+    public void setOnDateSelectedListener(OnDateSelectedListener onDateSelectedListener) {
+        this.onDateSelectedListener = onDateSelectedListener;
+    }
+    //endregion
+
+    //region KEYBOARD
+    private void addKeyboardVisibilityListener(final View rootLayout,
+                                               final OnKeyboardVisibilityListener onKeyboardVisibilityListener) {
+        rootLayout.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            Rect r = new Rect();
+            rootLayout.getWindowVisibleDisplayFrame(r);
+            int screenHeight = rootLayout.getRootView().getHeight();
+
+            // r.bottom is the position above soft keypad or device button.
+            // if keypad is shown, the r.bottom is smaller than that before.
+            int keypadHeight = screenHeight - r.bottom;
+
+            boolean isVisible = keypadHeight > screenHeight * 0.15; // 0.15 ratio is perhaps
+            // enough to determine keypad height.
+            onKeyboardVisibilityListener.onVisibilityChange(isVisible);
+        });
+    }
+
+    private interface OnKeyboardVisibilityListener {
+        void onVisibilityChange(boolean isVisible);
+    }
+
+    private void showKeyboard(EditText editText, Context context) {
+        editText.requestFocus();
+        editText.setSelection(editText.length());
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null)
+            inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+    }
+    //endregion
+
+    //region UTILS
+    private String getLetterAt(int position, String value) {
+        return String.valueOf(value.charAt(position));
+    }
+
+    private void shakeView(View view) {
+        shakeAnimationDoing = true;
+        view.animate()
+                .translationX(-15).translationX(15)
+                .setDuration(30)
+                .setInterpolator(new CycleInterpolator(5)) // 150 / 30
+                .setDuration(150)
+                .withEndAction(() -> shakeAnimationDoing = false)
+                .start();
+    }
+
+    public static String dateToString(Date date, String pattern) {
+        return new SimpleDateFormat(pattern, Locale.getDefault()).format(date);
+    }
+
+    public static Date stringToDate(String date, String format) {
+        try {
+            return new SimpleDateFormat(format, Locale.getDefault()).parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //endregion
+
+    public interface OnDatePickListener {
+        void onDatePick(Date dateSelected);
+    }
+
+    public interface OnDateSelectedListener {
+        void onDateSelected(Boolean dateSelected);
+    }
+
+    public enum DateFormat {
+        MM_DD_YYYY,
+        DD_MM_YYYY;
+
+        public String getValue() {
+            switch (this) {
+                case MM_DD_YYYY:
+                    return "MMddyyyy";
+                case DD_MM_YYYY:
+                    return "ddMMyyyy";
+            }
+            throw new IllegalArgumentException("Not value available for this DateFormat: " + this);
+        }
+
+        public String getCompleteFormatValue() {
+            switch (this) {
+                case MM_DD_YYYY:
+                    return "MMM dd yyyy";
+                case DD_MM_YYYY:
+                    return "dd MMM yyyy";
+            }
+            throw new IllegalArgumentException("Not value available for this DateFormat: " + this);
+        }
+
+        public int getAttrValue() {
+            switch (this) {
+                case MM_DD_YYYY:
+                    return 1;
+                case DD_MM_YYYY:
+                    return 2;
+            }
+            throw new IllegalArgumentException("Not value available for this DateFormat: " + this);
+        }
+
+        public static DateFormat fromValue(int value) {
+            switch (value) {
+                case 1:
+                    return MM_DD_YYYY;
+                case 2:
+                    return DD_MM_YYYY;
+            }
+            throw new IllegalArgumentException("This value is not supported for DateFormat: " + value);
+        }
+    }
+
+}

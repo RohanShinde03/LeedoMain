@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    style="@style/Widget.MaterialComponents.CardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv_itemReminder"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    app:strokeColor="@color/card_outline"
+    app:strokeWidth="1dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
+
+    <!--Main Linear Layout-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+
+
+                <!--Reminder Name-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemReminder_reminderText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/reminder_name"
+                    android:ellipsize="end"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:gravity="center|start"
+                    android:theme="@style/styleFontMediumText"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+                <!-- Reminder Date and Time -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_itemReminder_reminderDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/_31_aug_2019_4_00_pm"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:gravity="center|start"
+                    android:theme="@style/styleFontRegularText"
+                    android:textColor="@color/main_grey"
+                    android:textSize="16sp" />
+
+                <!-- Added By -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_lead_addedBy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="2dp"
+                        android:text="Added By: "
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/main_grey"
+                        android:textSize="12dp"
+                        android:singleLine="true"
+                        android:gravity="center|start"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_lead_AddedBy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:textColor="@color/color_claim_now_red"
+                        android:text="Komal Mithari"                                                android:theme="@style/styleFontMediumText"
+                        android:textSize="14dp"
+                        android:gravity="center|start"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="#8BC6C6C6" />
+
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|end"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+
+                    <!--Edit Button-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_itemReminder_editReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_edit_black_24dp"
+                        android:layout_gravity="start|center"
+                        android:padding="15dp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_itemReminder_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_delete_black_24dp"
+                        android:layout_gravity="start|center"
+                        android:visibility="gone"
+                        android:padding="15dp" />
+
+
+
+                    <!--Mark as done Button-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|end"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/mBtn_mark_as_done"
+                            style="@style/Widget.Theme.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:text="@string/mark_as_done"
+                            android:gravity="end|center"
+                            android:textSize="16sp"
+                            android:textAllCaps="false"
+                            android:focusable="true" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>
+
+

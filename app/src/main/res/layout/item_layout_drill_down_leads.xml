@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_itemDrillDownLeads_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="@dimen/dimen_10dp"
+    android:layout_marginLeft="@dimen/dimen_10dp"
+    app:layout_goneMarginBottom="10dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTv_itemDrillDownLeads_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/card_text_date"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:gravity="center|end"
+            android:theme="@style/styleFontMediumText"
+            android:textColor="@color/color_tag_background"
+            android:textSize="12sp" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:id="@+id/cv_itemDrillDownLeads_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="@dimen/dimen_12dp"
+            android:layout_marginRight="@dimen/dimen_12dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_itemDrillDownLeads_cardMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp">
+
+                    <!-- tag, elapsed time, popup menu -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|start"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+
+                        <!-- tag -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_itemDrillDownLeads_elapsedTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center|start"
+                            android:layout_weight="2">
+
+                            <!-- tag -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/color_tag_background"
+                                android:orientation="horizontal"
+                                android:paddingStart="15dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:paddingEnd="8dp"
+                                android:gravity="center">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_itemDrillDownLeads_tagIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_tag"
+                                    android:scaleType="centerCrop"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/mTv_itemDrillDownLeads_tag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="5dp"
+                                    android:text="@string/tag_r_n_l"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textSize="16sp"
+                                    android:layout_gravity="center"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:gravity="center">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemDrillDownLeads_leadWhatsApp"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:src="@drawable/ic_whats_app"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:paddingTop="16dp"
+                                android:paddingBottom="16dp"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemDrillDownLeads_leadCall"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:src="@drawable/ic_call_24dp"
+                                android:visibility="visible"
+                                android:paddingLeft="16dp"
+                                android:paddingRight="16dp"
+                                android:paddingTop="16dp"
+                                android:paddingBottom="16dp"
+                                />
+
+
+                            <!-- popup menu -->
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemDrillDownLeads_leadOptions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_more_vert_black_24dp"
+                                android:scaleType="centerCrop"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="16dp"
+                                android:paddingTop="16dp"
+                                android:paddingBottom="16dp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- cuID number & reminder icon -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center|start"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="0dp">
+
+                        <!-- cuId number -->
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mTv_itemDrillDownLeads_cuIdNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="@string/def_cuID_number"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/colorAccent"
+                            android:layout_gravity="center|start"
+                            android:gravity="center|start"
+                            android:textSize="12sp"
+                            android:theme="@style/styleFontMediumText" />
+
+                        <!-- reminder icon -->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_itemDrillDownLeads_reminderIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_reminder_red"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            android:contentDescription="@string/app_name"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--Lead Name Unit & Type-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="start"
+                            android:gravity="start">
+
+                            <!--Lead Name-->
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_itemDrillDownLeads_leadName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/lead_name"
+                                android:textAlignment="textStart"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="20sp"
+                                android:theme="@style/styleFontBoldText" />
+
+                            <!--Project Name-->
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_itemDrillDownLeads_projectName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:text="@string/project_name"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/color_card_sub_title"
+                                android:textSize="14sp"
+                                android:layout_weight="1"
+                                android:theme="@style/styleFontMediumText" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--Lead Mobile-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemDrillDownLeads_leadMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/def_mob_number"
+                        android:visibility="gone"
+                        android:drawableStart="@drawable/ic_call_green_24dp"
+                        android:drawablePadding="7dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_grey"
+                        android:textSize="16sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:theme="@style/styleFontRegularText" />
+
+
+                    <!--Unit Type-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemDrillDownLeads_unitType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:visibility="gone"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:text="@string/def_unit_type"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/main_medium_grey"
+                        android:textSize="17sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:theme="@style/styleFontRegularText" />
+
+                    <!-- lead status details text -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_itemDrillDownLeads_leadDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center|start"
+                        android:weightSum="3">
+
+                        <!-- lead status -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_itemDrillDownLeads_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tag_r_n_l"
+                                android:theme="@style/styleFontMediumText"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:textSize="14sp"
+                                android:background="@color/color_lead_assigned"
+                                android:textColor="@color/main_white"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+
+                            <!--Token Number-->
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_itemDrillDownLeads_tokenNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/styleFontMediumText"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:textSize="12sp"
+                                android:text="@string/ghp"
+                                android:visibility="gone"
+                                android:textAlignment="textStart"
+                                android:letterSpacing="0.1"
+                                android:textColor="@color/colorAccent"
+                                />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="2">
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_itemDrillDownLeads_leadDetails_ec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|end"
+                                android:scaleType="centerCrop"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--Lead Elapsed time -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mTv_itemDrillDownLeads_elapsedTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="@string/card_elapsed_time"
+                        android:maxLines="1"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:gravity="center|start"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/color_card_sub_title"
+                        android:textSize="12sp" />
+
+                    <!-- lead details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_itemDrillDownLeads_viewLeadDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="gone"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_itemDrillDownLeads_addLeadDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

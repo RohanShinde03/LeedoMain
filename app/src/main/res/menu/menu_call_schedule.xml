@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_call_schedule_search"
+        android:icon="@drawable/ic_home_search"
+        android:orderInCategory="100"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        tools:ignore="MenuTitle"
+        android:visible="false"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_call_schedule_calendar"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_event_white_24dp"
+        android:title="@string/Filter"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_call_schedule_filter"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/Filter"
+        app:actionLayout="@layout/custom_action_item_layout"
+        app:showAsAction="always"/>
+
+</menu>
+    <!-- android:actionViewClass="android.widget.SearchView"
+     app:showAsAction="always"-->

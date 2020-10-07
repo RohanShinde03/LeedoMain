@@ -1,0 +1,1544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_flatAllotment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tribeappsoft.leedo.salesPerson.direct_allotment.FlatAllotmentActivity">
+
+    <!-- ll flat allotment main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_flatAllotment_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
+                <!--sales representative -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:padding="15dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_flatAllotment_salesRepresentative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sales_representative_name"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:theme="@style/styleFontMediumText"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="16sp"
+                        android:gravity="center|start"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sales_representative"
+                        android:textColor="@color/textColorPrimary"
+                        android:theme="@style/styleFontRegularText"
+                        android:textSize="14sp"
+                        android:gravity="center|start"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!--ll customer Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+                    <!-- customer  details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_customerDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_customer_details_icon"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/customer_details"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:gravity="center|start"
+                            android:textSize="18sp"
+                            android:layout_weight="1"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_customerDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                            />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- view customer info-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewCustomerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <!-- customer and applicant details -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_customerId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_id"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:textSize="15sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_customerName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_name"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontBoldText"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="18sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_customerMobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_phone"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="2dp"
+                                android:textSize="15sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_customerEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_email"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:textSize="15sp" />
+
+
+                            <!-- applicant info -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/applicant_details"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:textSize="18sp" />
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/mCbx_flatAllotment_applicantDetails"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/applicant_details_cb_note"
+                                    android:textColor="@color/main_black"
+                                    android:textSize="16sp"
+                                    android:checked="true"
+                                    android:gravity="center|start"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:layout_margin="5dp"
+                                    >
+
+                                </com.google.android.material.checkbox.MaterialCheckBox>
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:hint="@string/enter_applicant_name"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_applicant_name"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:enabled="false" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:hint="@string/enter_applicant_mobile"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_applicant_mobile"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:enabled="false" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:hint="@string/enter_applicant_email"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_applicant_email"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:enabled="false" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!--source details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:background="@color/main_white">
+
+                    <!-- source details text -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_sourceDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_source_details_icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/source"
+                            android:theme="@style/styleFontBoldText"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:gravity="center|start"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_sourceDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--view source details-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewSourceInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        >
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="15dp"
+                            >
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_sourceMainName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/source_ref"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/main_black"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:textSize="15sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_sourceSubName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/source_name"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:textSize="16sp"
+                                />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:visibility="gone"/>
+
+                <!--flat Details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+                    <!-- flat details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_flatDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_flat_details_icon"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flat_details"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:gravity="center|start"
+                            android:textSize="18sp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center|start"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_flatDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                            android:layout_gravity="center|end"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- view flat booking info-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewFlatInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="15dp"
+                            android:visibility="visible"
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_flatType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/flat_type"
+                                android:layout_marginBottom="10dp"
+                                android:theme="@style/styleFontBoldText"
+                                android:textSize="16sp"
+                                android:textColor="@color/main_black"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_flatAllotment_projectName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/flat_type"
+                                android:layout_marginBottom="10dp"
+                                android:theme="@style/styleFontRegularText"
+                                android:textSize="16sp"
+                                android:textColor="@color/main_black"
+                                />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/unit_price"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_flatAllotment_flatAmount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    style="@style/editTextPhone"
+                                    android:theme="@style/styleFontRegularText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!-- Allot Form details -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:visibility="gone">
+
+                    <!-- Allotment details text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_allotmentDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/allotment_form"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_allotmentDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewAllotmentFormDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_flatAllotment_form"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/coloredButton"
+                                app:icon="@drawable/ic_attachment_form_icon"
+                                app:iconPadding="5dp"
+                                android:gravity="center"
+                                app:cornerRadius="40dp"
+                                android:textAllCaps="false"
+                                android:textSize="16sp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:text="@string/form"
+                                android:layout_gravity="end"/>
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_flatAllotment_allotmentDetails_defImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:src="@drawable/def_image_no_attachment"
+                                android:scaleType="centerCrop"/>
+
+
+                            <HorizontalScrollView
+                                android:id="@+id/hsv_flatAllotment_allotmentForm"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:scrollbars="none"
+                                android:fillViewport="true"
+                                tools:ignore="UselessParent">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_height="200dp"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|start"
+                                    android:visibility="visible"
+                                    android:background="@color/main_white"
+                                    android:id="@+id/fl_flatAllotment_formImagesList">
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </HorizontalScrollView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:visibility="gone"/>
+
+                <!-- payment Details-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+                    <!-- payment details text -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_paymentDetailsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center"
+                        >
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_payment_details_icon"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/payment_details"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:gravity="center|start"
+                            android:textSize="18sp"
+                            android:layout_gravity="center|start"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_paymentDetails_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--flat booking amount-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_flatAllotment_viewPaymentDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="15dp"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/enter_booking_amount"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_flatAllotment_bookingAmount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextPhone"
+                                    android:singleLine="true"
+                                    android:theme="@style/styleFontMediumText" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <!--ll payment mode  -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
+
+                    <!--payment mode text -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_paymentModeMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_payment_details_icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/payment_mode"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:gravity="center|start"
+                            android:textSize="18sp"
+                            android:layout_gravity="center|start"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_paymentMode_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- view payment mode-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewPaymentMode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+                            <RadioGroup
+                                android:id="@+id/rdoGrp_flatAllotment_paymentType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="visible"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp">
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_flatAllotment_cheque"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/cheque"
+                                    android:theme="@style/styleFontRegularText" />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_flatAllotment_online"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="false"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/online"
+                                    android:theme="@style/styleFontRegularText" />
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/rb_flatAllotment_card"
+                                    style="@style/MyRadioButtonStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="false"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="@string/card"
+                                    android:theme="@style/styleFontRegularText" />
+                            </RadioGroup>
+
+                            <!--Cheque Payment-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_flatAllotment_chequePayment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/bank_name_text_star"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_bankName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/ac_holder_name_star"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_accHolderName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/cheque_number_hint"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_chequeNumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        style="@style/editTextUserCheckNumber"
+                                        android:maxLength="6"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    app:endIconDrawable="@drawable/ic_date"
+                                    app:endIconMode="custom">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_chequeDate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/select_cheque_date"
+                                        android:inputType="none"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:textSize="15sp"
+                                        android:textColorHint="@color/main_grey"
+                                        android:textColor="@color/colorPrimary"
+                                        android:singleLine="true" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <!--card payment-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_flatAllotment_cardPayment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone"
+                                >
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/enter_payment_transaction_number"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_transactionNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/enter_payment_invoice_number"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_invoiceNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <!--online payment-->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_flatAllotment_onlinePayment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone"
+                                >
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:hint="@string/enter_utr_number"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    >
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_flatAllotment_utrNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:theme="@style/styleFontRegularText"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+                <!-- pay slip attachments -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white"
+                    android:visibility="gone">
+
+                    <!-- pay sleep text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_paySleepAttachmentMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payslip_attachment"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:theme="@style/styleFontMediumText"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:layout_weight="1"
+                            android:gravity="center|start"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_paySleepAttachment_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- pay slip details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewPaySlipDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/mBtn_flatAllotment_addPaySlip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/coloredButton"
+                                app:icon="@drawable/ic_attachment_form_icon"
+                                app:iconPadding="5dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:gravity="center"
+                                app:cornerRadius="40dp"
+                                android:textAllCaps="false"
+                                android:textSize="16sp"
+                                android:text="@string/payslip"
+                                android:layout_gravity="end"/>
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_flatAllotment_paySlipDetails_defImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:src="@drawable/def_image_no_attachment"
+                                android:scaleType="centerCrop"/>
+
+
+                            <HorizontalScrollView
+                                android:id="@+id/hsv_flatAllotment_paySlip"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:scrollbars="none"
+                                android:fillViewport="true"
+                                tools:ignore="UselessParent">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_height="200dp"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|start"
+                                    android:visibility="visible"
+                                    android:background="@color/main_white"
+                                    android:id="@+id/ll_flatAllotment_paySlipImagesList">
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </HorizontalScrollView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:visibility="gone"/>
+
+                <!-- Booking Documents -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_flatAllotment_bookingDocuments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Booking documents text-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_bookingDocumentsMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/booking_documents"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontMediumText"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="18sp"
+                                android:gravity="center|start"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/any_one_mandatory"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:theme="@style/styleFontRegularText"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp"
+                                android:visibility="gone"
+                                android:gravity="center|start"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_flatAllotment_bookingDocuments_ec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--  view booking docs details -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_flatAllotment_viewBookingDocuments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter"
+                            />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:orientation="vertical">
+
+
+                            <!-- Allotment form -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp"
+                                android:weightSum="5">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_gravity="start"
+                                    android:gravity="start"
+                                    android:layout_weight="1">
+
+                                    <!--Allotment form Name-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_gravity="start"
+                                        android:textSize="17sp"
+                                        android:text="@string/allotment_form"
+                                        android:maxLines="2"/>
+
+                                    <!--Choose File-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_flatAllotment_allotmentDocument_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_gravity="start"
+                                        android:padding="1dp"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/main_grey"
+                                        android:text="@string/no_file_choose"
+                                        android:maxLines="2" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="4"
+                                    android:layout_gravity="end"
+                                    android:gravity="end">
+                                    <!--Upload File-->
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_flatAllotment_browseAllotmentDocument"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:src="@drawable/ic_attach"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.4dp"
+                                android:background="@color/lighter"
+                                android:layout_marginTop="5dp"
+                                />
+
+
+                             <!-- KYC document -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp"
+                                android:weightSum="5">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_gravity="start"
+                                    android:gravity="start"
+                                    android:layout_weight="1">
+
+                                    <!--Allotment form Name-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_gravity="start"
+                                        android:textSize="17sp"
+                                        android:text="@string/kyc_document"
+                                        android:maxLines="2"/>
+
+                                    <!--Choose File-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_flatAllotment_kycDocument_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_gravity="start"
+                                        android:padding="1dp"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/main_grey"
+                                        android:text="@string/no_file_choose"
+                                        android:maxLines="2" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="4"
+                                    android:layout_gravity="end"
+                                    android:gravity="end">
+                                    <!--Upload File-->
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_flatAllotment_browseKycDocument"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:src="@drawable/ic_attach"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.4dp"
+                                android:background="@color/lighter"
+                                android:layout_marginTop="5dp"
+                                />
+
+
+                            <!-- Pay Slip Document -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp"
+                                android:weightSum="5">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_gravity="start"
+                                    android:gravity="start"
+                                    android:layout_weight="1">
+
+                                    <!--Allotment form Name-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_gravity="start"
+                                        android:textSize="17sp"
+                                        android:text="@string/pay_slip_document"
+                                        android:maxLines="2"/>
+
+                                    <!--Choose File-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_flatAllotment_playSlipDocument_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:theme="@style/styleFontRegularText"
+                                        android:layout_gravity="start"
+                                        android:padding="1dp"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/main_grey"
+                                        android:text="@string/no_file_choose"
+                                        android:maxLines="2" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="4"
+                                    android:layout_gravity="end"
+                                    android:gravity="end">
+                                    <!--Upload File-->
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/iv_flatAllotment_browsePaySlipDocument"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:src="@drawable/ic_attach"
+                                        />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.4dp"
+                                android:background="@color/lighter"
+                                android:layout_marginTop="5dp"
+                                />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+
+
+                <!--Remark-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    android:background="@color/main_white">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/remarks_ifAny"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_flatAllotment_remark"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:singleLine="true"
+                            android:inputType="textMultiLine"
+                            android:maxLines="10"
+                            android:gravity="start"
+                            android:theme="@style/styleFontRegularText" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- confirm allotment -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_flatAllotment_confirmAllotment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm_allotment"
+                style="@style/coloredButton"
+                app:backgroundTint="@color/main_light_grey"
+                app:cornerRadius="50dp"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <View
+        android:id="@+id/view_flatAllotment_disableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3F7F7F7"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_flatAllotment_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif_flatAllotment"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/gif_success"
+            />
+
+        <!-- <com.vjd.salesapp.util.GifImageView
+             android:layout_margin="5dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true" />-->
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

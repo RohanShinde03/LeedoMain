@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_fragSalesPersonLeads"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_white">
+
+    <RelativeLayout
+        android:id="@+id/rl_fragSalesPersonLeads"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fragSalesPersonLeads"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="56dp"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_layout_leads"/>
+
+        <!-- Search bar & Filter  -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_fragSalesPersonLeads_searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Search bar -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|top"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:background="@drawable/ic_rectangle_light_grey_round">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_fragSalesPersonLeads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.73"
+                    android:background="@color/black_full_transparent"
+                    android:drawableStart="@drawable/ic_search_icon"
+                    android:drawablePadding="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center|start"
+                    android:hint="@string/search_lead"
+                    android:inputType="textPersonName|textCapSentences"
+                    android:lines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="18sp"
+                    android:theme="@style/styleFontRegularText" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_fragSalesPersonLeads_clearSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="end|center"
+                    android:src="@drawable/ic_search_close_icon"
+                    android:visibility="gone" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- sort and filter -->
+            <!--<androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_sort_colleague"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_sort_icon"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="35dp"
+                    android:text="@string/Sort"
+                    android:textSize="20sp"
+                    android:theme="@style/styleFontMediumText" />
+
+                <View
+                    android:layout_width="0.8dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="@color/divider_color" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_filter_colleague"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_filter"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="35dp"
+                    android:text="@string/Filter"
+                    android:textSize="20sp"
+                    android:theme="@style/styleFontMediumText" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- ll no Data Found -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_fragSalesPersonLeads_noData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_people_black_128dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_leads"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <View
+            android:id="@+id/view_fragSalesPerson_disableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F3FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"/>
+
+
+        <!-- add token text -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_frag_salesPersonLeads_titleAddReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/add_reminder"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="215dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="16sp" />
+        <!-- fab add token -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fragSalesPerson_addReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            app:tint="@null"
+            app:fabSize="normal"
+            android:visibility="invisible"
+            app:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_notifications_bell_blue_24dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <!-- add token text -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_frag_salesPersonLeads_titleAddToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/generate_ghp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="155dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="16sp" />
+        <!-- fab add token -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fragSalesPerson_addToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            app:tint="@null"
+            app:fabSize="normal"
+            android:visibility="invisible"
+            app:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_note_add_black_24dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <!-- aAdd site visit text -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_frag_salesPersonLeads_titleAddSiteVisit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/add_site_visit"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="90dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="16sp" />
+        <!-- sit visit fab-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fragSalesPerson_addSiteVisit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            app:tint="@null"
+            app:fabSize="normal"
+            android:visibility="invisible"
+            app:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_business_black_24dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <!-- add new lead text -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_frag_salesPersonLeads_titleAddLead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="@string/new_lead"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="16sp" />
+        <!-- new lead fab -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fragSalesPerson_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:tint="@null"
+            app:fabSize="normal"
+            android:visibility="gone"
+            android:tooltipText="@string/addNew"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+
+        <!--Fab Button-->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/exFab_fragSalesPersonLeads_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="@color/main_white"
+            android:contentDescription="@string/app_name"
+            android:text="@string/addNew"
+            android:textAllCaps="false"
+            android:padding="19.5dp"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            app:iconTint="@color/main_white"
+            app:icon="@drawable/ic_add_black_24dp"
+            app:iconSize="30dp"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorAccent"
+            android:shadowColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:fabSize="normal"
+            app:fabCustomSize="48dp"
+            android:scaleType="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

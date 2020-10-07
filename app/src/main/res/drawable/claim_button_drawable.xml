@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+
+        <shape android:shape="oval">
+            <solid android:color="@color/color_claim_now_red" />
+            <!-- Set the same value for both width and height to get a circular shape -->
+            <size android:width="200dp" android:height="200dp"/>
+        </shape>
+    </item>
+</selector>
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#0e165c"/>
+        </shape>
+    </item>
+    <item android:bottom="5dp" android:right="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#fff"/>
+            <gradient
+                android:startColor="#5f69ff"
+                android:endColor="#9298fc"
+                android:angle="90"
+                />
+            <stroke android:color="#1a29ae" android:width="3dp"/>
+        </shape>
+    </item>
+</layer-list>
+-->
+
+
+

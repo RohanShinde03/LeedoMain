@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_layout_select_popup_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="20dp"
+            android:text="@string/share_with"
+            android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/styleFontBoldText"
+            android:textSize="18sp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="10"
+        android:baselineAligned="false">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearlayout_layout_select_popup_option1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_whatsapp_share"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/WhatsApp"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="14sp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearlayout_layout_select_popup_option2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_fb_share"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/Facebook"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="14sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearlayout_layout_select_popup_option3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.33"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_more_apps_share"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/moreApps"
+                android:theme="@style/styleFontMediumText"
+                android:textSize="14sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

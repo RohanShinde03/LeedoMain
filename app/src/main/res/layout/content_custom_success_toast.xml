@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_successCustomToast"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="24dp"
+    app:elevation="24dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_customSuccessToastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_rectangle_success_toast_square"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:theme="@style/styleFontMediumText"
+        android:text="This is custom toast message"
+        android:textColor="@color/main_white"
+        android:textSize="14sp" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

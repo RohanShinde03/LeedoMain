@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sr_sales_person_achievements">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.tribeappsoft.leedo.salesPerson.homeFragments.FragmentSalesPersonPerformance">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:fitsSystemWindows="true"
+            app:statusBarForeground="@color/placeholder_bg"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/Toolbar.TitleText"
+                android:background="@color/placeholder_bg"
+                app:title="@string/title"
+                app:titleTextColor="@color/placeholder_bg"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- nested scroll view -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:paddingBottom="75dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- ll-main -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@color/placeholder_bg"
+                        android:backgroundTint="@color/placeholder_bg"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:hint="@string/project_name">
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@color/placeholder_bg"
+                        android:backgroundTint="@color/placeholder_bg"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="15dp"
+                        android:hint="@string/project_name">
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <!--Project Slots-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                android:layout_gravity="center"
+                                app:cardElevation="0dp"
+                                android:backgroundTint="@color/placeholder_bg"
+                                android:background="@color/placeholder_bg"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:padding="25dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <!--Site Visit Count-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tv_performance_site_Visit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visit_count"
+                                        android:textSize="30sp"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/placeholder_bg"
+                                        android:gravity="center"
+
+                                        android:paddingTop="4dp"
+
+                                        android:paddingBottom="4dp"
+                                        android:theme="@style/styleFontBoldText" />
+
+                                    <!--Text Site Visit-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/site_visits"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:paddingTop="2dp"
+                                        android:textColor="@color/placeholder_bg"
+                                        android:paddingBottom="2dp"
+                                        android:theme="@style/styleFontMediumText" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:strokeColor="@color/card_outline"
+                                app:strokeWidth="1dp"
+                                app:cardCornerRadius="16dp"
+                                android:gravity="center"
+                                android:backgroundTint="@color/placeholder_bg"
+                                android:background="@color/placeholder_bg"
+                                app:cardElevation="0dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:padding="22dp"
+                                    android:background="?attr/selectableItemBackground">
+
+
+                                    <!--Token Generated Count-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/ghp_generated_count"
+                                        android:textSize="30sp"
+                                        android:paddingTop="1dp"
+                                        android:paddingBottom="1dp"
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/metropolis_extra_bold"
+                                        android:textColor="@color/placeholder_bg"
+                                        android:theme="@style/styleFontBoldText"
+                                        />
+
+                                    <!--Token Generated Text-->
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:text="@string/ghp_generated"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+                                        android:maxLines="2"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/placeholder_bg"
+                                        android:ellipsize="end"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:layout_height="match_parent" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:strokeColor="@color/card_outline"
+                            app:strokeWidth="1dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_weight="1">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:padding="25dp"
+                                android:background="?attr/selectableItemBackground">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/lead_count"
+                                    android:textSize="30sp"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:gravity="center"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:fontFamily="@font/metropolis_extra_bold"/>
+
+
+                                <!--Lead Text-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/performance_leads"
+                                    android:textSize="16sp"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:paddingTop="2dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontMediumText" />
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- ll_Bookings -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:strokeColor="@color/card_outline"
+                            app:strokeWidth="1dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:focusable="true"
+                                android:padding="25dp"
+                                android:background="?attr/selectableItemBackground">
+
+
+                                <!--Site Visit Count-->
+                                <androidx.appcompat.widget.AppCompatTextView
+
+                                    android:layout_width="match_parent"
+                                    android:text="@string/booking_count"
+                                    android:textSize="30sp"
+                                    android:gravity="center"
+                                    android:fontFamily="@font/metropolis_extra_bold"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:layout_height="match_parent"  />
+
+
+                                <!--Text Site Visit-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:text="@string/performance_booking"
+                                    android:textSize="16sp"
+                                    android:gravity="center"
+                                    android:paddingTop="2dp"
+                                    android:paddingBottom="5dp"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_height="match_parent" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:strokeColor="@color/card_outline"
+                            app:strokeWidth="1dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_weight="1">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:padding="25dp"
+                                android:background="?attr/selectableItemBackground">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/lead_count"
+                                    android:textSize="30sp"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:gravity="center"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:fontFamily="@font/metropolis_extra_bold"/>
+
+
+                                <!--Lead Text-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/performance_leads"
+                                    android:textSize="16sp"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:paddingTop="2dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontMediumText" />
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- ll_Bookings -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:strokeColor="@color/card_outline"
+                            app:strokeWidth="1dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:focusable="true"
+                                android:padding="25dp"
+                                android:background="?attr/selectableItemBackground">
+
+
+                                <!--Site Visit Count-->
+                                <androidx.appcompat.widget.AppCompatTextView
+
+                                    android:layout_width="match_parent"
+                                    android:text="@string/booking_count"
+                                    android:textSize="30sp"
+                                    android:gravity="center"
+                                    android:fontFamily="@font/metropolis_extra_bold"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="5dp"
+                                    android:theme="@style/styleFontBoldText"
+                                    android:layout_height="match_parent"  />
+
+
+                                <!--Text Site Visit-->
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:text="@string/performance_booking"
+                                    android:textSize="16sp"
+                                    android:gravity="center"
+                                    android:paddingTop="2dp"
+                                    android:paddingBottom="5dp"
+                                    android:textColor="@color/placeholder_bg"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_height="match_parent" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/my_inventory_status_performance"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:visibility="gone"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="@color/placeholder_bg"
+                        android:background="@color/placeholder_bg"
+                        android:gravity="start"
+                        android:textColor="@color/placeholder_bg"
+                        android:theme="@style/styleFontBoldText"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+
+
+                        <!-- ll_Sold-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@drawable/ic_fill_rounded_circle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="match_parent"
+                                android:text="@string/sold_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/placeholder_bg"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/perf_s"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:textColor="@color/placeholder_bg"
+                                android:gravity="center"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <!-- ll_On_Hold -->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@drawable/ic_fill_rounded_circle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/onhold_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/placeholder_bg"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/perf_h"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:gravity="center"
+                                android:textColor="@color/placeholder_bg"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <!-- ll_Reserved-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:padding="15dp"
+                            android:backgroundTint="@color/placeholder_bg"
+                            android:background="@drawable/ic_fill_rounded_circle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/reserved_count"
+                                android:fontFamily="@font/metropolis_semi_bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/placeholder_bg"
+                                android:gravity="center|bottom"
+                                android:theme="@style/styleFontBoldText"
+                                android:layout_height="wrap_content" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:text="@string/perf_r"
+                                android:textSize="16sp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp"
+                                android:gravity="center"
+                                android:textColor="@color/placeholder_bg"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="match_parent" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        >
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_sold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:textColor="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_on_hold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:gravity="center"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:text="@string/status_reserved"
+                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/placeholder_bg"
+                            android:background="@color/placeholder_bg"
+                            android:theme="@style/styleFontMediumText"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--Loading Progress Bar -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:elevation="24dp"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center|end"
+                style="?android:attr/progressBarStyleInverse"
+                android:visibility="visible"
+                android:indeterminateDuration="2000"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorAccent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!-- ll no Data Found -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_building"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/styleFontMediumText"
+                android:text="@string/no_blocks"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
