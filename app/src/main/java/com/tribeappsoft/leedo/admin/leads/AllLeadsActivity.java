@@ -1687,7 +1687,7 @@ public class AllLeadsActivity extends AppCompatActivity {
 
         //GMail
         iv_ownLeadGmail.setOnClickListener(v -> {
-            if (myModel.getCall()!=null) {
+            if (myModel.getCuidModel().getCustomer_email()!=null) {
                 //send Message to WhatsApp Number
                 sendMessageFromGmailApp(myModel.getCuidModel().getCustomer_email(), myModel.getMain_title());
             }
@@ -1838,36 +1838,6 @@ public class AllLeadsActivity extends AppCompatActivity {
         //status
         tv_own_status.setText(!myModel.getCuidModel().getLead_status_name().trim().isEmpty() && myModel.getCuidModel().getLead_status_name()!=null ?  myModel.getCuidModel().getLead_status_name() : "--" );
 
-
-          /*  //unclaimed
-            if (myModel.getLead_status_id() == 1) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-            // lead claimed
-            if (myModel.getLead_status_id() == 2)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-            // lead assigned
-            if (myModel.getLead_status_id() == 3)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-            //self/ lead added
-            if (myModel.getLead_status_id() == 4) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-            //site visited
-            if (myModel.getLead_status_id() == 5) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-            //token /GHP  generated
-            if (myModel.getLead_status_id() == 6)
-            {
-                //token /upgraded with GHP Plus
-                if(myModel.getCuidModel().getToken_type_id()==3) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_plus_generated));
-                else tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
-
-            }
-            //token /GHP  cancelled
-            if (myModel.getLead_status_id() == 7) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //on hold
-            if (myModel.getLead_status_id() == 8) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-            //booked
-            if (myModel.getLead_status_id() == 9) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-            //booking cancelled
-            if (myModel.getLead_status_id() == 10) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //ghp pending
-            if (myModel.getLead_status_id() == 13) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));*/
-
         iv_editOwnLeadName.setOnClickListener(v -> {
             //showEditNameDialog(myModel.getCuidModel(),position,"own");
             showUpdateLeadPopUpMenu(iv_editOwnLeadName, myModel, position);
@@ -1876,221 +1846,6 @@ public class AllLeadsActivity extends AppCompatActivity {
 
         //visible view
         ll_own_view.setVisibility(View.VISIBLE);
-
-         /*else if (myModel.getFeed_type_id() == 2) {
-
-            //Others View
-            //tag date
-            tv_others_date.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
-            //tag icon
-            iv_others_tagIcon.setImageResource(R.drawable.ic_tag_general);
-            //tag other_ids
-            tv_others_tag.setText(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? myModel.getTag() : "");
-            //elapsed time
-            tv_others_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
-            //cu_id number
-            tv_others_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
-            //lead name
-            tv_others_Lead_name.setText(myModel.getMain_title() != null && !myModel.getMain_title().trim().isEmpty() ? myModel.getMain_title() : "");
-            //project name
-            tv_others_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
-            //lead stage
-            tv_othersLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
-            tv_othersLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));
-            Log.e(TAG, "getFeedsView:myModel.getCuidModel().getLead_stage_id() "+myModel.getCuidModel().getLead_stage_id() );
-            ll_othersLeadStage_dot.setVisibility(myModel.getCuidModel().getLead_stage_id()==0? View.GONE :View.VISIBLE);
-            //status
-            tv_others_Lead_status.setText(myModel.getStatus_text() != null && !myModel.getStatus_text().trim().isEmpty() ? myModel.getStatus_text() : "");
-            //token number/sub status other_ids
-            tv_others_token_number.setText(myModel.getStatus_sub_text() != null && !myModel.getStatus_sub_text().trim().isEmpty() ? myModel.getStatus_sub_text() : "");
-            //mobile number/call
-            iv_others_Lead_call.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    new Helper().openPhoneDialer(context, myModel.getCall());
-                }else new Helper().showCustomToast(context, "Customer number not found!");
-            });
-
-            //whatsApp
-            iv_othersLeadWhatsApp.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    //send Message to WhatsApp Number
-                    sendMessageFromWhatsApp(myModel.getCall(), myModel.getMain_title());
-                }
-                else new Helper().showCustomToast(context, "Customer number not found!");
-            });
-
-            iv_othersLeadBusinessWhatsApp.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    //send Message to WhatsApp Number
-                    sendMessageFromBusinessWhatsApp(myModel.getCall(), myModel.getMain_title());
-                }
-                else new Helper().showCustomToast(context, "Customer number not found!");
-            });
-
-
-            switch (myModel.getCuidModel().getLead_stage_id()) {
-                case 1:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    break;
-                case 2:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    break;
-                case 3:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    break;
-                case 4:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorni));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorni));
-                    break;
-                case 5:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
-                    break;
-                default:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.BlackLight));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.BlackLight));
-            }
-
-            //set others popup menu's
-            iv_others_leadOptions.setOnClickListener(view -> showPopUpMenu(iv_others_leadOptions, myModel, position));
-
-
-            //Set Lead Details
-            if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
-            {
-                int callCount=0;
-
-                iv_others_leadDetails_ec.setVisibility(View.VISIBLE);
-                ll_others_addLeadDetails.removeAllViews();
-                for (int i = 0; i < myModel.getDetailsTitleModelArrayList().size(); i++) {
-                    //Log.e("ll_HomeFeed_own_", "onBindViewHolder: "+myModel.getDetailsTitleModelArrayList().size());
-
-                    @SuppressLint("InflateParams") View rowView_sub = LayoutInflater.from(context).inflate(R.layout.layout_item_leads_title, null);
-                    final AppCompatTextView tv_leads_tag_details_title_text = rowView_sub.findViewById(R.id.tv_itemLeadDetails_title);
-                    final LinearLayoutCompat ll_addDetails = rowView_sub.findViewById(R.id.ll_itemLeadDetails_addDetails);
-                    tv_leads_tag_details_title_text.setText(myModel.getDetailsTitleModelArrayList().get(i).getLead_details_title());
-
-                    ll_addDetails.removeAllViews();
-                    ArrayList<LeadDetailsModel> detailsModelArrayList = myModel.getDetailsTitleModelArrayList().get(i).getLeadDetailsModels();
-
-                    if (detailsModelArrayList != null && detailsModelArrayList.size() > 0) {
-                        for (int j = 0; j < detailsModelArrayList.size(); j++) {
-                            //Log.e("ll_HomeFeed_own_", "detailsModelArrayList.get(j).getLead_details_text() "+detailsModelArrayList.get(j).getLead_details_text());
-                            @SuppressLint("InflateParams") View rowView_subView = LayoutInflater.from(context).inflate(R.layout.layout_item_lead_details_text, null);
-                            final AppCompatTextView tv_text = rowView_subView.findViewById(R.id.tv_itemLeadDetails_text);
-                            final AppCompatTextView tv_value = rowView_subView.findViewById(R.id.tv_itemLeadDetails_value);
-                            final View view_visibleFor_call = rowView_subView.findViewById(R.id.view_visibleFor_call);
-                            final View view_visibleFor_siteVisit = rowView_subView.findViewById(R.id.view_visibleFor_siteVisit);
-
-                            if(detailsModelArrayList.get(j).getLead_details_text().equals("Call Time:"))
-                            {
-                                callCount++;
-                                Log.e(TAG, "getFeedsView: callCount"+callCount );
-                            }
-
-                            tv_text.setText(detailsModelArrayList.get(j).getLead_details_text());
-                            tv_value.setText(detailsModelArrayList.get(j).getLead_details_value());
-                            view_visibleFor_call.setVisibility(detailsModelArrayList.get(j).getLead_details_text().equals("Remarks:")? View.VISIBLE : View.GONE);
-                            view_visibleFor_siteVisit.setVisibility(detailsModelArrayList.get(j).getLead_details_text().equals("Remark:")? View.VISIBLE : View.GONE);
-
-                            ll_addDetails.addView(rowView_subView);
-                        }
-                    }
-                    ll_others_addLeadDetails.addView(rowView_sub);
-                }
-
-            } else iv_others_leadDetails_ec.setVisibility(View.GONE);
-
-
-            //set expand Collapse Others
-            iv_others_leadDetails_ec.setOnClickListener(view -> {
-
-                if (myModel.isExpandedOthersView())  //expanded
-                {
-                    // //do collapse View
-                    new Animations().toggleRotate(iv_others_leadDetails_ec, false);
-                    collapse(ll_others_viewLeadDetails);
-                    myModel.setExpandedOthersView(false);
-                } else    // collapsed
-                {
-                    //do expand view
-                    new Animations().toggleRotate(iv_others_leadDetails_ec, true);
-                    expandSubView(ll_others_viewLeadDetails);
-                    myModel.setExpandedOthersView(true);
-                }
-            });
-
-            ll_others_main.setOnClickListener(view -> {
-
-                if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
-                {
-                    if (myModel.isExpandedOthersView())  //expanded
-                    {
-                        // //do collapse View
-                        new Animations().toggleRotate(iv_others_leadDetails_ec, false);
-                        collapse(ll_others_viewLeadDetails);
-                        myModel.setExpandedOthersView(false);
-                    } else    // collapsed
-                    {
-                        //do expand view
-                        new Animations().toggleRotate(iv_others_leadDetails_ec, true);
-                        expandSubView(ll_others_viewLeadDetails);
-                        myModel.setExpandedOthersView(true);
-                    }
-                }
-            });
-
-
-            //set visibility
-            iv_others_leadOptions.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_others_Lead_call.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_othersLeadWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_othersLeadBusinessWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            mBtn_others_claimNow.setVisibility(myModel.getLead_status_id() ==1  ? View.VISIBLE : View.GONE);
-            if (myModel.getCuidModel()!=null) iv_othersReminderIcon.setVisibility(myModel.getCuidModel().getIs_reminder_set() == 0 ? View.GONE : View.VISIBLE);
-
-            mBtn_others_claimNow.setOnClickListener(view -> {
-
-                lead_id=myModel.getLead_id();
-                showConfirmDialog(true, position);
-            });
-
-
-            //unclaimed
-            if (myModel.getLead_status_id() == 1) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-            // lead claimed
-            if (myModel.getLead_status_id() == 2)  tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-            // lead assigned
-            if (myModel.getLead_status_id() == 3)  tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-            //self/ lead added
-            if (myModel.getLead_status_id() == 4) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-            //site visited
-            if (myModel.getLead_status_id() == 5) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-            //token /GHP  generated
-            if (myModel.getLead_status_id() == 6) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
-            //token /GHP  cancelled
-            if (myModel.getLead_status_id() == 7) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //on hold
-            if (myModel.getLead_status_id() == 8) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-            //booked
-            if (myModel.getLead_status_id() == 9) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-            //booking cancelled
-            if (myModel.getLead_status_id() == 10) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //ghp pending
-            if (myModel.getLead_status_id() == 13) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));
-
-
-
-            //visible other view
-            ll_others_view.setVisibility(View.VISIBLE);
-
-        }*/
 
         LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 LinearLayoutCompat.LayoutParams.MATCH_PARENT,
@@ -2471,7 +2226,7 @@ public class AllLeadsActivity extends AppCompatActivity {
 
                 case R.id.menu_leadOption_cancelBooking:
                     //show cancel alert
-                    // showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
+                     showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
                     return true;
 
                 case R.id.menu_leadOption_continueAllotment:
@@ -2753,6 +2508,118 @@ public class AllLeadsActivity extends AppCompatActivity {
 
     }
 
+    private void showCancelAllotmentAlert(String CustomerName, int bookings_id)
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        assert alertLayout != null;
+
+        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
+        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
+        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        tv_msg.setText(getResources().getString(R.string.cancel_flat_allotment_que));
+        tv_desc.setText(getString(R.string.cancel_allotment_text, CustomerName));
+        btn_negativeButton.setText(getString(R.string.no));
+        btn_positiveButton.setText(getString(R.string.yes));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            //call add site visit api
+            alertDialog.dismiss();
+            if (isNetworkAvailable(context))
+            {
+                showCancellationProgressBar(getString(R.string.cancelling_flat_allotment));
+                call_cancelAllotment(bookings_id);
+
+            } else NetworkError(context);
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+    }
+
+    private void call_cancelAllotment(int bookings_id)
+    {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("lead_id", bookings_id);
+        jsonObject.addProperty("api_token", api_token);
+
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().cancelAllotment(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful())
+                {
+                    if (response.body()!=null && response.body().isJsonObject())
+                    {
+                        int isSuccess = 0;if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+                        if (isSuccess==1)
+                        {
+                            if (response.body().has("data"))
+                            {
+                                if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonObject() ) showSuccessAlert();
+                                else showErrorLogClaimLead("Server response is empty!");
+                            } else showErrorLogClaimLead("Invalid response from server!");
+                        }
+                        else showErrorLogClaimLead("Failed to cancel the Unit Booking! Try again.");
+                    }
+                }
+                else
+                {
+                    // error case
+                    switch (response.code()) {
+                        case 404:
+                            showErrorLogClaimLead(context.getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLogClaimLead(context.getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLogClaimLead(context.getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
+                }
+
+            }
+
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLogClaimLead(context.getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLogClaimLead(context.getString(R.string.weak_connection));
+                else showErrorLogClaimLead(e.toString());
+            }
+        });
+    }
 
 
     @SuppressLint("SetTextI18n")
@@ -3131,6 +2998,29 @@ public class AllLeadsActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("InflateParams")
+    private void showSuccessAlert()
+    {
+        context.runOnUiThread(() -> {
+
+            //hide pb
+            hideProgressBar();
+            //hide
+            hideCancellationProgressBar();
+            //  onErrorSnack(context, "Flat released successfully!");
+            new Helper().showCustomToast(context, "Allotment cancelled successfully!!");
+
+            //remove all view
+            ll_addFeedData.removeAllViews();
+
+            //resume feed api
+            resumeFeedApi();
+
+            //set scrollView scroll to top
+            nsv.smoothScrollTo(0, 0);
+        });
+
+    }
 
     private void showErrorLog(final String message) {
         if (context != null) {
@@ -3297,6 +3187,14 @@ public class AllLeadsActivity extends AppCompatActivity {
     private void hideCancellationProgressBar() {
         ll_pb.setVisibility(View.GONE);
         context.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void showCancellationProgressBar(String msg) {
+        hideSoftKeyboard(context, context.getWindow().getDecorView().getRootView());
+        tv_loadingMsg.setText(msg);
+        ll_pb.setVisibility(View.VISIBLE);
+        context.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
 

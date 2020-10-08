@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         style="@style/styleFontBoldText"
                         android:text="@string/title"
-                        android:maxLines="1"
+                        android:gravity="center|start"
                         android:ellipsize="end"
                         android:textColor="@color/main_black"
                         android:textSize="18sp"

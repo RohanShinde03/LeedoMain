@@ -2,22 +2,18 @@ package com.tribeappsoft.leedo.admin.Home_Fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.text.util.Linkify;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -76,8 +72,6 @@ import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
 import com.tribeappsoft.leedo.salesPerson.models.FeedsModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
-import com.tribeappsoft.leedo.salesPerson.models.LeadListModel;
-import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
 
@@ -137,22 +131,21 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private ArrayList<FeedsModel> modelArrayList;
-    private ArrayList<LeadListModel> leadListModelArrayList;
+   // private ArrayList<LeadListModel> leadListModelArrayList;
     //private ArrayList<EventsModel> eventsModelArrayList;
     private ArrayList<LeadStagesModel> leadStagesModelArrayList;
     private ArrayList<String> namePrefixArrayList, leadStageStringArrayList;
 
     private CustomerAdapter adapter = null;
 
-    private int openFlag = 0,user_id = 0,call = 0, lastPosition = -1, claimPosition =0,claimAPiCount =0,project_id = 0,sales_person_id = 0, lead_count = 0, site_visit_count = 0,call_schedule_count = 0,reminder_count = 0,
-            lead_id =0, skip_count =0, call_lead_id =0, call_lead_status_id =0;
+    private int openFlag = 0,user_id = 0,call = 0, lastPosition = -1,project_id = 0,sales_person_id = 0, lead_count = 0, site_visit_count = 0,call_schedule_count = 0,reminder_count = 0,
+             skip_count =0, call_lead_id =0, call_lead_status_id =0;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
     private String  api_token = "", filter_text="", todo_date="",startDate="",endDate="",
             display_text ="", last_lead_updated_at = null, customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
-    private Dialog claimDialog;
-    private boolean doubleBackToExitPressedOnce = false, stopApiCall = false,isSalesHead=false,
-            isClaimNow = false;
+    //private Dialog claimDialog;
+    private boolean stopApiCall = false,isSalesHead=false;
     private static Fragment_Leads instance = null;
 
     public Fragment_Leads() {
@@ -245,7 +238,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         //init arrayLists
         modelArrayList = new ArrayList<>();
-        leadListModelArrayList = new ArrayList<>();
+        //leadListModelArrayList = new ArrayList<>();
         //eventsModelArrayList = new ArrayList<>();
         leadStagesModelArrayList = new ArrayList<>();
         leadStageStringArrayList = new ArrayList<>();
@@ -264,73 +257,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         //call get lead data to get lead stages
         if (isNetworkAvailable(requireActivity())) getLeadData();
-
- /*       if (openFlag ==0)
-        {
-            //set cached feed only for WO filtered data
-            String jA_feeds = null;
-            if (sharedPreferences.getString("jA_feeds_leads", null) != null) jA_feeds = sharedPreferences.getString("jA_feeds_leads", null);
-            if (jA_feeds!=null) {
-
-                //hide pb
-                hideProgressBar();
-
-                JsonArray jsonArray = new Gson().fromJson(jA_feeds, JsonArray.class);
-                modelArrayList.clear();
-                for (int i = 0; i < jsonArray.size(); i++) {
-                    setJson(jsonArray.get(i).getAsJsonObject());
-                }
-
-                //set feeds data
-               // setCachedFeeds();
-            }
-        }*/
-
-       /* //voice input
-        iv_VoiceSearch.setOnClickListener(view -> {
-            //hide keyboard
-            hideSoftKeyboard(getActivity(), getActivity().getWindow().getDecorView().getRootView());
-            //new Animations().clickEffect(iv_VoiceSearch);
-
-            //set onStop false to call method in onResume
-            onStop = false;
-            //prompt speech input
-            promptSpeechInput();
-
-        });*/
-
-/*
-        //close filter
-        iv_closeFilter.setOnClickListener(v -> {
-
-            //same action as swipeRefresh
-            if (isNetworkAvailable(getActivity()))
-            {
-
-                //appbar.setVisibility(View.INVISIBLE);
-                //toolbar.setVisibility(View.INVISIBLE);
-                ll_filter.setVisibility(View.GONE);
-                //visible slideView
-                //sliderView.setVisibility(View.VISIBLE);
-
-
-                swipeRefresh.setRefreshing(true);
-
-                //set refresh api
-                refreshFeedApi();
-
-                //get event banners list
-                //call events api
-                //call get EventsBannersList
-                //  new Handler(getMainLooper()).postDelayed(this::call_getEventBannerList, 1000);
-
-                //get claim now leads
-                //call_getUnClaimedLeads();
-            }
-            else NetworkError(getActivity());
-        });*/
-
-
     }
 
     public void onPageChange(){
@@ -1510,33 +1436,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         ll_lead_addedBy.setVisibility(isSalesHead ? View.VISIBLE :View.GONE);
 
-       /* //other feed views
-        LinearLayoutCompat ll_others_main = rowView.findViewById(R.id.ll_homeFeed_othersMain);
-        LinearLayoutCompat ll_others_view = rowView.findViewById(R.id.ll_homeFeed_othersView);
-        AppCompatTextView tv_others_date = rowView.findViewById(R.id.tv_homeFeed_othersDate);
-        AppCompatImageView iv_others_tagIcon = rowView.findViewById(R.id.iv_homeFeed_othersTagIcon);
-        AppCompatTextView tv_others_tag = rowView.findViewById(R.id.tv_homeFeed_othersTag);
-        AppCompatTextView tv_others_elapsedTime = rowView.findViewById(R.id.tv_homeFeed_othersElapsedTime);
-        AppCompatImageView iv_othersReminderIcon = rowView.findViewById(R.id.iv_homeFeed_othersReminderIcon);
-        AppCompatTextView tv_others_cuIdNumber = rowView.findViewById(R.id.tv_homeFeed_othersCuIdNumber);
-        AppCompatTextView tv_others_Lead_name = rowView.findViewById(R.id.tv_homeFeed_othersLeadName);
-        AppCompatTextView tv_others_projectName = rowView.findViewById(R.id.tv_homeFeed_othersProjectName);
-        AppCompatTextView tv_othersLeadStage = rowView.findViewById(R.id.tv_homeFeed_othersLeadStage);
-        AppCompatTextView tv_othersLeadStage_dot = rowView.findViewById(R.id.tv_homeFeed_othersLeadStage_dot);
-        LinearLayoutCompat ll_othersLeadStage_dot = rowView.findViewById(R.id.ll_homeFeed_othersLeadStage_dot);
-        AppCompatTextView tv_others_Lead_status = rowView.findViewById(R.id.tv_homeFeed_othersLeadStatus);
-        AppCompatTextView tv_others_token_number = rowView.findViewById(R.id.tv_homeFeed_othersTokenNumber);
-        AppCompatImageView iv_othersLeadBusinessWhatsApp = rowView.findViewById(R.id.iv_homeFeed_othersLeadBusinessWhatsApp);
-        AppCompatImageView iv_othersLeadWhatsApp = rowView.findViewById(R.id.iv_homeFeed_othersLeadWhatsApp);
-        AppCompatImageView iv_others_Lead_call = rowView.findViewById(R.id.iv_homeFeedOthersLeadCall);
-        AppCompatImageView iv_others_leadOptions = rowView.findViewById(R.id.iv_homeFeed_othersLeadOptions);
-        MaterialButton mBtn_others_claimNow = rowView.findViewById(R.id.mBtn_homeFeed_othersClaimNow);
-        AppCompatImageView iv_others_leadDetails_ec = rowView.findViewById(R.id.iv_homeFeed_others_leadDetails_ec);
-        LinearLayoutCompat ll_others_viewLeadDetails = rowView.findViewById(R.id.ll_homeFeed_othersViewLeadDetails);
-        LinearLayoutCompat ll_others_addLeadDetails = rowView.findViewById(R.id.ll_homeFeed_othersAddLeadDetails);
-        // LinearLayoutCompat ll_others_leadDetailsMain = rowView.findViewById(R.id.ll_HomeFeed_Others_leadDetailsMain);
-        // LinearLayoutCompat ll_others_elapsed_time = rowView.findViewById(R.id.ll_tag_others_elapsed_time);*/
-
         final FeedsModel myModel = modelArrayList.get(position);
         //if (myModel.getFeed_type_id() == 1) {}
         //Own View
@@ -1608,7 +1507,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         //GMail
         iv_ownLeadGmail.setOnClickListener(v -> {
-            if (myModel.getCall()!=null) {
+            if (myModel.getCuidModel().getCustomer_email()!=null) {
                 //send Message to WhatsApp Number
                 sendMessageFromGmailApp(myModel.getCuidModel().getCustomer_email(), myModel.getMain_title());
             }
@@ -1778,37 +1677,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         //status
         tv_own_status.setText(!myModel.getCuidModel().getLead_status_name().trim().isEmpty() && myModel.getCuidModel().getLead_status_name()!=null ?  myModel.getCuidModel().getLead_status_name() : "--" );
 
-
-
-          /*  //unclaimed
-            if (myModel.getLead_status_id() == 1) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-            // lead claimed
-            if (myModel.getLead_status_id() == 2)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-            // lead assigned
-            if (myModel.getLead_status_id() == 3)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-            //self/ lead added
-            if (myModel.getLead_status_id() == 4) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-            //site visited
-            if (myModel.getLead_status_id() == 5) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-            //token /GHP  generated
-            if (myModel.getLead_status_id() == 6)
-            {
-                //token /upgraded with GHP Plus
-                if(myModel.getCuidModel().getToken_type_id()==3) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_plus_generated));
-                else tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
-
-            }
-            //token /GHP  cancelled
-            if (myModel.getLead_status_id() == 7) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //on hold
-            if (myModel.getLead_status_id() == 8) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-            //booked
-            if (myModel.getLead_status_id() == 9) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-            //booking cancelled
-            if (myModel.getLead_status_id() == 10) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //ghp pending
-            if (myModel.getLead_status_id() == 13) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));*/
-
         iv_editOwnLeadName.setOnClickListener(v -> {
             //showEditNameDialog(myModel.getCuidModel(),position,"own");
             showUpdateLeadPopUpMenu(iv_editOwnLeadName, myModel, position);
@@ -1817,221 +1685,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         //visible view
         ll_own_view.setVisibility(View.VISIBLE);
-
-
-        /*else if (myModel.getFeed_type_id() == 2) {
-
-            //Others View
-            //tag date
-            tv_others_date.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
-            //tag icon
-            iv_others_tagIcon.setImageResource(R.drawable.ic_tag_general);
-            //tag other_ids
-            tv_others_tag.setText(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? myModel.getTag() : "");
-            //elapsed time
-            tv_others_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
-            //cu_id number
-            tv_others_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
-            //lead name
-            tv_others_Lead_name.setText(myModel.getMain_title() != null && !myModel.getMain_title().trim().isEmpty() ? myModel.getMain_title() : "");
-            //project name
-            tv_others_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
-            //lead stage
-            tv_othersLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
-            tv_othersLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));
-            Log.e(TAG, "getFeedsView:myModel.getCuidModel().getLead_stage_id() "+myModel.getCuidModel().getLead_stage_id() );
-            ll_othersLeadStage_dot.setVisibility(myModel.getCuidModel().getLead_stage_id()==0? View.GONE :View.VISIBLE);
-            //status
-            tv_others_Lead_status.setText(myModel.getStatus_text() != null && !myModel.getStatus_text().trim().isEmpty() ? myModel.getStatus_text() : "");
-            //token number/sub status other_ids
-            tv_others_token_number.setText(myModel.getStatus_sub_text() != null && !myModel.getStatus_sub_text().trim().isEmpty() ? myModel.getStatus_sub_text() : "");
-            //mobile number/call
-            iv_others_Lead_call.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    new Helper().openPhoneDialer(getActivity(), myModel.getCall());
-                }else new Helper().showCustomToast(getActivity(), "Customer number not found!");
-            });
-
-            //whatsApp
-            iv_othersLeadWhatsApp.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    //send Message to WhatsApp Number
-                    sendMessageFromWhatsApp(myModel.getCall(), myModel.getMain_title());
-                }
-                else new Helper().showCustomToast(getActivity(), "Customer number not found!");
-            });
-
-            iv_othersLeadBusinessWhatsApp.setOnClickListener(v -> {
-                if (myModel.getCall()!=null)
-                {
-                    //send Message to WhatsApp Number
-                    sendMessageFromBusinessWhatsApp(myModel.getCall(), myModel.getMain_title());
-                }
-                else new Helper().showCustomToast(getActivity(), "Customer number not found!");
-            });
-
-
-            switch (myModel.getCuidModel().getLead_stage_id()) {
-                case 1:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    break;
-                case 2:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    break;
-                case 3:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    break;
-                case 4:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.colorni));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorni));
-                    break;
-                case 5:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
-                    break;
-                default:
-                    tv_othersLeadStage.setTextColor(context.getResources().getColor(R.color.BlackLight));
-                    tv_othersLeadStage_dot.setTextColor(context.getResources().getColor(R.color.BlackLight));
-            }
-
-            //set others popup menu's
-            iv_others_leadOptions.setOnClickListener(view -> showPopUpMenu(iv_others_leadOptions, myModel, position));
-
-
-            //Set Lead Details
-            if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
-            {
-                int callCount=0;
-
-                iv_others_leadDetails_ec.setVisibility(View.VISIBLE);
-                ll_others_addLeadDetails.removeAllViews();
-                for (int i = 0; i < myModel.getDetailsTitleModelArrayList().size(); i++) {
-                    //Log.e("ll_HomeFeed_own_", "onBindViewHolder: "+myModel.getDetailsTitleModelArrayList().size());
-
-                    @SuppressLint("InflateParams") View rowView_sub = LayoutInflater.from(context).inflate(R.layout.layout_item_leads_title, null);
-                    final AppCompatTextView tv_leads_tag_details_title_text = rowView_sub.findViewById(R.id.tv_itemLeadDetails_title);
-                    final LinearLayoutCompat ll_addDetails = rowView_sub.findViewById(R.id.ll_itemLeadDetails_addDetails);
-                    tv_leads_tag_details_title_text.setText(myModel.getDetailsTitleModelArrayList().get(i).getLead_details_title());
-
-                    ll_addDetails.removeAllViews();
-                    ArrayList<LeadDetailsModel> detailsModelArrayList = myModel.getDetailsTitleModelArrayList().get(i).getLeadDetailsModels();
-
-                    if (detailsModelArrayList != null && detailsModelArrayList.size() > 0) {
-                        for (int j = 0; j < detailsModelArrayList.size(); j++) {
-                            //Log.e("ll_HomeFeed_own_", "detailsModelArrayList.get(j).getLead_details_text() "+detailsModelArrayList.get(j).getLead_details_text());
-                            @SuppressLint("InflateParams") View rowView_subView = LayoutInflater.from(context).inflate(R.layout.layout_item_lead_details_text, null);
-                            final AppCompatTextView tv_text = rowView_subView.findViewById(R.id.tv_itemLeadDetails_text);
-                            final AppCompatTextView tv_value = rowView_subView.findViewById(R.id.tv_itemLeadDetails_value);
-                            final View view_visibleFor_call = rowView_subView.findViewById(R.id.view_visibleFor_call);
-
-                            if(detailsModelArrayList.get(j).getLead_details_text().equals("Call Time:"))
-                            {
-                                callCount++;
-                                Log.e(TAG, "getFeedsView: callCount"+callCount );
-                            }
-
-                            tv_text.setText(detailsModelArrayList.get(j).getLead_details_text());
-                            tv_value.setText(detailsModelArrayList.get(j).getLead_details_value());
-                            view_visibleFor_call.setVisibility(detailsModelArrayList.get(j).getLead_details_text().equals("Remarks:")? View.VISIBLE : View.GONE);
-
-                            ll_addDetails.addView(rowView_subView);
-                        }
-                    }
-                    ll_others_addLeadDetails.addView(rowView_sub);
-                }
-
-            } else iv_others_leadDetails_ec.setVisibility(View.GONE);
-
-
-            //set expand Collapse Others
-            iv_others_leadDetails_ec.setOnClickListener(view -> {
-
-                if (myModel.isExpandedOthersView())  //expanded
-                {
-                    // //do collapse View
-                    new Animations().toggleRotate(iv_others_leadDetails_ec, false);
-                    collapse(ll_others_viewLeadDetails);
-                    myModel.setExpandedOthersView(false);
-                } else    // collapsed
-                {
-                    //do expand view
-                    new Animations().toggleRotate(iv_others_leadDetails_ec, true);
-                    expandSubView(ll_others_viewLeadDetails);
-                    myModel.setExpandedOthersView(true);
-                }
-            });
-
-            ll_others_main.setOnClickListener(view -> {
-
-                if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
-                {
-                    if (myModel.isExpandedOthersView())  //expanded
-                    {
-                        // //do collapse View
-                        new Animations().toggleRotate(iv_others_leadDetails_ec, false);
-                        collapse(ll_others_viewLeadDetails);
-                        myModel.setExpandedOthersView(false);
-                    } else    // collapsed
-                    {
-                        //do expand view
-                        new Animations().toggleRotate(iv_others_leadDetails_ec, true);
-                        expandSubView(ll_others_viewLeadDetails);
-                        myModel.setExpandedOthersView(true);
-                    }
-                }
-            });
-
-
-            //set visibility
-            iv_others_leadOptions.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_others_Lead_call.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_othersLeadWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_othersLeadBusinessWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            mBtn_others_claimNow.setVisibility(myModel.getLead_status_id() ==1  ? View.VISIBLE : View.GONE);
-            if (myModel.getCuidModel()!=null) iv_othersReminderIcon.setVisibility(myModel.getCuidModel().getIs_reminder_set() == 0 ? View.GONE : View.VISIBLE);
-
-            mBtn_others_claimNow.setOnClickListener(view -> {
-
-                lead_id=myModel.getLead_id();
-                showConfirmDialog(true, position);
-            });
-
-
-            //unclaimed
-            if (myModel.getLead_status_id() == 1) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-            // lead claimed
-            if (myModel.getLead_status_id() == 2)  tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-            // lead assigned
-            if (myModel.getLead_status_id() == 3)  tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-            //self/ lead added
-            if (myModel.getLead_status_id() == 4) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-            //site visited
-            if (myModel.getLead_status_id() == 5) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-            //token /GHP  generated
-            if (myModel.getLead_status_id() == 6) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
-            //token /GHP  cancelled
-            if (myModel.getLead_status_id() == 7) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //on hold
-            if (myModel.getLead_status_id() == 8) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-            //booked
-            if (myModel.getLead_status_id() == 9) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-            //booking cancelled
-            if (myModel.getLead_status_id() == 10) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //ghp pending
-            if (myModel.getLead_status_id() == 13) tv_others_Lead_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));
-
-
-
-            //visible other view
-            ll_others_view.setVisibility(View.VISIBLE);
-
-        }*/
-
         LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 LinearLayoutCompat.LayoutParams.MATCH_PARENT,
                 LinearLayoutCompat.LayoutParams.WRAP_CONTENT
@@ -2421,7 +2074,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
                 case R.id.menu_leadOption_cancelBooking:
                     //show cancel alert
-                    // showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
+                     showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
                     return true;
 
                 case R.id.menu_leadOption_continueAllotment:
@@ -2756,133 +2409,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
     }
 
-    private void showReleaseHoldAlert(String CustomerName, int unit_hold_release_id)
-    {
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireActivity());
-        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
-
-        LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(requireActivity().LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(true);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-
-
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText(getResources().getString(R.string.release_flat_question));
-        tv_desc.setText(getString(R.string.que_release_flat, CustomerName));
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-            //call add site visit api
-            alertDialog.dismiss();
-            if (isNetworkAvailable(getActivity()))
-            {
-                showCancellationProgressBar(getString(R.string.releasing_flat));
-                call_markAsReleased(unit_hold_release_id);
-
-            } else NetworkError(getActivity());
-        });
-
-        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        int pixel= getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = pixel-100;
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(requireActivity().getResources().getDrawable(R.drawable.bg_alert_background));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
-
-    }
-
-    private void showAddSiteVisitAlert(String CustomerName, FeedsModel myModel)
-    {
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireActivity());
-        LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(requireActivity().LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(false);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-
-
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText(getResources().getString(R.string.msg_add_ghp_without_site_visit));
-        tv_desc.setText(getString(R.string.que_add_ghp_without_site_visit, CustomerName));
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-
-            //goto add site visit
-
-            Objects.requireNonNull(requireActivity()).startActivity(new Intent(requireActivity(), AddSiteVisitActivity.class)
-                    .putExtra("cuidModel", myModel.getCuidModel())
-                    .putExtra("cu_id", myModel.getSmall_header_title())
-                    .putExtra("lead_name", myModel.getMain_title())
-                    .putExtra("project_name", myModel.getDescription())
-                    .putExtra("lead_id", myModel.getLead_id()));
-        });
-
-        btn_negativeButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-
-            //go to generate GHP
-            Objects.requireNonNull(requireActivity()).startActivity(new Intent(getActivity(), GenerateTokenActivity.class)
-                    .putExtra("fromOther",2)
-                    .putExtra("cuidModel", myModel.getCuidModel())
-                    .putExtra("cu_id", myModel.getSmall_header_title())
-                    .putExtra("lead_name", myModel.getMain_title())
-                    .putExtra("project_name", myModel.getDescription())
-                    .putExtra("lead_id", myModel.getLead_id()));
-
-        });
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        int pixel= getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = pixel-100;
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.bg_alert_background));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
-
-    }
 
     private void call_cancelAllotment(int bookings_id)
     {
@@ -2959,71 +2485,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     }
 
 
-    private void call_markAsReleased(int unit_hold_release_id)
-    {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("api_token", api_token);
-        jsonObject.addProperty("unit_hold_release_id", unit_hold_release_id);
-
-        ApiClient client = ApiClient.getInstance();
-        client.getApiService().directReleaseFlat(jsonObject).enqueue(new Callback<JsonObject>()
-        {
-            @Override
-            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
-            {
-                Log.e("response", ""+response.toString());
-                if (response.isSuccessful()) {
-                    if (response.body()!=null && response.body().isJsonObject()) {
-                        int isSuccess = 0;
-                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
-                        if (isSuccess==1) {
-                            if (response.body().has("data")) {
-                                if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonObject() ) {
-                                    //JsonObject data = response.body().get("data").getAsJsonObject();
-                                    //isLeadSubmitted = true;
-
-                                    showSuccessReleaseFlatAlert();
-                                }
-                                else showErrorLogClaimLead("Server response is empty!");
-
-                            }else showErrorLogClaimLead("Invalid response from server!");
-                        }
-                        else {
-
-                            String msg = null;
-                            if (response.body().has("msg")) msg = response.body().get("msg").getAsString();
-                            if (msg!=null) showErrorLogClaimLead(msg);
-                        }
-                    }
-                }
-                else
-                {
-                    // error case
-                    switch (response.code()) {
-                        case 404:
-                            showErrorLogClaimLead(getActivity().getString(R.string.something_went_wrong_try_again));
-                            break;
-                        case 500:
-                            showErrorLogClaimLead(getActivity().getString(R.string.server_error_msg));
-                            break;
-                        default:
-                            showErrorLogClaimLead(getActivity().getString(R.string.unknown_error_try_again) + " "+response.code());
-                            break;
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
-            {
-                Log.e(TAG, "onError: " + e.toString());
-                if (e instanceof SocketTimeoutException) showErrorLogClaimLead(getActivity().getString(R.string.connection_time_out));
-                else if (e instanceof IOException) showErrorLogClaimLead(getActivity().getString(R.string.weak_connection));
-                else showErrorLogClaimLead(e.toString());
-            }
-        });
-    }
 
     @SuppressLint("SetTextI18n")
     private void showEditNameDialog(CUIDModel model, int position, String ownOrOther)
@@ -3070,11 +2531,9 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
                 edt_editLeadName.requestFocus();
             }else{
                 alertDialog.dismiss();
-                if(claimDialog!=null) claimDialog.dismiss();
+                //if(claimDialog!=null) claimDialog.dismiss();
 
-                if (isNetworkAvailable(getActivity()))
-
-                {
+                if (isNetworkAvailable(getActivity())) {
                     model.setPrefix(acTv_prefix_mrs.getText().toString()!=null ? acTv_prefix_mrs.getText().toString():"");
                     model.setFirst_name(edt_editLeadName.getText().toString() != null ? edt_editLeadName.getText().toString(): "");
                     model.setMiddle_name(edt_editLeadMiddleName.getText().toString()!= null ? edt_editLeadMiddleName.getText().toString() : "");
@@ -3357,7 +2816,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     private void showSuccessUpdateLeadStage(int position, String selectedLeadStageName, int lead_stage_id) {
 
 
-        getActivity().runOnUiThread(() -> {
+        Objects.requireNonNull(requireActivity()).runOnUiThread(() -> {
 
 
             //update lead stage id and lead stage name
@@ -3407,14 +2866,14 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     @SuppressLint("InflateParams")
     private void showSuccessAlert()
     {
-        getActivity().runOnUiThread(() -> {
+        Objects.requireNonNull(requireActivity()).runOnUiThread(() -> {
 
             //hide pb
             hideProgressBar();
             //hide
             hideCancellationProgressBar();
             //  onErrorSnack(getActivity(), "Flat released successfully!");
-            new Helper().showCustomToast(getActivity(), "Allotment cancelled successfully!!");
+            new Helper().showCustomToast(requireActivity(), "Allotment cancelled successfully!!");
 
             //remove all view
             ll_addFeedData.removeAllViews();
@@ -3428,374 +2887,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
     }
 
-    @SuppressLint("InflateParams")
-    private void showSuccessReleaseFlatAlert()
-    {
-        getActivity().runOnUiThread(() -> {
-
-            //hide pb
-            hideProgressBar();
-            //hide
-            hideCancellationProgressBar();
-            //  onErrorSnack(getActivity(), "Flat released successfully!");
-
-            //show toast
-            new Helper().showSuccessCustomToast(getActivity(), getActivity().getString(R.string.flat_released_successfully));
-
-            //set Feed Action Added to true
-            if(sharedPreferences!=null)
-            {
-                editor = sharedPreferences.edit();
-                editor.putBoolean("feedActionAdded", true);
-                editor.apply();
-            }
-
-            //remove all view
-            ll_addFeedData.removeAllViews();
-
-            //resume feed api
-            resumeFeedApi();
-
-            //set scrollView scroll to top
-            nsv.smoothScrollTo(0, 0);
-        });
-
-    }
-
-    private void delayRefreshUnClaimedLeads()
-    {
-        if(getActivity()!=null)
-        {
-            getActivity().runOnUiThread(() -> {
-
-                swipeRefresh.setRefreshing(false);
-
-                //set applicationCreated false to avoid repeating call of getUnclaimed api
-                if (sharedPreferences!=null) {
-                    //update sharedPref with flag for claim now dialog
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("applicationCreated", false);
-                    editor.apply();
-                    Log.e(TAG, "delayRefreshUnClaimedLeads: setApplicationCreated false ");
-                }
-
-                //claimCount  = leadListModelArrayList.size();
-                isClaimNow = leadListModelArrayList.size() > 0; // set true iff having unclaimed leads
-                if (leadListModelArrayList.size() > 0) {
-                    //showDialog();
-                    new Handler(getMainLooper()).postDelayed(this::showDialog, 1000);
-                }
-                else {
-                    //leadListModelArrayList.size();
-                    if (isClaimNow) {
-                        //check claimCount == total size
-
-                        //refresh feeds api
-                        refreshFeedApi();
-                    }
-                }
-
-            });
-        }
-    }
-
-    private void showDialog()
-    {
-        //Vibrator v = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
-       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            assert v != null;
-            v.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)); // New vibrate method for API Level 26 or higher
-        } else {
-            assert v != null;
-            v.vibrate(1000);  // Vibrate method for below API Level 26
-        }*/
-        if (getActivity()!=null)
-        {
-            claimDialog = new Dialog(getActivity());
-            claimDialog.setCancelable(true);
-            Drawable button = getResources().getDrawable(R.drawable.claim_button_drawable, getActivity().getTheme());
-            @SuppressLint("InflateParams") View view  = getActivity().getLayoutInflater().inflate(R.layout.layout_claim_now_pop_up, null);
-            claimDialog.setContentView(view);
-            Objects.requireNonNull(claimDialog.getWindow()).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_claim_popup));
-            ImageView close =  view.findViewById(R.id.iv_close_claimNow);
-            AppCompatTextView tv_date =  view.findViewById(R.id.tv_claimNow_date);
-            AppCompatTextView tv_claimTag =  view.findViewById(R.id.tv_claimNow_tag);
-            //AppCompatImageView iv_tagIcon =  view.findViewById(R.id.iv_claimNow_tagIcon);
-            //AppCompatTextView tv_unitType =  view.findViewById(R.id.tv_claimNow_unitType);
-            AppCompatTextView tv_elapsedTime =  view.findViewById(R.id.tv_claimNow_elapsedTime);
-            AppCompatTextView tv_name =  view.findViewById(R.id.tv_claimNow_projectName);
-            AppCompatTextView tv_cuId =  view.findViewById(R.id.tv_claimNow_cu_id);
-            AppCompatTextView tv_lead_name =  view.findViewById(R.id.tv_claimNow_lead_name);
-            AppCompatTextView tv_addedBy =  view.findViewById(R.id.tv_claimNow_addedBy);
-            AppCompatButton claim_btn =  view.findViewById(R.id.btn_claimNow_popup);
-            // RipplePulseLayout mRipplePulseLayout = view.findViewById(R.id.rp_layout);
-
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int width_px = Resources.getSystem().getDisplayMetrics().widthPixels;
-            int height_px =Resources.getSystem().getDisplayMetrics().heightPixels;
-            width_px = width_px -50;
-            height_px=height_px-200;
-            claimDialog.getWindow().setLayout(width_px,height_px);
-
-            //mRipplePulseLayout.startRippleAnimation();
-            close.setOnClickListener(view12 -> {
-
-                //dismiss dialog and update feed
-                if(claimDialog!=null) claimDialog.dismiss();
-
-                if (sharedPreferences!=null)
-                {
-                    //update sharedPref with flag
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("applicationCreated", false);
-                    editor.apply();
-                }
-
-                //reset api with delay
-                resetFeedApiWithDelay();
-
-            });
-
-            if(leadListModelArrayList!=null)
-            {
-                tv_date.setText(leadListModelArrayList.get(claimPosition).getTag_date());
-                //tv_unitType.setText(leadListModelArrayList.get(claimPosition).getLead_unit_type());
-                tv_cuId.setText(leadListModelArrayList.get(claimPosition).getLead_cuid_number());
-                tv_lead_name.setText(leadListModelArrayList.get(claimPosition).getFull_name());
-                tv_name.setText(String.format("%s | %s", leadListModelArrayList.get(claimPosition).getLead_project_name(), leadListModelArrayList.get(claimPosition).getLead_unit_type()));
-                tv_elapsedTime.setText(leadListModelArrayList.get(claimPosition).getElapsed_time());
-                tv_claimTag.setText(leadListModelArrayList.get(claimPosition).getLead_types_name());
-                tv_addedBy.setText(leadListModelArrayList.get(claimPosition).getAdded_by());
-                lead_id=leadListModelArrayList.get(claimPosition).getLead_id();
-            }
-
-            claim_btn.setBackgroundDrawable(button);
-            claim_btn.setOnClickListener(view1 -> showConfirmDialog(false, 0));
-            claimDialog.show();
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void showConfirmDialog(boolean fromFeed, int position)
-    {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
-
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(true);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText("Claim Lead?");
-        tv_desc.setText("Are you sure you want to claim this lead?");
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-
-            // showSuccessPopup();
-            alertDialog.dismiss();
-            if(claimDialog!=null) claimDialog.dismiss();
-
-            if (isNetworkAvailable(getActivity()))
-            {
-                //showProgressBar("Adding site visit...");
-                call_claimNow(fromFeed, position);
-
-            } else NetworkError(getActivity());
-
-        });
-
-
-        btn_negativeButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-            if(claimDialog!=null) claimDialog.dismiss();
-
-            if (sharedPreferences!=null)
-            {
-                //update sharedPref with flag
-                editor = sharedPreferences.edit();
-                editor.putBoolean("applicationCreated", false);
-                editor.apply();
-            }
-
-            //reset api with delay
-            resetFeedApiWithDelay();
-
-        });
-
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        int pixel= getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = pixel-100;
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.bg_claim_popup));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
-    }
-
-
-    private void call_claimNow(boolean fromFeed, int position)
-    {
-        final JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("api_token", api_token);
-        jsonObject.addProperty("sales_person_id", user_id);
-        jsonObject.addProperty("lead_id",lead_id);
-
-        ApiClient client = ApiClient.getInstance();
-        Call<JsonObject> call_ = client.getApiService().addLeadClaimNow(jsonObject);
-        call_.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NonNull Call<JsonObject> call_, @NonNull Response<JsonObject> response)
-            {
-                if (response.isSuccessful())
-                {
-                    if (response.body() != null)
-                    {
-                        String success = response.body().get("success").toString();
-                        if ("1".equals(success)) {
-
-                            claimAPiCount = claimAPiCount + 1;
-                            //remove index from array list
-                            if (!fromFeed) leadListModelArrayList.remove(claimPosition);
-                            showSuccessPopup(fromFeed, position);
-                        }
-                        else if ("2".equals(success)) onAlreadyClaimedLead(response.body(), fromFeed);
-                        else showErrorLogClaimLead("Failed to claim lead!");
-                    }
-                }
-                else
-                {
-                    // error case
-                    switch (response.code())
-                    {
-                        case 404:
-                            showErrorLogClaimLead(getString(R.string.something_went_wrong_try_again));
-                            break;
-                        case 500:
-                            showErrorLogClaimLead(getString(R.string.server_error_msg));
-                            break;
-                        default:
-                            showErrorLogClaimLead(getString(R.string.unknown_error_try_again));
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e) {
-                Log.e(TAG, "onError: " + e.toString());
-                if (e instanceof SocketTimeoutException) showErrorLogClaimLead(getString(R.string.connection_time_out));
-                else if (e instanceof IOException) showErrorLogClaimLead(getString(R.string.weak_connection));
-                else showErrorLogClaimLead(e.toString());
-            }
-        });
-    }
-
-
-    //Success Pop Up
-    @SuppressLint({"InflateParams", "SetTextI18n"})
-    private void showSuccessPopup(boolean fromFeed, int position)
-    {
-
-        Dialog claimSuccessDialog = new Dialog(getActivity());
-        claimSuccessDialog.setCancelable(true);
-        View view  = getActivity().getLayoutInflater().inflate(R.layout.layout_claim_now_success, null);
-        claimSuccessDialog.setContentView(view);
-        Objects.requireNonNull(claimSuccessDialog.getWindow()).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_claim_popup));
-        AppCompatTextView tv_congrats = view.findViewById(R.id.tv_congrats);
-        AppCompatTextView tv_msg = view.findViewById(R.id.tv_msg);
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int width_px = Resources.getSystem().getDisplayMetrics().widthPixels;
-        int height_px =Resources.getSystem().getDisplayMetrics().heightPixels;
-        width_px = width_px -50;
-        height_px=height_px-250;
-        claimSuccessDialog.getWindow().setLayout(width_px,height_px);
-
-        tv_congrats.setText("Congratulations !");
-        tv_msg.setText("This is your lead");
-
-        new Handler(getMainLooper()).postDelayed(() -> {
-            claimSuccessDialog.dismiss();
-            if (fromFeed)
-            {
-                //TODO comment edit text and refresh api with delay
-                //clear editText
-                //edt_search.setText("");
-                //reset feed api with delay
-                //resetFeedApiWithDelay();
-
-              /*  //set lead stage name
-                LinearLayoutCompat ll_homeFeed_othersCard = ll_addFeedData.getChildAt(position).findViewById(R.id.ll_homeFeed_othersCard);
-                ll_homeFeed_othersCard.setBackground(getResources().getDrawable(R.drawable.cardview_leftside_white));
-
-                //hide claim now button
-                MaterialButton mBtn_othersClaimNow = ll_addFeedData.getChildAt(position).findViewById(R.id.mBtn_homeFeed_othersClaimNow);
-                mBtn_othersClaimNow.setVisibility(View.GONE);
-
-                AppCompatTextView tv_others_Lead_status = ll_addFeedData.getChildAt(position).findViewById(R.id.tv_homeFeed_othersLeadStatus);
-                tv_others_Lead_status.setText("Claimed");
-                tv_others_Lead_status.setBackgroundColor(getActivity().getResources().getColor(R.color.color_lead_claimed));
-*/
-            } else delayRefreshUnClaimedLeads();
-        }, 1000);
-
-        /*claim_btn.setBackgroundDrawable(button);
-        claim_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                *//*Dialog Box*//*
-                showConfirmDialog();
-            }
-        });*/
-
-        claimSuccessDialog.show();
-    }
-
-    private void onAlreadyClaimedLead(JsonObject jsonObject, boolean fromFeed)
-    {
-        if (getActivity()!=null)
-        {
-            getActivity().runOnUiThread(() -> {
-
-                //handle if some one claimed lead already
-                //show error log
-                if (jsonObject.has("msg")) showErrorLogClaimLead(!jsonObject.get("msg").isJsonNull() ? jsonObject.get("msg").getAsString() : "Failed to claim lead!" );
-                else showErrorLogClaimLead("Failed to claim lead!");
-
-                //handle if from feed -- already claimed then call get feeds api again
-                // else remove position from arrayList
-                if (fromFeed)
-                {
-                    //reset feed api with delay
-                    resetFeedApiWithDelay();
-                }
-                else leadListModelArrayList.remove(claimPosition);
-                // remove position from arrayList
-
-            });
-        }
-    }
 
     private void showErrorLog(final String message) {
         if (getActivity() != null) {
@@ -3828,22 +2919,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         }
     }
 
-    private void showErrorLogEventBanner(final String message) {
-        if (getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
 
-                swipeRefresh.setRefreshing(false);
-                hideProgressBar();
-                //hide pb
-                hideCancellationProgressBar();
-
-                onErrorSnack(getActivity(), message);
-
-                view.setVisibility(View.VISIBLE);
-
-            });
-        }
-    }
 
     private void showErrorLogClaimLead(final String message) {
         if (getActivity() != null) {
@@ -4022,16 +3098,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     }
 
 
-    private void doOnBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            if (getActivity() != null) getActivity().onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        new Helper().showCustomToast(requireActivity(), getResources().getString(R.string.app_exit_msg));
-        new Handler(getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
-    }
 
     @Override
     public void onDestroy() {

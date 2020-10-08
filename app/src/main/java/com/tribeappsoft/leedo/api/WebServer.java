@@ -9,7 +9,7 @@ public class WebServer {
 
 
     //TODO TEST LIVE
-    public static final String BASE_URL = "http://13.233.27.5/1tr/muk03/public/api/";
+    public static final String BASE_URL = "http://13.233.27.5/1tr/sid05/public/api/";
     //public static final String BASE_URL1 = "http://vjpartners.co.in/ongoing/v7_new_merge/public/api/";
 
     private static final String BASE_URL_LOGO = "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/";

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -69,7 +70,6 @@ import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
 import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.model.DetailedStatFeedDetails;
-import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView;
@@ -978,8 +978,8 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
         //sales manager
         tv_smBy.setText(myModel.getSales_person_name() != null && !myModel.getSales_person_name().trim().isEmpty()? myModel.getSales_person_name(): "--");
         ll_smBy.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
-        iv_ownLeadSms.setVisibility(View.GONE);
-        iv_ownLeadGmail.setVisibility(View.GONE);
+        //iv_ownLeadSms.setVisibility(View.GONE);
+        //iv_ownLeadGmail.setVisibility(View.GONE);
 
         //set siteVisit badge count
         tv_siteVisit_badge.setText(String.valueOf(myModel.getSite_visit_count()));
@@ -1068,7 +1068,8 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
             }
             else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
         });
-     /*   //sms
+
+        //sms
         iv_ownLeadSms.setOnClickListener(v -> {
             if (myModel.getMobile_number()!=null) {
                 //send Message to WhatsApp Number
@@ -1078,23 +1079,15 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
         });
 
 
-
-        //gmail
+        //GMail
         iv_ownLeadGmail.setOnClickListener(v -> {
             if (myModel.getMobile_number()!=null) {
                 //send Message to WhatsApp Number
                 sendMessageFromGmailApp(myModel.getCuidModel().getCustomer_email(), myModel.getFull_name());
             }
-            else new Helper().showCustomToast(context, "Customer Mobile Number not found!");
+            else new Helper().showCustomToast(context, "Customer Email not added!");
         });
-*/
-       /* //mobile number call
-        iv_callIcon.setOnClickListener(v -> {
-            if (myModel.getMobile_number()!=null)
-            {
-                new Helper().openPhoneDialer(Objects.requireNonNull(context), myModel.getMobile_number());
-            }else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
-        });*/
+
 
         iv_callIcon.setOnClickListener(v -> {
             if (myModel.getMobile_number()!=null) {
@@ -1198,38 +1191,6 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
-/*        //unclaimed
-        if (myModel.getCuidModel().getLead_status_id() == 1) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-        // lead claimed
-        if (myModel.getCuidModel().getLead_status_id() == 2)  mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-        // lead assigned
-        if (myModel.getCuidModel().getLead_status_id() == 3)  mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-        //self/ lead added
-        if (myModel.getCuidModel().getLead_status_id() == 4) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-        //site visited
-        if (myModel.getCuidModel().getLead_status_id() == 5) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-        //token /GHP  generated
-        if (myModel.getCuidModel().getLead_status_id() == 6) {
-
-            //token /upgraded with GHP Plus
-            if(myModel.getCuidModel().getToken_type_id()==3) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_token_plus_generated));
-            else mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
-        }
-
-        //token /GHP  cancelled
-        if (myModel.getCuidModel().getLead_status_id() == 7) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-        //on hold
-        if (myModel.getCuidModel().getLead_status_id() == 8) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-        //booked
-        if (myModel.getCuidModel().getLead_status_id() == 9) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-        //booking cancelled
-        if (myModel.getCuidModel().getLead_status_id() == 10) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-        //ghp pending
-        if (myModel.getCuidModel().getLead_status_id() == 13) mtvLeadStatus.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));*/
-
-
         return rowView;
     }
 
@@ -1312,6 +1273,75 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
             Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void sendMessageFromSMSApp(String number, String main_title)
+    {
+        Log.e(TAG, "sendMessageToWhatsApp: "+ main_title );
+        sharedPreferences = new Helper().getSharedPref(context);
+        editor = sharedPreferences.edit();
+        String sales_person_name = sharedPreferences.getString("full_name", "");
+        String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        editor.apply();
+
+        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+
+        try {
+            Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
+            smsIntent.setType("vnd.android-dir/mms-sms");
+            smsIntent.putExtra("address",""+number);
+            smsIntent.putExtra("sms_body",""+extra_text);
+            smsIntent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(smsIntent);
+        } catch(ActivityNotFoundException ex){
+            ex.printStackTrace();
+            Toast.makeText(context, "Messaging App not installed!", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void sendMessageFromGmailApp(String email, String main_title)
+    {
+        Log.e(TAG, "sendMessageToGMail: "+ main_title );
+        sharedPreferences = new Helper().getSharedPref(context);
+        editor = sharedPreferences.edit();
+        String sales_person_name = sharedPreferences.getString("full_name", "");
+        String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        editor.apply();
+
+        //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
+        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+
+        try{
+
+            Intent intent=new Intent(Intent.ACTION_SEND);
+            String[] recipients={""+email};
+            intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+            intent.putExtra(Intent.EXTRA_SUBJECT,"Greetings from Lead Management App");
+            intent.putExtra(Intent.EXTRA_TEXT,""+extra_text);
+            intent.putExtra(Intent.EXTRA_CC,"");
+            intent.putExtra(Intent.EXTRA_BCC, "");
+            intent.setType("text/html");
+            intent.setPackage("com.google.android.gm");
+            startActivity(Intent.createChooser(intent, "Send mail"));
+
+        }catch(ActivityNotFoundException ex){
+            ex.printStackTrace();
+            Toast.makeText(context, "Gmail App not installed!", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     //check call permission
     private boolean checkCallPermissions() {
@@ -1442,36 +1472,6 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
         }, 1500);
     }
 
-    private void showUpdateLeadPopUpMenu(View view, DetailedStatFeedDetails myModel, int position) {
-
-        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-        //add popup menu options
-        popupMenu.getMenu().add(1, R.id.menu_updateLead_updateLeadName, Menu.NONE, context.getString(R.string.update_lead_name));
-        popupMenu.getMenu().add(1, R.id.menu_updateLead_updateLeadStage, Menu.NONE, context.getString(R.string.update_lead_stage));
-
-        popupMenu.setOnMenuItemClickListener(item -> {
-
-            switch (item.getItemId())
-            {
-                case R.id.menu_updateLead_updateLeadName:
-                    //show update lead name alert
-                    showEditNameDialog(myModel.getCuidModel(), position,"own");
-                    return true;
-
-                case R.id.menu_updateLead_updateLeadStage:
-                    //show update stage alert
-                    showUpdateLeadStageAlert(myModel,position);
-                    return true;
-
-                default:
-                    return true;
-            }
-
-            //Toast.makeText(anchor.getContext(), item.getTitle() + "clicked", Toast.LENGTH_SHORT).show();
-            //return true;
-        });
-        popupMenu.show();
-    }
 
     @SuppressLint("SetTextI18n")
     private void showEditNameDialog(CUIDModel model,int position,String ownOrOther)
@@ -2269,230 +2269,6 @@ public class StatBookingDetailsActivity extends AppCompatActivity {
         });
     }
 
-
-    private void showReleaseHoldAlert(String CustomerName, int unit_hold_release_id)
-    {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(true);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText(getResources().getString(R.string.release_flat_question));
-        tv_desc.setText(getString(R.string.que_release_flat, CustomerName));
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-            //call add site visit api
-            alertDialog.dismiss();
-            if (isNetworkAvailable(Objects.requireNonNull(context)))
-            {
-                showCancellationProgressBar(getString(R.string.releasing_flat));
-                call_markAsReleased(unit_hold_release_id);
-
-            } else NetworkError(context);
-        });
-
-        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        int pixel= Objects.requireNonNull(context).getWindowManager().getDefaultDisplay().getWidth();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = pixel-100;
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
-
-    }
-
-    private void call_markAsReleased(int unit_hold_release_id)
-    {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("api_token", api_token);
-        jsonObject.addProperty("unit_hold_release_id", unit_hold_release_id);
-
-        ApiClient client = ApiClient.getInstance();
-        client.getApiService().directReleaseFlat(jsonObject).enqueue(new Callback<JsonObject>()
-        {
-            @Override
-            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
-            {
-                Log.e("response", ""+response.toString());
-                if (response.isSuccessful()) {
-                    if (response.body()!=null && response.body().isJsonObject()) {
-                        int isSuccess = 0;
-                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
-                        if (isSuccess==1) {
-                            if (response.body().has("data")) {
-                                if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonObject() ) {
-                                    //JsonObject data = response.body().get("data").getAsJsonObject();
-                                    //isLeadSubmitted = true;
-
-                                    showSuccessReleaseFlatAlert();
-                                }
-                                else showErrorLogClaimLead("Server response is empty!");
-
-                            }else showErrorLogClaimLead("Invalid response from server!");
-                        }
-                        else {
-
-                            String msg = null;
-                            if (response.body().has("msg")) msg = response.body().get("msg").getAsString();
-                            if (msg!=null) showErrorLogClaimLead(msg);
-                        }
-                    }
-                }
-                else
-                {
-                    // error case
-                    switch (response.code()) {
-                        case 404:
-                            showErrorLogClaimLead(context.getString(R.string.something_went_wrong_try_again));
-                            break;
-                        case 500:
-                            showErrorLogClaimLead(context.getString(R.string.server_error_msg));
-                            break;
-                        default:
-                            showErrorLogClaimLead(context.getString(R.string.unknown_error_try_again) + " "+response.code());
-                            break;
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
-            {
-                Log.e(TAG, "onError: " + e.toString());
-                if (e instanceof SocketTimeoutException) showErrorLogClaimLead(context.getString(R.string.connection_time_out));
-                else if (e instanceof IOException) showErrorLogClaimLead(context.getString(R.string.weak_connection));
-                else showErrorLogClaimLead(e.toString());
-            }
-        });
-    }
-
-    @SuppressLint("InflateParams")
-    private void showSuccessReleaseFlatAlert()
-    {
-        runOnUiThread(() -> {
-
-            //hide pb
-            hideProgressBar();
-            //hide
-            hideCancellationProgressBar();
-            //  onErrorSnack(context, "Flat released successfully!");
-
-            //show toast
-            new Helper().showSuccessCustomToast(context, context.getString(R.string.flat_released_successfully));
-
-            //set Feed Action Added to true
-            /*if(sharedPreferences!=null)
-            {
-                editor = sharedPreferences.edit();
-                editor.putBoolean("feedActionAdded", true);
-                editor.apply();
-            }
-
-            //remove all view
-            ll_addFeedData.removeAllViews();*/
-
-            //resume feed api
-            resumeFeedApi();
-
-            //set scrollView scroll to top
-            stv_BookingDetails.smoothScrollTo(0, 0);
-        });
-
-    }
-
-
-    private void showAddSiteVisitAlert(String CustomerName, DetailedStatFeedDetails myModel)
-    {
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(false);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-
-
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText(getResources().getString(R.string.msg_add_ghp_without_site_visit));
-        tv_desc.setText(getString(R.string.que_add_ghp_without_site_visit, CustomerName.trim()));
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-
-            //go to generate GHP
-            context.startActivity(new Intent(context, GenerateTokenActivity.class)
-                    .putExtra("fromOther",2)
-                    .putExtra("cuidModel", myModel.getCuidModel())
-                    .putExtra("cu_id", myModel.getLead_uid())
-                    .putExtra("lead_name", myModel.getFull_name())
-                    .putExtra("project_name", myModel.getDescription())
-                    .putExtra("lead_id", myModel.getCuidModel().getLead_id()));
-        });
-
-
-        btn_negativeButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-
-            //goto add site visit
-            context.startActivity(new Intent(context, AddSiteVisitActivity.class)
-                    .putExtra("cuidModel", myModel.getCuidModel())
-                    .putExtra("cu_id", myModel.getLead_uid())
-                    .putExtra("lead_name", myModel.getFull_name())
-                    .putExtra("project_name", myModel.getDescription())
-                    .putExtra("lead_id", myModel.getCuidModel().getLead_id()));
-        });
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        int pixel= Objects.requireNonNull(context).getWindowManager().getDefaultDisplay().getWidth();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = pixel-100;
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
-
-    }
 
     private void showCancellationProgressBar(String msg) {
         hideSoftKeyboard(context, Objects.requireNonNull(context).getWindow().getDecorView().getRootView());
