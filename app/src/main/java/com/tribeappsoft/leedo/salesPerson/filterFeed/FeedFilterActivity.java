@@ -125,8 +125,7 @@ public class FeedFilterActivity extends AppCompatActivity {
             lead_id =0, skip_count =0, call_lead_id =0, call_lead_status_id = 0;
     private String TAG = "FeedFilterActivity", api_token = "", filter_text="", other_ids ="",
             display_text ="", last_lead_updated_at = null, customer_mobile = null,call_cuID= null;
-
-    private boolean stopApiCall = false,  isClaimNow = false;
+    private boolean stopApiCall = false,  isClaimNow = false, isSalesHead = false, isAdmin = false;
 
 
 
@@ -168,6 +167,8 @@ public class FeedFilterActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
+        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
 
         //init arrayLists
@@ -1023,7 +1024,7 @@ public class FeedFilterActivity extends AppCompatActivity {
         AppCompatImageView iv_own_Lead_call = rowView.findViewById(R.id.iv_homeFeed_ownLeadCall);
         AppCompatImageView iv_own_leadOptions = rowView.findViewById(R.id.iv_homeFeed_ownLeadOptions);
         AppCompatTextView tv_own_status = rowView.findViewById(R.id.tv_homeFeed_ownStatus);
-      //  AppCompatTextView tv_own_token_number = rowView.findViewById(R.id.tv_homeFeed_ownTokenNumber);
+        //  AppCompatTextView tv_own_token_number = rowView.findViewById(R.id.tv_homeFeed_ownTokenNumber);
         //LinearLayoutCompat ll_own_leadDetailsMain = rowView.findViewById(R.id.ll_HomeFeed_own_leadDetailsMain);
         AppCompatImageView iv_own_leadDetails_ec = rowView.findViewById(R.id.iv_homeFeed_own_leadDetails_ec);
         LinearLayoutCompat ll_own_viewLeadDetails = rowView.findViewById(R.id.ll_homeFeed_ownViewLeadDetails);
@@ -1058,125 +1059,144 @@ public class FeedFilterActivity extends AppCompatActivity {
 
         final FeedsModel myModel = modelArrayList.get(position);
         if (myModel.getFeed_type_id() == 1) {}
-            //Own View
+        //Own View
 
-            //tag date
-            tv_own_date.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
-            //tag icon
-            iv_own_tagIcon.setImageResource(R.drawable.ic_tag_general);
-            //tag other_ids
-            tv_own_tag.setText(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? myModel.getTag() : "");
-            //elapsed time
-            tv_own_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
-            //cu_id number
-            tv_own_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
-            //lead name
-            tv_own_Lead_name.setText(myModel.getMain_title() != null && !myModel.getMain_title().trim().isEmpty() ? myModel.getMain_title() : "");
-            //project name
-            tv_own_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
-            //lead stage name
-            tv_ownLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
-            tv_ownLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));
-            Log.e(TAG, "getFeedsView Filter: ll_leadStage_dot"+ll_leadStage_dot );
-            ll_leadStage_dot.setVisibility(myModel.getCuidModel().getLead_stage_id()==0 ? View.GONE :View.VISIBLE);
+        //tag date
+        tv_own_date.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
+        //tag icon
+        iv_own_tagIcon.setImageResource(R.drawable.ic_tag_general);
+        //tag other_ids
+        tv_own_tag.setText(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? myModel.getTag() : "");
+        //elapsed time
+        tv_own_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
+        //cu_id number
+        tv_own_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
+        //lead name
+        tv_own_Lead_name.setText(myModel.getMain_title() != null && !myModel.getMain_title().trim().isEmpty() ? myModel.getMain_title() : "");
+        //project name
+        tv_own_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
+        //lead stage name
+        tv_ownLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
+        tv_ownLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));
+        Log.e(TAG, "getFeedsView Filter: ll_leadStage_dot"+ll_leadStage_dot );
+        ll_leadStage_dot.setVisibility(myModel.getCuidModel().getLead_stage_id()==0 ? View.GONE :View.VISIBLE);
 
-            //status
-            tv_own_status.setText(myModel.getStatus_text() != null && !myModel.getStatus_text().trim().isEmpty() ? myModel.getStatus_text() : "");
-            //token number/sub status other_ids
-           // tv_own_token_number.setText(myModel.getStatus_sub_text() != null && !myModel.getStatus_sub_text().trim().isEmpty() ? myModel.getStatus_sub_text() : "");
-            //mobile number/call
-            iv_own_Lead_call.setOnClickListener(v -> {
-                if (myModel.getCall()!=null) {
-                    //get the customer mobile number
-                    customer_mobile = myModel.getCall();
-                    //get lead id
-                    call_lead_id = myModel.getLead_id();
-                    //get lead status id
-                    call_lead_status_id = myModel.getLead_status_id();
-                    //get cuId
-                    call_cuID = myModel.getSmall_header_title();
+        //status
+        tv_own_status.setText(myModel.getStatus_text() != null && !myModel.getStatus_text().trim().isEmpty() ? myModel.getStatus_text() : "");
+        //token number/sub status other_ids
+        // tv_own_token_number.setText(myModel.getStatus_sub_text() != null && !myModel.getStatus_sub_text().trim().isEmpty() ? myModel.getStatus_sub_text() : "");
+        //mobile number/call
+        iv_own_Lead_call.setOnClickListener(v -> {
+            if (myModel.getCall()!=null) {
+                //get the customer mobile number
+                customer_mobile = myModel.getCall();
+                //get lead id
+                call_lead_id = myModel.getLead_id();
+                //get lead status id
+                call_lead_status_id = myModel.getLead_status_id();
+                //get cuId
+                call_cuID = myModel.getSmall_header_title();
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (checkCallPermissions()) prepareToMakePhoneCall();
-                        else requestPermissionCall();
-                    }
-                    else prepareToMakePhoneCall();
-
-                    //new Helper().openPhoneDialer(Objects.requireNonNull(context), myModel.getCall());
-                }else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
-            });
-
-            //whatsApp
-            iv_ownLeadWhatsApp.setOnClickListener(v -> {
-                if (myModel.getCall()!=null) {
-                    //send Message to WhatsApp Number
-                    sendMessageToWhatsApp(myModel.getCall(), myModel.getMain_title());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkCallPermissions()) prepareToMakePhoneCall();
+                    else requestPermissionCall();
                 }
-                else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
-            });
+                else prepareToMakePhoneCall();
 
+                //new Helper().openPhoneDialer(Objects.requireNonNull(context), myModel.getCall());
+            }else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
+        });
 
-            switch (myModel.getCuidModel().getLead_stage_id()) {
-                case 1:
-                    tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorhot));
-                    break;
-                case 2:
-                    tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorwarm));
-                    break;
-                case 3:
-                    tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorcold));
-                    break;
-                case 4:
-                    tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorni));
-                    tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorni));
-                    break;
-                default:
-                    tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.BlackLight));
-                    tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.BlackLight));
+        //whatsApp
+        iv_ownLeadWhatsApp.setOnClickListener(v -> {
+            if (myModel.getCall()!=null) {
+                //send Message to WhatsApp Number
+                sendMessageToWhatsApp(myModel.getCall(), myModel.getMain_title());
             }
+            else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
+        });
+
+
+        switch (myModel.getCuidModel().getLead_stage_id()) {
+            case 1:
+                tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorhot));
+                tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorhot));
+                break;
+            case 2:
+                tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorwarm));
+                tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorwarm));
+                break;
+            case 3:
+                tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorcold));
+                tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorcold));
+                break;
+            case 4:
+                tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.colorni));
+                tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.colorni));
+                break;
+            default:
+                tv_ownLeadStage.setTextColor(context.getResources().getColor(R.color.BlackLight));
+                tv_ownLeadStage_dot.setTextColor(context.getResources().getColor(R.color.BlackLight));
+        }
 
 
 
-            //set own popup menu's
-            iv_own_leadOptions.setOnClickListener(view -> showPopUpMenu(iv_own_leadOptions, myModel));
+        //set own popup menu's
+        iv_own_leadOptions.setOnClickListener(view -> showPopUpMenu(iv_own_leadOptions, myModel));
 
-            if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0) {
+        if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0) {
 
-                iv_own_leadDetails_ec.setVisibility(View.VISIBLE);
-                //Set Lead Details
-                ll_own_addLeadDetails.removeAllViews();
-                for (int i = 0; i < myModel.getDetailsTitleModelArrayList().size(); i++) {
-                    //Log.e("ll_HomeFeed_own_", "onBindViewHolder: "+myModel.getDetailsTitleModelArrayList().size());
+            iv_own_leadDetails_ec.setVisibility(View.VISIBLE);
+            //Set Lead Details
+            ll_own_addLeadDetails.removeAllViews();
+            for (int i = 0; i < myModel.getDetailsTitleModelArrayList().size(); i++) {
+                //Log.e("ll_HomeFeed_own_", "onBindViewHolder: "+myModel.getDetailsTitleModelArrayList().size());
 
-                    @SuppressLint("InflateParams") View rowView_sub = LayoutInflater.from(context).inflate(R.layout.layout_item_leads_title, null);
-                    final AppCompatTextView tv_leads_tag_details_title_text = rowView_sub.findViewById(R.id.tv_itemLeadDetails_title);
-                    final LinearLayoutCompat ll_addDetails = rowView_sub.findViewById(R.id.ll_itemLeadDetails_addDetails);
-                    tv_leads_tag_details_title_text.setText(myModel.getDetailsTitleModelArrayList().get(i).getLead_details_title());
-                    ll_addDetails.removeAllViews();
-                    ArrayList<LeadDetailsModel> detailsModelArrayList = myModel.getDetailsTitleModelArrayList().get(i).getLeadDetailsModels();
-                    if (detailsModelArrayList != null && detailsModelArrayList.size() > 0) {
+                @SuppressLint("InflateParams") View rowView_sub = LayoutInflater.from(context).inflate(R.layout.layout_item_leads_title, null);
+                final AppCompatTextView tv_leads_tag_details_title_text = rowView_sub.findViewById(R.id.tv_itemLeadDetails_title);
+                final LinearLayoutCompat ll_addDetails = rowView_sub.findViewById(R.id.ll_itemLeadDetails_addDetails);
+                tv_leads_tag_details_title_text.setText(myModel.getDetailsTitleModelArrayList().get(i).getLead_details_title());
+                ll_addDetails.removeAllViews();
+                ArrayList<LeadDetailsModel> detailsModelArrayList = myModel.getDetailsTitleModelArrayList().get(i).getLeadDetailsModels();
+                if (detailsModelArrayList != null && detailsModelArrayList.size() > 0) {
 
-                        for (int j = 0; j < detailsModelArrayList.size(); j++) {
-                            //Log.e("ll_HomeFeed_own_", "detailsModelArrayList.get(j).getLead_details_text() "+detailsModelArrayList.get(j).getLead_details_text());
-                            @SuppressLint("InflateParams") View rowView_subView = LayoutInflater.from(context).inflate(R.layout.layout_item_lead_details_text, null);
-                            final AppCompatTextView tv_text = rowView_subView.findViewById(R.id.tv_itemLeadDetails_text);
-                            final AppCompatTextView tv_value = rowView_subView.findViewById(R.id.tv_itemLeadDetails_value);
-                            tv_text.setText(detailsModelArrayList.get(j).getLead_details_text());
-                            tv_value.setText(detailsModelArrayList.get(j).getLead_details_value());
-                            ll_addDetails.addView(rowView_subView);
-                        }
+                    for (int j = 0; j < detailsModelArrayList.size(); j++) {
+                        //Log.e("ll_HomeFeed_own_", "detailsModelArrayList.get(j).getLead_details_text() "+detailsModelArrayList.get(j).getLead_details_text());
+                        @SuppressLint("InflateParams") View rowView_subView = LayoutInflater.from(context).inflate(R.layout.layout_item_lead_details_text, null);
+                        final AppCompatTextView tv_text = rowView_subView.findViewById(R.id.tv_itemLeadDetails_text);
+                        final AppCompatTextView tv_value = rowView_subView.findViewById(R.id.tv_itemLeadDetails_value);
+                        tv_text.setText(detailsModelArrayList.get(j).getLead_details_text());
+                        tv_value.setText(detailsModelArrayList.get(j).getLead_details_value());
+                        ll_addDetails.addView(rowView_subView);
                     }
-                    ll_own_addLeadDetails.addView(rowView_sub);
                 }
-            } else iv_own_leadDetails_ec.setVisibility(View.GONE);
+                ll_own_addLeadDetails.addView(rowView_sub);
+            }
+        } else iv_own_leadDetails_ec.setVisibility(View.GONE);
 
 
-            //set expand Collapse Own
-            iv_own_leadDetails_ec.setOnClickListener(view -> {
+        //set expand Collapse Own
+        iv_own_leadDetails_ec.setOnClickListener(view -> {
 
+            if (myModel.isExpandedOwnView())  //expanded
+            {
+                // //do collapse View
+                new Animations().toggleRotate(iv_own_leadDetails_ec, false);
+                collapse(ll_own_viewLeadDetails);
+                myModel.setExpandedOwnView(false);
+            } else    // collapsed
+            {
+                //do expand view
+                new Animations().toggleRotate(iv_own_leadDetails_ec, true);
+                expandSubView(ll_own_viewLeadDetails);
+                myModel.setExpandedOwnView(true);
+            }
+        });
+
+        ll_own_main.setOnClickListener(view -> {
+
+            if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
+            {
                 if (myModel.isExpandedOwnView())  //expanded
                 {
                     // //do collapse View
@@ -1190,73 +1210,54 @@ public class FeedFilterActivity extends AppCompatActivity {
                     expandSubView(ll_own_viewLeadDetails);
                     myModel.setExpandedOwnView(true);
                 }
-            });
-
-            ll_own_main.setOnClickListener(view -> {
-
-                if (myModel.getDetailsTitleModelArrayList() != null && myModel.getDetailsTitleModelArrayList().size() > 0)
-                {
-                    if (myModel.isExpandedOwnView())  //expanded
-                    {
-                        // //do collapse View
-                        new Animations().toggleRotate(iv_own_leadDetails_ec, false);
-                        collapse(ll_own_viewLeadDetails);
-                        myModel.setExpandedOwnView(false);
-                    } else    // collapsed
-                    {
-                        //do expand view
-                        new Animations().toggleRotate(iv_own_leadDetails_ec, true);
-                        expandSubView(ll_own_viewLeadDetails);
-                        myModel.setExpandedOwnView(true);
-                    }
-                }
-            });
-
-
-            //set visibility
-            iv_own_leadOptions.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_ownLeadWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-            iv_own_Lead_call.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
-
-            if (myModel.getCuidModel()!=null) iv_ownReminderIcon.setVisibility(myModel.getCuidModel().getIs_reminder_set() == 0 ? View.GONE : View.VISIBLE);
-
-            //unclaimed
-            if (myModel.getLead_status_id() == 1) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
-            // lead claimed
-            if (myModel.getLead_status_id() == 2)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
-            // lead assigned
-            if (myModel.getLead_status_id() == 3)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
-            //self/ lead added
-            if (myModel.getLead_status_id() == 4) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
-            //site visited
-            if (myModel.getLead_status_id() == 5) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
-            //token /GHP  generated
-            if (myModel.getLead_status_id() == 6) {
-
-                //token /upgraded with GHP Plus
-                if(myModel.getCuidModel().getToken_type_id()==3) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_plus_generated));
-                else tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
             }
-
-            //token /GHP  cancelled
-            if (myModel.getLead_status_id() == 7) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //on hold
-            if (myModel.getLead_status_id() == 8) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
-            //booked
-            if (myModel.getLead_status_id() == 9) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
-            //booking cancelled
-            if (myModel.getLead_status_id() == 10) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
-            //ghp pending
-            if (myModel.getLead_status_id() == 13) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));
-
-            iv_editOwnLeadName.setOnClickListener(v -> {
-                //showEditNameDialog(myModel.getCuidModel(),position,"own");
-                showUpdateLeadPopUpMenu(iv_editOwnLeadName, myModel, position);
-            });
+        });
 
 
-            //visible view
-            ll_own_view.setVisibility(View.VISIBLE);
+        //set visibility
+        iv_own_leadOptions.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
+        iv_ownLeadWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
+        iv_own_Lead_call.setVisibility( myModel.getLead_status_id()==1 ?  View.GONE : View.VISIBLE);
+
+        if (myModel.getCuidModel()!=null) iv_ownReminderIcon.setVisibility(myModel.getCuidModel().getIs_reminder_set() == 0 ? View.GONE : View.VISIBLE);
+
+        //unclaimed
+        if (myModel.getLead_status_id() == 1) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_unclaimed));
+        // lead claimed
+        if (myModel.getLead_status_id() == 2)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_claimed));
+        // lead assigned
+        if (myModel.getLead_status_id() == 3)  tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_assigned));
+        //self/ lead added
+        if (myModel.getLead_status_id() == 4) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_lead_added));
+        //site visited
+        if (myModel.getLead_status_id() == 5) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_site_visit));
+        //token /GHP  generated
+        if (myModel.getLead_status_id() == 6) {
+
+            //token /upgraded with GHP Plus
+            if(myModel.getCuidModel().getToken_type_id()==3) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_plus_generated));
+            else tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_generated));
+        }
+
+        //token /GHP  cancelled
+        if (myModel.getLead_status_id() == 7) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
+        //on hold
+        if (myModel.getLead_status_id() == 8) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_onHold));
+        //booked
+        if (myModel.getLead_status_id() == 9) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_flat_booked));
+        //booking cancelled
+        if (myModel.getLead_status_id() == 10) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_token_cancelled));
+        //ghp pending
+        if (myModel.getLead_status_id() == 13) tv_own_status.setBackgroundColor(context.getResources().getColor(R.color.color_ghp_plus_pending));
+
+        iv_editOwnLeadName.setOnClickListener(v -> {
+            //showEditNameDialog(myModel.getCuidModel(),position,"own");
+            showUpdateLeadPopUpMenu(iv_editOwnLeadName, myModel, position);
+        });
+
+
+        //visible view
+        ll_own_view.setVisibility(View.VISIBLE);
 
 
        /* else if (myModel.getFeed_type_id() == 2) {
@@ -1471,12 +1472,12 @@ public class FeedFilterActivity extends AppCompatActivity {
 
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
-     String company_name =  sharedPreferences.getString("company_name", "");
-String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
         //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {

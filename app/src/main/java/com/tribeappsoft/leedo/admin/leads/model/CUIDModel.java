@@ -56,6 +56,15 @@ public class CUIDModel implements Serializable {
     private int call_log_count;
     private int site_visit_count1;
     private int call_schedule_count;
+    private int offline_lead_synced;
+
+    public int getOffline_lead_synced() {
+        return offline_lead_synced;
+    }
+
+    public void setOffline_lead_synced(int offline_lead_synced) {
+        this.offline_lead_synced = offline_lead_synced;
+    }
 
     public int getCall_log_count() {
         return call_log_count;
@@ -426,5 +435,4 @@ public class CUIDModel implements Serializable {
     }
 
 }
-
 

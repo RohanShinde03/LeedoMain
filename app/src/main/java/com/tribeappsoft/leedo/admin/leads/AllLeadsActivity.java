@@ -152,8 +152,7 @@ public class AllLeadsActivity extends AppCompatActivity {
     private String  api_token = "", filter_text="", display_text ="", last_lead_updated_at = null,
             customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
 
-    private boolean stopApiCall = false,isSalesHead=false,
-             onStop = false;
+    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false;
 
 
     @Override
@@ -198,6 +197,7 @@ public class AllLeadsActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
 
@@ -1301,6 +1301,8 @@ public class AllLeadsActivity extends AppCompatActivity {
                 if (object.has("call_log_count"))cuidModel.setCall_log_count(!object.get("call_log_count").isJsonNull() ? object.get("call_log_count").getAsInt() : 0);
                 if (object.has("site_visit_count"))cuidModel.setSite_visit_count1(!object.get("site_visit_count").isJsonNull() ? object.get("site_visit_count").getAsInt() : 0);
                 if (object.has("call_schedule_count"))cuidModel.setCall_schedule_count(!object.get("call_schedule_count").isJsonNull() ? object.get("call_schedule_count").getAsInt() : 0);
+                if (object.has("offline_lead_synced"))cuidModel.setOffline_lead_synced(!object.get("offline_lead_synced").isJsonNull() ? object.get("offline_lead_synced").getAsInt() : 0);
+
 
                 if (object.has("lead_types_id"))cuidModel.setLead_types_id(!object.get("lead_types_id").isJsonNull() ? object.get("lead_types_id").getAsInt() : 0);
                 //if (object.has("lead_types_name"))cuidModel.setLe(!object.get("lead_types_name").isJsonNull() ? object.get("lead_types_name").getAsString() :"");
@@ -1571,33 +1573,6 @@ public class AllLeadsActivity extends AppCompatActivity {
 
         ll_lead_addedBy.setVisibility(isSalesHead ? View.VISIBLE :View.GONE);
 
-        /*//other feed views
-        LinearLayoutCompat ll_others_main = rowView.findViewById(R.id.ll_homeFeed_othersMain);
-        LinearLayoutCompat ll_others_view = rowView.findViewById(R.id.ll_homeFeed_othersView);
-        AppCompatTextView tv_others_date = rowView.findViewById(R.id.tv_homeFeed_othersDate);
-        AppCompatImageView iv_others_tagIcon = rowView.findViewById(R.id.iv_homeFeed_othersTagIcon);
-        AppCompatTextView tv_others_tag = rowView.findViewById(R.id.tv_homeFeed_othersTag);
-        AppCompatTextView tv_others_elapsedTime = rowView.findViewById(R.id.tv_homeFeed_othersElapsedTime);
-        AppCompatImageView iv_othersReminderIcon = rowView.findViewById(R.id.iv_homeFeed_othersReminderIcon);
-        AppCompatTextView tv_others_cuIdNumber = rowView.findViewById(R.id.tv_homeFeed_othersCuIdNumber);
-        AppCompatTextView tv_others_Lead_name = rowView.findViewById(R.id.tv_homeFeed_othersLeadName);
-        AppCompatTextView tv_others_projectName = rowView.findViewById(R.id.tv_homeFeed_othersProjectName);
-        AppCompatTextView tv_othersLeadStage = rowView.findViewById(R.id.tv_homeFeed_othersLeadStage);
-        AppCompatTextView tv_othersLeadStage_dot = rowView.findViewById(R.id.tv_homeFeed_othersLeadStage_dot);
-        LinearLayoutCompat ll_othersLeadStage_dot = rowView.findViewById(R.id.ll_homeFeed_othersLeadStage_dot);
-        AppCompatTextView tv_others_Lead_status = rowView.findViewById(R.id.tv_homeFeed_othersLeadStatus);
-        AppCompatTextView tv_others_token_number = rowView.findViewById(R.id.tv_homeFeed_othersTokenNumber);
-        AppCompatImageView iv_othersLeadBusinessWhatsApp = rowView.findViewById(R.id.iv_homeFeed_othersLeadBusinessWhatsApp);
-        AppCompatImageView iv_othersLeadWhatsApp = rowView.findViewById(R.id.iv_homeFeed_othersLeadWhatsApp);
-        AppCompatImageView iv_others_Lead_call = rowView.findViewById(R.id.iv_homeFeedOthersLeadCall);
-        AppCompatImageView iv_others_leadOptions = rowView.findViewById(R.id.iv_homeFeed_othersLeadOptions);
-        MaterialButton mBtn_others_claimNow = rowView.findViewById(R.id.mBtn_homeFeed_othersClaimNow);
-        AppCompatImageView iv_others_leadDetails_ec = rowView.findViewById(R.id.iv_homeFeed_others_leadDetails_ec);
-        LinearLayoutCompat ll_others_viewLeadDetails = rowView.findViewById(R.id.ll_homeFeed_othersViewLeadDetails);
-        LinearLayoutCompat ll_others_addLeadDetails = rowView.findViewById(R.id.ll_homeFeed_othersAddLeadDetails);
-        // LinearLayoutCompat ll_others_leadDetailsMain = rowView.findViewById(R.id.ll_HomeFeed_Others_leadDetailsMain);
-        // LinearLayoutCompat ll_others_elapsed_time = rowView.findViewById(R.id.ll_tag_others_elapsed_time);
-*/
         final FeedsModel myModel = modelArrayList.get(position);
         /*  if (myModel.getFeed_type_id() == 1) {}*/
         //Own View
@@ -1615,6 +1590,7 @@ public class AllLeadsActivity extends AppCompatActivity {
         tv_own_tag.setVisibility(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? View.VISIBLE :View.GONE);
         //elapsed time
         tv_own_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
+        tv_own_elapsedTime.setTextColor(myModel.getCuidModel().getOffline_lead_synced()==1 ? context.getResources().getColor(R.color.offline_synced) : context.getResources().getColor(R.color.color_card_sub_title));
         //cu_id number
         tv_own_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
         //lead name
@@ -1876,11 +1852,9 @@ public class AllLeadsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1916,11 +1890,9 @@ public class AllLeadsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try{
 
@@ -1953,10 +1925,9 @@ public class AllLeadsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -1984,10 +1955,9 @@ public class AllLeadsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -2226,7 +2196,7 @@ public class AllLeadsActivity extends AppCompatActivity {
 
                 case R.id.menu_leadOption_cancelBooking:
                     //show cancel alert
-                     showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
+                    showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
                     return true;
 
                 case R.id.menu_leadOption_continueAllotment:
@@ -2358,6 +2328,7 @@ public class AllLeadsActivity extends AppCompatActivity {
                 case R.id.menu_updateLead_updateLead:
                     startActivity(new Intent(AllLeadsActivity.this,AddNewLeadActivity.class)
                             .putExtra("isUpdateLead",true)
+                            .putExtra("isDuplicateLead",false)
                             .putExtra("lead_id",myModel.getCuidModel().getLead_id())
                             .putExtra("current_lead_status_id",myModel.getLead_status_id())
                             .putExtra("salesPersonName",myModel.getCuidModel().getAssigned_by()));
@@ -2984,6 +2955,7 @@ public class AllLeadsActivity extends AppCompatActivity {
                 case 4:
                     textView.setTextColor(context.getResources().getColor(R.color.colorni));
                     textView_dot.setTextColor(context.getResources().getColor(R.color.colorni));
+                    break;
                 case 5:
                     textView.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
                     textView_dot.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));

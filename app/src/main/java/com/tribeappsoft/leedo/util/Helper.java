@@ -128,8 +128,19 @@ public class Helper {
         View snackBarView = snackbar.getView();
         snackBarView.setTranslationY(-(convertDpToPixel(110, activity)));
         snackbar.show();
-
     }
+
+    public void onSnackForHomeLeadSync(Activity activity, String errorMsg)
+    {
+        Snackbar snackbar = Snackbar.make(activity.getWindow().getDecorView().getRootView(), errorMsg, Snackbar.LENGTH_LONG);
+        //snackbar.setActionTextColor(ContextCompat.getColor(activity, R.color.colorcold));
+        View snackBarView = snackbar.getView();
+        snackBarView.setTranslationY(-(convertDpToPixel(110, activity)));
+        /*TextView textView=(TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(ContextCompat.getColor(activity, R.color.colorcold));*/
+        snackbar.show();
+    }
+
     public static float convertDpToPixel(float dp, Context context){
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
@@ -227,6 +238,17 @@ public class Helper {
 
         Date parsed = null;
         SimpleDateFormat df_input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat df_output = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        try {
+            parsed = df_input.parse(inputDate);
+        } catch (ParseException ignored) {
+        }
+        return df_output.format(parsed);
+    }
+
+    public String formatUpdateDateDate(String inputDate) {
+        Date parsed = null;
+        SimpleDateFormat df_input = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         SimpleDateFormat df_output = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         try {
             parsed = df_input.parse(inputDate);

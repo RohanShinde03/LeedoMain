@@ -63,7 +63,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/select_project_name"
-                            android:textColorHint="@color/grey_m"
                             android:theme="@style/styleFontMediumText">
                             <AutoCompleteTextView
                                 android:id="@+id/acTv_filterCallSchedule_selectProject"
@@ -75,8 +74,6 @@
                                 android:paddingRight="10dp"
                                 android:textSize="16sp"
                                 android:focusable="false"
-                                android:textColor="@color/BlackLight"
-                                android:textColorHint="@color/grey_m"
                                 android:theme="@style/styleFontMediumText" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +122,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Select Sales Person Name"
-                            android:textColorHint="@color/grey_m"
                             android:theme="@style/styleFontMediumText">
                             <AutoCompleteTextView
                                 android:id="@+id/tv_filterCallSchedule_select_SalesPerson"
@@ -137,8 +133,6 @@
                                 android:paddingRight="10dp"
                                 android:textSize="16sp"
                                 android:focusable="false"
-                                android:textColor="@color/BlackLight"
-                                android:textColorHint="@color/grey_m"
                                 android:theme="@style/styleFontMediumText" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,8 +179,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:theme="@style/styleFontMediumText"
-                            android:textColorHint="@color/grey_m"
                             android:layout_weight="1"
                             app:endIconDrawable="@drawable/ic_date"
                             app:endIconMode="custom">
@@ -213,8 +205,6 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:theme="@style/styleFontMediumText"
-                            android:textColorHint="@color/grey_m"
                             app:endIconDrawable="@drawable/ic_date"
                             app:endIconMode="custom">
 

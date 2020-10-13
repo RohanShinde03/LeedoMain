@@ -72,6 +72,7 @@ import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.leads.model.BudgetLimitModel;
 import com.tribeappsoft.leedo.admin.leads.model.LeadGenerationModel;
 import com.tribeappsoft.leedo.admin.leads.model.LeadGenerationSecondModel;
+import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.api.WebServer;
 import com.tribeappsoft.leedo.models.UserModel;
@@ -86,7 +87,6 @@ import com.tribeappsoft.leedo.models.leads.PropertyBuyingForModel;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
 import com.tribeappsoft.leedo.models.project.UnitCategoriesModel;
 import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
-import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.FlowLayout;
 import com.tribeappsoft.leedo.util.Helper;
@@ -253,6 +253,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     @BindView(R.id.gif_newLead) GifImageView gif_newLead;
     @BindView(R.id.ll_pbLayout) LinearLayoutCompat ll_pb;
     @BindView(R.id.tv_pbLoadingMsg) AppCompatTextView tv_loadingMsg;
+    @BindView(R.id.mTv_addLead_LeadResourceNote) MaterialTextView mTv_LeadResourceNote;
 
     @BindView(R.id.ll_addLead_LeadSources_Dropdown) LinearLayoutCompat ll_LeadSources_Dropdown;
     @BindView(R.id.ll_addLead_LeadSources_Click) LinearLayoutCompat ll_LeadSources_Click;
@@ -265,11 +266,13 @@ public class AddNewLeadActivity extends AppCompatActivity
 
     @BindView(R.id.ll_addLead_existUSer) LinearLayoutCompat ll_addLead_existUSer;
     @BindView(R.id.mTv_addLead_ExistProject) MaterialTextView mTv_ExistProject;
+    @BindView(R.id.mTv_addLead_ExistLeadAddedBy) MaterialTextView mTv_ExistLeadAddedBy;
     @BindView(R.id.mTv_addLead_ExistUser) MaterialTextView mTv_ExistUser;
     @BindView(R.id.mTv_addLead_ExistLeadStatus) MaterialTextView mTv_ExistLeadStatus;
 
     @BindView(R.id.ll_addLead_existUser_OtherNo) LinearLayoutCompat ll_addLead_existUSer_OtherNo;
     @BindView(R.id.mTv_addLead_ExistProject_OtherNo) MaterialTextView mTv_ExistProject_OtherNo;
+    @BindView(R.id.mTv_addLead_ExistLeadAddedBy_OtherNo) MaterialTextView mTv_ExistLeadAddedBy_OtherNo;
     @BindView(R.id.mTv_addLead_ExistUser_OtherNo) MaterialTextView mTv_ExistUser_OtherNo;
     @BindView(R.id.mTv_addLead_ExistStatus_OtherNo) MaterialTextView mTv_ExistStatus_OtherNo;
 
@@ -294,7 +297,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     private static final int  Permission_CODE_Gallery= 567;
     private static final int Permission_CODE_DOC = 657;
 
-    private ArrayList<ProjectModel> projectModelArrayList, refProjectModelArrayList;
+    private ArrayList<ProjectModel> projectModelArrayList;
     private ArrayList<UnitCategoriesModel> unitCategoriesModelArrayList;
     private ArrayList<IncomeRangesModel> rangesModelArrayList;
     private ArrayList<BudgetLimitModel> budgetLimitModelArrayList   ;
@@ -308,30 +311,29 @@ public class AddNewLeadActivity extends AppCompatActivity
     private ArrayList<LeadGenerationModel> leadGenerationModelArrayList;
     private ArrayList<String> integerArrayList_str;
     private ArrayList<Integer> integerArrayList;
-    private ArrayList<String> projectNamesArrayList,refProjectNamesArrayList,unitCategoriesArrayList, incomeRangesArrayList,budgetLimitArrayList,
+    private ArrayList<String> projectNamesArrayList,unitCategoriesArrayList, incomeRangesArrayList,budgetLimitArrayList,
             propertyBuyingArrayList, leadDurationArrayList, namePrefixArrayList, userArrayList, professionArrayList,leadGenerationStringArrayList, leadStageStringArrayList;
-    private ArrayList<Integer> catIntegerArrayList;
+    //private ArrayList<Integer> catIntegerArrayList;
 
-    private String TAG = "AddNewLeadActivity",  sendBDate = null, sendPrefVisitFromDate= null,sendPrefVisitToDate= null,
-            sendAlreadySiteVisitDate= null, sendAlreadySiteVisitTime = null, api_token ="", countryPhoneCode = "+91",countryPhoneCode_1 = "+91",
-            countryPhoneCode_ref = "+91", selectedRefProjectName ="", selectedProjectName = "", selectedIncomeRange ="",selectedBudgetLimit ="",edt_LeadValue="",LeadGeneration_otherType_info="",
-            selectedUnitCategory ="", selectedPropertyBuyingReason ="", selectedBuyingDuration ="",sendNewsDate="",
-            selectedNamePrefix ="", selectedUserName ="",lead_id=null, lead_OTP ="", selectedLeadProfessionName = "", selectedLeadStageName = "", selectedLeadSourceName = "",sendDateOfBirth="";
+    private String TAG = "AddNewLeadActivity", sendBDate = null, sendPrefVisitFromDate= null, sendPrefVisitToDate= null, sendAlreadySiteVisitDate= null,
+            sendAlreadySiteVisitTime = null, api_token ="", countryPhoneCode = "+91",countryPhoneCode_1 = "+91", countryPhoneCode_ref = "+91",
+            selectedProjectName = "", selectedIncomeRange ="", selectedBudgetLimit ="", selectedUnitCategory ="", selectedPropertyBuyingReason ="", selectedBuyingDuration ="",
+            sendNewsDate="", selectedNamePrefix ="", selectedUserName ="", lead_id=null, lead_OTP ="", selectedLeadProfessionName = "", selectedLeadStageName = "",
+            sendDateOfBirth="";
 
-    private int mYear, mMonth, mDay,nYear, nMonth, nDay,myPosition =0,  selectedRefProjectId=0, selectedProjectId =0, selectedIncomeRangeId =0,selectedBudgetLimitId =0,
+    private int mYear, mMonth, mDay,nYear, nMonth, nDay,myPosition =0, selectedProjectId =0, selectedIncomeRangeId =0,selectedBudgetLimitId =0,
             selectedUnitId =0, selectedPropertyBuyingReasonId =1, selectedBuyingDurationId =0,documentCount=0,
-            selectedNamePrefixId =0, selectedUserId =0, user_id =0, docAPICount=0, selectedProfessionId=0,selectedLeadSourceId=0,SecLeadType_ID=0,edit_text_req_ID=0
-            ,LeadType_ID=0, selectedLeadStageId=0,leadId =0,person_id = 0;
+            selectedNamePrefixId =0, selectedUserId =0, user_id =0, docAPICount=0, selectedProfessionId=0,SecLeadType_ID=0,edit_text_req_ID=0
+            ,LeadType_ID=0, selectedLeadStageId=0,leadId =0, duplicate_offline_lead_id =0,person_id = 0;
 
-    private int fromOther = 1; //TODO fromOther ==> 1 - Add New Lead, 2- Edit/Update Lead Info
+    //private int fromOther = 1; //TODO fromOther ==> 1 - Add New Lead, 2- Edit/Update Lead Info
     private int FirstHomeID=0,isSuccessNumberExist=0,isSuccessNumberExistOther=0,current_lead_status_id=0;
-    private String existLeadName="",existLeadProject="",existLeadStatus="",existLeadNameOtherNo="",existLeadStatusOtherNo="",existLeadProjectOtherNo="",existLeadUnitCategory="",existLeadUnitCategoryOtherNo="";
-    private boolean flagNumduplicate=false,isExist_WhatsAppNo=false,isExist_OtherNo=false,isUpdate = false;;
+    private String existLeadName="",existLeadProject="",existLeadAddedBy ="", existLeadStatus="",existLeadNameOtherNo="",existLeadStatusOtherNo="",existLeadProjectOtherNo="",existOtherLeadAddedBy ="",  existLeadUnitCategory="",existLeadUnitCategoryOtherNo="";
+    private boolean flagNumduplicate=false,isExist_WhatsAppNo=false,isExist_OtherNo=false,isUpdate = false,isDuplicateLead = false;
     //private int check=1;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private boolean flagExit=false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -350,7 +352,8 @@ public class AddNewLeadActivity extends AppCompatActivity
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(fromOther==2 ? getString(R.string.update_lead): getString(R.string.add_new_lead));
+            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.add_new_lead));
+
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -368,6 +371,8 @@ public class AddNewLeadActivity extends AppCompatActivity
         String lastName = sharedPreferences.getString("last_name", null);
         String user_name = lastName!=null ? firstName + " "+ lastName : firstName;
         tv_salesRepName.setText(user_name);
+        //set tag to 0
+        edt_leadOtherMobileNo.setTag(0);
 
         editor.apply();
 
@@ -375,41 +380,74 @@ public class AddNewLeadActivity extends AppCompatActivity
         if (getIntent()!=null) {
             fromShortcut = getIntent().getBooleanExtra("fromShortcut", false);
             isUpdate = getIntent().getBooleanExtra("isUpdateLead", false);
-            if(getIntent().getIntExtra("lead_id",0)!= 0)
-                leadId = getIntent().getIntExtra("lead_id",0);
-         //   tv_salesRepName.setText(getIntent().getStringExtra("salesPersonName"));
+            isDuplicateLead = getIntent().getBooleanExtra("isDuplicateLead", false);
+            if(getIntent().getIntExtra("lead_id",0)!= 0) leadId = getIntent().getIntExtra("lead_id",0);
+            if(getIntent().getIntExtra("offline_id",0)!= 0) duplicate_offline_lead_id = getIntent().getIntExtra("offline_id",0);
             current_lead_status_id = getIntent().getIntExtra("current_lead_status_id", 1);
             Log.e(TAG,"current_lead_status_id: "+current_lead_status_id);
         }
 
         if(isUpdate){
+
             if(getSupportActionBar()!= null){
                 ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.update_lead));
             }
+
             mBtn_submitLead.setText(R.string.update_lead);
             rdoGrp_alreadySiteVisited.setVisibility(View.GONE);
             tv_alreadyVisitedTitle.setVisibility(View.GONE);
             selected_country_tv.setEnabled(false);
             selected_country_tv2.setEnabled(false);
+            mTv_LeadResourceNote.setVisibility(View.GONE);
             edt_leadMobileNo.setEnabled(false);
-            edt_leadOtherMobileNo.setEnabled(false);
+            //TODO given alternate mobile number editable
+            //edt_leadOtherMobileNo.setEnabled(false);
             ll_leadMobCcp.setVisibility(View.GONE);
-            ll_leadOtherMobCcp.setVisibility(View.GONE);
+            //ll_leadOtherMobCcp.setVisibility(View.GONE);
 
             til_leadMobile.setHelperText("Mobile Number is not editable!");
             til_leadMobile.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-            til_leadOtherMobile.setHelperText("Alternate Mobile Number is not editable!");
-            til_leadOtherMobile.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+            //til_leadOtherMobile.setHelperText("Alternate Mobile Number is not editable!");
+            //til_leadOtherMobile.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+
+            if (isNetworkAvailable(context)) {
+
+                showProgressBar("Getting Lead Details...");
+                getLeadDetails(leadId);
+
+            } else NetworkError(context);
+
+        }
+        else if (isDuplicateLead) {
+
+            if(getSupportActionBar()!= null){
+                ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.update_lead));
+            }
+            mBtn_submitLead.setText(R.string.update_lead);
+            rdoGrp_alreadySiteVisited.setVisibility(View.GONE);
+            mTv_LeadResourceNote.setVisibility(isDuplicateLead ? View.VISIBLE :View.GONE);
+            tv_alreadyVisitedTitle.setVisibility(View.GONE);
+
+            selected_country_tv.setEnabled(true);
+            selected_country_tv2.setEnabled(true);
+            edt_leadMobileNo.setEnabled(true);
+            edt_leadOtherMobileNo.setEnabled(true);
+            acTv_selectLeadSource.setEnabled(false);
+            acTv_selectLeadSource.setFocusable(false);
+            ll_leadMobCcp.setVisibility(View.VISIBLE);
+            ll_leadOtherMobCcp.setVisibility(View.VISIBLE);
+
+            til_leadMobile.setHelperText("");
+            til_leadOtherMobile.setHelperText("");
 
             if (isNetworkAvailable(context))
             {
-                showProgressBar("Please wait...");
-                getLeadDetails(leadId);
+                showProgressBar("Getting Lead Details...");
+                getDuplicateLeadDetails(duplicate_offline_lead_id);
 
             }else NetworkError(context);
 
         }
-
 
 
         //api token
@@ -562,9 +600,9 @@ public class AddNewLeadActivity extends AppCompatActivity
         leadStagesModelArrayList = new ArrayList<>();
         professionArrayList = new ArrayList<>();
         leadGenerationStringArrayList = new ArrayList<>();
-        catIntegerArrayList = new ArrayList<>();
-        refProjectModelArrayList = new ArrayList<>();
-        refProjectNamesArrayList = new ArrayList<>();
+        //catIntegerArrayList = new ArrayList<>();
+        //refProjectModelArrayList = new ArrayList<>();
+        //refProjectNamesArrayList = new ArrayList<>();
         leadStageStringArrayList = new ArrayList<>();
         leadGenerationModelArrayList = new ArrayList<>();
         integerArrayList_str = new ArrayList<>();
@@ -920,9 +958,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                                     {
                                         JsonObject data  = response.body().get("data").getAsJsonObject();
                                         setUpdateData(data);
-                                        new Handler().postDelayed(() -> {
-                                            checkButtonEnabled();
-                                        },1000);
+                                        new Handler().postDelayed(() -> checkButtonEnabled(),1000);
 
                                     }
                                 }
@@ -963,124 +999,362 @@ public class AddNewLeadActivity extends AppCompatActivity
     }
 
     private void setUpdateData(JsonObject jsonObject){
+        if(context!=null)
+        {
+            runOnUiThread(() -> {
+                if(jsonObject !=null){
 
-        runOnUiThread(() -> {
-            if(jsonObject !=null){
-                if(jsonObject.has("sales_person_id")){
-                    user_id = !jsonObject.get("sales_person_id").isJsonNull() ? jsonObject.get("sales_person_id").getAsInt() : 0;
+                    if(jsonObject.has("sales_person_id")){
+                        user_id = !jsonObject.get("sales_person_id").isJsonNull() ? jsonObject.get("sales_person_id").getAsInt() : 0;
+                    }
+
+                    if(jsonObject.has("person_id")){
+                        person_id = !jsonObject.get("person_id").isJsonNull() ? jsonObject.get("person_id").getAsInt() : 0;
+                    }
+
+                    if(jsonObject.has("full_name")){
+                        edt_leadFirstName.setText(!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("prefix")){
+                        acTv_mrs.setText(!jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "" );
+                        selectedNamePrefix = !jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "";
+                    }
+
+                    if(jsonObject.has("email")){
+                        edt_leadEmail.setText(!jsonObject.get("email").isJsonNull() ? jsonObject.get("email").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("country_code")) {
+                        selected_country_tv.setText(!jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91");
+                        countryPhoneCode = !jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91";
+                    }
+
+                    if(jsonObject.has("country_code_1")) {
+                        selected_country_tv2.setText(!jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91");
+                        countryPhoneCode_1 = !jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91";
+                    }
+
+                    if(jsonObject.has("mobile_number")){
+                        edt_leadMobileNo.setText(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "" );
+                    }
+                    if(jsonObject.has("alternate_mobile_number")){
+                        edt_leadOtherMobileNo.setText(!jsonObject.get("alternate_mobile_number").isJsonNull() ? jsonObject.get("alternate_mobile_number").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("address_line_1")){
+                        edt_leadAddress.setText(!jsonObject.get("address_line_1").isJsonNull() ? jsonObject.get("address_line_1").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("lead_profession")){
+                        acTv_leadProfession.setText(!jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "" );
+                        selectedLeadProfessionName = !jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "";
+                    }
+
+                    if(jsonObject.has("dob")){
+                        edt_newLead_dob.setText(!jsonObject.get("dob").isJsonNull() ? formatEventDate(jsonObject.get("dob").getAsString()) : "");
+                        sendDateOfBirth = !jsonObject.get("dob").isJsonNull() ? jsonObject.get("dob").getAsString() : "" ;
+                    }
+
+
+                    if(jsonObject.has("lead_stage")){
+                        acTv_leadStage.setText(!jsonObject.get("lead_stage").isJsonNull() ? jsonObject.get("lead_stage").getAsString() : "" );
+                    }
+                    if(jsonObject.has("lead_stage_id")){
+                        selectedLeadStageId = !jsonObject.get("lead_stage_id").isJsonNull() ? jsonObject.get("lead_stage_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("income_range")){
+                        acTv_selectAnnualIncome.setText(!jsonObject.get("income_range").isJsonNull() ? jsonObject.get("income_range").getAsString() : "" );
+                    }
+                    if(jsonObject.has("income_range_id")){
+                        selectedIncomeRangeId = !jsonObject.get("income_range_id").isJsonNull() ? jsonObject.get("income_range_id").getAsInt() : 0;
+                    }
+
+
+                    if(jsonObject.has("project_name")){
+                        acTv_selectProjectName.setText(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "" );
+                    }
+                    if(jsonObject.has("project_id")){
+                        selectedProjectId = !jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0;
+                    }
+
+
+                    if(jsonObject.has("unit_category")){
+                        acTv_selectUnitType.setText(!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "" );
+                    }
+                    if(jsonObject.has("unit_category_id")){
+                        selectedUnitId = !jsonObject.get("unit_category_id").isJsonNull() ? jsonObject.get("unit_category_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("budget_limit")){
+                        acTv_selectBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
+                    }
+                    if(jsonObject.has("budget_limit_id")){
+                        selectedBudgetLimitId = !jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("is_first_home")){
+                        FirstHomeID = !jsonObject.get("is_first_home").isJsonNull() ? jsonObject.get("is_first_home").getAsInt() : 0;
+                        if(FirstHomeID == 1){
+                            rb_newLead_firstHome_yes.setChecked(true);
+                        }else {
+                            rb_newLead_FirstHome_no.setChecked(true);
+                            FirstHomeID = 2;
+                        }
+                    }
+
+
+                    if(jsonObject.has("lead_types_id")){
+                        LeadType_ID = !jsonObject.get("lead_types_id").isJsonNull() ? jsonObject.get("lead_types_id").getAsInt() : 0;
+                    }
+                    if(jsonObject.has("lead_type_extra_info")){
+                        tv_leadGen_thrw.setText(!jsonObject.get("lead_type_extra_info").isJsonNull() ? jsonObject.get("lead_type_extra_info").getAsString() : "" );
+                    }
+
+                    if(LeadType_ID == 8){
+                        ll_Reference_main.setVisibility(View.VISIBLE);
+                        if(jsonObject.has("reference_name")){
+                            edt_fullName_referer.setText(!jsonObject.get("reference_name").isJsonNull() ? jsonObject.get("reference_name").getAsString() : "" );
+                        }
+                        if(jsonObject.has("reference_mobile")){
+                            edt_refererMobile_no.setText(!jsonObject.get("reference_mobile").isJsonNull() ? jsonObject.get("reference_mobile").getAsString() : "" );
+                        }
+                    }
+
+                    if(jsonObject.has("lead_type_lvl2")){
+                        JsonArray array = jsonObject.get("lead_type_lvl2").getAsJsonArray();
+                        if(array != null){
+                            integerArrayList.clear();
+                            if(array.size() > 0){
+                                for(int i=0;i<array.size();i++){
+                                    if(!array.get(i).getAsString().trim().isEmpty()){
+                                        integerArrayList.add(Integer.parseInt(array.get(i).getAsString()));
+                                        Log.e(TAG,"array 1 "+integerArrayList.get(i));
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(jsonObject.has("remarks")){
+                        edt_leadRemarks.setText(!jsonObject.get("remarks").isJsonNull() ? jsonObject.get("remarks").getAsString() : "" );
+                    }
+
                 }
 
-                if(jsonObject.has("person_id")){
-                    person_id = !jsonObject.get("person_id").isJsonNull() ? jsonObject.get("person_id").getAsInt() : 0;
-                }
-
-                if(jsonObject.has("full_name")){
-                    edt_leadFirstName.setText(!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "" );
-                }
-
-                if(jsonObject.has("prefix")){
-                    acTv_mrs.setText(!jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "" );
-                    selectedNamePrefix = !jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "";
-                }
-
-                if(jsonObject.has("email")){
-                    edt_leadEmail.setText(!jsonObject.get("email").isJsonNull() ? jsonObject.get("email").getAsString() : "" );
-                }
-
-                if(jsonObject.has("country_code")) {
-                    selected_country_tv.setText(!jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91");
-                    countryPhoneCode = !jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91";
-                }
-
-                if(jsonObject.has("country_code_1")) {
-                    selected_country_tv2.setText(!jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91");
-                    countryPhoneCode_1 = !jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91";
-                }
-
-                if(jsonObject.has("mobile_number")){
-                    edt_leadMobileNo.setText(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "" );
-                }
-                if(jsonObject.has("alternate_mobile_number")){
-                    edt_leadOtherMobileNo.setText(!jsonObject.get("alternate_mobile_number").isJsonNull() ? jsonObject.get("alternate_mobile_number").getAsString() : "" );
-                }
-
-                if(jsonObject.has("address_line_1")){
-                    edt_leadAddress.setText(!jsonObject.get("address_line_1").isJsonNull() ? jsonObject.get("address_line_1").getAsString() : "" );
-                }
-
-                if(jsonObject.has("lead_profession")){
-                    acTv_leadProfession.setText(!jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "" );
-                    selectedLeadProfessionName = !jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "";
-                }
-
-                if(jsonObject.has("dob")){
-                    edt_newLead_dob.setText(!jsonObject.get("dob").isJsonNull() ? formatEventDate(jsonObject.get("dob").getAsString()) : "");
-                    sendDateOfBirth = !jsonObject.get("dob").isJsonNull() ? jsonObject.get("dob").getAsString() : "" ;
-                }
+                checkButtonEnabled();
+            });
+        }
 
 
-                if(jsonObject.has("lead_stage")){
-                    acTv_leadStage.setText(!jsonObject.get("lead_stage").isJsonNull() ? jsonObject.get("lead_stage").getAsString() : "" );
-                }
-                if(jsonObject.has("lead_stage_id")){
-                    selectedLeadStageId = !jsonObject.get("lead_stage_id").isJsonNull() ? jsonObject.get("lead_stage_id").getAsInt() : 0;
-                }
+    }
 
 
 
-                if(jsonObject.has("income_range")){
-                    acTv_selectAnnualIncome.setText(!jsonObject.get("income_range").isJsonNull() ? jsonObject.get("income_range").getAsString() : "" );
-                }
-                if(jsonObject.has("income_range_id")){
-                    selectedIncomeRangeId = !jsonObject.get("income_range_id").isJsonNull() ? jsonObject.get("income_range_id").getAsInt() : 0;
-                }
+    private void getDuplicateLeadDetails(int duplicate_offline_lead_id)
+    {
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().getDuplicateLeadDetails(api_token, duplicate_offline_lead_id).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful()) {
+                    if (response.body() != null ) {
+                        if (!response.body().isJsonNull() && response.body().isJsonObject()) {
+                            int isSuccess=0;
+                            if (response.body().has("success")){
+                                isSuccess = !response.body().get("success").isJsonNull() ? response.body().get("success").getAsInt() : 0;
+                            }
+                            if (isSuccess == 1) {
+                                if (response.body().has("data"))
+                                {
+                                    if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonObject() )
+                                    {
+                                        JsonObject data  = response.body().get("data").getAsJsonObject();
+                                        setUpdateDuplicateLeadDetails(data);
+                                        new Handler().postDelayed(() -> checkButtonEnablesStatus(),100);
 
-
-                if(jsonObject.has("project_name")){
-                    acTv_selectProjectName.setText(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "" );
-                }
-                if(jsonObject.has("project_id")){
-                    selectedProjectId = !jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0;
-                }
-
-
-                if(jsonObject.has("unit_category")){
-                    acTv_selectUnitType.setText(!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "" );
-                }
-                if(jsonObject.has("unit_category_id")){
-                    selectedUnitId = !jsonObject.get("unit_category_id").isJsonNull() ? jsonObject.get("unit_category_id").getAsInt() : 0;
-                }
-
-
-
-                if(jsonObject.has("budget_limit")){
-                    acTv_selectBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
-                }
-                if(jsonObject.has("budget_limit_id")){
-                    selectedBudgetLimitId = !jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0;
-                }
-
-
-
-                if(jsonObject.has("is_first_home")){
-                    FirstHomeID = !jsonObject.get("is_first_home").isJsonNull() ? jsonObject.get("is_first_home").getAsInt() : 0;
-                    if(FirstHomeID == 1){
-                        rb_newLead_firstHome_yes.setChecked(true);
-                    }else {
-                        rb_newLead_FirstHome_no.setChecked(true);
-                        FirstHomeID = 2;
+                                    }
+                                }
+                            }else{
+                                showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            }
+                            //else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                        } else showErrorLog(getString(R.string.something_went_wrong_try_again));
                     }
                 }
+                else {
 
-
-                if(jsonObject.has("lead_types_id")){
-                    LeadType_ID = !jsonObject.get("lead_types_id").isJsonNull() ? jsonObject.get("lead_types_id").getAsInt() : 0;
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
                 }
-                if(jsonObject.has("lead_type_extra_info")){
-                    tv_leadGen_thrw.setText(!jsonObject.get("lead_type_extra_info").isJsonNull() ? jsonObject.get("lead_type_extra_info").getAsString() : "" );
-                }
+            }
 
-                if(LeadType_ID == 8){
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void checkButtonEnablesStatus() {
+
+        if(context!=null)
+        {
+            context.runOnUiThread(this::checkButtonEnabled);
+        }
+    }
+
+    private void setUpdateDuplicateLeadDetails(JsonObject jsonObject){
+
+        if(context!=null)
+        {
+            runOnUiThread(() -> {
+                if(jsonObject !=null){
+                    if(jsonObject.has("sales_person_id")){
+                        user_id = !jsonObject.get("sales_person_id").isJsonNull() ? jsonObject.get("sales_person_id").getAsInt() : 0;
+                    }
+
+                    if(jsonObject.has("full_name")){
+                        edt_leadFirstName.setText(!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("prefix")){
+                        acTv_mrs.setText(!jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "" );
+                        selectedNamePrefix = !jsonObject.get("prefix").isJsonNull() ? jsonObject.get("prefix").getAsString() : "";
+                    }
+
+                    if(jsonObject.has("email")){
+                        edt_leadEmail.setText(!jsonObject.get("email").isJsonNull() ? jsonObject.get("email").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("country_code")) {
+                        selected_country_tv.setText(!jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91");
+                        countryPhoneCode = !jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "+91";
+                    }
+
+                    if(jsonObject.has("country_code_1")) {
+                        selected_country_tv2.setText(!jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91");
+                        countryPhoneCode_1 = !jsonObject.get("country_code_1").isJsonNull() ? jsonObject.get("country_code_1").getAsString() : "+91";
+                    }
+
+                    if(jsonObject.has("mobile_number")){
+                        edt_leadMobileNo.setText(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "" );
+                    }
+                    if(jsonObject.has("alternate_mobile_number")){
+                        edt_leadOtherMobileNo.setText(!jsonObject.get("alternate_mobile_number").isJsonNull() ? jsonObject.get("alternate_mobile_number").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("address_line_1")){
+                        edt_leadAddress.setText(!jsonObject.get("address_line_1").isJsonNull() ? jsonObject.get("address_line_1").getAsString() : "" );
+                    }
+
+
+                    if(jsonObject.has("lead_profession_id")){
+                        selectedProfessionId = !jsonObject.get("lead_profession_id").isJsonNull() ? jsonObject.get("lead_profession_id").getAsInt() : 0;
+                    }
+
+                    if(jsonObject.has("lead_profession")){
+                        acTv_leadProfession.setText(!jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "" );
+                        selectedLeadProfessionName = !jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() : "";
+                    }
+
+                    if(jsonObject.has("dob")){
+                        edt_newLead_dob.setText(!jsonObject.get("dob").isJsonNull() ? (jsonObject.get("dob").getAsString()) : "");
+                        sendDateOfBirth = !jsonObject.get("dob").isJsonNull() ? jsonObject.get("dob").getAsString() : "" ;
+                    }
+
+
+                    if(jsonObject.has("lead_ni_reason")){
+                        edt_newLead_niReason.setText(!jsonObject.get("lead_ni_reason").isJsonNull() ? jsonObject.get("lead_ni_reason").getAsString() : "" );
+                    }
+
+                    if(jsonObject.has("lead_stage")){
+                        acTv_leadStage.setText(!jsonObject.get("lead_stage").isJsonNull() ? jsonObject.get("lead_stage").getAsString() : "" );
+                    }
+                    if(jsonObject.has("lead_stage_id")){
+                        selectedLeadStageId = !jsonObject.get("lead_stage_id").isJsonNull() ? jsonObject.get("lead_stage_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("income_range")){
+                        acTv_selectAnnualIncome.setText(!jsonObject.get("income_range").isJsonNull() ? jsonObject.get("income_range").getAsString() : "" );
+                    }
+                    if(jsonObject.has("income_range_id")){
+                        selectedIncomeRangeId = !jsonObject.get("income_range_id").isJsonNull() ? jsonObject.get("income_range_id").getAsInt() : 0;
+                    }
+
+
+                    if(jsonObject.has("project_name")){
+                        acTv_selectProjectName.setText(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "" );
+                    }
+                    if(jsonObject.has("project_id")){
+                        selectedProjectId = !jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0;
+                    }
+
+
+                    if(jsonObject.has("unit_category")){
+                        acTv_selectUnitType.setText(!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "" );
+                    }
+                    if(jsonObject.has("unit_category_id")){
+                        selectedUnitId = !jsonObject.get("unit_category_id").isJsonNull() ? jsonObject.get("unit_category_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("budget_limit")){
+                        acTv_selectBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
+                    }
+                    if(jsonObject.has("budget_limit_id")){
+                        selectedBudgetLimitId = !jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0;
+                    }
+
+
+
+                    if(jsonObject.has("is_first_home")){
+                        FirstHomeID = !jsonObject.get("is_first_home").isJsonNull() ? jsonObject.get("is_first_home").getAsInt() : 0;
+                        if(FirstHomeID == 1){
+                            rb_newLead_firstHome_yes.setChecked(true);
+                        }else {
+                            rb_newLead_FirstHome_no.setChecked(true);
+                            FirstHomeID = 2;
+                        }
+                    }
+
+
+                    if(jsonObject.has("lead_types_id")){
+                        LeadType_ID = !jsonObject.get("lead_types_id").isJsonNull() ? jsonObject.get("lead_types_id").getAsInt() : 0;
+                    }
+                    if(jsonObject.has("lead_types")){
+                        tv_leadGen_thrw.setText(!jsonObject.get("lead_types").isJsonNull() ? jsonObject.get("lead_types").getAsString() : "" );
+                    }
+
+               /* if(LeadType_ID == 8){
                     ll_Reference_main.setVisibility(View.VISIBLE);
                     if(jsonObject.has("reference_name")){
                         edt_fullName_referer.setText(!jsonObject.get("reference_name").isJsonNull() ? jsonObject.get("reference_name").getAsString() : "" );
@@ -1104,14 +1378,15 @@ public class AddNewLeadActivity extends AppCompatActivity
                         }
                     }
                 }
+*/
+                    if(jsonObject.has("remarks")){
+                        edt_leadRemarks.setText(!jsonObject.get("remarks").isJsonNull() ? jsonObject.get("remarks").getAsString() : "" );
+                    }
 
-                if(jsonObject.has("remarks")){
-                    edt_leadRemarks.setText(!jsonObject.get("remarks").isJsonNull() ? jsonObject.get("remarks").getAsString() : "" );
                 }
+            });
 
-
-            }
-        });
+        }
 
     }
 
@@ -1724,8 +1999,8 @@ public class AddNewLeadActivity extends AppCompatActivity
         {
             integerArrayList.clear();
 
-            final int typeId= leadGenerationModelArrayList.get(position).getLead_type_id();
-            LeadType_ID= typeId;
+            //int typeId= leadGenerationModelArrayList.get(position).getLead_type_id();
+            LeadType_ID = leadGenerationModelArrayList.get(position).getLead_type_id();
             Log.e(TAG, "LeadType_ID: "+LeadType_ID);
 
             if(SecLvlID==1 && edit_text_req==2)
@@ -2443,7 +2718,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         edt_addEnquiry_other_news.setOnClickListener(v -> selectScheduleDate(edt_addEnquiry_other_news));
 
 
-
+        String edt_LeadValue = "";
         if(SecLvlID == 1 && edit_text_req == 1)
         {
 
@@ -2546,8 +2821,8 @@ public class AddNewLeadActivity extends AppCompatActivity
 
             ll_lead_main2.setVisibility(View.VISIBLE);
             tv_setTitle_news.setText(tv_title);
-            edt_LeadValue= edt_addEnquiry_other_news.getText().toString();
-            Log.e(TAG, "news: "+edt_LeadValue);
+            edt_LeadValue = edt_addEnquiry_other_news.getText().toString();
+            Log.e(TAG, "news: "+ edt_LeadValue);
 
 
         }
@@ -2662,8 +2937,8 @@ public class AddNewLeadActivity extends AppCompatActivity
             ll_lead_main2.setVisibility(View.GONE);
             Log.e(TAG, "showAlert_LeadGenAlert: "+tv_title);
             tv_setTitle.setText(tv_title);
-            edt_LeadValue= edt_addEnquiry_other.getText().toString();
-            Log.e(TAG, "showAlert_LeadGenAlert: "+edt_LeadValue);
+            edt_LeadValue = Objects.requireNonNull(edt_addEnquiry_other.getText()).toString();
+            Log.e(TAG, "showAlert_LeadGenAlert: "+ edt_LeadValue);
             ll_lead_main1.setVisibility(View.VISIBLE);
             iv_LeadSources_Dropdown.setImageResource(R.drawable.ic_up_arrow_drop_up_24);
         }
@@ -2674,7 +2949,7 @@ public class AddNewLeadActivity extends AppCompatActivity
             //call add lead api
             if (isNetworkAvailable(context))
             {
-                if(!edt_addEnquiry_other.getText().toString().trim().isEmpty())
+                if(!Objects.requireNonNull(edt_addEnquiry_other.getText()).toString().trim().isEmpty())
                 {
 
                     StringBuilder sb = new StringBuilder();
@@ -2693,7 +2968,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                     sb.append(" ");
                     sb.append(edt_addEnquiry_other.getText().toString());
                     tv_leadGen_thrw.setText(sb);
-                    LeadGeneration_otherType_info=edt_addEnquiry_other.getText().toString();
+                    //LeadGeneration_otherType_info=edt_addEnquiry_other.getText().toString();
                     alertDialog.dismiss();
                     ll_LeadSources_Dropdown.setVisibility(View.GONE);
 
@@ -2710,7 +2985,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                     ll__AddEnq_LeadGen_Dropdown.setVisibility(View.GONE);
                 }*/
                 }
-                else if(!edt_addEnquiry_other_news.getText().toString().trim().isEmpty())
+                else if(!Objects.requireNonNull(edt_addEnquiry_other_news.getText()).toString().trim().isEmpty())
                 {
 
                     StringBuilder sb = new StringBuilder();
@@ -2729,7 +3004,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                     sb.append(" ,");
                     sb.append(edt_addEnquiry_other_news.getText().toString());
                     tv_leadGen_thrw.setText(sb);
-                    LeadGeneration_otherType_info=edt_addEnquiry_other_news.getText().toString();
+                    //LeadGeneration_otherType_info=edt_addEnquiry_other_news.getText().toString();
                     alertDialog.dismiss();
                     ll_LeadSources_Dropdown.setVisibility(View.GONE);
 
@@ -3232,7 +3507,7 @@ public class AddNewLeadActivity extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (!edt_leadEmail.getText().toString().isEmpty() && !isValidEmail(edt_leadEmail)) {
+                if (!Objects.requireNonNull(edt_leadEmail.getText()).toString().isEmpty() && !isValidEmail(edt_leadEmail)) {
                     til_leadEmail.setErrorEnabled(true);
                     til_leadEmail.setError("Please enter valid email! eg.user@gamil.com");
                     //til_email.setHelperTextEnabled(true);
@@ -3255,14 +3530,15 @@ public class AddNewLeadActivity extends AppCompatActivity
         });
 
         //to check lead  mobile duplicate number
-        if(!isUpdate){
-            edt_leadMobileNo.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
+        edt_leadMobileNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!isUpdate){
                     //check=1;
                     if(Objects.requireNonNull(edt_leadMobileNo.getText()).toString().length()>9) {
 
@@ -3279,25 +3555,29 @@ public class AddNewLeadActivity extends AppCompatActivity
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
                     else ll_addLead_existUSer.setVisibility(View.GONE);
-
-                    //checkButtonEnabled
-                    checkButtonEnabled();
                 }
+                //checkButtonEnabled
+                checkButtonEnabled();
+            }
 
-                @Override
-                public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                }
-            });
+            }
+        });
 
-            edt_leadOtherMobileNo.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+        edt_leadOtherMobileNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                Integer selections = (Integer) edt_leadOtherMobileNo.getTag();
+                if (selections > 0) {
                     //check=1;
                     if(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().length()>9) {
 
@@ -3314,20 +3594,22 @@ public class AddNewLeadActivity extends AppCompatActivity
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
                     else ll_addLead_existUSer_OtherNo.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
 
                 }
-            });
-        }
+                edt_leadOtherMobileNo.setTag(++selections); // (or even just '1')
+                //checkButtonEnabled
+                checkButtonEnabled();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
 
         //to check lead  mobile duplicate number
-
-
 
 /*        ll_LeadSources_Click.setOnClickListener(v -> {
             isExpand=true;
@@ -3350,24 +3632,27 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
         });*/
 
-        //lead sources
-        ll_LeadSources_Click.setOnClickListener(v -> {
-            //temp
-            if (isExpand)  //expanded
-            {
-                // //do collapse View
-                anim.toggleRotate(iv_LeadSources_Dropdown, false);
-                collapse(ll_LeadSources_Dropdown);
-                isExpand = false;
-            }
-            else    // collapsed
-            {
-                //do expand view
-                anim.toggleRotate(iv_LeadSources_Dropdown, true);
-                expandSubView(ll_LeadSources_Dropdown);
-                isExpand = true;
-            }
-        });
+
+        if (!isDuplicateLead) {
+            //lead sources
+            ll_LeadSources_Click.setOnClickListener(v -> {
+                //temp
+                if (isExpand)  //expanded
+                {
+                    // //do collapse View
+                    anim.toggleRotate(iv_LeadSources_Dropdown, false);
+                    collapse(ll_LeadSources_Dropdown);
+                    isExpand = false;
+                }
+                else    // collapsed
+                {
+                    //do expand view
+                    anim.toggleRotate(iv_LeadSources_Dropdown, true);
+                    expandSubView(ll_LeadSources_Dropdown);
+                    isExpand = true;
+                }
+            });
+        }
 
     }
 
@@ -3399,7 +3684,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                             }
                             else if (isSuccessNumberExist ==1) {
                                 isExist_WhatsAppNo=false;
-                                new Helper().showCustomToast(context, "New Number!");
+                                new Handler().postDelayed(() -> new Helper().showCustomToast(context, "New Number!"), 1000);
                                 hidePB();
                             }
                             //else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -3463,7 +3748,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                             }
                             else if (isSuccessNumberExistOther ==1) {
                                 isExist_OtherNo=false;
-                                new Helper().showCustomToast(context, "New Number!");
+                                new Handler().postDelayed(() -> new Helper().showCustomToast(context, "New Number!"), 1000);
                                 hidePB();
                             }
                             //else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -3499,15 +3784,20 @@ public class AddNewLeadActivity extends AppCompatActivity
         });
     }
 
-    private void hidePB() { runOnUiThread(this::hideProgressBar);}
+    private void hidePB() { runOnUiThread(() -> {
+        hideProgressBar();
+        //checkButtonEnabled
+        checkButtonEnabled();
+    });}
 
     private void setJsonIfUserExistWhatsApp(JsonObject jsonObject) {
 
         //if (jsonObject.has("lead_id")) model.setUser_id((!jsonObject.get("lead_id").isJsonNull() ? jsonObject.get("lead_id").getAsInt() : 0));
-        if (jsonObject.has("unit_category")) existLeadUnitCategory=!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
-        if (jsonObject.has("project_name"))existLeadProject=!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "";
-        if (jsonObject.has("full_name")) existLeadName=!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "";
-        if (jsonObject.has("lead_status_name")) existLeadStatus=!jsonObject.get("lead_status_name").isJsonNull() ? jsonObject.get("lead_status_name").getAsString() : "";
+        if (jsonObject.has("unit_category")) existLeadUnitCategory = !jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
+        if (jsonObject.has("project_name")) existLeadProject = !jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "";
+        if (jsonObject.has("sales_person_name")) existLeadAddedBy = !jsonObject.get("sales_person_name").isJsonNull() ? jsonObject.get("sales_person_name").getAsString() : "";
+        if (jsonObject.has("full_name")) existLeadName = !jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "";
+        if (jsonObject.has("lead_status_name")) existLeadStatus = !jsonObject.get("lead_status_name").isJsonNull() ? jsonObject.get("lead_status_name").getAsString() : "";
 
     }
 
@@ -3516,6 +3806,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         //if (jsonObject.has("lead_id")) model.setUser_id((!jsonObject.get("lead_id").isJsonNull() ? jsonObject.get("lead_id").getAsInt() : 0));
         if (jsonObject.has("unit_category")) existLeadUnitCategoryOtherNo=!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
         if (jsonObject.has("project_name"))existLeadProjectOtherNo=!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "";
+        if (jsonObject.has("sales_person_name")) existOtherLeadAddedBy = !jsonObject.get("sales_person_name").isJsonNull() ? jsonObject.get("sales_person_name").getAsString() : "";
         if (jsonObject.has("full_name")) existLeadNameOtherNo=!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "";
         if (jsonObject.has("lead_status_name")) existLeadStatusOtherNo=!jsonObject.get("lead_status_name").isJsonNull() ? jsonObject.get("lead_status_name").getAsString() : "";
 
@@ -3535,10 +3826,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 edt_leadMobileNo.setError("Number already exits!");
                 mTv_ExistUser.setText(String.format("Belongs to: %s", existLeadName));
                 mTv_ExistProject.setText(String.format("Belongs to project: %s", existLeadProject));
+                mTv_ExistLeadAddedBy.setText(String.format("Added By: %s", existLeadAddedBy));
                 mTv_ExistLeadStatus.setText(String.format("Lead Status: %s", existLeadStatus));
                 ll_addLead_existUSer.setVisibility(existLeadName!=null && !existLeadName.trim().isEmpty()?View.VISIBLE : View.GONE);
-
-
             }
             else
             {
@@ -3547,6 +3837,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                 edt_leadOtherMobileNo.setError("Number already exits!");
                 mTv_ExistUser_OtherNo.setText(String.format("Belongs to: %s", existLeadNameOtherNo));
                 mTv_ExistProject_OtherNo.setText(String.format("Belongs to project: %s", existLeadProjectOtherNo));
+                mTv_ExistLeadAddedBy_OtherNo.setText(String.format("Added By: %s", existOtherLeadAddedBy));
                 mTv_ExistStatus_OtherNo.setText(String.format("Lead Status: %s", existLeadStatusOtherNo));
                 ll_addLead_existUSer_OtherNo.setVisibility(existLeadNameOtherNo!=null && !existLeadNameOtherNo.trim().isEmpty()?View.VISIBLE : View.GONE);
 
@@ -4055,7 +4346,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         datePickerDialog.getDatePicker().setMaxDate(date.getTime());
         datePickerDialog.show();*/
 
-      //  datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        //  datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.getDatePicker();
         datePickerDialog.show();
 
@@ -4723,9 +5014,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             //lead name
         else if (Objects.requireNonNull(edt_leadFirstName.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer name!");
             //email
-     //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer email!");
+            //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer email!");
             // valid email
-       // else if (!isValidEmail(edt_leadEmail)) new Helper().showCustomToast(context, "Please enter a valid email!");
+            // else if (!isValidEmail(edt_leadEmail)) new Helper().showCustomToast(context, "Please enter a valid email!");
             //last name
             //else if (Objects.requireNonNull(edt_leadLastName.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer last name!");
             // mobile
@@ -4776,14 +5067,18 @@ public class AddNewLeadActivity extends AppCompatActivity
             //   else if ( isRefLead &&  Objects.requireNonNull(edt_refFlatNumber.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please Enter Reference Remarks!");
         else
         {
-            if(edt_leadOtherMobileNo.getText().toString().trim().isEmpty()){
+            if(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().trim().isEmpty()){
                 countryPhoneCode_1 ="";
             }
             //show confirmation dialog
 
-            if(isUpdate){
+            if(isUpdate) {
                 showUpdateLeadAlertDialog();
-            }else {
+            }
+            else if(isDuplicateLead) {
+                showUpdateDuplicateLeadAlertDialog();
+            }
+            else {
                 showSubmitLeadAlertDialog();
             }
         }
@@ -4799,9 +5094,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             //lead name
         else if (Objects.requireNonNull(edt_leadFirstName.getText()).toString().trim().isEmpty()) setButtonDisabledView();
             //lead email
-     //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) setButtonDisabledView();
             //valid email
-      //  else if (!isValidEmail(edt_leadEmail)) setButtonDisabledView();
+            //  else if (!isValidEmail(edt_leadEmail)) setButtonDisabledView();
             //last name
             //else if (Objects.requireNonNull(edt_leadLastName.getText()).toString().trim().isEmpty()) setButtonDisabledView();
             // mobile
@@ -4874,6 +5169,62 @@ public class AddNewLeadActivity extends AppCompatActivity
 
         mBtn_submitLead.setBackgroundColor(getResources().getColor(R.color.main_light_grey));
         mBtn_submitLead.setTextColor(getResources().getColor(R.color.main_white));
+    }
+
+    private void showUpdateDuplicateLeadAlertDialog()
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        assert alertLayout != null;
+        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
+        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
+        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        tv_msg.setText(getString(R.string.update_lead_question));
+        tv_desc.setText(getString(R.string.update_lead_confirmation));
+        btn_negativeButton.setText(getString(R.string.cancel));
+        btn_positiveButton.setText(getString(R.string.submit));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //call add lead api
+            if (isNetworkAvailable(context))
+            {
+                showProgressBar(getString(R.string.submitting_lead_details));
+                post_UpdateDuplicateLead();
+
+            }else NetworkError(context);
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        //show alert dialog
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+        //set the width and height to alert dialog
+        int pixel= getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
     }
 
     private void showUpdateLeadAlertDialog()
@@ -5015,7 +5366,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("is_site_visited", isAlreadySiteVisited ? 1 : 0);
         jsonObject.addProperty("visit_date", sendAlreadySiteVisitDate);
         jsonObject.addProperty("visit_time", sendAlreadySiteVisitTime);
-        jsonObject.addProperty("visit_remark",edt_alreadySiteVisitRemark.getText().toString());
+        jsonObject.addProperty("visit_remark", Objects.requireNonNull(edt_alreadySiteVisitRemark.getText()).toString());
         jsonObject.addProperty("prefix", selectedNamePrefix);
         jsonObject.addProperty("dob", sendDateOfBirth!=null ? sendDateOfBirth : "");
         jsonObject.addProperty("is_first_home", FirstHomeID);
@@ -5121,6 +5472,91 @@ public class AddNewLeadActivity extends AppCompatActivity
         });
     }
 
+    private void post_UpdateDuplicateLead()
+    {
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("api_token", api_token);
+        jsonObject.addProperty("offline_id", duplicate_offline_lead_id);
+        jsonObject.addProperty("full_name",  Objects.requireNonNull(edt_leadFirstName.getText()).toString());
+        jsonObject.addProperty("email", Objects.requireNonNull(edt_leadEmail.getText()).toString());
+        jsonObject.addProperty("country_code", countryPhoneCode);
+        jsonObject.addProperty("country_code_1", countryPhoneCode_1);
+        jsonObject.addProperty("mobile_number", Objects.requireNonNull(edt_leadMobileNo.getText()).toString());
+        jsonObject.addProperty("alternate_mobile_number", Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
+        jsonObject.addProperty("address_line_1", Objects.requireNonNull(edt_leadAddress.getText()).toString());
+        jsonObject.addProperty("project_id", selectedProjectId);
+        jsonObject.addProperty("project_name", selectedProjectName);
+        jsonObject.addProperty("unit_category_id", selectedUnitId);
+        jsonObject.addProperty("unit_category", selectedUnitCategory);
+        jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
+        jsonObject.addProperty("lead_profession_id", selectedProfessionId);
+        jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
+        jsonObject.addProperty("budget_limit_id", selectedBudgetLimitId);
+        jsonObject.addProperty("budget_limit", selectedBudgetLimit);
+        jsonObject.addProperty("income_range_id", selectedIncomeRangeId);
+        jsonObject.addProperty("income_range", selectedIncomeRange);
+        jsonObject.addProperty("is_first_home", FirstHomeID);
+        jsonObject.addProperty("lead_stage_id", selectedLeadStageId);
+        jsonObject.addProperty("lead_stage", selectedLeadStageName);
+        jsonObject.addProperty("lead_ni_reason", Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
+        jsonObject.addProperty("lead_ni_other_reason", Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
+        jsonObject.addProperty("prefix_id", selectedNamePrefixId);
+        jsonObject.addProperty("prefix", selectedNamePrefix);
+        jsonObject.addProperty("dob", sendDateOfBirth!=null && !sendDateOfBirth.trim().isEmpty() ? new Helper().formatUpdateDateDate(sendDateOfBirth) : "");
+        jsonObject.addProperty("sales_person_id", user_id);
+        jsonObject.addProperty("lead_status_id", 1);
+        jsonObject.addProperty("lead_types_id", LeadType_ID);
+        jsonObject.addProperty("remarks", Objects.requireNonNull(edt_leadRemarks.getText()).toString());
+
+
+        ApiClient client = ApiClient.getInstance();
+        Call<JsonObject> call = client.getApiService().updateDuplicateLeadDetails(jsonObject);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+
+                if(response.isSuccessful())
+                {
+                    if (response.body() != null) {
+                        String success = response.body().get("success").toString();
+                        if(success.equals("1")) {
+                            showSuccessDuplicateUpdateAlert();
+
+                        }
+                        else showErrorLog("Failed to update customer details! Try again.");
+                    }
+                }
+                else {
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again));
+                            break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e) {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof UnknownServiceException) showErrorLog(getString(R.string.cleartext_communication_not_permitted));
+                else if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+
+
     private void post_UpdateLead()
     {
         final JsonObject jsonObject = new JsonObject();
@@ -5129,9 +5565,9 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("person_id", person_id);
         jsonObject.addProperty("full_name",  Objects.requireNonNull(edt_leadFirstName.getText()).toString());
         jsonObject.addProperty("email", Objects.requireNonNull(edt_leadEmail.getText()).toString());
-        //jsonObject.addProperty("country_code", countryPhoneCode);
+        jsonObject.addProperty("country_code", countryPhoneCode);
         jsonObject.addProperty("country_code_1", countryPhoneCode_1);
-        //jsonObject.addProperty("mobile_number", Objects.requireNonNull(edt_leadMobileNo.getText()).toString());
+        jsonObject.addProperty("mobile_number", Objects.requireNonNull(edt_leadMobileNo.getText()).toString());
         jsonObject.addProperty("alternate_mobile_number", Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
         jsonObject.addProperty("address_line_1", Objects.requireNonNull(edt_leadAddress.getText()).toString());
         jsonObject.addProperty("project_id", selectedProjectId);
@@ -5223,19 +5659,58 @@ public class AddNewLeadActivity extends AppCompatActivity
 
 
     @SuppressLint("InflateParams")
+    private void showSuccessDuplicateUpdateAlert()
+    {
+        runOnUiThread(() -> {
+
+            //open disabled View
+            // openView();
+            //set gif
+            // gif_newLead.setImageResource(R.drawable.gif_success);
+            //set animation
+            //  new Animations().scaleEffect(ll_success);
+            //visible view
+            // ll_success.setVisibility(View.VISIBLE);
+            //show success toast
+            flagExit=true;
+            if(sharedPreferences!=null) {
+                editor = sharedPreferences.edit();
+                editor.putInt("isDuplicateLeadUpdated",1);
+                editor.apply();
+            }
+            hideProgressBar();
+            new Helper().showSuccessCustomToast(context, "Lead Updated Successfully");
+
+
+            //do backPress
+            //share_dialog.dismiss();
+            // ll_success.setVisibility(View.GONE);
+            //close view
+            //closeView();
+            //do backPress
+            new Handler().postDelayed(this::onBackPressed, 1000);
+        });
+
+    }
+
+
+    @SuppressLint("InflateParams")
     private void showSuccessUpdateAlert()
     {
         runOnUiThread(() -> {
 
             //open disabled View
-           // openView();
+            // openView();
             //set gif
-           // gif_newLead.setImageResource(R.drawable.gif_success);
+            // gif_newLead.setImageResource(R.drawable.gif_success);
             //set animation
-          //  new Animations().scaleEffect(ll_success);
+            //  new Animations().scaleEffect(ll_success);
             //visible view
-           // ll_success.setVisibility(View.VISIBLE);
+            // ll_success.setVisibility(View.VISIBLE);
             //show success toast
+
+            hideProgressBar();
+
             new Helper().showSuccessCustomToast(context, "Lead Updated Successfully");
 
             flagExit=true;
@@ -5246,14 +5721,12 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
 
             //do backPress
-            new Handler().postDelayed(() -> {
-                //share_dialog.dismiss();
-               // ll_success.setVisibility(View.GONE);
-                //close view
-                //closeView();
-                //do backPress
-                onBackPressed();
-            }, 1000);
+            //share_dialog.dismiss();
+            // ll_success.setVisibility(View.GONE);
+            //close view
+            //closeView();
+            //do backPress
+            new Handler().postDelayed(this::onBackPressed, 1000);
         });
 
     }
@@ -5613,4 +6086,3 @@ public class AddNewLeadActivity extends AppCompatActivity
     }
 
 }
-

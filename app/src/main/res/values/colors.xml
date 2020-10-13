@@ -143,6 +143,8 @@
     <color name="color_whiteGrey">#f6f6f6</color>
     <color name="color_flat_booked_background">#F6E7E7</color>
     <color name="link_blue">#34b7f1</color>
+    <color name="offline_synced">#0099FF</color>
+    <color name="primary_gray">#8F9195</color>
 
 
     <!--

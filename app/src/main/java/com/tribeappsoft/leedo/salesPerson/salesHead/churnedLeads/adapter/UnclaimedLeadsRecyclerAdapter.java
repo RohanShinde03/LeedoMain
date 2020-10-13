@@ -297,11 +297,13 @@ public class UnclaimedLeadsRecyclerAdapter extends RecyclerView.Adapter<Unclaime
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
 
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
 
         String url = null;

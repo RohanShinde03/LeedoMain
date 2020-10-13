@@ -1,118 +1,117 @@
 package com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.model;
 
 import android.Manifest;
-        import android.annotation.SuppressLint;
-        import android.app.Activity;
-        import android.app.Dialog;
-        import android.content.ActivityNotFoundException;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.content.pm.PackageManager;
-        import android.content.res.Resources;
-        import android.graphics.drawable.ColorDrawable;
-        import android.graphics.drawable.Drawable;
-        import android.net.Uri;
-        import android.os.Build;
-        import android.os.Bundle;
-        import android.os.Handler;
-        import android.speech.RecognizerIntent;
-        import android.text.Editable;
-        import android.text.TextWatcher;
-        import android.text.util.Linkify;
-        import android.util.DisplayMetrics;
-        import android.util.Log;
-        import android.view.Gravity;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.view.Window;
-        import android.view.WindowManager;
-        import android.view.animation.AccelerateInterpolator;
-        import android.view.animation.Animation;
-        import android.view.animation.DecelerateInterpolator;
-        import android.view.animation.Transformation;
-        import android.view.inputmethod.EditorInfo;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.AutoCompleteTextView;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.Toast;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.speech.RecognizerIntent;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.util.Linkify;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Transformation;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.ActionBar;
-        import androidx.appcompat.app.AlertDialog;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.appcompat.widget.AppCompatButton;
-        import androidx.appcompat.widget.AppCompatEditText;
-        import androidx.appcompat.widget.AppCompatImageView;
-        import androidx.appcompat.widget.AppCompatTextView;
-        import androidx.appcompat.widget.LinearLayoutCompat;
-        import androidx.appcompat.widget.PopupMenu;
-        import androidx.coordinatorlayout.widget.CoordinatorLayout;
-        import androidx.core.app.ActivityCompat;
-        import androidx.core.content.ContextCompat;
-        import androidx.core.widget.NestedScrollView;
-        import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-        import com.google.android.material.button.MaterialButton;
-        import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-        import com.google.android.material.textfield.TextInputEditText;
-        import com.google.android.material.textfield.TextInputLayout;
-        import com.google.android.material.textview.MaterialTextView;
-        import com.google.gson.Gson;
-        import com.google.gson.JsonArray;
-        import com.google.gson.JsonObject;
-        import com.smarteist.autoimageslider.IndicatorAnimations;
-        import com.smarteist.autoimageslider.SliderAnimations;
-        import com.smarteist.autoimageslider.SliderView;
-        import com.tribeappsoft.leedo.R;
-        import com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity;
-        import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
-        import com.tribeappsoft.leedo.admin.callLog.TelephonyCallService;
-        import com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
+import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity;
+import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
+import com.tribeappsoft.leedo.admin.callLog.TelephonyCallService;
+import com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity;
 import com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity;
 import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
-        import com.tribeappsoft.leedo.admin.reminder.AddReminderActivity;
-        import com.tribeappsoft.leedo.api.ApiClient;
-        import com.tribeappsoft.leedo.api.WebServer;
-        import com.tribeappsoft.leedo.fontAwesome.FontAwesomeManager;
-        import com.tribeappsoft.leedo.models.leads.LeadStagesModel;
-        import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
-        import com.tribeappsoft.leedo.salesPerson.adapter.EventBannerSliderAdapter;
-        import com.tribeappsoft.leedo.salesPerson.models.EventsModel;
-        import com.tribeappsoft.leedo.salesPerson.models.FeedsModel;
-        import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
-        import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
-        import com.tribeappsoft.leedo.salesPerson.models.LeadListModel;
-        import com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity;
-        import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
-        import com.tribeappsoft.leedo.util.Animations;
-        import com.tribeappsoft.leedo.util.Helper;
-        import com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView;
+import com.tribeappsoft.leedo.admin.reminder.AddReminderActivity;
+import com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity;
+import com.tribeappsoft.leedo.api.ApiClient;
+import com.tribeappsoft.leedo.fontAwesome.FontAwesomeManager;
+import com.tribeappsoft.leedo.models.leads.LeadStagesModel;
+import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
+import com.tribeappsoft.leedo.salesPerson.adapter.EventBannerSliderAdapter;
+import com.tribeappsoft.leedo.salesPerson.models.EventsModel;
+import com.tribeappsoft.leedo.salesPerson.models.FeedsModel;
+import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
+import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
+import com.tribeappsoft.leedo.salesPerson.models.LeadListModel;
+import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
+import com.tribeappsoft.leedo.util.Animations;
+import com.tribeappsoft.leedo.util.Helper;
+import com.tribeappsoft.leedo.util.stickyScrollView.StickyScrollView;
 
 import java.io.IOException;
-        import java.io.UnsupportedEncodingException;
-        import java.net.SocketTimeoutException;
-        import java.net.URLEncoder;
-        import java.net.UnknownServiceException;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Locale;
-        import java.util.Objects;
-        import java.util.stream.IntStream;
+import java.io.UnsupportedEncodingException;
+import java.net.SocketTimeoutException;
+import java.net.URLEncoder;
+import java.net.UnknownServiceException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.stream.IntStream;
 
-        import butterknife.BindView;
-        import butterknife.ButterKnife;
-        import retrofit2.Call;
-        import retrofit2.Callback;
-        import retrofit2.Response;
-        import rx.Observable;
-        import rx.Subscriber;
-        import rx.schedulers.Schedulers;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 public class LeadReportActivity extends AppCompatActivity {
 
@@ -188,15 +187,14 @@ public class LeadReportActivity extends AppCompatActivity {
     private CustomerAdapter adapter = null;
 
     private int openFlag = 0,user_id = 0,call = 0, lastPosition = -1, claimPosition =0,claimAPiCount =0,
-            lead_id =0, skip_count =0, call_lead_id =0, call_lead_status_id =0,sales_person_id=0,cp_executive_id=0,cp_id=0,project_id,filterCount=0, leadStatusId= 0 ;
+            lead_id =0, skip_count =0, call_lead_id =0, call_lead_status_id =0,project_id,filterCount=0, leadStatusId= 0;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
-    private String  api_token = "", filter_text="", other_ids ="",fromDate="", toDate="",
+    private String  api_token = "", filter_text="",fromDate="", toDate="",
             display_text ="", last_lead_updated_at = null, customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
     private Dialog claimDialog;
-    private boolean doubleBackToExitPressedOnce = false, stopApiCall = false,isSalesHead=false,
+    private boolean doubleBackToExitPressedOnce = false, stopApiCall = false,isSalesHead=false, isAdmin = false,
             isClaimNow = false, onStop = false,isExpand=false;
-    private int selectedProjectId=0;
     private final Animations anim = new Animations();
 
     @Override
@@ -240,6 +238,7 @@ public class LeadReportActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
 
@@ -263,25 +262,25 @@ public class LeadReportActivity extends AppCompatActivity {
         if (getIntent() != null) {
             //todo 1 for unclaimed leads, 0 for claimed leads
             int lead_status_id = getIntent().getIntExtra("flag", 0);
-            sales_person_id = getIntent().getIntExtra("sales_person_id", 0);
+            //sales_person_id = getIntent().getIntExtra("sales_person_id", 0);
             project_id = getIntent().getIntExtra("project_id", 0);
-            cp_executive_id = getIntent().getIntExtra("cp_executive_id",0);
-            cp_id = getIntent().getIntExtra("cp_id",0);
+            //cp_executive_id = getIntent().getIntExtra("cp_executive_id",0);
+            //cp_id = getIntent().getIntExtra("cp_id",0);
             fromDate = getIntent().getStringExtra("from_date");
             toDate = getIntent().getStringExtra("to_date");
             String full_name = getIntent().getStringExtra("full_name");
             String project_name = getIntent().getStringExtra("Project_name");
-          //  event_id = getIntent().getIntExtra("event_id",0);
+            //  event_id = getIntent().getIntExtra("event_id",0);
             leadStatusId = getIntent().getIntExtra("lead_status_id",0);
             String event_name = getIntent().getStringExtra("event_name");
             String lead_status = getIntent().getStringExtra("lead_status");
             String cp_name = getIntent().getStringExtra("cp_name");
             //isTeamLeadStat = getIntent().getBooleanExtra("isTeamLeaderStat",false);
 
-            if (lead_status_id ==1) {
+            //if (lead_status_id ==1) {
                 //for unclaimed leads -- send sale person id zer0
-                sales_person_id =0;
-            }
+              //  sales_person_id =0;
+            //}
 
             if(full_name == null || full_name.trim().isEmpty()){
                 llLeadDetailsNameLayout.setVisibility(View.GONE);
@@ -467,11 +466,12 @@ public class LeadReportActivity extends AppCompatActivity {
     private String getFilterJson()
     {
         JsonObject jsonObject = new JsonObject();
+        int selectedProjectId = 0;
         jsonObject.addProperty("project_id", selectedProjectId);
         jsonObject.addProperty("lead_status_id", 1);
 
         Log.e(TAG, "Other Ids: "+jsonObject.toString());
-        return jsonObject!=null ? jsonObject.toString() : "";
+        return jsonObject.toString();
     }
 
 
@@ -1085,7 +1085,7 @@ public class LeadReportActivity extends AppCompatActivity {
             //3. Set search other_ids clear
             filter_text = "";
             //4. clear other ids & display text
-            other_ids = display_text = "";
+            display_text = "";
             last_lead_updated_at = null;
             //call get sales feed api
             showProgressBar();
@@ -1109,7 +1109,7 @@ public class LeadReportActivity extends AppCompatActivity {
             //3. Set search filter_text clear
             filter_text = "";
             //4. Set search other_ids clear
-            other_ids = display_text = "";
+            display_text = "";
             last_lead_updated_at = null;
             showProgressBar();
             //5. call get sales feed api
@@ -2406,13 +2406,12 @@ public class LeadReportActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
-     String company_name =  sharedPreferences.getString("company_name", "");
-String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
 
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
         String url = null;
         try {
             url = "https://api.whatsapp.com/send?phone="+ number +"&text=" + URLEncoder.encode(main_title!=null ? extra_text : "Hello", "UTF-8");
@@ -2450,12 +2449,12 @@ String company_name_short =  sharedPreferences.getString("company_name_short", "
         editor = sharedPreferences.edit();
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
-     String company_name =  sharedPreferences.getString("company_name", "");
-String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
         //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try{
 
@@ -2491,12 +2490,12 @@ String company_name_short =  sharedPreferences.getString("company_name_short", "
         editor = sharedPreferences.edit();
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
-     String company_name =  sharedPreferences.getString("company_name", "");
-String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
         //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -2527,13 +2526,11 @@ String company_name_short =  sharedPreferences.getString("company_name_short", "
         editor = sharedPreferences.edit();
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
-     String company_name =  sharedPreferences.getString("company_name", "");
-String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        String company_name =  sharedPreferences.getString("company_name", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
-
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
         String url = null;
         try {
             url = "https://api.whatsapp.com/send?phone="+ number +"&text=" + URLEncoder.encode(main_title!=null ? extra_text : "Hello", "UTF-8");

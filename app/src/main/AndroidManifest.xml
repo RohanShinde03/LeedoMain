@@ -526,7 +526,7 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-        <activity
+      <!--  <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectLeadsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -537,7 +537,7 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" />-->
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.CPReportActivity"
             android:screenOrientation="portrait"
@@ -568,12 +568,12 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.LeadReAssign_Activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="LockedOrientationActivity" />
+<!--        <activity-->
+<!--            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.LeadReAssign_Activity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme"-->
+<!--            android:windowSoftInputMode="stateHidden"-->
+<!--            tools:ignore="LockedOrientationActivity" />-->
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.cp_filter.AllProjectsActivity"
             android:screenOrientation="portrait"
@@ -834,6 +834,23 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             tools:ignore="LockedOrientationActivity" />
         <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity" />
         <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallStatsDetailsActivity" />
+
+
+        <activity android:name=".admin.offlineLeads.AddNewOfflineLeadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".admin.offlineLeads.AllOfflineLeads_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".admin.offlineLeads.DuplicateLeads_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 
 </manifest>

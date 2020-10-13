@@ -25,7 +25,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.SearchView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -40,7 +39,6 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.adapter.ScheduledCallsAdapter;
 import com.tribeappsoft.leedo.admin.callSchedule.filter.FilterCallScheduleActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.model.ScheduledCallsModel;
@@ -74,6 +72,8 @@ import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.tribeappsoft.leedo.util.Helper.NetworkError;
+import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 
 
 public class Fragment_CallList extends Fragment //implements CallScheduleMainActivity.onTabChangeInterface
@@ -87,17 +87,18 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
     @BindView(R.id.ll_ScheduledCalls_backToTop) LinearLayoutCompat ll_backToTop;
 
     private String TAG = "FragmentScheduledCalls";
-    private String api_token="", filter_text = "",todoDate=null,startDate=null,endDate=null,selectedProject="",getSelectedSalesPerson="";
+    private String api_token="", filter_text = "",todoDate=null,startDate=null,endDate=null;
     private ArrayList<ScheduledCallsModel> itemArrayList;
     private ScheduledCallsAdapter recyclerAdapter;
     private Context context;
-    private int current_page =1, user_id = 0, tabAt=0,last_page =1, filterCount = 0, project_id =0, scheduledCount = 0, completedCount = 0,sales_person_id=0, lead_count = 0, site_visit_count = 0,call_schedule_count = 0,reminder_count = 0;
+    private int current_page =1, user_id = 0,last_page =1, project_id =0,sales_person_id=0, lead_count = 0, site_visit_count = 0,call_schedule_count = 0,
+            reminder_count = 0;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private AppCompatTextView tvFilterItemCount;
+    //private AppCompatTextView tvFilterItemCount;
     private Calendar currentCalender;
     private SimpleDateFormat dateFormatForDisplaying, dateFormatForMonth;
-    private boolean isSalesHead = false,isSalesTeamLead = false, onStop = false;
+    //private boolean isSalesHead = false,isSalesTeamLead = false, onStop = false;
     private static Fragment_CallList instance = null;
 
     public Fragment_CallList() {
@@ -150,10 +151,10 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
-        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
         itemArrayList = new ArrayList<>();
-        onStop = false;
+        //onStop = false;
 
         // Compact Calendar
         currentCalender = Calendar.getInstance(Locale.getDefault());
@@ -187,11 +188,10 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
-        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
 
         refreshApiCall();
-
     }
 
     private void setUpRecyclerScroll()
@@ -227,14 +227,14 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                         Log.e(TAG, "onScrollStateChanged: current_page "+current_page );
                         if (current_page <= last_page)  //
                         {
-                            if (Helper.isNetworkAvailable(Objects.requireNonNull(getActivity())))
+                            if (isNetworkAvailable(Objects.requireNonNull(requireActivity())))
                             {
                                 //swipeRefresh.setRefreshing(true);
                                 showProgressBar();
 
                                 new Handler().postDelayed(() -> call_getAllCalls(),500);
 
-                            } else Helper.NetworkError(Objects.requireNonNull(getActivity()));
+                            } else NetworkError(Objects.requireNonNull(requireActivity()));
 
                         } else Log.e(TAG, "Last page");
                     }
@@ -300,9 +300,9 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
     // This interface can be implemented by the Activity, parent Fragment,
     // or a separate test implementation.
-    public interface OnCountSelectedListener {
-        public void getScheduledCount(int count);
-    }
+    //public interface OnCountSelectedListener {
+     //   public void getScheduledCount(int count);
+    //}
 
 
 
@@ -326,7 +326,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
                 project_id = sharedPreferences.getInt("project_id", 0);
                 //user_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
-                filterCount = sharedPreferences.getInt("filterCount", 0);
+                //filterCount = sharedPreferences.getInt("filterCount", 0);
 
                 //reset api call
                 resetApiCall();
@@ -348,7 +348,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 Log.e(TAG, "onResume: clearFilter "+ sharedPreferences.getBoolean("clearFilter", false));
 
                 //clear fields
-                project_id = filterCount = 0;
+                project_id = 0;
                 user_id = Objects.requireNonNull(sharedPreferences).getInt("user_id", 0);
 
                 //reset api call
@@ -389,101 +389,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 editor.putBoolean("callCompletedAdded", false);
                 editor.apply();
             }
-
-            /*if(isFilter) {
-
-                if (sharedPreferences!=null)
-                {
-                    editor = sharedPreferences.edit();
-                    project_id = sharedPreferences.getInt("project_id", 0);
-                    user_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
-                    filterCount = sharedPreferences.getInt("filterCount", 0);
-                    editor.apply();
-                }
-                Log.e(TAG, "onResume:Filter project_id:- "+project_id+"\n sales_person_id:- "+user_id );
-
-                //reset api call
-                resetApiCall();
-            }
-            else if (clearFilter) {
-
-                //all filters are cleared
-
-                Log.e(TAG, "onResume:clearFilter  ");
-                if (sharedPreferences!=null) {
-                    editor = sharedPreferences.edit();
-                    editor.remove("clearFilter");
-                    editor.remove("project_id");
-                    editor.remove("sales_person_id");
-                    editor.remove("isFilter");
-                    editor.remove("filterCount");
-                    editor.putBoolean("clearFilter", false);
-                    editor.apply();
-                }
-
-                //clear fields
-                project_id = filterCount = 0;
-                user_id = Objects.requireNonNull(sharedPreferences).getInt("user_id", 0);
-
-                //reset api call
-                resetApiCall();
-            }
-            else if(callScheduleAdded) {
-                //refresh api call
-                //call api
-                swipeRefresh.setRefreshing(true);
-
-                refreshApiCall();
-
-                Log.e(TAG, "onResume:callScheduleAdded  ");
-
-                //update flag to false
-                if(sharedPreferences!=null) {
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("callScheduleAdded", false);
-                    editor.apply();
-                }
-            }
-            else if(callCompletedAdded) {
-                //refresh api call
-                refreshApiCall();
-
-                Log.e(TAG, "onResume:callCompletedAdded  ");
-
-                //update flag to false
-                if(sharedPreferences!=null) {
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("callCompletedAdded", false);
-                    editor.apply();
-                }
-            }*/
-            else
-            {
-
-                /*if (!onStop)
-                {
-                    //def call api
-                    if (isNetworkAvailable(Objects.requireNonNull(getActivity())))
-                    {
-                        //1. clear arrayList
-                        itemArrayList.clear();
-                        //2. reset page flag to 1
-                        current_page = last_page = 1;
-
-                        swipeRefresh.setRefreshing(true);
-                        call_getAllCalls();
-                    }
-                    else {
-                        NetworkError(getActivity());
-                        //hide main layouts
-                        swipeRefresh.setRefreshing(false);
-                        recyclerView.setVisibility(View.GONE);
-                        //visible no data
-                        ll_noDataFound.setVisibility(View.VISIBLE);
-                    }
-                }*/
-
-            }
         }
 
         //refresh api call
@@ -509,7 +414,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         swipeRefresh.setOnRefreshListener(() -> {
             //list swipe refreshed
 
-            if (Helper.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+            if (isNetworkAvailable(Objects.requireNonNull(requireActivity()))) {
 
                 /*put tab value*/
                 if (sharedPreferences!=null) {
@@ -526,7 +431,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
             }
             else {
 
-                Helper.NetworkError(getActivity());
+                NetworkError(requireActivity());
                 swipeRefresh.setRefreshing(false);
                 recyclerView.setVisibility(View.GONE);
                 ll_noDataFound.setVisibility(View.VISIBLE);
@@ -714,10 +619,10 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
     //DelayRefresh
 
-    public  void delayRefresh()
+    public void delayRefresh()
     {
         if (context != null) {
-            Objects.requireNonNull(getActivity()).runOnUiThread(() ->
+            Objects.requireNonNull(requireActivity()).runOnUiThread(() ->
             {
                 //hide pb
                 swipeRefresh.setRefreshing(false);
@@ -789,7 +694,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
     private void refreshApiCall()
     {
-        if (Helper.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+        if (isNetworkAvailable(Objects.requireNonNull(requireActivity()))) {
             //1. clear arrayList
             itemArrayList.clear();
             //2. reset page flag to 1
@@ -829,7 +734,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
            // call_getCallLogCount();
         }
         else {
-            Helper.NetworkError(getActivity());
+            NetworkError(requireActivity());
         }
 
         //set up badge
@@ -838,7 +743,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
     private void resetApiCall()
     {
-        if (Helper.isNetworkAvailable(Objects.requireNonNull(getActivity())))
+        if (isNetworkAvailable(Objects.requireNonNull(requireActivity())))
         {
             //1. clear arrayList
             itemArrayList = new ArrayList<>();
@@ -857,7 +762,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
             // showProgressBar();
             call_getAllCalls();
-        } else Helper.NetworkError(getActivity());
+        } else NetworkError(requireActivity());
 
     }
 
@@ -917,8 +822,8 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         filterItem.setVisible(false);
 
         MenuItem searchItem = menu.findItem(R.id.action_search_self);
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(context).getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView;
+        SearchManager searchManager = (SearchManager) Objects.requireNonNull(requireActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = null;
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
             searchView.setIconified(true);  //false -- to open searchView by default
@@ -973,9 +878,9 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    if (!newText.trim().isEmpty()) {
+                    //if (!newText.trim().isEmpty()) {
                         //doFilter(newText);
-                    }
+                    //}
                     return false;
                 }
             });
@@ -987,18 +892,18 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 return false;
             });
         }
-        /*if (searchView != null) {
+        if (searchView != null) {
             if (searchManager != null) {
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(context.getComponentName()));
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
             }
-        }*/
+        }
 
     }
 
 
     private void doFilter(String query) {
 
-        if (Helper.isNetworkAvailable(getActivity()))
+        if (isNetworkAvailable(requireActivity()))
         {
             //1. clear arrayList
             itemArrayList.clear();
@@ -1012,174 +917,9 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
             call_getAllCalls();
             //new Handler(getMainLooper()).postDelayed(this::call_getSalesFeed, 1000);
 
-        } else Helper.NetworkError(getActivity());
+        } else NetworkError(requireActivity());
 
     }
-
-/*    private void doFilter(String query) {
-        query = query.toLowerCase(Locale.getDefault());
-        itemArrayList.clear();
-
-        if (query.length() == 0)
-        {
-            itemArrayList.addAll(tempArrayList);
-        }
-        else
-        {
-            for (IntEventModel _obj: tempArrayList)
-            {
-                if (_obj.getEvent().getVenue().toLowerCase(Locale.getDefault()).contains(query)
-                        ||_obj.getEvent().getStartDate().toLowerCase(Locale.getDefault()).contains(query)
-                        ||_obj.getEvent().getTitle().toLowerCase(Locale.getDefault()).contains(query)
-                        ||_obj.getEvent().getDescription().toLowerCase(Locale.getDefault()).contains(query))
-                {
-                    itemArrayList.add(_obj);
-                }
-
-            }
-        }
-        delayRefresh();
-    }
-    */
-  /*  @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        // TODO Add your menu entries here
-        super.onCreateOptionsMenu(menu,inflater);
-        inflater.inflate(R.menu.menu_call_schedule, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_call_schedule_search);
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(context).getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = null;
-        if (searchItem != null)
-        {
-            searchView = (SearchView) searchItem.getActionView();
-            searchView.setIconified(true);  //false -- to open searchView by default
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setQueryHint(getString(R.string.search));
-
-            *//*Code for changing the search icon *//*
-            ImageView icon = searchView.findViewById(androidx.appcompat.R.id.search_button);
-            icon.setColorFilter(Color.WHITE);
-            //icon.setImageResource(R.drawable.ic_home_search);
-
-            //AutoCompleteTextView searchTextView =  searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-            AutoCompleteTextView searchTextView =  searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-
-            *//* Code for changing the textcolor and hint color for the search view *//*
-            searchTextView.setHintTextColor(getResources().getColor(R.color.main_white));
-            searchTextView.setTextColor(getResources().getColor(R.color.main_white));
-
-            *//*Code for changing the voice search icon *//*
-            //ImageView voiceIcon = searchView.findViewById(androidx.appcompat.R.id.search_voice_btn);
-            //voiceIcon.setImageResource(R.drawable.my_voice_search_icon);
-
-            *//*Code for changing the close search icon *//*
-            ImageView closeIcon = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-            closeIcon.setColorFilter(Color.WHITE);
-//            closeIcon.setImageResource(R.drawable.ic_search_close_icon);
-
-            *//*closeIcon.setOnClickListener(view -> {
-
-                searchTextView.setText("");
-                //clear search text reset all
-                doFilter("");
-            });*//*
-
-            try {
-                Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
-                mCursorDrawableRes.setAccessible(true);
-                mCursorDrawableRes.set(searchTextView, 0); //This sets the cursor resource ID to 0 or @null which will make it visible on white background
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            //searchView.setOnQueryTextListener(FragmentVisitors.this);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    doFilter(query);
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    if(newText.trim().isEmpty()) doFilter(newText);
-                    return false;
-                }
-            });
-
-
-            searchView.setOnCloseListener(() -> {
-                doFilter("");
-                return false;
-            });
-        }
-        if (searchView != null)
-        {
-            if (searchManager != null) {
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(Objects.requireNonNull(getActivity()).getComponentName()));
-            }
-        }
-
-        final MenuItem menuItem = menu.findItem(R.id.action_call_schedule_filter);
-        //set visible only for SH or TL
-        menuItem.setVisible(isSalesHead || isSalesTeamLead);
-
-        View actionView = menuItem.getActionView();
-        tvFilterItemCount = actionView.findViewById(R.id.cart_badge);
-        setupBadge();
-
-        actionView.setOnClickListener(v -> onOptionsItemSelected(menuItem));
-
-    }
-
-    private void setupBadge() {
-
-        if (tvFilterItemCount != null) {
-
-            if (sharedPreferences!=null) {
-                editor = sharedPreferences.edit();
-                filterCount = sharedPreferences.getInt("filterCount", 0);
-                editor.apply();
-            }
-
-            Log.e(TAG, "setupBadge: "+filterCount );
-            if (filterCount == 0) {
-                if (tvFilterItemCount.getVisibility() != View.GONE) {
-                    tvFilterItemCount.setVisibility(View.GONE);
-                }
-            } else {
-                tvFilterItemCount.setText(String.valueOf(Math.min(filterCount, 99)));
-                if (tvFilterItemCount.getVisibility() != View.VISIBLE) {
-                    tvFilterItemCount.setVisibility(View.VISIBLE);
-                }
-            }
-        }
-    }
-
-
-    private void doFilter(String query) {
-
-        if (isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
-
-            //1. clear arrayList
-            itemArrayList = new ArrayList<>();
-            itemArrayList.clear();
-            //2. reset page flag to 1
-            current_page = 1;
-            last_page = 1;
-            //3. Get search text
-            filter_text = query;
-
-            swipeRefresh.setRefreshing(true);
-            //doFilter(text);
-            call_getAllCalls();
-        }
-        else NetworkError(Objects.requireNonNull(getActivity()));
-    }
-*/
 
 
     @Override
@@ -1245,18 +985,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 //dismiss the dialog
                 alertDialog.dismiss();
 
-
-
-                /*if (events != null) {
-                    //   Log.d(TAG, bookingsFromMap.toString());
-                    mutableBookings.clear();
-                    for (Event booking : events) {
-                        mutableBookings.add((String) booking.getData());
-                    }
-                    //  adapter.notifyDataSetChanged();
-                    //Toast.makeText(CalenderEventActivityPending.this, "You Click in Calender : ", Toast.LENGTH_SHORT).show();
-                }*/
-
             }
 
             @Override
@@ -1277,7 +1005,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.show();
         //set the width and height to alert dialog
-        int pixel= Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getWidth();
+        int pixel= Objects.requireNonNull(requireActivity()).getWindowManager().getDefaultDisplay().getWidth();
         WindowManager.LayoutParams wmLp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
         wmLp.gravity =  Gravity.CENTER;
         wmLp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -1288,7 +1016,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        alertDialog.getWindow().setBackgroundDrawable(requireActivity().getResources().getDrawable(R.drawable.bg_alert_background));
         //alertDialog.getWindow().setLayout(pixel-10, wmLp.height );
         alertDialog.getWindow().setAttributes(wmLp);
     }
@@ -1370,43 +1098,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
 
 
-    private void insertCurDate(String curDate) {
-        if (sharedPreferences!=null)
-        {
-            editor = sharedPreferences.edit();
-            editor.putString("curDate",curDate);
-            editor.apply();
-            //2019-01-08
-        }
-    }
-
-    private void setDateToUI(String date) {
-
-        if (sharedPreferences!=null) {
-            editor = sharedPreferences.edit();
-            editor.putString("setDateToUI", date);
-            editor.putBoolean("isSetDateToUI", true);
-            editor.apply();
-        }
-    }
-
-
-
-    private String getCurDate()
-    {
-        String curDate = Helper.getTodaysDateStringToDo();
-        if (sharedPreferences!=null) {
-
-            editor = sharedPreferences.edit();
-            editor.apply();
-            curDate = sharedPreferences.getString("curDate", Helper.getTodaysDateStringToDo());
-        }
-
-        return curDate;
-    }
-
-
-
     @SuppressLint("SetTextI18n")
     private void showProgressBar() {
         //hideSoftKeyboard(context, getWindow().getDecorView().getRootView());
@@ -1442,7 +1133,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         // Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof TextInputEditText)) {
             view.setOnTouchListener((v, event) -> {
-                Helper.hideSoftKeyboard(Objects.requireNonNull(getActivity()), view);
+                Helper.hideSoftKeyboard(Objects.requireNonNull(requireActivity()), view);
                 return false;
             });
         }
@@ -1466,23 +1157,13 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
     @Override
     public void onDestroy() {
         super.onDestroy();
-        onStop = true;
+        //onStop = true;
     }
 
     @Override
     public void onStop() {
         super.onStop();
         Log.e(TAG, "onStop: ");
-    }
-
-    private void openFragment()
-    {
-        startActivity(new Intent(getActivity(), SalesPersonHomeNavigationActivity.class)
-                        .putExtra("notifyPerformance", true)
-                        .putExtra("openFlag", 0)
-                //.addFlags(FLAG_ACTIVITY_CLEAR_TOP |  FLAG_ACTIVITY_SINGLE_TOP)
-        );
-        getActivity().finish();
     }
 
 }

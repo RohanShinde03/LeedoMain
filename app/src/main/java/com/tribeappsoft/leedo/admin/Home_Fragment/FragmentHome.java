@@ -21,6 +21,7 @@ import android.widget.AutoCompleteTextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -35,6 +36,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
@@ -63,6 +65,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.os.Looper.getMainLooper;
+import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 
 public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
 
@@ -77,6 +80,8 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
     @BindView(R.id.mTv_FragHome_Custom) MaterialTextView mTv_FragHome_Custom;
     @BindView(R.id.mTv_fragHome_todayDate) MaterialTextView mTv_todayDate;
     @BindView(R.id.mTv_fragHome_DayName) MaterialTextView mTv_DayName;
+    @BindView(R.id.ll_pbLayout) LinearLayoutCompat ll_pb;
+    @BindView(R.id.tv_pbLoadingMsg) AppCompatTextView tv_loadingMsg;
 
     @BindView(R.id.acTv_SalesHome_selectProject) AutoCompleteTextView acTv_SalesHome_selectProject;
     @BindView(R.id.acTv_SalesHome_selectSalesPerson) AutoCompleteTextView acTv_SalesHome_selectSalesPerson;
@@ -98,7 +103,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
     private int mYear,mMonth,mDay;
     private ArrayList<ProjectModel> projectArrayList;
     private ArrayList<SalesExecutiveModel> salesExecutiveModelArrayList;
-    private ArrayList<CallScheduleLogsModel> itemArrayList;
+    //private ArrayList<CallScheduleLogsModel> itemArrayList;
     private ArrayList<String> projectStringArrayList,salesPersonArrayList;
     private String selectedProjectName ="";
     private String selectedSalesPersonName ="";
@@ -114,7 +119,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         projectStringArrayList =new ArrayList<>();
         salesPersonArrayList=new ArrayList<>();
         projectArrayList=new ArrayList<>();
-        itemArrayList=new ArrayList<>();
+        //itemArrayList=new ArrayList<>();
         salesExecutiveModelArrayList=new ArrayList<>();
     }
 
@@ -165,6 +170,8 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         user_id = sharedPreferences.getInt("user_id", 0);
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         editor.apply();
+
+        hideProgressBar();
 
         if(!isSalesHead){
             ll_fragHome_salesPersonDropdown.setVisibility(View.GONE);
@@ -275,8 +282,8 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
                                 setJsonProjects(response.body());
                                 //set delayRefresh
                                 new Handler().postDelayed(() ->{
-                                    if(projectArrayList!=null && projectArrayList.size()>0)
-                                    {
+
+                                    if(projectArrayList!=null && projectArrayList.size()>0) {
                                         acTv_SalesHome_selectProject.setText(projectStringArrayList.get(0));
                                         selectedProjectId = projectArrayList.get(0).getProject_id();
                                         selectedProjectName = projectArrayList.get(0).getProject_name();
@@ -583,7 +590,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         {
             Objects.requireNonNull(requireActivity()).runOnUiThread(() -> {
 
-                // hideProgressBar();
+                hideProgressBar();
                 Helper.onErrorSnack(requireActivity(), message);
             });
         }
@@ -649,6 +656,9 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         Log.e(TAG, "onResume: ");
 
         setNewestPage();
+
+        setOfflineLeads();
+
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         int tabAt = sharedPreferences.getInt("tabAt",0);
@@ -708,6 +718,110 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             }
         }*/
 
+    }
+
+    private void setOfflineLeads()
+    {
+        if (sharedPreferences!=null)
+        {
+            editor = sharedPreferences.edit();
+            editor.apply();
+            String offlineData = null;
+            if (sharedPreferences.getString("DownloadModel", null)!=null) offlineData = sharedPreferences.getString("DownloadModel", null);
+
+
+            if (Helper.isNetworkAvailable(Objects.requireNonNull(requireActivity()))) {
+                if (offlineData !=null)
+                {
+                    final JsonObject jsonObject = new JsonObject();
+                    Gson gson  = new Gson();
+                    JsonArray jsonArray = gson.fromJson(offlineData, JsonArray.class);
+                    jsonObject.addProperty("api_token",api_token);
+                    jsonObject.add("offline_leads",jsonArray);
+
+                    //showProgressBar(getString(R.string.syncing_olenquiry));
+                    new Handler().postDelayed(() -> {
+                        new Helper().onSnackForHomeLeadSync(requireActivity(),"New offline leads detected! Syncing now...");
+                        call_SyncOfflineLeads(jsonObject);
+                    },3000); }
+
+            }
+            //else NetworkError(getActivity());
+        }
+    }
+
+
+    private void call_SyncOfflineLeads(JsonObject jsonObject)
+    {
+        ApiClient client = ApiClient.getInstance();
+
+        client.getApiService().add_OfflineLeads(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful())
+                {
+                    if (response.body()!=null && response.body().isJsonObject())
+                    {
+                        int isSuccess = 0;
+                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+
+                        if (isSuccess==1)
+                        {
+                            // clear shared pref of offline leads
+                            if (sharedPreferences!=null)
+                            {
+                                editor = sharedPreferences.edit();
+                                editor.remove("DownloadModel");
+                                editor.apply();
+                            }
+
+                            onSuccessSync();
+
+                        }
+                        else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                    }else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                }
+                else {
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again));
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void onSuccessSync()
+    {
+        if (getActivity()!=null)
+        { getActivity().runOnUiThread(() -> {
+            //setOfflineLeads();
+            hideProgressBar();
+            //show success toast
+            new Handler().postDelayed(() -> new Helper().showSuccessCustomToast(getActivity(), getString(R.string.offline_lead_synced_successfully)),2000);
+        });
+        }
     }
 
     public void onSetTabsViewPager( int CallListCount, int SiteVisitCount, int LeadsCount, int RemindersCount,
@@ -994,7 +1108,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
                             if (response.body().has("data")) {
                                 if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonArray()) {
                                     JsonArray  jsonArray = response.body().get("data").getAsJsonArray();
-                                    itemArrayList.clear();
+                                    //itemArrayList.clear();
                                     for (int i =0; i<jsonArray.size(); i++) {
                                         setJson(jsonArray.get(i).getAsJsonObject());
                                     }
@@ -1017,7 +1131,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         if (jsonObject.has("call_schedule_date")) model.setCall_schedule_date(!jsonObject.get("call_schedule_date").isJsonNull() ? jsonObject.get("call_schedule_date").getAsString() : Helper.getTodaysDateString());
         if (jsonObject.has("schedules_count")) model.setSchedules_count(!jsonObject.get("schedules_count").isJsonNull() ? jsonObject.get("schedules_count").getAsInt() : 0);
         if (jsonObject.has("complete_count")) model.setComplete_count(!jsonObject.get("complete_count").isJsonNull() ? jsonObject.get("complete_count").getAsInt() : 0 );
-        itemArrayList.add(model);
+        //itemArrayList.add(model);
     }
 
 
@@ -1421,6 +1535,19 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             editor.apply();
             //2019-01-08
         }
+    }
+
+    private void hideProgressBar() {
+        ll_pb.setVisibility(View.GONE);
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void showProgressBar(String msg) {
+        hideSoftKeyboard(getActivity(), getActivity().getWindow().getDecorView().getRootView());
+        tv_loadingMsg.setText(msg);
+        ll_pb.setVisibility(View.VISIBLE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     private String getCurDate() {

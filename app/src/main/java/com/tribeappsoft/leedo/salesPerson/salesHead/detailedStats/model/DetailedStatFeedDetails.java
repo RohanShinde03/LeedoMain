@@ -36,6 +36,16 @@ public class DetailedStatFeedDetails {
     private int call_log_count;
     private int site_visit_count;
     private int call_schedule_count;
+    private int offline_lead_synced;
+
+    public int getOffline_lead_synced() {
+        return offline_lead_synced;
+    }
+
+    public void setOffline_lead_synced(int offline_lead_synced) {
+        this.offline_lead_synced = offline_lead_synced;
+    }
+
 
     public int getIs_reminder() {
         return is_reminder;

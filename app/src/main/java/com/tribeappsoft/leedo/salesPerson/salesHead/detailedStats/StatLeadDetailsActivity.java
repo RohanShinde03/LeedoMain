@@ -146,7 +146,7 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
     private String TAG = "TeamLeadDetailsActivity", api_token="", fromDate="", toDate="",filter_text="", customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
     private int sales_person_id=0,cp_executive_id=0,cp_id=0,project_id,filterCount=0, leadStatusId= 0, event_id=0,
             current_page = 1, total_pages = 1,skip_count = 0, call_lead_id =0, call_lead_status_id =0,user_id =0;
-    private boolean isExpand=false, isSalesHead = false, isSalesTeamLead,sales_team_lead_stats=false;
+    private boolean isExpand=false, isSalesHead = false, isAdmin = false, isSalesTeamLead,sales_team_lead_stats=false;
     private final Animations anim = new Animations();
     private ArrayList<LeadStagesModel> leadStagesModelArrayList;
     private ArrayList<String> namePrefixArrayList, leadStageStringArrayList;
@@ -330,6 +330,7 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
 
         if (getIntent() != null) {
@@ -768,6 +769,7 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         if (jsonObject.has("call_log_count"))detailedStatFeedDetails.setCall_log_count(!jsonObject.get("call_log_count").isJsonNull() ? jsonObject.get("call_log_count").getAsInt() : 0);
         if (jsonObject.has("site_visit_count"))detailedStatFeedDetails.setSite_visit_count(!jsonObject.get("site_visit_count").isJsonNull() ? jsonObject.get("site_visit_count").getAsInt() : 0);
         if (jsonObject.has("call_schedule_count"))detailedStatFeedDetails.setCall_schedule_count(!jsonObject.get("call_schedule_count").isJsonNull() ? jsonObject.get("call_schedule_count").getAsInt() : 0);
+        if (jsonObject.has("offline_lead_synced"))detailedStatFeedDetails.setOffline_lead_synced(!jsonObject.get("offline_lead_synced").isJsonNull() ? jsonObject.get("offline_lead_synced").getAsInt() : 0);
 
 
         CUIDModel cuidModel = new CUIDModel();
@@ -997,6 +999,8 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         mtvProjectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
         mtvLeadStatus.setText(myModel.getLead_type() != null && !myModel.getLead_type().trim().isEmpty() ?  "| "+myModel.getLead_type() : "");
         mtvElapsedTime.setText(myModel.getTag_elapsed_time() !=null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
+        mtvElapsedTime.setTextColor(myModel.getOffline_lead_synced()==1 ? context.getResources().getColor(R.color.offline_synced) : context.getResources().getColor(R.color.color_card_sub_title));
+
         mtvLeadDate.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
 
         //sales manager
@@ -1260,10 +1264,10 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1301,10 +1305,10 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1343,10 +1347,10 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try{
 
@@ -1383,10 +1387,10 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -1840,7 +1844,7 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         jsonObject.addProperty("lead_stage_id", lead_stage_id);
         jsonObject.addProperty("api_token", api_token);
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().Post_updateLeadStage(jsonObject).enqueue(new Callback<JsonObject>()
+        client.getApiService().Post_changeLeadStage(jsonObject).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
@@ -1920,6 +1924,10 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
                 case 4:
                     textView.setTextColor(context.getResources().getColor(R.color.colorni));
                     textView_dot.setTextColor(context.getResources().getColor(R.color.colorni));
+                    break;
+                case 5:
+                    textView.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
+                    textView_dot.setTextColor(context.getResources().getColor(R.color.color_lead_mismatch));
                     break;
                 default:
                     textView.setTextColor(context.getResources().getColor(R.color.BlackLight));

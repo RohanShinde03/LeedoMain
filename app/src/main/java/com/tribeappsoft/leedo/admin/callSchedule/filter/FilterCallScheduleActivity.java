@@ -3,7 +3,6 @@ package com.tribeappsoft.leedo.admin.callSchedule.filter;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -104,11 +102,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
 
         if (getSupportActionBar()!=null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.menu_filter_leads_by));
-
+            getSupportActionBar().setTitle(getString(R.string.menu_filter_leads_by));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -116,7 +110,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
 
         if (getIntent()!=null) {
             tabAt = getIntent().getIntExtra("tabAt", 0);
-            user_id = getIntent().getIntExtra("user_id", 0);
+            //user_id = getIntent().getIntExtra("user_id", 0);
             fromCallRecordings = getIntent().getBooleanExtra("fromCallRecordings", false);
             Log.e(TAG, "onCreate: tabAt "+tabAt );
         }
@@ -138,7 +132,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         boolean isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
-        //user_id = sharedPreferences.getInt("user_id", 0);
+        user_id = sharedPreferences.getInt("user_id", 0);
         editor.apply();
 
         // Get Current Date

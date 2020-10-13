@@ -131,7 +131,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private ArrayList<FeedsModel> modelArrayList;
-   // private ArrayList<LeadListModel> leadListModelArrayList;
+    // private ArrayList<LeadListModel> leadListModelArrayList;
     //private ArrayList<EventsModel> eventsModelArrayList;
     private ArrayList<LeadStagesModel> leadStagesModelArrayList;
     private ArrayList<String> namePrefixArrayList, leadStageStringArrayList;
@@ -139,13 +139,13 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
     private CustomerAdapter adapter = null;
 
     private int openFlag = 0,user_id = 0,call = 0, lastPosition = -1,project_id = 0,sales_person_id = 0, lead_count = 0, site_visit_count = 0,call_schedule_count = 0,reminder_count = 0,
-             skip_count =0, call_lead_id =0, call_lead_status_id =0;
+            skip_count =0, call_lead_id =0, call_lead_status_id =0;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
     private String  api_token = "", filter_text="", todo_date="",startDate="",endDate="",
             display_text ="", last_lead_updated_at = null, customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
     //private Dialog claimDialog;
-    private boolean stopApiCall = false,isSalesHead=false;
+    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false;
     private static Fragment_Leads instance = null;
 
     public Fragment_Leads() {
@@ -207,6 +207,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         project_id = sharedPreferences.getInt("project_id", 0);
@@ -498,7 +499,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
                 swipeRefresh.setRefreshing(true);
 
                 //set refresh api
-              //   refreshFeedApi();
+                //   refreshFeedApi();
                 call_getCallLogCount();
 
             }
@@ -1152,6 +1153,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
                 if (object.has("call_log_count"))cuidModel.setCall_log_count(!object.get("call_log_count").isJsonNull() ? object.get("call_log_count").getAsInt() : 0);
                 if (object.has("site_visit_count"))cuidModel.setSite_visit_count1(!object.get("site_visit_count").isJsonNull() ? object.get("site_visit_count").getAsInt() : 0);
                 if (object.has("call_schedule_count"))cuidModel.setCall_schedule_count(!object.get("call_schedule_count").isJsonNull() ? object.get("call_schedule_count").getAsInt() : 0);
+                if (object.has("offline_lead_synced"))cuidModel.setOffline_lead_synced(!object.get("offline_lead_synced").isJsonNull() ? object.get("offline_lead_synced").getAsInt() : 0);
 
                 if (object.has("lead_types_id"))cuidModel.setLead_types_id(!object.get("lead_types_id").isJsonNull() ? object.get("lead_types_id").getAsInt() : 0);
                 //if (object.has("lead_types_name"))cuidModel.setLe(!object.get("lead_types_name").isJsonNull() ? object.get("lead_types_name").getAsString() :"");
@@ -1453,6 +1455,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         tv_own_tag.setVisibility(myModel.getTag() != null && !myModel.getTag().trim().isEmpty() ? View.VISIBLE :View.GONE);
         //elapsed time
         tv_own_elapsedTime.setText(myModel.getTag_elapsed_time() != null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
+        tv_own_elapsedTime.setTextColor(myModel.getCuidModel().getOffline_lead_synced()==1 ? context.getResources().getColor(R.color.offline_synced) : context.getResources().getColor(R.color.color_card_sub_title));
         //cu_id number
         tv_own_cuIdNumber.setText(myModel.getSmall_header_title() != null && !myModel.getSmall_header_title().trim().isEmpty() ? myModel.getSmall_header_title() : "");
         //lead name
@@ -1716,11 +1719,11 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -1752,11 +1755,11 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
         //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try{
 
@@ -1793,11 +1796,11 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
         //String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, sales_person_name, WebServer.VJ_Website, sales_person_name, "+91-"+sales_person_mobile, sales_person_email);
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1837,11 +1840,11 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -2074,7 +2077,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
                 case R.id.menu_leadOption_cancelBooking:
                     //show cancel alert
-                     showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
+                    showCancelAllotmentAlert(myModel.getMain_title(),myModel.getBooking_id());
                     return true;
 
                 case R.id.menu_leadOption_continueAllotment:
@@ -2206,6 +2209,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
                 case R.id.menu_updateLead_updateLead:
                     startActivity(new Intent(context, AddNewLeadActivity.class)
                             .putExtra("isUpdateLead",true)
+                            .putExtra("isDuplicateLead",false)
                             .putExtra("lead_id",myModel.getCuidModel().getLead_id())
                             .putExtra("current_lead_status_id",myModel.getCuidModel().getLead_status_id())
                             .putExtra("salesPersonName",myModel.getCuidModel().getAssigned_by()));
@@ -3223,7 +3227,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //if (!newText.trim().isEmpty()) {
-                        //doFilter(newText);
+                    //doFilter(newText);
                     //}
                     return false;
                 }

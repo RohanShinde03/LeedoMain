@@ -36,6 +36,12 @@
             android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/menu_leads" />
 
+
+        <item
+            android:id="@+id/nav_salesPerson_offlineLeads"
+            android:icon="@drawable/ic_offline_lead_24"
+            android:title="@string/menu_offline_leads" />
+
         <item
             android:id="@+id/nav_salesPerson_reminders"
             android:icon="@drawable/ic_reminder_icon_black"

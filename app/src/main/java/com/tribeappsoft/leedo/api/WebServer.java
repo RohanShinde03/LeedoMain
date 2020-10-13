@@ -9,8 +9,8 @@ public class WebServer {
 
 
     //TODO TEST LIVE
-    public static final String BASE_URL = "http://13.233.27.5/1tr/sid05/public/api/";
-    //public static final String BASE_URL1 = "http://vjpartners.co.in/ongoing/v7_new_merge/public/api/";
+    //public static final String BASE_URL = "http://13.233.27.5/1tr/sid05/public/api/";
+    public static final String BASE_URL = "http://13.233.27.5/leedo/lead_management_sp1/public/api/";
 
     private static final String BASE_URL_LOGO = "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/";
 
@@ -21,6 +21,8 @@ public class WebServer {
     public static final String paymentLogo = BASE_URL_LOGO + "designImg/vj_logo.jpg";
 
     public static final String VJ_Website = "www.leedo.com";
+
+
 
     //-----------------------        Common API      ----------------------------------------//
 
@@ -106,7 +108,7 @@ public class WebServer {
     public static final String Post_DeleteReminder = BASE_URL + "deleteReminder";
 
 
-    // -----------------------        Sales Home Feed API      ----------------------------------------//
+
 
 
     //-----------------------        Sales Home Feed API      ----------------------------------------//
@@ -149,6 +151,21 @@ public class WebServer {
 
     //Get LeadDetails
     public static final String GET_LeadDetails = BASE_URL + "getLeadDetails";
+
+
+
+    //-----------------------        Offline Leads API      ----------------------------------------//
+
+
+    public static final String POST_OfflineLeadsData = BASE_URL + "offlineleads/add";
+    //getLastSyncedTime
+    public static final String Get_LastOfflineLeadSyncedTime = BASE_URL + "offlineleads/lastsync";
+    //get all offline leads
+    public static final String Get_AllOfflineLeads = BASE_URL + "offlineleads";
+    //get duplicate lead details
+    public static final String Get_DuplicateLeadDetails = BASE_URL + "offlineleads";
+    //post duplicate lead details
+    public static final String POST_updateDuplicateLeadDetails = BASE_URL + "offlineleads/update";
 
 
 

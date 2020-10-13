@@ -147,7 +147,7 @@ public class BookedCustomersActivity extends AppCompatActivity {
     private String  api_token = "", filter_text="", display_text ="", last_lead_updated_at = null, customer_mobile = null,
             call_cuID= null, call_lead_name= "", call_project_name= "";
     //private Dialog claimDialog;
-    private boolean stopApiCall = false,isSalesHead=false, onStop = false;
+    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false;
 
 
     @Override
@@ -200,6 +200,7 @@ public class BookedCustomersActivity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
 
@@ -1757,10 +1758,10 @@ public class BookedCustomersActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
+        //String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1797,11 +1798,9 @@ public class BookedCustomersActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         String url = null;
         try {
@@ -1839,10 +1838,9 @@ public class BookedCustomersActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
             Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -1871,10 +1869,10 @@ public class BookedCustomersActivity extends AppCompatActivity {
         String sales_person_name = sharedPreferences.getString("full_name", "");
         String sales_person_mobile = sharedPreferences.getString("mobile_number", "");
         String company_name =  sharedPreferences.getString("company_name", "");
-        String company_name_short =  sharedPreferences.getString("company_name_short", "");
         editor.apply();
 
-        String extra_text = context.getString(R.string.cim_std_welcome_msg, main_title, company_name_short, sales_person_name, company_name_short, sales_person_name, company_name, "+91-"+sales_person_mobile);
+        //String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile)
+        String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try{
 

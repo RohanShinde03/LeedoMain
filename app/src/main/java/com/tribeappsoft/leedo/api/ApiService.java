@@ -258,6 +258,35 @@ public interface ApiService
 
 
 
+    //-----------------------        Offline Leads API      ----------------------------------------//
+
+    @POST(WebServer.POST_OfflineLeadsData)
+    Call<JsonObject> add_OfflineLeads(@Body JsonObject jsonObject);
+
+
+    //GET last synced time
+    @GET(WebServer.Get_LastOfflineLeadSyncedTime)
+    Call<JsonObject>getLastOfflineLeadSyncTime(
+            @Query("api_token") String api_token,
+            @Query("sales_person_id") int sales_person_id);
+
+
+    //get all offline leads
+    @GET(WebServer.Get_AllOfflineLeads) Observable<Response<JsonObject>> getAllDuplicateLeads(@Query("api_token") String api_token,
+                                                                                              @Query("filter_text") String filter_text,
+                                                                                              @Query("page") int page,
+                                                                                              @Query("sales_person_id") int sales_person_id);
+    //get duplicate lead details
+    @GET(WebServer.Get_DuplicateLeadDetails) Call<JsonObject> getDuplicateLeadDetails(@Query("api_token") String api_token, @Query("offline_id") int offline_id);
+
+    //post duplicate lead details
+    @POST(WebServer.POST_updateDuplicateLeadDetails)
+    Call<JsonObject> updateDuplicateLeadDetails(@Body JsonObject jsonObject);
+
+
+
+
+
 
     //-----------------------        Site Visits API      ----------------------------------------//
 

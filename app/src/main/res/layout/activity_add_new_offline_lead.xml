@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_addNewLead"
+    android:id="@+id/cl_newOfflineLead"
     android:background="@color/color_backdrop"
-    tools:context="com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity">
+    tools:context=".admin.offlineLeads.AddNewOfflineLeadActivity">
 
     <!-- ll_add lead main -->
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_newLead_main"
+        android:id="@+id/ll_newOfflineLead_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_backdrop"
@@ -38,7 +38,7 @@
                     android:padding="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_newLead_salesRepName"
+                        android:id="@+id/tv_newOfflineLead_salesRepName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/def_sales_person_name"
@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sales_representative"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/primary_gray"
                         android:theme="@style/styleFontMediumText"
                         android:textSize="14sp"
                         android:gravity="center|start"/>
@@ -73,7 +73,7 @@
 
                     <!-- lead details text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_leadDetailsMain"
+                        android:id="@+id/ll_newOfflineLead_leadDetailsMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -91,13 +91,13 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="2dp"
                             android:theme="@style/styleFontMediumText"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/primary_gray"
                             android:textSize="20sp"
                             android:layout_weight="1"
                             android:gravity="center|start"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_leadDetails_ec"
+                            android:id="@+id/iv_newOfflineLead_leadDetails_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -110,7 +110,7 @@
 
                     <!-- lead details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_viewLeadDetails"
+                        android:id="@+id/ll_newOfflineLead_viewLeadDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -175,7 +175,7 @@
                                         android:hint="@string/mr_mrs">
 
                                         <AutoCompleteTextView
-                                            android:id="@+id/acTv_newLead_mrs"
+                                            android:id="@+id/acTv_newOfflineLead_mrs"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:editable="false"
@@ -190,7 +190,7 @@
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_leadFirstName"
+                                    android:id="@+id/til_newOfflineLead_leadFirstName"
                                     style="@style/TextInputLayout.OutlineBox.CustomFont"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
                                     android:hint="@string/full_name_star">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_leadFirstName"
+                                        android:id="@+id/edt_newOfflineLead_leadFirstName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:theme="@style/styleFontMediumText"
@@ -215,7 +215,7 @@
 
                             <!-- lead email -->
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/til_newLead_leadEmail"
+                                android:id="@+id/til_newOfflineLead_leadEmail"
                                 style="@style/TextInputLayout.OutlineBox.CustomFont"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -226,7 +226,7 @@
                                 android:textColorHint="@color/grey_m">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_leadEmail"
+                                    android:id="@+id/edt_newOfflineLead_leadEmail"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="textEmailAddress"
@@ -248,7 +248,7 @@
                                 android:theme="@style/styleFontMediumText">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_leadMiddleName"
+                                    android:id="@+id/edt_newOfflineLead_leadMiddleName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="textPersonName|textCapSentences"
@@ -260,7 +260,7 @@
 
                             <!-- lead last name  -->
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/til_newLead_leadLastName"
+                                android:id="@+id/til_newOfflineLead_leadLastName"
                                 style="@style/TextInputLayout.OutlineBox.CustomFont"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
                                 android:layout_marginBottom="10dp">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_leadLastName"
+                                    android:id="@+id/edt_newOfflineLead_leadLastName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/last_name"
@@ -292,7 +292,7 @@
 
                                 <!-- cpp layout -->
                                 <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:id="@+id/ll_newLead_leadMobCcp"
+                                    android:id="@+id/ll_newOfflineLead_leadMobCcp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/bg_outline_border_round_my_dob"
@@ -313,7 +313,7 @@
 
                                 <!--mobile no-->
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_leadMobile"
+                                    android:id="@+id/til_newOfflineLead_leadMobile"
                                     android:theme="@style/textInputLayoutAppearance"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                                     android:layout_marginLeft="3dp"
@@ -323,7 +323,7 @@
                                     android:textColorHint="@color/grey_m">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_leadMobileNo"
+                                        android:id="@+id/edt_newOfflineLead_leadMobileNo"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:freezesText="true"
@@ -341,13 +341,13 @@
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
                             <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/ll_addLead_existUSer"
+                                android:id="@+id/ll_newOfflineLead_existUSer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 android:orientation="vertical">
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistUser"
+                                    android:id="@+id/mTv_newOfflineLead_ExistUser"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -358,7 +358,7 @@
                                     android:text="@string/full_name"/>
 
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistProject"
+                                    android:id="@+id/mTv_newOfflineLead_ExistProject"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -370,19 +370,7 @@
                                     android:text="@string/project_name"/>
 
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistLeadAddedBy"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/color_claim_now_red"
-                                    android:textSize="12sp"
-                                    android:theme="@style/styleFontMediumText"
-                                    android:digits="@string/digits_username"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginBottom="2dp"
-                                    android:text="@string/project_name"/>
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistLeadStatus"
+                                    android:id="@+id/mTv_newOfflineLead_ExistLeadStatus"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -407,7 +395,7 @@
 
                                 <!-- cpp layout -->
                                 <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:id="@+id/ll_newLead_leadOtherMobCcp"
+                                    android:id="@+id/ll_newOfflineLead_leadOtherMobCcp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/bg_outline_border_round_my_dob"
@@ -428,7 +416,7 @@
 
                                 <!--mobile no-->
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_leadOtherMobile"
+                                    android:id="@+id/til_newOfflineLead_leadOtherMobile"
                                     android:theme="@style/textInputLayoutAppearance"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                                     android:layout_marginLeft="3dp"
@@ -438,7 +426,7 @@
                                     android:textColorHint="@color/grey_m">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_leadOtherMobileNo"
+                                        android:id="@+id/edt_newOfflineLead_leadOtherMobileNo"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:freezesText="true"
@@ -455,13 +443,13 @@
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
                             <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/ll_addLead_existUser_OtherNo"
+                                android:id="@+id/ll_newOfflineLead_existUser_OtherNo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 android:orientation="vertical">
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistUser_OtherNo"
+                                    android:id="@+id/mTv_newOfflineLead_ExistUser_OtherNo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -472,7 +460,7 @@
                                     android:text="@string/full_name"/>
 
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistProject_OtherNo"
+                                    android:id="@+id/mTv_newOfflineLead_ExistProject_OtherNo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -484,19 +472,7 @@
                                     android:text="@string/project_name"/>
 
                                 <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistLeadAddedBy_OtherNo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/color_claim_now_red"
-                                    android:textSize="12sp"
-                                    android:theme="@style/styleFontMediumText"
-                                    android:digits="@string/digits_username"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginBottom="2dp"
-                                    android:text="@string/project_name"/>
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/mTv_addLead_ExistStatus_OtherNo"
+                                    android:id="@+id/mTv_newOfflineLead_ExistStatus_OtherNo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/color_claim_now_red"
@@ -517,7 +493,7 @@
                                 android:orientation="vertical">
 
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tv_newLead_mobAlExists"
+                                    android:id="@+id/tv_newOfflineLead_mobAlExists"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/styleFontMediumText"
@@ -533,7 +509,7 @@
                                     android:textSize="14sp" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tv_newLead_mobVerifySuccess"
+                                    android:id="@+id/tv_newOfflineLead_mobVerifySuccess"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:theme="@style/styleFontBoldText"
@@ -579,7 +555,7 @@
                                  </com.google.android.material.textfield.TextInputLayout>-->
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_leadOtp"
+                                    android:id="@+id/til_newOfflineLead_leadOtp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     app:errorEnabled="true"
@@ -590,7 +566,7 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_OTPNumber"
+                                        android:id="@+id/edt_newOfflineLead_OTPNumber"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:visibility="gone"
@@ -610,7 +586,7 @@
 
 
                                 <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/mBtn_newLead_verifyLeadMob"
+                                    android:id="@+id/mBtn_newOfflineLead_verifyLeadMob"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     style="@style/coloredButton"
@@ -628,7 +604,7 @@
 
 
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tv_newLead_resendOtp_msg"
+                                    android:id="@+id/tv_newOfflineLead_resendOtp_msg"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="14sp"
@@ -640,7 +616,7 @@
                                     android:text="@string/retryOTP_text"/>
 
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tv_newLead_resendOtp_counter"
+                                    android:id="@+id/tv_newOfflineLead_resendOtp_counter"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="14sp"
@@ -650,7 +626,7 @@
                                     android:text="00:00"/>
 
                                 <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/mBtn_newLead_resendOTP"
+                                    android:id="@+id/mBtn_newOfflineLead_resendOTP"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     style="@style/coloredButton"
@@ -693,7 +669,7 @@
                                 android:layout_marginBottom="10dp">
 
                                 <com.tribeappsoft.leedo.util.customDatePicker.MyLocalDatePicker
-                                    android:id="@+id/mdp_newLead_leadBirthDate"
+                                    android:id="@+id/mdp_newOfflineLead_leadBirthDate"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:mdp_date_format="dd-mm-yyyy" />
@@ -712,7 +688,7 @@
                                 android:layout_marginBottom="10dp">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_leadAddress"
+                                    android:id="@+id/edt_newOfflineLead_leadAddress"
                                     android:layout_width="match_parent"
                                     android:layout_height="120dp"
                                     android:hint="@string/lead_address"
@@ -744,7 +720,7 @@
                                     android:hint="@string/select_lead_status">
 
                                     <AutoCompleteTextView
-                                        android:id="@+id/acTv_newLead_leadStage"
+                                        android:id="@+id/acTv_newOfflineLead_leadStage"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
@@ -759,7 +735,7 @@
 
                                 <!-- not interested reason-->
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_siteVisit_niReason"
+                                    android:id="@+id/til_newOfflineLead_siteVisit_niReason"
                                     style="@style/TextInputLayout.OutlineBox.CustomFont"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -769,7 +745,7 @@
                                     android:layout_marginBottom="10dp">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_siteVisit_niReason"
+                                        android:id="@+id/edt_newOfflineLead_siteVisit_niReason"
                                         android:layout_width="match_parent"
                                         android:layout_height="80dp"
                                         android:hint="@string/enter_ni_reason"
@@ -801,7 +777,7 @@
 
                             <!-- property buy for selection -->
                             <RadioGroup
-                                android:id="@+id/rdoGrp_newLead_propertyBuyFor"
+                                android:id="@+id/rdoGrp_newOfflineLead_propertyBuyFor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -810,7 +786,7 @@
                                 android:paddingRight="10dp">
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:id="@+id/rb_newLead_selfUse"
+                                    android:id="@+id/rb_newOfflineLead_selfUse"
                                     style="@style/MyRadioButtonStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -823,7 +799,7 @@
                                     android:theme="@style/styleFontMediumText" />
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:id="@+id/rb_newLead_investment"
+                                    android:id="@+id/rb_newOfflineLead_investment"
                                     style="@style/MyRadioButtonStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -859,7 +835,7 @@
 
                     <!-- Other Details text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_otherDetailsMain"
+                        android:id="@+id/ll_newOfflineLead_otherDetailsMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -877,13 +853,13 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="2dp"
                             android:theme="@style/styleFontMediumText"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/primary_gray"
                             android:textSize="20sp"
                             android:layout_weight="1"
                             android:gravity="center|start"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_viewOtherDetails_ec"
+                            android:id="@+id/iv_newOfflineLead_viewOtherDetails_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -896,7 +872,7 @@
 
                     <!-- other details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_viewOtherDetails"
+                        android:id="@+id/ll_newOfflineLead_viewOtherDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -922,7 +898,7 @@
 
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_lead_dob"
+                                    android:id="@+id/til_newOfflineLead_lead_dob"
                                     style="@style/TextInputLayout.OutlineBox.CustomFont"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -934,7 +910,7 @@
                                     app:endIconMode="custom">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_dob"
+                                        android:id="@+id/edt_newOfflineLead_dob"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/date_of_birth_title"
@@ -967,7 +943,7 @@
                                         android:hint="@string/works_in">
 
                                         <AutoCompleteTextView
-                                            android:id="@+id/acTv_newLead_leadProfession"
+                                            android:id="@+id/acTv_newOfflineLead_leadProfession"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:editable="false"
@@ -996,7 +972,7 @@
 
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_leadProfession"
+                                        android:id="@+id/edt_newOfflineLead_leadProfession"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/occupation"
@@ -1023,7 +999,7 @@
                                     android:background="@color/main_white">
 
                                     <AutoCompleteTextView
-                                        android:id="@+id/acTv_newLead_selectAnnualIncome"
+                                        android:id="@+id/acTv_newOfflineLead_selectAnnualIncome"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
@@ -1045,14 +1021,14 @@
                                     android:text="@string/is_it_your_first_home"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginBottom="5dp"
-                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textColor="@color/primary_gray"
                                     android:theme="@style/styleFontMediumText"
                                     android:layout_gravity="start"
                                     android:gravity="center|start"/>
 
                                 <!-- first home yes no -->
                                 <RadioGroup
-                                    android:id="@+id/rdoGrp_newLead_firstHome"
+                                    android:id="@+id/rdoGrp_newOfflineLead_firstHome"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
@@ -1060,7 +1036,7 @@
                                     android:paddingRight="10dp">
 
                                     <androidx.appcompat.widget.AppCompatRadioButton
-                                        android:id="@+id/rb_newLead_firstHome_yes"
+                                        android:id="@+id/rb_newOfflineLead_firstHome_yes"
                                         style="@style/MyRadioButtonStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -1073,7 +1049,7 @@
                                         android:theme="@style/styleFontMediumText" />
 
                                     <androidx.appcompat.widget.AppCompatRadioButton
-                                        android:id="@+id/rb_newLead_FirstHome_no"
+                                        android:id="@+id/rb_newOfflineLead_FirstHome_no"
                                         style="@style/MyRadioButtonStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -1104,7 +1080,7 @@
                                 android:hint="@string/select_when_to_buy">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectWhenToBuy"
+                                    android:id="@+id/acTv_newOfflineLead_selectWhenToBuy"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -1129,7 +1105,7 @@
                                 android:hint="@string/property_buying_for">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectPropertyBuyFor"
+                                    android:id="@+id/acTv_newOfflineLead_selectPropertyBuyFor"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -1153,7 +1129,7 @@
                                 android:hint="@string/enter_property_buy_for">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_otherPropertyBuyPurpose"
+                                    android:id="@+id/edt_newOfflineLead_otherPropertyBuyPurpose"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="text"
@@ -1186,7 +1162,7 @@
 
                     <!-- kyc doc text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_kycDocsMain"
+                        android:id="@+id/ll_newOfflineLead_kycDocsMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -1210,7 +1186,7 @@
                             android:gravity="center|start"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_kycDocs_ec"
+                            android:id="@+id/iv_newOfflineLead_kycDocs_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
@@ -1222,7 +1198,7 @@
 
                     <!--  view kyc doc details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_viewKycDoc"
+                        android:id="@+id/ll_newOfflineLead_viewKycDoc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -1236,7 +1212,7 @@
 
                         <!-- add kyc doc dynamically -->
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/ll_newLead_addKYCDoc"
+                            android:id="@+id/ll_newOfflineLead_addKYCDoc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="15dp"
@@ -1266,7 +1242,7 @@
 
                     <!-- ref lead text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_refLeadMain"
+                        android:id="@+id/ll_newOfflineLead_refLeadMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -1289,7 +1265,7 @@
                             android:layout_weight="1"
                             android:gravity="center|start"/>
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_refLead_ec"
+                            android:id="@+id/iv_newOfflineLead_refLead_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
@@ -1298,7 +1274,7 @@
                             android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/sm_newLead_leadRefBy"
+                            android:id="@+id/sm_newOfflineLead_leadRefBy"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:checked="false"
@@ -1312,7 +1288,7 @@
 
                     <!-- ref lead details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_addRefData"
+                        android:id="@+id/ll_newOfflineLead_addRefData"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
@@ -1341,7 +1317,7 @@
                                 android:textColorHint="@color/main_grey">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_refName"
+                                    android:id="@+id/edt_newOfflineLead_refName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="textPersonName|textCapSentences"
@@ -1360,7 +1336,7 @@
 
                                 <!-- cpp layout -->
                                 <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:id="@+id/ll_newLead_refMobCcp"
+                                    android:id="@+id/ll_newOfflineLead_refMobCcp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/bg_outline_border_round_my_dob"
@@ -1380,7 +1356,7 @@
                                     <!--<include layout="@layout/ccp_layout_code_picker" />-->
 
                                     <androidx.appcompat.widget.AppCompatTextView
-                                        android:id="@+id/tv_newLead_refCountry"
+                                        android:id="@+id/tv_newOfflineLead_refCountry"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -1392,7 +1368,7 @@
                                         android:textSize="13dp" />
 
                                     <androidx.appcompat.widget.AppCompatImageView
-                                        android:id="@+id/iv_newLead_refCountryArrow"
+                                        android:id="@+id/iv_newOfflineLead_refCountryArrow"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:adjustViewBounds="true"
@@ -1407,7 +1383,7 @@
 
                                 <!--mobile no-->
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newLead_refMobile"
+                                    android:id="@+id/til_newOfflineLead_refMobile"
                                     android:theme="@style/textInputLayoutAppearance"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                                     android:layout_marginLeft="3dp"
@@ -1417,7 +1393,7 @@
                                     android:textColorHint="@color/grey_m">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_refMobileNo"
+                                        android:id="@+id/edt_newOfflineLead_refMobileNo"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:freezesText="true"
@@ -1443,7 +1419,7 @@
                                 android:hint="@string/select_ref_from">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectRefProject"
+                                    android:id="@+id/acTv_newOfflineLead_selectRefProject"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -1455,7 +1431,7 @@
                             </com.google.android.material.textfield.TextInputLayout>
                             <!-- ref remarks -->
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/til_newLead_refFlatNumber"
+                                android:id="@+id/til_newOfflineLead_refFlatNumber"
                                 style="@style/TextInputLayout.OutlineBox.CustomFont"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -1466,7 +1442,7 @@
                                 android:hint="@string/ref_remarks">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edt_newLead_refFlatNumber"
+                                    android:id="@+id/edt_newOfflineLead_refFlatNumber"
                                     android:layout_width="match_parent"
                                     android:layout_height="100dp"
                                     android:inputType="text"
@@ -1515,7 +1491,7 @@
 
                     <!-- lead campaign text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_leadCampaignMain"
+                        android:id="@+id/ll_newOfflineLead_leadCampaignMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -1539,7 +1515,7 @@
                             android:gravity="center|start"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_leadCampaign_ec"
+                            android:id="@+id/iv_newOfflineLead_leadCampaign_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
@@ -1551,7 +1527,7 @@
 
                     <!--  view lead campaign details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_viewLeadCampaign"
+                        android:id="@+id/ll_newOfflineLead_viewLeadCampaign"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -1566,7 +1542,7 @@
 
                         <!-- add lead campaign dynamically -->
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/ll_newLead_addLeadCampaign"
+                            android:id="@+id/ll_newOfflineLead_LeadCampaign"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="15dp"
@@ -1594,7 +1570,7 @@
 
                     <!-- Project Details text-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_projectDetailsMain"
+                        android:id="@+id/ll_newOfflineLead_projectDetailsMain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -1612,13 +1588,13 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="2dp"
                             android:theme="@style/styleFontMediumText"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/primary_gray"
                             android:textSize="20sp"
                             android:layout_weight="1"
                             android:gravity="center|start"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_newLead_viewProjectDetails_ec"
+                            android:id="@+id/iv_newOfflineLead_viewProjectDetails_ec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -1631,7 +1607,7 @@
 
                     <!-- project details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/ll_newLead_viewProjectDetails"
+                        android:id="@+id/ll_newOfflineLead_viewProjectDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -1665,7 +1641,7 @@
 
                                     &lt;!&ndash; income spinner &ndash;&gt;
                                     <androidx.appcompat.widget.AppCompatSpinner
-                                        android:id="@+id/spn_newLead_selectProjectName"
+                                        android:id="@+id/spn_newOfflineLead_selectProjectName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="3dp"
@@ -1682,7 +1658,7 @@
                                     <androidx.appcompat.widget.AppCompatImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        app:layout_anchor="@id/spn_newLead_selectProjectName"
+                                        app:layout_anchor="@id/spn_newOfflineLead_selectProjectName"
                                         app:layout_anchorGravity="center|end"
                                         app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
 
@@ -1706,7 +1682,7 @@
 
                                   &lt;!&ndash; income spinner &ndash;&gt;
                                   <androidx.appcompat.widget.AppCompatSpinner
-                                      android:id="@+id/spn_newLead_selectUnitType"
+                                      android:id="@+id/spn_newOfflineLead_selectUnitType"
                                       android:layout_width="match_parent"
                                       android:layout_height="wrap_content"
                                       android:layout_margin="3dp"
@@ -1723,7 +1699,7 @@
                                   <androidx.appcompat.widget.AppCompatImageView
                                       android:layout_width="wrap_content"
                                       android:layout_height="wrap_content"
-                                      app:layout_anchor="@id/spn_newLead_selectUnitType"
+                                      app:layout_anchor="@id/spn_newOfflineLead_selectUnitType"
                                       app:layout_anchorGravity="center|end"
                                       app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
 
@@ -1739,10 +1715,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:hint="@string/select_project_name_star">
+                                android:hint="@string/select_project_name">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectProjectName"
+                                    android:id="@+id/acTv_newOfflineLead_selectProjectName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -1762,10 +1738,10 @@
                                 android:layout_marginBottom="10dp"
                                 android:textColorHint="@color/grey_m"
                                 android:theme="@style/styleFontMediumText"
-                                android:hint="@string/select_unit_type_star">
+                                android:hint="@string/select_unit_type">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectUnitType"
+                                    android:id="@+id/acTv_newOfflineLead_selectUnitType"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -1808,7 +1784,7 @@
                                     app:endIconMode="custom">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_prefSiteVisitFromDate"
+                                        android:id="@+id/edt_newOfflineLead_prefSiteVisitFromDate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/from_date"
@@ -1832,7 +1808,7 @@
                                     app:endIconMode="custom">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_prefSiteVisitToDate"
+                                        android:id="@+id/edt_newOfflineLead_prefSiteVisitToDate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/to_date"
@@ -1858,14 +1834,14 @@
                                 android:text="@string/already_visited"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/grayColorCode"
                                 android:theme="@style/styleFontMediumText"
                                 android:layout_gravity="start"
                                 android:gravity="center|start"/>
 
                             <!-- site visited already or not -->
                             <RadioGroup
-                                android:id="@+id/rdoGrp_newLead_alreadySiteVisited"
+                                android:id="@+id/rdoGrp_newOfflineLead_alreadySiteVisited"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -1873,12 +1849,13 @@
                                 android:paddingRight="10dp">
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:id="@+id/rb_newLead_alreadySiteVisited_yes"
+                                    android:id="@+id/rb_newOfflineLead_alreadySiteVisited_yes"
                                     style="@style/MyRadioButtonStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="15dp"
                                     android:paddingRight="15dp"
+                                    android:textColor="@color/grayColorCode"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:text="@string/yes"
@@ -1886,13 +1863,14 @@
                                     android:theme="@style/styleFontMediumText" />
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:id="@+id/rb_newLead_alreadySiteVisited_no"
+                                    android:id="@+id/rb_newOfflineLead_alreadySiteVisited_no"
                                     style="@style/MyRadioButtonStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:checked="true"
                                     android:paddingLeft="15dp"
                                     android:paddingRight="15dp"
+                                    android:textColor="@color/grayColorCode"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:layout_marginLeft="5dp"
@@ -1904,7 +1882,7 @@
 
                             <!-- already site visit date -->
                             <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/ll_newLead_alreadySiteVisit"
+                                android:id="@+id/ll_newOfflineLead_alreadySiteVisit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -1929,7 +1907,7 @@
                                         app:endIconMode="custom">
 
                                         <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/edt_newLead_alreadySiteVisitDate"
+                                            android:id="@+id/edt_newOfflineLead_alreadySiteVisitDate"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:inputType="none"
@@ -1956,7 +1934,7 @@
                                         app:endIconMode="custom">
 
                                         <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/edt_newLead_alreadySiteVisitTime"
+                                            android:id="@+id/edt_newOfflineLead_alreadySiteVisitTime"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:inputType="none"
@@ -1985,7 +1963,7 @@
                                     android:layout_marginBottom="10dp">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newLead_alreadySiteVisitRemark"
+                                        android:id="@+id/edt_newOfflineLead_alreadySiteVisitRemark"
                                         android:layout_width="match_parent"
                                         android:layout_height="80dp"
                                         android:textColorHint="@color/grey_m"
@@ -2010,7 +1988,7 @@
                                     android:hint="@string/conducted_by_star">
 
                                     <AutoCompleteTextView
-                                        android:id="@+id/acTv_newLead_selectVisitConductedBy"
+                                        android:id="@+id/acTv_newOfflineLead_selectVisitConductedBy"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
@@ -2022,6 +2000,17 @@
 
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_newOfflineLead_SiteVisitNote"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_claim_now_red"
+                                android:textSize="12sp"
+                                android:theme="@style/styleFontMediumText"
+                                android:digits="@string/digits_username"
+                                android:layout_marginTop="2dp"
+                                android:text="Already Site Visited selection not available for offline lead!"/>
 
                             <!-- budget range-->
                             <com.google.android.material.textfield.TextInputLayout
@@ -2037,7 +2026,7 @@
                                 android:background="@color/main_white">
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/acTv_newLead_selectBudgetLimit"
+                                    android:id="@+id/acTv_newOfflineLead_selectBudgetLimit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:editable="false"
@@ -2050,6 +2039,44 @@
 
                             </com.google.android.material.textfield.TextInputLayout>
 
+
+                            <!-- resources type-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="0dp"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:hint="@string/select_lead_source"
+                                android:background="@color/main_white">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newOfflineLead_selectResourceTypes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:ellipsize="end"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:background="@color/main_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mTv_newOfflineLead_Note"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_claim_now_red"
+                                android:textSize="12sp"
+                                android:theme="@style/styleFontMediumText"
+                                android:digits="@string/digits_username"
+                                android:layout_marginTop="2dp"
+                                android:text="Lead Sub Sources selection not available for offline lead!"/>
 
                             <!-- select lead source through -->
                             <androidx.appcompat.widget.LinearLayoutCompat
@@ -2070,7 +2097,7 @@
                                     android:visibility="visible">
 
                                     <AutoCompleteTextView
-                                        android:id="@+id/acTv_newLead_selectLeadSource"
+                                        android:id="@+id/acTv_newOfflineLead_selectLeadSource"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
@@ -2087,7 +2114,7 @@
                             <androidx.appcompat.widget.LinearLayoutCompat
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="visible"
+                                android:visibility="gone"
                                 android:orientation="vertical"
                                 android:id="@+id/ll_leadGenMain_hideShow">
                                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -2112,12 +2139,12 @@
 
 
                                     <androidx.appcompat.widget.LinearLayoutCompat
-                                        android:id="@+id/ll_addLead_LeadSources_Click"
+                                        android:id="@+id/ll_newOfflineLead_LeadSources_Click"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         style="@style/textStyle_ll_">
                                         <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/tv_addLead_leadGen_thrw"
+                                            android:id="@+id/tv_newOfflineLead_leadGen_thrw"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:hint="@string/select_lead_source"
@@ -2125,7 +2152,7 @@
                                             style="@style/textStyle_ll_textBox"/>
 
                                         <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/iv_addLead_LeadSources_Dropdown"
+                                            android:id="@+id/iv_newOfflineLead_LeadSources_Dropdown"
                                             android:layout_width="wrap_content"
                                             android:layout_height="25dp"
                                             android:src="@drawable/ic_down_arrow_drop_down_24" />
@@ -2134,7 +2161,7 @@
 
                                 </androidx.appcompat.widget.LinearLayoutCompat>
                                 <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:id="@+id/ll_addLead_LeadSources_Dropdown"
+                                    android:id="@+id/ll_newOfflineLead_LeadSources_Dropdown"
                                     android:visibility="gone"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -2151,7 +2178,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:visibility="gone"
-                                android:id="@+id/ll_Reference_main">
+                                android:id="@+id/ll_newOfflineLead_Reference_main">
                                 <androidx.appcompat.widget.LinearLayoutCompat
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -2159,7 +2186,7 @@
                                     android:orientation="vertical">
 
                                     <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/til_newLead_RefName"
+                                        android:id="@+id/til_newOfflineLead_RefName"
                                         style="@style/TextInputLayout.OutlineBox.CustomFont"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -2169,7 +2196,7 @@
                                         android:hint="@string/reference_name_title">
 
                                         <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/edt_addLead_fullName_referer"
+                                            android:id="@+id/edt_newOfflineLead_fullName_referer"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColorHint="@color/grey_m"
@@ -2199,7 +2226,7 @@
 
                                         <!-- cpp layout -->
                                         <androidx.appcompat.widget.LinearLayoutCompat
-                                            android:id="@+id/ll_newLead_leadMobCcpRefNo"
+                                            android:id="@+id/ll_newOfflineLead_leadMobCcpRefNo"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:background="@drawable/bg_outline_border_round_my_dob"
@@ -2220,7 +2247,7 @@
 
                                         <!--mobile no-->
                                         <com.google.android.material.textfield.TextInputLayout
-                                            android:id="@+id/til_newLead_refererMobile"
+                                            android:id="@+id/til_newOfflineLead_refererMobile"
                                             android:theme="@style/textInputLayoutAppearance"
                                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                                             android:layout_marginLeft="3dp"
@@ -2230,7 +2257,7 @@
                                             android:textColorHint="@color/grey_m">
 
                                             <com.google.android.material.textfield.TextInputEditText
-                                                android:id="@+id/edt_addLead_refererMobile_no"
+                                                android:id="@+id/edt_newOfflineLead_refererMobile_no"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:freezesText="true"
@@ -2248,18 +2275,6 @@
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/mTv_addLead_LeadResourceNote"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/color_claim_now_red"
-                                android:textSize="12sp"
-                                android:visibility="gone"
-                                android:theme="@style/styleFontMediumText"
-                                android:digits="@string/digits_username"
-                                android:layout_marginTop="2dp"
-                                android:text="Lead Sources is not editable! "/>
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -2284,7 +2299,7 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_newLead_leadRemarks"
+                        android:id="@+id/til_newOfflineLead_leadRemarks"
                         style="@style/TextInputLayout.OutlineBox.CustomFont"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -2295,7 +2310,7 @@
                         android:textColorHint="@color/grey_m">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_newLead_leadRemarks"
+                            android:id="@+id/edt_newOfflineLead_leadRemarks"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:inputType="text"
@@ -2340,7 +2355,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/mBtn_newLead_submitLead"
+                android:id="@+id/mBtn_newOfflineLead_submitLead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/submit_lead"
@@ -2370,7 +2385,7 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <View
-        android:id="@+id/view_addLead_disableLayout"
+        android:id="@+id/view_newOfflineLead_disableLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F3F7F7F7"
@@ -2379,7 +2394,7 @@
         android:visibility="gone"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_newLead_success"
+        android:id="@+id/ll_newOfflineLead_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -2387,7 +2402,7 @@
         android:layout_gravity="center">
 
         <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/gif_newLead"
+            android:id="@+id/gif_newOfflineLead"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

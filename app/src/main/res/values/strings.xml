@@ -1230,6 +1230,10 @@
         Please feel free to give me a call or drop in  message in case you want to plan a site visit or need any information about our projects.
         \n\n\n\n%5$s\nSales Executive \n%6$s \n%7$s</string>
 
+    <string name="cim_std_welcome_msg_with_role">Hello %1$s, \n\n\n\n\n%2$s\n%3$s \n%4$s \n%5$s</string>
+
+    <string name="cim_std_welcome_msg_wo_role">Hello %1$s, \n\n\n\n\n%2$s \n%3$s \n%4$s</string>
+
 
     <string name="cim_ghp_pending_msg">Hello %1$s,\n\nGreetings from *Leedo Developers.* Thank you for showing your interest in the *‘Golden Hour Pass’* of the project *%2$s*.
         \n\nYou are just one step ahead of becoming a member of the *Parivaar!*
@@ -1391,6 +1395,7 @@
     <string name="all_Leads">All Leads</string>
     <string name="all_site_visit">All Site Visit</string>
     <string name="menu_leads">Leads</string>
+    <string name="menu_offline_leads">Offline Leads</string>
     <string name="menu_call_recordings">Call Recordings</string>
     <string name="menu_project_brochures">Project Brochures</string>
     <string name="menu_project_floor_plans">Project Floor Plans</string>
@@ -1581,6 +1586,22 @@
 
 
     <string name="mobile_whatsAppNo_star">Enter WhatsApp number<font color="#cc0029">*</font></string>
+
+
+    <string name="all_duplicate_Leads">All Duplicate Leads</string>
+    <string name="all_offline_Leads">All Offline Leads</string>
+    <string name="no_duplicate_leads_available">No Duplicate Leads Available!</string>
+    <string name="add_offline_lead">Add Offline Lead</string>
+    <string name="offline_lead_added_successfully">Offline Lead added successfully!</string>
+    <string name="offline_lead_synced_successfully">Offline Lead synced successfully!</string>
+    <string name="submitting_offline_lead_details">Submitting Offline Lead details…</string>
+    <string name="submit_offline_lead_confirmation">Are you sure you want to submit offline lead?</string>
+    <string name="submit_offline_lead_question">Submit Offline Lead?</string>
+    <string name="search_offline_lead">Search Offline Lead</string>
+    <string name="search_duplicate_lead">Search Duplicate Lead</string>
+    <string name="not_synced">Not Synced</string>
+    <string name="syncing_olenquiry">syncing offline leads…</string>
+    <string name="view_duplicate_leads">View Duplicate Leads</string>
 
 
 </resources>

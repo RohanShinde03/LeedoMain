@@ -76,6 +76,8 @@ import com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity;
 import com.tribeappsoft.leedo.admin.leads.AllLeadsActivity;
 import com.tribeappsoft.leedo.admin.leads.CustomerIdActivity;
 import com.tribeappsoft.leedo.admin.notifications.NotificationsActivity;
+import com.tribeappsoft.leedo.admin.offlineLeads.AddNewOfflineLeadActivity;
+import com.tribeappsoft.leedo.admin.offlineLeads.AllOfflineLeads_Activity;
 import com.tribeappsoft.leedo.admin.project_brochures.ProjectBrochuresActivity;
 import com.tribeappsoft.leedo.admin.project_creation.AllProjectActivity;
 import com.tribeappsoft.leedo.admin.project_floor_plans.ProjectFloorPlanActivity;
@@ -104,6 +106,9 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 import static com.tribeappsoft.leedo.util.Helper.NetworkError;
 import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
@@ -142,9 +147,9 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     private Animation fab_open,fab_close,rotate_forward, rotate_backward;
     private int leadClicked = 0,user_id =0; //tabSelected = 0,
 
-   // @BindView(R.id.tv_salesPersonHome_title) AppCompatTextView tv_home_title;
+    // @BindView(R.id.tv_salesPersonHome_title) AppCompatTextView tv_home_title;
     private boolean isForceUpdate = true,isSalesHead=false;
-    private String api_token="",android_id ="";
+    private String api_token="",android_id ="", lead_sync_time="";
     private static final int Permission_CODE_DeviceAdmin = 5912;
     private static final int REQ_CODE_VERSION_UPDATE = 530;
     //private int requestCode;
@@ -164,7 +169,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         Toolbar toolbar = findViewById(R.id.toolbar_salesPerson);
         setSupportActionBar(toolbar);
 
-          Objects.requireNonNull(getSupportActionBar()).setElevation(16);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(16);
 
         //set status bar color
         change_status_bar_color();
@@ -251,12 +256,12 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         }*/
 
         //set school name as a title
-       // tv_home_title.setText(getString(R.string.app_name));
+        // tv_home_title.setText(getString(R.string.app_name));
 
         //if(getIntent()!=null){
-            //isEvent_Registration=getIntent().getBooleanExtra("isEvent_Registration",false);
-            //notifyEvents = getIntent().getBooleanExtra("notifyEvents",false);
-            //tabSelected=getIntent().getIntExtra("tabSelected",0);
+        //isEvent_Registration=getIntent().getBooleanExtra("isEvent_Registration",false);
+        //notifyEvents = getIntent().getBooleanExtra("notifyEvents",false);
+        //tabSelected=getIntent().getIntExtra("tabSelected",0);
         //}
 
 
@@ -272,6 +277,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //set def home menu item checked
         navigationView.getMenu().getItem(0).setChecked(true);
 
+
         // add Lead main
         fab_add.setOnClickListener(view -> {
             Log.e(TAG, "onCreate:  fab_add.setOnClickListener");
@@ -281,9 +287,19 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
 
                     if (leadClicked!=1)
                     {
-                        CircularAnim.fullActivity(context, view)
-                                .colorOrImageRes(R.color.secondaryColor)
-                                .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class),111));
+                        if (isNetworkAvailable(Objects.requireNonNull(context)))
+                        {
+                            CircularAnim.fullActivity(context, view)
+                                    .colorOrImageRes(R.color.colorPrimary)
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class), 111));
+                        }
+                        else {
+
+                            CircularAnim.fullActivity(context, view)
+                                    .colorOrImageRes(R.color.primary_gray)
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewOfflineLeadActivity.class), 111));
+
+                        }
                         new Handler().postDelayed(() -> {
                             animateFAB();
                             leadClicked = 1;
@@ -293,6 +309,69 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                     }
                 }, 200);
 
+
+            }
+            else {
+                animateFAB();
+            }
+        });
+
+        tv_titleAddLead.setOnClickListener(view -> {
+            if (isFabOpen) {
+
+                new Handler(getMainLooper()).postDelayed(() -> {
+                    if (leadClicked!=1)
+                    {
+                        if (isNetworkAvailable(Objects.requireNonNull(context))){
+                            CircularAnim.fullActivity(context, view)
+                                    .colorOrImageRes(R.color.colorPrimary)
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class), 111));
+                        }
+                        else {
+                            CircularAnim.fullActivity(context, view)
+                                    .colorOrImageRes(R.color.primary_gray)
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewOfflineLeadActivity.class), 111));
+                        }
+
+                        new Handler().postDelayed(() -> {
+                            animateFAB();
+                            leadClicked = 1;
+                        }, 300);
+                    }
+                }, 200);
+
+
+
+
+            } else {
+                animateFAB();
+            }
+
+        });
+
+        // add Lead main
+       /* fab_add.setOnClickListener(view -> {
+            Log.e(TAG, "onCreate:  fab_add.setOnClickListener");
+            if (isFabOpen) {
+
+                if (isNetworkAvailable(Objects.requireNonNull(context)))
+                {
+                    new Handler(getMainLooper()).postDelayed(() -> {
+
+                        if (leadClicked!=1)
+                        {
+                            CircularAnim.fullActivity(context, view)
+                                    .colorOrImageRes(R.color.secondaryColor)
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class),111));
+                            new Handler().postDelayed(() -> {
+                                animateFAB();
+                                leadClicked = 1;
+                            }, 300);
+                            // new Handler().postDelayed(this::animateFAB, 10);
+                            //startActivityForResult(new Intent(context, AddNewLeadActivity.class), 111);
+                        }
+                    }, 200);
+                }else startActivity(new Intent(context, AddNewOfflineLeadActivity.class));
 
             }
             else {
@@ -317,14 +396,13 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                     }
                 }, 200);
 
-
-
-
             } else {
                 animateFAB();
             }
 
-        });
+        });*/
+
+
         //site visit
         fab_addSiteVisit.setOnClickListener(view ->{
 
@@ -416,7 +494,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                         .go(() -> startActivityForResult(new Intent(context, AddReminderActivity.class)
                                 .putExtra("fromOther", 1), 114));
 
-              //  startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
+                //  startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
             }, 200);
             //new Helper().openReminderIntent(context, "Reminder test title", "Reminder test description", "2020-03-07 10:09:50", "2020-03-08 16:10:50");
         });
@@ -428,7 +506,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                         .go(() -> startActivityForResult(new Intent(context, AddReminderActivity.class)
                                 .putExtra("fromOther", 1), 114));
 
-               // startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
+                // startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
             }, 200);
         });
 
@@ -497,20 +575,269 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         Log.e(TAG, "onResume: ");
 
         //if (isNetworkAvailable(this)) //call verify user new Thread(this::call_getVerifyUser).start();
+        if (isNetworkAvailable(Objects.requireNonNull(context))) {
+            new Handler().postDelayed(this::getLastOfflineSyncedTime,100);
+            new Handler().postDelayed(this::getLeadData,100);
+        }
 
         //update UserProfile
         updateUser();
 
 
         //if (isNetworkAvailable(Objects.requireNonNull(context))) {
-            // getCheckTokenValidity();
+        // getCheckTokenValidity();
 
-            //check new version state
-            //checkNewAppVersionState();
+        //check new version state
+        //checkNewAppVersionState();
         //}else NetworkError(context);
 
     }
 
+    private void getLastOfflineSyncedTime()
+    {
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().getLastOfflineLeadSyncTime(api_token, user_id).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        if (!response.body().isJsonNull()) {
+                            int isSuccess = 0;
+                            if (response.body().has("success")) isSuccess = !response.body().get("success").isJsonNull() ? response.body().get("success").getAsInt() : 0;
+
+                            if (isSuccess == 1) {
+                                if (response.body().has("data"))
+                                {
+                                    if (response.body().has("data")) lead_sync_time = !response.body().get("data").isJsonNull() ? response.body().get("data").getAsString() :"not synced yet";
+                                }
+                                //set delayRefresh
+                                new Handler().postDelayed(() -> delayRefresh(), 100);
+                            }
+                            else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                        } else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                    }
+                }
+                else {
+
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: App API USER " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void delayRefresh()
+    {
+        if (sharedPreferences != null) {
+            editor = sharedPreferences.edit();
+            editor.putString("lead_sync_time", lead_sync_time);
+            editor.apply();
+        }
+    }
+
+
+
+
+    private void getLeadData()
+    {
+        ApiClient client = ApiClient.getInstance();
+        Observable<Response<JsonObject>> responseObservable = client.getApiService().getLeadForm_Data(api_token,user_id);
+        responseObservable.subscribeOn(Schedulers.newThread());
+        responseObservable.asObservable();
+        responseObservable.doOnNext(jsonObjectResponse -> {
+            throw new IllegalStateException("doOnNextException");
+        });
+        responseObservable.doOnError(throwable -> {
+            throw new UnsupportedOperationException("onError exception");
+        });
+        responseObservable.subscribeOn(Schedulers.newThread())
+                .asObservable()
+                .subscribe(new Subscriber<Response<JsonObject>>()
+                {
+                    @Override
+                    public void onCompleted()
+                    {
+                        Log.d(TAG, "All ProjectList Getting Completed:");
+                        //  setLeadDetails();
+                    }
+
+                    @Override
+                    public void onError(final Throwable e)
+                    {
+
+                        try {
+                            Log.e(TAG, "onError: " + e.toString());
+                            if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                            else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                            else showErrorLog(e.toString());
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.printStackTrace();
+                        }
+                    }
+                    @SuppressLint("LongLogTag")
+                    @Override
+                    public void onNext(Response<JsonObject> JsonObjectResponse)
+                    {
+                        if(JsonObjectResponse.isSuccessful())
+                        {
+                            if(JsonObjectResponse.body()!=null)
+                            {
+                                if(!JsonObjectResponse.body().isJsonNull())
+                                {
+                                    int isSuccess = 0;
+                                    if (JsonObjectResponse.body().has("success")) isSuccess = JsonObjectResponse.body().get("success").getAsInt();
+                                    if (isSuccess==1)
+                                    {
+                                        if (JsonObjectResponse.body().has("data"))
+                                        {
+                                            if (!JsonObjectResponse.body().get("data").isJsonNull() && JsonObjectResponse.body().get("data").isJsonObject()) {
+                                                JsonObject jsonObject  = JsonObjectResponse.body().get("data").getAsJsonObject();
+                                                setJson(jsonObject);
+                                            }
+                                        }
+                                    }
+                                    else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                                }
+                            }
+                        }
+                        else {
+                            // error case
+                            switch (JsonObjectResponse.code())
+                            {
+                                case 404:
+                                    showErrorLog(getString(R.string.something_went_wrong_try_again));
+                                    break;
+                                case 500:
+                                    showErrorLog(getString(R.string.server_error_msg));
+                                    break;
+                                default:
+                                    showErrorLog(getString(R.string.unknown_error_try_again));
+                                    break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void setJson(JsonObject jsonObject)
+    {
+
+        if (jsonObject.has("namePrefix"))
+        {
+            if (!jsonObject.get("namePrefix").isJsonNull() && jsonObject.get("namePrefix").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("namePrefix", jsonObject.get("namePrefix").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("income_range_types"))
+        {
+            if (!jsonObject.get("income_range_types").isJsonNull() && jsonObject.get("income_range_types").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("income_range_types", jsonObject.get("income_range_types").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("budget_limit_types"))
+        {
+            if (!jsonObject.get("budget_limit_types").isJsonNull() && jsonObject.get("budget_limit_types").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("budget_limit_types", jsonObject.get("budget_limit_types").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("unit_categories"))
+        {
+            if (!jsonObject.get("unit_categories").isJsonNull() && jsonObject.get("unit_categories").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("unit_categories", jsonObject.get("unit_categories").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("lead_stages"))
+        {
+            if (!jsonObject.get("lead_stages").isJsonNull() && jsonObject.get("lead_stages").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("lead_stages", jsonObject.get("lead_stages").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("lead_types"))
+        {
+            if (!jsonObject.get("lead_types").isJsonNull() && jsonObject.get("lead_types").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("lead_types", jsonObject.get("lead_types").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+        if (jsonObject.has("professions"))
+        {
+            if (!jsonObject.get("professions").isJsonNull() && jsonObject.get("professions").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("professions", jsonObject.get("professions").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+
+        if (jsonObject.has("ref_projects"))
+        {
+            if (!jsonObject.get("ref_projects").isJsonNull() && jsonObject.get("ref_projects").isJsonArray()) {
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("ref_projects", jsonObject.get("ref_projects").getAsJsonArray().toString());
+                    editor.apply();
+                }
+            }
+        }
+
+
+    }
 
     private void checkForDeviceAdminPermission()
     {
@@ -599,7 +926,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        alertDialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_alert_background));
         //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
         alertDialog.getWindow().setAttributes(wmlp);
 
@@ -1202,6 +1529,11 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 closeDrawerAndOpenActivity(AllLeadsActivity.class);
                 return true;
 
+            case R.id.nav_salesPerson_offlineLeads:
+                //this.setTitle(getString(R.string.menu_home));
+                closeDrawerAndOpenActivity(AllOfflineLeads_Activity.class);
+                return true;
+
             case R.id.nav_salesPerson_reminders:
                 //this.setTitle(getString(R.string.menu_home));
                 closeDrawerAndOpenActivity(AllReminderActivity.class);
@@ -1309,7 +1641,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 new Handler().postDelayed(this::logout, 2000);
 
                 //finally logout from app
-               // logoutUser();
+                // logoutUser();
 
             }else NetworkError(context);
 
@@ -1333,7 +1665,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        alertDialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_alert_background));
         //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
         alertDialog.getWindow().setAttributes(wmlp);
 
