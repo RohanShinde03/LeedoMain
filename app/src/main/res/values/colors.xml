@@ -50,6 +50,8 @@
     <color name="color_backdrop">#E3E5E8</color>
     <color name="text_hint">#9A9A9A</color>
     <color name="placeholder_bg">#dddddd</color>
+    <color name="orange">#FF5722</color>
+
 
 
     <!-- general color -->
@@ -109,7 +111,7 @@
     <color name="color_flat_onHold">#E69200</color>
     <color name="color_flat_reserved">#676767</color>
   <!--  <color name="color_flat_booked">#2C408B</color>
-    <color name="color_flat_sold">#2C408B</color>-->
+    <color name="color_flat_sold">#2C408B</color> -->
     <color name="color_flat_booked">#FF5050</color>
     <color name="color_flat_sold">#FF5050</color>
     <color name="color_call_reminder">#D20000</color>
@@ -162,7 +164,6 @@
     <color name="color_flat_onHold">#F622A8</color>
     <color name="color_flat_available">#006B39</color>
     -->
-
 
     <!--Tag Color-->
     <!--<color name="color_available_slot">#00FD8C</color>

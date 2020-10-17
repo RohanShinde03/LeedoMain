@@ -39,7 +39,10 @@ import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.booked_customers.BookedCustomersActivity;
+import com.tribeappsoft.leedo.admin.callSchedule.CallScheduleMainActivity;
 import com.tribeappsoft.leedo.admin.leads.AllLeadsActivity;
+import com.tribeappsoft.leedo.admin.notifications.NotificationsActivity;
+import com.tribeappsoft.leedo.admin.offlineLeads.DuplicateLeads_Activity;
 import com.tribeappsoft.leedo.admin.project_brochures.ProjectBrochuresActivity;
 import com.tribeappsoft.leedo.admin.project_floor_plans.ProjectFloorPlanActivity;
 import com.tribeappsoft.leedo.admin.project_quotations.ProjectQuotationActivity;
@@ -49,9 +52,6 @@ import com.tribeappsoft.leedo.admin.user_profile.UserProfileActivity;
 import com.tribeappsoft.leedo.admin.users.AllUsersActivity;
 import com.tribeappsoft.leedo.loginModule.LoginActivity;
 import com.tribeappsoft.leedo.models.NotificationModel;
-import com.tribeappsoft.leedo.admin.notifications.NotificationsActivity;
-import com.tribeappsoft.leedo.admin.callSchedule.CallScheduleMainActivity;
-import com.tribeappsoft.leedo.profile.ViewProfileActivity;
 import com.tribeappsoft.leedo.util.Helper;
 
 import org.json.JSONArray;
@@ -308,6 +308,18 @@ public class FireBaseMessageService extends FirebaseMessagingService
                         intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
                         intent.putExtra("notify", true); //unClaimed Leads
                         editor.putBoolean("applicationCreated", true);
+                        break;
+
+                    case "offline_leads_duplicate":
+                        intent = new Intent(this, DuplicateLeads_Activity.class);
+                        intent.putExtra("notify", true); //unClaimed Leads
+                        //editor.putBoolean("applicationCreated", true);
+                        break;
+
+                    case "offline_leads_merge":
+                        intent = new Intent(this, AllLeadsActivity.class);
+                        intent.putExtra("notify", true); //unClaimed Leads
+                        //editor.putBoolean("applicationCreated", true);
                         break;
 
                     default:

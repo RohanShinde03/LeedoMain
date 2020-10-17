@@ -336,6 +336,10 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:minLines="1"
+                    android:ellipsize="end"
+                    android:scrollbars="vertical"
                     android:hint="@string/select_project"
                     android:theme="@style/styleFontMediumText">
 
@@ -345,7 +349,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:editable="false"
+                        android:maxLines="3"
+                        android:minLines="1"
                         android:ellipsize="end"
+                        android:scrollbars="vertical"
                         android:focusable="false"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"

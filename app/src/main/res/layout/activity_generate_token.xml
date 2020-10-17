@@ -121,6 +121,10 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:ellipsize="end"
+                        android:scrollbars="vertical"
                         android:hint="@string/select_project_name_star">
 
                         <AutoCompleteTextView
@@ -128,7 +132,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
+                            android:maxLines="3"
+                            android:minLines="1"
                             android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:layout_margin="3dp"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -150,6 +157,10 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:ellipsize="end"
+                        android:scrollbars="vertical"
                         android:hint="@string/selected_event_hint">
 
                         <AutoCompleteTextView
@@ -157,7 +168,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
+                            android:maxLines="3"
+                            android:minLines="1"
                             android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:layout_margin="3dp"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -179,14 +193,20 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/selected_ghp_hint"
-                        >
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:ellipsize="end"
+                        android:scrollbars="vertical"
+                        android:hint="@string/selected_ghp_hint">
                         <AutoCompleteTextView
                             android:id="@+id/tv_generateToken_select_token"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
+                            android:maxLines="3"
+                            android:minLines="1"
                             android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:layout_margin="3dp"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -313,6 +333,10 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:scrollbars="vertical"
                                     android:layout_weight="6.5"
                                     android:hint="@string/mr_mrs">
 
@@ -321,7 +345,10 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
+                                        android:maxLines="3"
+                                        android:minLines="1"
                                         android:ellipsize="end"
+                                        android:scrollbars="vertical"
                                         android:textSize="15sp"
                                         android:theme="@style/styleFontRegularText" />
 
@@ -1437,6 +1464,10 @@
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:scrollbars="vertical"
                                     android:hint="@string/ac_type_star">
 
                                     <AutoCompleteTextView
@@ -1444,7 +1475,10 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:editable="false"
+                                        android:maxLines="3"
+                                        android:minLines="1"
                                         android:ellipsize="end"
+                                        android:scrollbars="vertical"
                                         android:paddingLeft="10dp"
                                         android:paddingRight="10dp"
                                         android:textSize="16sp"

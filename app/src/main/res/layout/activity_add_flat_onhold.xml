@@ -49,6 +49,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:maxLines="3"
+                            android:minLines="1"
+                            android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:hint="@string/select_project"
                             android:background="@color/main_white">
 
@@ -57,7 +61,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:editable="false"
+                                android:maxLines="3"
+                                android:minLines="1"
                                 android:ellipsize="end"
+                                android:scrollbars="vertical"
                                 android:textSize="14sp"
                                 android:theme="@style/styleFontRegularText"
                                 android:background="@color/main_white"/>
@@ -69,6 +76,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:maxLines="3"
+                            android:minLines="1"
+                            android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:hint="@string/select_block"
                             android:background="@color/main_white">
 
@@ -77,7 +88,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:editable="false"
+                                android:maxLines="3"
+                                android:minLines="1"
                                 android:ellipsize="end"
+                                android:scrollbars="vertical"
                                 android:textSize="14sp"
                                 android:theme="@style/styleFontRegularText"
                                 android:background="@color/main_white"/>

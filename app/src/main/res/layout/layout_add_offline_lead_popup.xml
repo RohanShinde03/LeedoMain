@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_addOfflineLeadPopup_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_24dp"
+        android:padding="@dimen/dimen_12dp"
+        android:layout_gravity="end">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:text="@string/add_offline_lead_excl"
+            android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/styleFontMediumText"
+            android:textSize="18sp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="@dimen/dimen_2dp"
+            android:paddingBottom="@dimen/dimen_2dp"
+            android:paddingLeft="@dimen/dimen_5dp"
+            android:paddingRight="@dimen/dimen_5dp"
+            android:text="@string/msg_add_offline_lead"
+            android:textColor="@color/main_dark_grey"
+            android:theme="@style/styleFontMediumText"
+            android:textSize="16sp"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_addOfflineLeadPopup_addOfflineLead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_add_offline_lead"
+            style="@style/coloredButton"
+            app:backgroundTint="@color/colorAccent"
+            android:textColor="@color/main_white"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            app:textAllCaps="false"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:cornerRadius="10dp"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtn_addOfflineLeadPopup_openNetworkSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_open_network_settings"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            app:textAllCaps="false"
+            android:textSize="16sp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            app:cornerRadius="10dp"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

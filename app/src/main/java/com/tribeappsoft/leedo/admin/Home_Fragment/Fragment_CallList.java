@@ -86,7 +86,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
     @BindView(R.id.ll_ScheduledCalls_loadingContent) LinearLayoutCompat ll_loadingContent;
     @BindView(R.id.ll_ScheduledCalls_backToTop) LinearLayoutCompat ll_backToTop;
 
-    private String TAG = "FragmentScheduledCalls";
+    private String TAG = "Fragment_CallList";
     private String api_token="", filter_text = "",todoDate=null,startDate=null,endDate=null;
     private ArrayList<ScheduledCallsModel> itemArrayList;
     private ScheduledCallsAdapter recyclerAdapter;
@@ -190,6 +190,9 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
         //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+
+        //hide pb
+        hideProgressBar();
 
         refreshApiCall();
     }
@@ -712,6 +715,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 editor.putInt("tabAt", 0);
                 editor.apply();
             }
+
             //4. clear filters if applied from sharedPref
            /* if (sharedPreferences!=null)
             {
@@ -722,6 +726,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
                 editor.putBoolean("clearFilter", false);
                 editor.apply();
             }*/
+
             //clear fields
            // project_id = filterCount = 0;
             user_id = Objects.requireNonNull(sharedPreferences).getInt("user_id", 0);
@@ -734,6 +739,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
            // call_getCallLogCount();
         }
         else {
+            hideProgressBar();
             NetworkError(requireActivity());
         }
 
@@ -762,7 +768,11 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
             // showProgressBar();
             call_getAllCalls();
-        } else NetworkError(requireActivity());
+        }
+        else {
+            hideProgressBar();
+            NetworkError(requireActivity());
+        }
 
     }
 
@@ -917,7 +927,11 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
             call_getAllCalls();
             //new Handler(getMainLooper()).postDelayed(this::call_getSalesFeed, 1000);
 
-        } else NetworkError(requireActivity());
+        }
+        else {
+            hideProgressBar();
+            NetworkError(requireActivity());
+        }
 
     }
 
@@ -1116,6 +1130,8 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         if (getActivity()!=null)
         {
             getActivity().runOnUiThread(() -> {
+                //hide pb
+                hideProgressBar();
                 if (swipeRefresh.isRefreshing())swipeRefresh.setRefreshing(false);
                 Helper.onErrorSnack(getActivity(),message);
                 recyclerView.setVisibility(View.GONE);

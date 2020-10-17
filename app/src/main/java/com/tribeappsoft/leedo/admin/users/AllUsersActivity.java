@@ -81,8 +81,8 @@ public class AllUsersActivity extends AppCompatActivity {
 
     private UserListAdapter recyclerAdapter;
     private ArrayList<UserModel> userModelArrayList,temp_userModelArrayList;
-    private ArrayList<Integer> projectNameIdArrayList;
-    private ArrayList<Integer> AssignedRoleIdArrayList;
+    //private ArrayList<Integer> projectNameIdArrayList;
+    //private ArrayList<Integer> AssignedRoleIdArrayList;
     private String api_token="";
     private Activity context;
     private SharedPreferences sharedPreferences;
@@ -117,8 +117,8 @@ public class AllUsersActivity extends AppCompatActivity {
 
         userModelArrayList =new ArrayList<>();
         temp_userModelArrayList =new ArrayList<>();
-        projectNameIdArrayList =new ArrayList<>();
-        AssignedRoleIdArrayList =new ArrayList<>();
+        //projectNameIdArrayList =new ArrayList<>();
+        //AssignedRoleIdArrayList =new ArrayList<>();
 
 
         //setup recyclerView
@@ -143,8 +143,8 @@ public class AllUsersActivity extends AppCompatActivity {
         });
 
         if (isNetworkAvailable(Objects.requireNonNull(context))) {
-            showPB("getting users list...");
-          //  swipeRefresh.setRefreshing(true);
+            showPB();
+            //  swipeRefresh.setRefreshing(true);
             new Handler(getMainLooper()).postDelayed(this::call_getAllUsersList, 100);
         }
         else {
@@ -167,7 +167,7 @@ public class AllUsersActivity extends AppCompatActivity {
             dividerItemDecoration.setDrawable(verticalDivider);
         }
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerAdapter = new UserListAdapter(context, userModelArrayList,projectNameIdArrayList);
+        recyclerAdapter = new UserListAdapter(context, userModelArrayList);
         recyclerView.setAdapter(recyclerAdapter);
 
     }
@@ -224,8 +224,8 @@ public class AllUsersActivity extends AppCompatActivity {
             editor.apply();
 
             if (isNetworkAvailable(Objects.requireNonNull(context))) {
-                showPB("getting users list...");
-              //  swipeRefresh.setRefreshing(true);
+                showPB();
+                //  swipeRefresh.setRefreshing(true);
                 new Handler(getMainLooper()).postDelayed(this::call_getAllUsersList, 100);
             }
             else {
@@ -349,6 +349,7 @@ public class AllUsersActivity extends AppCompatActivity {
         if (jsonObject.has("country_code")) model.setCountry_code(!jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "");
         if (jsonObject.has("mobile_number")) model.setMobile_number(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "");
         if (jsonObject.has("profile_photo")) model.setProfile_photo(!jsonObject.get("profile_photo").isJsonNull() ? jsonObject.get("profile_photo").getAsString() : "");
+        if (jsonObject.has("password")) model.setPwd(!jsonObject.get("password").isJsonNull() ? jsonObject.get("password").getAsString() : "");
 
         if (jsonObject.has("user_assigned_roles") && !jsonObject.get("user_assigned_roles").isJsonNull())
         {
@@ -362,7 +363,7 @@ public class AllUsersActivity extends AppCompatActivity {
                     arrayList.clear();
                     assignRoleIdArrayList.clear();
                     for (int j = 0; j < jsonArray.size(); j++) {
-                        setAssignedRolesJson(jsonArray.get(j).getAsJsonObject(), arrayList,model,assignRoleIdArrayList);
+                        setAssignedRolesJson(jsonArray.get(j).getAsJsonObject(), arrayList,assignRoleIdArrayList);
                     }
                     model.setUserRoleModelArrayList(arrayList);
                     model.setAssignedRolesArrayList(assignRoleIdArrayList);
@@ -385,7 +386,7 @@ public class AllUsersActivity extends AppCompatActivity {
                     arrayList.clear();
                     integerArrayListList.clear();
                     for (int j = 0; j < jsonArray.size(); j++) {
-                        setAssignedProjectJson(jsonArray.get(j).getAsJsonObject(), arrayList,model,integerArrayListList);
+                        setAssignedProjectJson(jsonArray.get(j).getAsJsonObject(), arrayList,integerArrayListList);
                     }
                     model.setProjectModelArrayList(arrayList);
                     model.setAssignedProjectArrayList(integerArrayListList);
@@ -398,35 +399,33 @@ public class AllUsersActivity extends AppCompatActivity {
 
     }
 
-    private void setAssignedRolesJson(JsonObject jsonObject, ArrayList<UserRoleModel> arrayList, UserModel userModel, ArrayList<Integer> integerArrayListList)
+    private void setAssignedRolesJson(JsonObject jsonObject, ArrayList<UserRoleModel> arrayList, ArrayList<Integer> integerArrayListList)
     {
         UserRoleModel model = new UserRoleModel();
         if (jsonObject.has("role_id")){
             model.setRole_id(!jsonObject.get("role_id").isJsonNull() ? jsonObject.get("role_id").getAsInt() : 0 );
             integerArrayListList.add(!jsonObject.get("role_id").isJsonNull() ? jsonObject.get("role_id").getAsInt() : 0 );
-            AssignedRoleIdArrayList.add(!jsonObject.get("role_id").isJsonNull() ? jsonObject.get("role_id").getAsInt() : 0 );
+            //AssignedRoleIdArrayList.add(!jsonObject.get("role_id").isJsonNull() ? jsonObject.get("role_id").getAsInt() : 0 );
         }
         if (jsonObject.has("role_name")) model.setRole_name(!jsonObject.get("role_name").isJsonNull() ? jsonObject.get("role_name").getAsString() : "" );
         arrayList.add(model);
-      //  userModel.setUserRoleModel(model);
+        //  userModel.setUserRoleModel(model);
 
         //userModel.setUserRolesModel(model);
     }
 
-    private void setAssignedProjectJson(JsonObject jsonObject, ArrayList<ProjectModel> arrayList, UserModel userModel, ArrayList<Integer> integerArrayListList)
+    private void setAssignedProjectJson(JsonObject jsonObject, ArrayList<ProjectModel> arrayList, ArrayList<Integer> integerArrayListList)
     {
         ProjectModel model = new ProjectModel();
         if (jsonObject.has("project_id")){
             model.setProject_id(!jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0 );
             integerArrayListList.add(!jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0 );
-            AssignedRoleIdArrayList.add(!jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0 );
-
+            //AssignedRoleIdArrayList.add(!jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0 );
         }
         if (jsonObject.has("project_name")) model.setProject_name(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "" );
         if (jsonObject.has("is_project_assigned")) model.setIs_project_assigned(!jsonObject.get("is_project_assigned").isJsonNull() ? jsonObject.get("project_name").getAsInt() : 0 );
         arrayList.add(model);
-       // userModel.setProjectModel(model);
-
+        // userModel.setProjectModel(model);
     }
     private void delayRefresh()
     {
@@ -440,7 +439,7 @@ public class AllUsersActivity extends AppCompatActivity {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setHasFixedSize(true);
-                recyclerAdapter= new UserListAdapter(context, userModelArrayList,projectNameIdArrayList);
+                recyclerAdapter= new UserListAdapter(context, userModelArrayList);
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerAdapter.notifyDataSetChanged();
 
@@ -478,10 +477,10 @@ public class AllUsersActivity extends AppCompatActivity {
         }
     }
 
-    private void showPB(String message)
+    private void showPB()
     {
         hideSoftKeyboard(context, getWindow().getDecorView().getRootView());
-        tv_loadingMsg.setText(message);
+        tv_loadingMsg.setText(R.string.getting_user_list);
         ll_pb.setVisibility(View.VISIBLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }

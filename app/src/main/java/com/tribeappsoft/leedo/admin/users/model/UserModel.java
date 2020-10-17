@@ -35,6 +35,7 @@ public class UserModel  implements Serializable, Parcelable {
     private String user_role;
     private String projects_assign_type;
     private String assigned_project;
+    private String pwd;
     private boolean isExpand;
     private boolean isCheckedBox;
     private ProjectModel projectModel;
@@ -65,6 +66,7 @@ public class UserModel  implements Serializable, Parcelable {
         email = in.readString();
         country_code = in.readString();
         mobile_number = in.readString();
+        pwd = in.readString();
         profile_photo = in.readString();
         user_role = in.readString();
         projects_assign_type = in.readString();
@@ -109,7 +111,13 @@ public class UserModel  implements Serializable, Parcelable {
     public void setAssignedProjectArrayList(ArrayList<Integer> assignedProjectArrayList) {
         AssignedProjectArrayList = assignedProjectArrayList;
     }
+    public String getPwd() {
+        return pwd;
+    }
 
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
     public UserRoleModel getUserRoleModel() {
         return userRoleModel;
     }
@@ -339,6 +347,7 @@ public class UserModel  implements Serializable, Parcelable {
         parcel.writeString(user_role);
         parcel.writeString(projects_assign_type);
         parcel.writeString(assigned_project);
+        parcel.writeString(pwd);
         parcel.writeByte((byte) (isExpand ? 1 : 0));
         parcel.writeByte((byte) (isCheckedBox ? 1 : 0));
     }

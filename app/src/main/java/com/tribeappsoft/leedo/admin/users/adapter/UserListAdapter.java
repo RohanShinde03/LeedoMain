@@ -44,7 +44,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
     private String TAG="UserListAdapter";
 
 
-    public UserListAdapter(Activity context, ArrayList<UserModel> projectModelArrayList, ArrayList<Integer> projectNameIdArrayList) {
+    public UserListAdapter(Activity context, ArrayList<UserModel> projectModelArrayList) {
         this.context = context;
         this.userModelArrayList = projectModelArrayList;
         this.anim = new Animations();
@@ -68,10 +68,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         holder.mTv_UserEmail.setText(model.getEmail() != null && !model.getEmail().trim().isEmpty()? model.getEmail() :"-");
         holder.mTv_UserMob.setText(model.getMobile_number() != null && !model.getMobile_number().trim().isEmpty()? model.getMobile_number(): "");
         holder.mTv_AssignedProjects.setText(model.getAssigned_project() != null && !model.getAssigned_project().trim().isEmpty()? model.getAssigned_project(): "");
-     //   holder.mTv_UserRole.setText(model.getUser_role() != null && !model.getUser_role().trim().isEmpty()? model.getUser_role(): "");
+        //   holder.mTv_UserRole.setText(model.getUser_role() != null && !model.getUser_role().trim().isEmpty()? model.getUser_role(): "");
 
         // holder.ll_AssignedProjects.setVisibility(model.getAssigned_project() != null && !model.getAssigned_project().trim().isEmpty() ? View.VISIBLE :View.GONE);
-       // holder.mTv_UserRole.setVisibility(model.getUser_role() != null && !model.getUser_role().trim().isEmpty() ? View.VISIBLE :View.GONE);
+        // holder.mTv_UserRole.setVisibility(model.getUser_role() != null && !model.getUser_role().trim().isEmpty() ? View.VISIBLE :View.GONE);
 
         if (model.getProjectModelArrayList()!=null && model.getProjectModelArrayList().size()>0)
         {
@@ -94,10 +94,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         //to set AssignedRolesView
         if (model.getUserRoleModelArrayList()!=null && model.getUserRoleModelArrayList().size()>0)
         {
-           // holder.mTv_AssignedProjects.setVisibility(View.GONE);
+            // holder.mTv_AssignedProjects.setVisibility(View.GONE);
             holder.hs_Horizontal_scrollView.setVisibility(View.VISIBLE);
             holder.ll_AssignedRoles.setVisibility(View.VISIBLE);
-           // holder.hs_Horizontal_scrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
+            // holder.hs_Horizontal_scrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
             holder.ll_AssignedRoles.removeAllViews();
 
             for (int i = 0; i < model.getUserRoleModelArrayList().size(); i++) {
@@ -109,7 +109,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         {
             holder.ll_AssignedRoles.setVisibility(View.GONE);
             holder.hs_Horizontal_scrollView.setVisibility(View.GONE);
-           // holder.mTv_AssignedProjects.setVisibility(View.VISIBLE);
+            // holder.mTv_AssignedProjects.setVisibility(View.VISIBLE);
         }
 
 
@@ -155,6 +155,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
             intent.putExtra("user_prefix_id", model.getPrefix_id());
             intent.putExtra("user_name", model.getFirst_name()+" "+model.getLast_name());
             intent.putExtra("user_email", model.getEmail());
+            intent.putExtra("password", model.getPwd());
             intent.putExtra("user_mobile", model.getMobile_number());
             intent.putExtra("user_model", (Serializable) model);
             Log.e(TAG, "setAssignedRolesJson: "+ model.getUserRoleModelArrayList());
@@ -298,7 +299,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         }
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    static class MyHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cv_UserList_mainList) MaterialCardView cv_mainList;
         @BindView(R.id.cIv_itemLayout_UserImg) CircleImageView cIv_UserImg;

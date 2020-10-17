@@ -63,6 +63,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.smarteist.autoimageslider.SliderView;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity;
 import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
 import com.tribeappsoft.leedo.admin.callLog.TelephonyCallService;
@@ -151,20 +152,18 @@ public class AllLeadsActivity extends AppCompatActivity {
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
     private String  api_token = "", filter_text="", display_text ="", last_lead_updated_at = null,
             customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
-
-    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false;
+    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false, notify = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_leads);
-
         ButterKnife.bind(this);
         context= AllLeadsActivity.this;
 
-        if (getSupportActionBar()!=null)
-        {
+        if (getSupportActionBar()!=null) {
+
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             getSupportActionBar().setCustomView(R.layout.layout_ab_center);
@@ -175,6 +174,8 @@ public class AllLeadsActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
+        if (getIntent()!=null) notify = getIntent().getBooleanExtra("notify", false);
+
         //hide pb
         hideCancellationProgressBar();
 
@@ -183,9 +184,6 @@ public class AllLeadsActivity extends AppCompatActivity {
 
         //set up scrollView
         setUpScrollView();
-
-
-
     }
 
 
@@ -3229,7 +3227,15 @@ public class AllLeadsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+        if(notify) {
+            startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
+            finish();
+        }
+        else {
+            super.onBackPressed();
+            // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down);
+        }
     }
 
 

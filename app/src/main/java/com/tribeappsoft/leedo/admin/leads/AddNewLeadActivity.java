@@ -73,6 +73,8 @@ import com.tribeappsoft.leedo.admin.leads.model.BudgetLimitModel;
 import com.tribeappsoft.leedo.admin.leads.model.LeadGenerationModel;
 import com.tribeappsoft.leedo.admin.leads.model.LeadGenerationSecondModel;
 import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
+import com.tribeappsoft.leedo.admin.offlineLeads.AllOfflineLeads_Activity;
+import com.tribeappsoft.leedo.admin.offlineLeads.model.OfflineLeadModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.api.WebServer;
 import com.tribeappsoft.leedo.models.UserModel;
@@ -97,6 +99,10 @@ import com.tribeappsoft.leedo.util.ccp.CountryUtils;
 import com.tribeappsoft.leedo.util.customDatePicker.MyLocalDatePicker;
 import com.tribeappsoft.leedo.util.filepicker.MaterialFilePicker;
 import com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -317,14 +323,14 @@ public class AddNewLeadActivity extends AppCompatActivity
 
     private String TAG = "AddNewLeadActivity", sendBDate = null, sendPrefVisitFromDate= null, sendPrefVisitToDate= null, sendAlreadySiteVisitDate= null,
             sendAlreadySiteVisitTime = null, api_token ="", countryPhoneCode = "+91",countryPhoneCode_1 = "+91", countryPhoneCode_ref = "+91",
-            selectedProjectName = "", selectedIncomeRange ="", selectedBudgetLimit ="", selectedUnitCategory ="", selectedPropertyBuyingReason ="", selectedBuyingDuration ="",
+            selectedProjectName = "", selectedIncomeRange ="", selectedBudgetLimit ="",lead_Source="",lead_subSource="",lead_source_news_date="", selectedUnitCategory ="", selectedPropertyBuyingReason ="", selectedBuyingDuration ="",
             sendNewsDate="", selectedNamePrefix ="", selectedUserName ="", lead_id=null, lead_OTP ="", selectedLeadProfessionName = "", selectedLeadStageName = "",
-            sendDateOfBirth="";
+            sendDateOfBirth="",lead_type_name = "";
 
     private int mYear, mMonth, mDay,nYear, nMonth, nDay,myPosition =0, selectedProjectId =0, selectedIncomeRangeId =0,selectedBudgetLimitId =0,
-            selectedUnitId =0, selectedPropertyBuyingReasonId =1, selectedBuyingDurationId =0,documentCount=0,
-            selectedNamePrefixId =0, selectedUserId =0, user_id =0, docAPICount=0, selectedProfessionId=0,SecLeadType_ID=0,edit_text_req_ID=0
-            ,LeadType_ID=0, selectedLeadStageId=0,leadId =0, duplicate_offline_lead_id =0,person_id = 0;
+            selectedUnitId =0, selectedPropertyBuyingReasonId =1, selectedBuyingDurationId =0,documentCount=0, selectedNamePrefixId =0,
+            selectedUserId =0, user_id =0, docAPICount=0, selectedProfessionId=0,SecLeadType_ID=0,edit_text_req_ID=0,LeadType_ID=0, selectedLeadStageId=0,
+            leadId =0, duplicate_offline_lead_id =0,person_id = 0;
 
     //private int fromOther = 1; //TODO fromOther ==> 1 - Add New Lead, 2- Edit/Update Lead Info
     private int FirstHomeID=0,isSuccessNumberExist=0,isSuccessNumberExistOther=0,current_lead_status_id=0;
@@ -440,12 +446,11 @@ public class AddNewLeadActivity extends AppCompatActivity
             til_leadMobile.setHelperText("");
             til_leadOtherMobile.setHelperText("");
 
-            if (isNetworkAvailable(context))
-            {
+            if (isNetworkAvailable(context)) {
                 showProgressBar("Getting Lead Details...");
                 getDuplicateLeadDetails(duplicate_offline_lead_id);
-
-            }else NetworkError(context);
+            }
+            else NetworkError(context);
 
         }
 
@@ -488,7 +493,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             Log.e(TAG, "onLocalDatePick: "+ sendBDate );
 
             //check button enabled
-            checkButtonEnabled();
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
+
             //Toast.makeText(MainLocalDateActivity.this, "Selected date: " + MyLocalDatePicker.dateToString(dateSelected, DATE_FORMAT), Toast.LENGTH_SHORT).show();
         });
 
@@ -558,7 +565,11 @@ public class AddNewLeadActivity extends AppCompatActivity
 
             //hide keyboard if opened
             hideSoftKeyboard(context, getWindow().getDecorView().getRootView());
-            checkValidations();
+
+            //iff n/w available call regular form validation
+            if (isNetworkAvailable(context)) checkValidations();
+                //else check offline lead validation
+            else checkValidationOfflineLead();
         });
 
         //click on View
@@ -662,7 +673,8 @@ public class AddNewLeadActivity extends AppCompatActivity
                 }
 
                 //checkButtonEnabled
-                checkButtonEnabled();
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
                 //}
             }
 
@@ -711,7 +723,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 //viewRefLead = false;
             }
 
-            checkButtonEnabled();
+            //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
         });
 
         //lead referenced by
@@ -852,7 +866,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -867,7 +883,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -881,7 +899,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -900,7 +920,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 //  new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
                 //}
 
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -913,7 +935,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkButtonEnabled();
+                //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -926,7 +950,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -958,7 +984,13 @@ public class AddNewLeadActivity extends AppCompatActivity
                                     {
                                         JsonObject data  = response.body().get("data").getAsJsonObject();
                                         setUpdateData(data);
-                                        new Handler().postDelayed(() -> checkButtonEnabled(),1000);
+
+                                        new Handler().postDelayed(() -> {
+                                            //check button enabled
+                                            if (isNetworkAvailable(context)) checkButtonEnabled();
+                                            else checkButtonEnabledOfflineLead();
+
+                                        },1000);
 
                                     }
                                 }
@@ -1114,11 +1146,38 @@ public class AddNewLeadActivity extends AppCompatActivity
                     if(jsonObject.has("lead_types_id")){
                         LeadType_ID = !jsonObject.get("lead_types_id").isJsonNull() ? jsonObject.get("lead_types_id").getAsInt() : 0;
                     }
-                    if(jsonObject.has("lead_type_extra_info")){
-                        tv_leadGen_thrw.setText(!jsonObject.get("lead_type_extra_info").isJsonNull() ? jsonObject.get("lead_type_extra_info").getAsString() : "" );
+
+                    if(jsonObject.has("lead_type_name")){
+                        lead_Source=!jsonObject.get("lead_type_name").isJsonNull() ? jsonObject.get("lead_type_name").getAsString() : "" ;
                     }
 
-                    if(LeadType_ID == 8){
+                    if(jsonObject.has("lead_type_extra_info")){
+                        lead_subSource=!jsonObject.get("lead_type_extra_info").isJsonNull() ? jsonObject.get("lead_type_extra_info").getAsString() : "" ;
+                    }
+
+                    if(jsonObject.has("lead_source_news_date")){
+                        lead_source_news_date=!jsonObject.get("lead_source_news_date").isJsonNull() ? jsonObject.get("lead_source_news_date").getAsString() : "" ;
+                    }
+
+                    if(LeadType_ID==1 || LeadType_ID==3 ||LeadType_ID==4 ||LeadType_ID==9||LeadType_ID==10)
+                    {
+                        tv_leadGen_thrw.setText(lead_Source);
+                    }else if (LeadType_ID==2||LeadType_ID==7)
+                    {
+                        tv_leadGen_thrw.setText(lead_Source+" "+lead_subSource);
+                    }
+                    else if (LeadType_ID==5)
+                    {
+                        tv_leadGen_thrw.setText(lead_Source+" "+lead_subSource);
+                    }
+                    else if (LeadType_ID==6)
+                    {
+                        tv_leadGen_thrw.setText(lead_subSource!=null || !lead_subSource.trim().isEmpty() ? lead_subSource : lead_Source);
+                    }
+                    else if(LeadType_ID == 8){
+
+                        tv_leadGen_thrw.setText(lead_Source);
+
                         ll_Reference_main.setVisibility(View.VISIBLE);
                         if(jsonObject.has("reference_name")){
                             edt_fullName_referer.setText(!jsonObject.get("reference_name").isJsonNull() ? jsonObject.get("reference_name").getAsString() : "" );
@@ -1149,7 +1208,9 @@ public class AddNewLeadActivity extends AppCompatActivity
 
                 }
 
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             });
         }
 
@@ -1225,7 +1286,11 @@ public class AddNewLeadActivity extends AppCompatActivity
 
         if(context!=null)
         {
-            context.runOnUiThread(this::checkButtonEnabled);
+            context.runOnUiThread(() -> {
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
+            });
         }
     }
 
@@ -2001,6 +2066,7 @@ public class AddNewLeadActivity extends AppCompatActivity
 
             //int typeId= leadGenerationModelArrayList.get(position).getLead_type_id();
             LeadType_ID = leadGenerationModelArrayList.get(position).getLead_type_id();
+            lead_type_name = leadGenerationModelArrayList.get(position).getType_name();
             Log.e(TAG, "LeadType_ID: "+LeadType_ID);
 
             if(SecLvlID==1 && edit_text_req==2)
@@ -2121,7 +2187,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         //  setAdapterUnitCategories(projectModelArrayList.get(position).getCategoriesModelArrayList());
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2178,7 +2246,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                            Log.e(TAG, "Ref Project name & id " + selectedRefProjectName +"\t"+ selectedRefProjectId);
 
                            //check button EnabledView
-                           checkButtonEnabled();
+                           //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
 
                            break; // No need to keep looping once you found it.
                        }
@@ -2225,7 +2295,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Unit category & id " + selectedUnitCategory +"\t"+ selectedUnitId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2437,7 +2509,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Name prefix & id " + selectedNamePrefix +"\t"+ selectedNamePrefixId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2475,7 +2549,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Conducted By Name & id " + selectedUserName +"\t"+ selectedUserId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2513,7 +2589,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Lead Profession name & id " + selectedLeadProfessionName +"\t"+ selectedProfessionId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2556,7 +2634,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Lead Status name & id " + selectedLeadStageName +"\t"+ selectedLeadStageId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+                        if (isNetworkAvailable(context)) checkButtonEnabled();
+                        else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2580,7 +2660,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                         Log.e(TAG, "Lead Stage name & id " + selectedLeadStageName +"\t"+ selectedLeadStageId);
 
                         //check button EnabledView
-                        checkButtonEnabled();
+                        //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
 
                         break; // No need to keep looping once you found it.
                     }
@@ -2675,7 +2757,9 @@ public class AddNewLeadActivity extends AppCompatActivity
 
             });
             //check button EnabledView
-            //checkButtonEnabled();
+            ////check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
 
 
         }
@@ -2901,12 +2985,11 @@ public class AddNewLeadActivity extends AppCompatActivity
                         {
                             //no selected -- do select
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
                                 tv_subcat_name.setBackground(context.getResources().getDrawable(R.drawable.ripple_cat_selected_accent,context.getTheme()));
                                 tv_subcat_name.setTextColor(context.getResources().getColor(R.color.main_white,context.getTheme()));
 
-                            }else
-                            {
+                            }
+                            else {
                                 tv_subcat_name.setBackground(context.getResources().getDrawable(R.drawable.ripple_cat_selected_accent));
                                 tv_subcat_name.setTextColor(context.getResources().getColor(R.color.main_white));
                             }
@@ -3007,8 +3090,6 @@ public class AddNewLeadActivity extends AppCompatActivity
                     //LeadGeneration_otherType_info=edt_addEnquiry_other_news.getText().toString();
                     alertDialog.dismiss();
                     ll_LeadSources_Dropdown.setVisibility(View.GONE);
-
-
 
                /* final StringBuffer strBuffer = new StringBuffer();
                 strBuffer.append("");
@@ -3118,15 +3199,13 @@ public class AddNewLeadActivity extends AppCompatActivity
         return integerArrayList;
     }
 
-    private void checkInsertRemoveSubCat(int leadID, boolean value)
-    {
+    private void checkInsertRemoveSubCat(int leadID, boolean value) {
         if (value) integerArrayList.add(leadID);
         else integerArrayList.remove(new Integer(leadID));
     }
 
 
-    private void checkInsertRemoveSubCat_Nm(String leadName, boolean value)
-    {
+    private void checkInsertRemoveSubCat_Nm(String leadName, boolean value) {
         if (value) integerArrayList_str.add(leadName);
         else integerArrayList_str.remove(leadName);
     }
@@ -3300,12 +3379,6 @@ public class AddNewLeadActivity extends AppCompatActivity
             myPosition = position;
             Log.e(TAG, "onClick: pos & id "+ position+ " "+myUploadModel.getDoc_type_id());
             selectDocumentPopup();
-
-        });
-
-
-        tv_kyc_doc_name.setOnClickListener(view -> {
-
 
         });
 
@@ -3521,7 +3594,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 }
 
                 //checkButtonEnabled
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -3548,16 +3623,21 @@ public class AddNewLeadActivity extends AppCompatActivity
                             new Helper().showCustomToast(context, "Mobile Numbers is same as Alternative Mobile Number!");
                         }
                         else {
-                            showProgressBar("Checking Mobile Number....");
-                            String mobileNumber=edt_leadMobileNo.getText().toString();
-                            checkMobileNumberExistWhatsApp(mobileNumber,true);
+
+                            if (isNetworkAvailable(context)) {
+                                showProgressBar("Checking Mobile Number....");
+                                String mobileNumber=edt_leadMobileNo.getText().toString();
+                                checkMobileNumberExistWhatsApp(mobileNumber,true);
+                            }
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
                     else ll_addLead_existUSer.setVisibility(View.GONE);
                 }
                 //checkButtonEnabled
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
 
             @Override
@@ -3587,9 +3667,12 @@ public class AddNewLeadActivity extends AppCompatActivity
                             new Helper().showCustomToast(context, "Alternative Mobile Numbers is same as Primary Mobile Number!");
                         }
                         else {
-                            showProgressBar("Checking Mobile Number....");
-                            String mobileNumber= Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString();
-                            checkMobileNumberExistOtherNo(mobileNumber, false);
+
+                            if (isNetworkAvailable(context)) {
+                                showProgressBar("Checking Mobile Number....");
+                                String mobileNumber= Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString();
+                                checkMobileNumberExistOtherNo(mobileNumber, false);
+                            }
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
@@ -3598,7 +3681,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 }
                 edt_leadOtherMobileNo.setTag(++selections); // (or even just '1')
                 //checkButtonEnabled
-                checkButtonEnabled();
+                //check button enabled
+                if (isNetworkAvailable(context)) checkButtonEnabled();
+                else checkButtonEnabledOfflineLead();
             }
 
             @Override
@@ -3684,7 +3769,10 @@ public class AddNewLeadActivity extends AppCompatActivity
                             }
                             else if (isSuccessNumberExist ==1) {
                                 isExist_WhatsAppNo=false;
-                                new Handler().postDelayed(() -> new Helper().showCustomToast(context, "New Number!"), 1000);
+                                new Handler().postDelayed(() -> {
+                                    til_leadMobile.setHelperText("");
+                                    new Helper().showCustomToast(context, "New Number!");
+                                }, 500);
                                 hidePB();
                             }
                             //else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -3748,7 +3836,10 @@ public class AddNewLeadActivity extends AppCompatActivity
                             }
                             else if (isSuccessNumberExistOther ==1) {
                                 isExist_OtherNo=false;
-                                new Handler().postDelayed(() -> new Helper().showCustomToast(context, "New Number!"), 1000);
+                                new Handler().postDelayed(() -> {
+                                    til_leadOtherMobile.setHelperText("");
+                                    new Helper().showCustomToast(context, "New Number!");
+                                }, 500);
                                 hidePB();
                             }
                             //else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -3787,13 +3878,15 @@ public class AddNewLeadActivity extends AppCompatActivity
     private void hidePB() { runOnUiThread(() -> {
         hideProgressBar();
         //checkButtonEnabled
-        checkButtonEnabled();
+        //check button enabled
+        if (isNetworkAvailable(context)) checkButtonEnabled();
+        else checkButtonEnabledOfflineLead();
     });}
 
     private void setJsonIfUserExistWhatsApp(JsonObject jsonObject) {
 
         //if (jsonObject.has("lead_id")) model.setUser_id((!jsonObject.get("lead_id").isJsonNull() ? jsonObject.get("lead_id").getAsInt() : 0));
-        if (jsonObject.has("unit_category")) existLeadUnitCategory = !jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
+        //if (jsonObject.has("unit_category")) existLeadUnitCategory = !jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
         if (jsonObject.has("project_name")) existLeadProject = !jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "";
         if (jsonObject.has("sales_person_name")) existLeadAddedBy = !jsonObject.get("sales_person_name").isJsonNull() ? jsonObject.get("sales_person_name").getAsString() : "";
         if (jsonObject.has("full_name")) existLeadName = !jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "";
@@ -3804,7 +3897,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     private void setJsonIfUserExist(JsonObject jsonObject) {
 
         //if (jsonObject.has("lead_id")) model.setUser_id((!jsonObject.get("lead_id").isJsonNull() ? jsonObject.get("lead_id").getAsInt() : 0));
-        if (jsonObject.has("unit_category")) existLeadUnitCategoryOtherNo=!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
+        //if (jsonObject.has("unit_category")) existLeadUnitCategoryOtherNo=!jsonObject.get("unit_category").isJsonNull() ? jsonObject.get("unit_category").getAsString() : "";
         if (jsonObject.has("project_name"))existLeadProjectOtherNo=!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "";
         if (jsonObject.has("sales_person_name")) existOtherLeadAddedBy = !jsonObject.get("sales_person_name").isJsonNull() ? jsonObject.get("sales_person_name").getAsString() : "";
         if (jsonObject.has("full_name")) existLeadNameOtherNo=!jsonObject.get("full_name").isJsonNull() ? jsonObject.get("full_name").getAsString() : "";
@@ -3823,7 +3916,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             {
               /*  til_leadMobile.setErrorEnabled(true);
                 til_leadMobile.setError("Number already exits!");*/
-                edt_leadMobileNo.setError("Number already exits!");
+                edt_leadMobileNo.setError("Error!");
+                til_leadMobile.setHelperText("Number already exits!");
+                til_leadMobile.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.color_claim_now_red)));
                 mTv_ExistUser.setText(String.format("Belongs to: %s", existLeadName));
                 mTv_ExistProject.setText(String.format("Belongs to project: %s", existLeadProject));
                 mTv_ExistLeadAddedBy.setText(String.format("Added By: %s", existLeadAddedBy));
@@ -3834,7 +3929,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             {
                /* til_leadOtherMobile.setErrorEnabled(true);
                 til_leadMobile.setError("Number already exits!");*/
-                edt_leadOtherMobileNo.setError("Number already exits!");
+                edt_leadOtherMobileNo.setError("Error!");
+                til_leadOtherMobile.setHelperText("Number already exits!");
+                til_leadOtherMobile.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.color_claim_now_red)));
                 mTv_ExistUser_OtherNo.setText(String.format("Belongs to: %s", existLeadNameOtherNo));
                 mTv_ExistProject_OtherNo.setText(String.format("Belongs to project: %s", existLeadProjectOtherNo));
                 mTv_ExistLeadAddedBy_OtherNo.setText(String.format("Added By: %s", existOtherLeadAddedBy));
@@ -3844,7 +3941,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
 
             //checkButtonEnabled
-            checkButtonEnabled();
+            //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
         });
 
 
@@ -3940,7 +4039,12 @@ public class AddNewLeadActivity extends AppCompatActivity
                 }
 
 
-                if (Objects.requireNonNull(edt_leadMobileNo.getText()).length()>9) checkButtonEnabled();
+                if (Objects.requireNonNull(edt_leadMobileNo.getText()).length()>9)
+                {
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
+                }
                 else
                 {
                     mBtn_verifyLeadMob.setVisibility(View.GONE);
@@ -4035,7 +4139,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     isLeadMobileVerified = true;
 
                     //check buttonEnabled
-                    checkButtonEnabled();
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
                 }
                 else
                 {
@@ -4274,7 +4380,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
 
             //check button EnabledView
-            checkButtonEnabled();
+            //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
 
         });
 
@@ -4308,7 +4416,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
 
             //check button EnabledView
-            checkButtonEnabled();
+            //check button enabled
+            if (isNetworkAvailable(context)) checkButtonEnabled();
+            else checkButtonEnabledOfflineLead();
 
         });
     }
@@ -4329,7 +4439,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     //tv_startDate.setText(MessageFormat.format("{0}-{1}-{2}", dayOfMonth, monthOfYear + 1, year));
                     Log.e(TAG, "lead Date of Birth:: " + sendDateOfBirth);
                     //check Button Enabled View
-                    // checkButtonEnabled();
+                    // //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
 
                 }, mYear, mMonth, mDay);
 
@@ -4371,7 +4483,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     Log.e(TAG, "pref Visit_send From Date: "+ sendPrefVisitFromDate);
 
                     //check button EnabledView
-                    checkButtonEnabled();
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
 
                 }, nYear, nMonth, nDay);
 
@@ -4397,7 +4511,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     Log.e(TAG, "pref Visit_send To Date: "+ sendPrefVisitToDate);
 
                     //check button EnabledView
-                    checkButtonEnabled();
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
 
                 }, nYear, nMonth, nDay);
 
@@ -4426,7 +4542,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     Log.e(TAG, "al_siteVisit_send Date: "+ sendAlreadySiteVisitDate);
 
                     //check button EnabledView
-                    checkButtonEnabled();
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
 
                 }, nYear, nMonth, nDay);
 
@@ -4454,7 +4572,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                     //if (isAssignLater && !tv_committedDate.getText().toString().trim().isEmpty()) setButtonEnabledView();
 
                     //check button EnabledView
-                    checkButtonEnabled();
+                    //check button enabled
+                    if (isNetworkAvailable(context)) checkButtonEnabled();
+                    else checkButtonEnabledOfflineLead();
 
                 }, c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE), false);
 
@@ -4897,12 +5017,10 @@ public class AddNewLeadActivity extends AppCompatActivity
 
             if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
         }
-        else if (requestCode == 121 && responseCode == RESULT_CANCELED)
-        {
+        else if (requestCode == 121 && responseCode == RESULT_CANCELED) {
             new Helper().showCustomToast(context, "You cancelled!");
         }
-        else if (requestCode == 122  && responseCode  == RESULT_OK)
-        {
+        else if (requestCode == 122  && responseCode  == RESULT_OK) {
             Country country = (Country) data.getSerializableExtra("result");
             Log.e(TAG, "onActivityResult: "+country.getName() +" \n"+country.getPhoneCode() );
             //set country
@@ -4917,8 +5035,7 @@ public class AddNewLeadActivity extends AppCompatActivity
             new Helper().showCustomToast(context, "selected "+ country.getName() );
             if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
         }
-        else if (requestCode == 122 && responseCode == RESULT_CANCELED)
-        {
+        else if (requestCode == 122 && responseCode == RESULT_CANCELED) {
             new Helper().showCustomToast(context, "You cancelled!");
         }
 
@@ -4938,8 +5055,7 @@ public class AddNewLeadActivity extends AppCompatActivity
             new Helper().showCustomToast(context, "selected "+ country.getName() );
             if (( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_1) && Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Alternative mobile number and Lead mobile number should be different!");
         }
-        else if (requestCode == 123 && responseCode == RESULT_CANCELED)
-        {
+        else if (requestCode == 123 && responseCode == RESULT_CANCELED) {
             new Helper().showCustomToast(context, "You cancelled!");
         }
 
@@ -5082,6 +5198,75 @@ public class AddNewLeadActivity extends AppCompatActivity
                 showSubmitLeadAlertDialog();
             }
         }
+    }
+
+
+    private void checkValidationOfflineLead()
+    {
+        //name prefix
+        if (selectedNamePrefixId==0) new Helper().showCustomToast(context, "Please select name prefix!");
+            //lead name
+        else if (Objects.requireNonNull(edt_leadFirstName.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer name!");
+            //email
+            //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer email!");
+            // valid email
+            // else if (!isValidEmail(edt_leadEmail)) new Helper().showCustomToast(context, "Please enter a valid email!");
+            //last name
+            //else if (Objects.requireNonNull(edt_leadLastName.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer last name!");
+            // mobile
+        else if (Objects.requireNonNull(edt_leadMobileNo.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter customer mobile number!");
+            //valid mobile
+            // else if (!isValidPhone(edt_mobile)) new Helper().showCustomToast(context, "Please enter a valid mobile number!");
+            // verified mobile
+            //else if (!isLeadMobileVerified) new Helper().showCustomToast(context, "Please do verify customer's mobile number!");
+
+            //mobile number exist
+        else if (isExist_WhatsAppNo) new Helper().showCustomToast(context, "Mobile number already exits! Please enter another Number!!");
+
+            //other mobile number exist
+        else if (isExist_OtherNo) new Helper().showCustomToast(context, "Mobile number already exits! Please enter another number!!");
+
+            //same number exist
+        else if (flagNumduplicate) new Helper().showCustomToast(context, "Duplicate number found enter another number!");
+            //b_date
+            // else if (Objects.requireNonNull(edt_birthday.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please select your birth date!");
+            //else if (sendBDate==null) new Helper().showCustomToast(context, "Please enter customer birth date!");
+            //lead stage
+        else if (selectedLeadStageId==0) new Helper().showCustomToast(context, "Please select lead status!");
+            //project
+            // else if (selectedProjectId==0) new Helper().showCustomToast(context, "Please select project name!");
+            // unit type
+            // else if (selectedUnitId==0) new Helper().showCustomToast(context, "Please select unit category!");
+            //pref. visit dates
+            //  else if (sendPrefVisitFromDate==null && sendPrefVisitToDate== null) new Helper().showCustomToast(context, "Please select preferred site visit dates!");
+            //pref. visit from date
+            //  else if (sendPrefVisitFromDate==null) new Helper().showCustomToast(context, "Please select preferred site visit From date!");
+            //pref. visit to date
+            //  else if (sendPrefVisitToDate==null) new Helper().showCustomToast(context, "Please select preferred site visit To date!");
+            //if already site visited //then ask for visit date
+            // else if (isAlreadySiteVisited && sendAlreadySiteVisitDate==null ) new Helper().showCustomToast(context, "Please select site visit date!");
+            //if already site visited //then ask for visit date
+            //  else if (isAlreadySiteVisited && sendAlreadySiteVisitTime==null) new Helper().showCustomToast(context, "Please select site visit time!");
+            //site visit conducted by
+            //    else if (isAlreadySiteVisited && selectedUserId==0) new Helper().showCustomToast(context, "Please select site visit conducted by!");
+            // if ref lead && ref name
+            // else if ( isRefLead &&  Objects.requireNonNull(edt_refName.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter Reference person name!");
+            // if ref lead && ref mobile
+            //  else if ( isRefLead &&  Objects.requireNonNull(edt_refMobileNo.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter Reference mobile number!");
+            //if ref lead && ref mobile && lead mobile both are same
+            //  else if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
+            // if ref lead && ref project name
+            //  else if ( isRefLead && selectedRefProjectId ==0 ) new Helper().showCustomToast(context, "Please select reference from!");
+            // if ref lead && ref flat number
+            //   else if ( isRefLead &&  Objects.requireNonNull(edt_refFlatNumber.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please Enter Reference Remarks!");
+        else
+        {
+            if(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().trim().isEmpty()){
+                countryPhoneCode_1 ="";
+            }
+            //show confirmation dialog
+            showSubmitLeadAlertDialog();
+        }
 
 
     }
@@ -5119,6 +5304,67 @@ public class AddNewLeadActivity extends AppCompatActivity
         else if (selectedProjectId==0) setButtonDisabledView();
             // unit type
         else if (selectedUnitId==0) setButtonDisabledView();
+            //pref. visit dates
+            //   else if (sendPrefVisitFromDate==null && sendPrefVisitToDate== null) setButtonDisabledView();
+            //pref. visit from date
+            //  else if (sendPrefVisitFromDate==null) setButtonDisabledView();
+            //pref. visit to date
+            //  else if (sendPrefVisitToDate==null) setButtonDisabledView();
+            //if already site visited //then ask for visit date
+            //   else if (isAlreadySiteVisited && sendAlreadySiteVisitDate==null ) setButtonDisabledView();
+            //if already site visited //then ask for visit date
+            //   else if (isAlreadySiteVisited && sendAlreadySiteVisitTime==null) setButtonDisabledView();
+            //site visit conducted by
+            //  else if (isAlreadySiteVisited && selectedUserId==0) setButtonDisabledView();
+            // if ref lead && ref name
+            //else if ( isRefLead &&  Objects.requireNonNull(edt_refName.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            // if ref lead && ref mobile
+            //else if ( isRefLead &&  Objects.requireNonNull(edt_refMobileNo.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            //if ref lead && ref mobile && lead mobile both are same
+            // else if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) setButtonDisabledView();
+            // if ref lead && ref project name
+            // else if ( isRefLead && selectedRefProjectId ==0 ) setButtonDisabledView();
+            // if ref lead && ref flat number
+            //  else if ( isRefLead &&  Objects.requireNonNull(edt_refFlatNumber.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+        else
+        {
+            //set button enabled view
+            setButtonEnabledView();
+        }
+    }
+
+    private void checkButtonEnabledOfflineLead()
+    {
+        //name prefix
+        if (selectedNamePrefixId==0) setButtonDisabledView();
+            //lead name
+        else if (Objects.requireNonNull(edt_leadFirstName.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            //lead email
+            //   else if (Objects.requireNonNull(edt_leadEmail.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            //valid email
+            //  else if (!isValidEmail(edt_leadEmail)) setButtonDisabledView();
+            //last name
+            //else if (Objects.requireNonNull(edt_leadLastName.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            // mobile
+        else if (Objects.requireNonNull(edt_leadMobileNo.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+            // verified mobile
+            //else if (!isLeadMobileVerified) setButtonDisabledView();
+            //mobile number exist
+        else if (isExist_WhatsAppNo) setButtonDisabledView();
+
+            //other mobile number exist
+        else if (isExist_OtherNo) setButtonDisabledView();
+
+            //duplicate number exist
+        else if (flagNumduplicate) setButtonDisabledView();
+            //b_date
+            //else if (sendBDate==null) setButtonDisabledView();
+            //lead stage
+        else if (selectedLeadStageId==0) setButtonDisabledView();
+            //project
+            // else if (selectedProjectId==0) setButtonDisabledView();
+            // unit type
+            // else if (selectedUnitId==0) setButtonDisabledView();
             //pref. visit dates
             //   else if (sendPrefVisitFromDate==null && sendPrefVisitToDate== null) setButtonDisabledView();
             //pref. visit from date
@@ -5309,12 +5555,17 @@ public class AddNewLeadActivity extends AppCompatActivity
         btn_positiveButton.setOnClickListener(view -> {
             alertDialog.dismiss();
             //call add lead api
-            if (isNetworkAvailable(context))
-            {
+            if (isNetworkAvailable(context)) {
                 showProgressBar(getString(R.string.submitting_lead_details));
                 call_addSalesLead();
+            }
+            else {
+                //since device n/w not available -- do add offline lead
+                NetworkError(context);
 
-            }else NetworkError(context);
+                //show offline lead dialog
+                new Handler().postDelayed(this::showOfflineLeadPopup, 1500);
+            }
         });
 
         btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
@@ -5344,7 +5595,6 @@ public class AddNewLeadActivity extends AppCompatActivity
     {
 
         JsonObject jsonObject = new JsonObject();
-
         jsonObject.addProperty("api_token", api_token);
         jsonObject.addProperty("full_name",  Objects.requireNonNull(edt_leadFirstName.getText()).toString());
         jsonObject.addProperty("email", Objects.requireNonNull(edt_leadEmail.getText()).toString());
@@ -5381,16 +5631,15 @@ public class AddNewLeadActivity extends AppCompatActivity
                 Log.e(TAG, "checkSubValidation: "+ Arrays.toString(getIntegerArray().toArray()));
 
                 JsonArray jsonArray = new JsonArray();
-                for (int i=0; i<getIntegerArray().size(); i++)
-                {
+                for (int i=0; i<getIntegerArray().size(); i++) {
                     jsonArray.add(getIntegerArray().get(i));
                 }
 
                 jsonObject.add("lead_type_lvl2", jsonArray);
 //                    jsonObject.addProperty("lead_type_lvl2",Arrays.toString(getIntegerArray().toArray()));
                 jsonObject.addProperty("lead_type_extra_info", tv_leadGen_thrw.getText().toString());
-                jsonObject.addProperty("reference_name", edt_fullName_referer.getText().toString());
-                jsonObject.addProperty("reference_mobile", edt_refererMobile_no.getText().toString());
+                jsonObject.addProperty("reference_name", Objects.requireNonNull(edt_fullName_referer.getText()).toString());
+                jsonObject.addProperty("reference_mobile", Objects.requireNonNull(edt_refererMobile_no.getText()).toString());
             }
         }
 
@@ -5415,9 +5664,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                             {
                                 if (!response.body().get("data").isJsonNull() && response.body().get("data").isJsonObject() )
                                 {
-
                                     JsonObject data = response.body().get("data").getAsJsonObject();
-
                                     parseReturnData(data);
                                     //JsonObject data  = response.body().get("data").getAsJsonObject();
                                     //setJson(data, 1);
@@ -5429,8 +5676,14 @@ public class AddNewLeadActivity extends AppCompatActivity
 
                             }else showErrorLog("Invalid response from server!");
                         }
+                        else if (isSuccess==2) {
+                            // mobile number already exists
+                            String msg = null;
+                            if (response.body().has("msg")) msg = response.body().get("msg").getAsString();
+                            if (msg!=null && !msg.trim().isEmpty()) new Helper().showCustomToast(context, ""+msg);
+                            else new Helper().showCustomToast(context, "Mobile number already exists!");
+                        }
                         else {
-
                             String msg = null;
                             if (response.body().has("msg")) msg = response.body().get("msg").getAsString();
                             if (msg!=null) showErrorLog(msg);
@@ -5508,7 +5761,6 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("lead_types_id", LeadType_ID);
         jsonObject.addProperty("remarks", Objects.requireNonNull(edt_leadRemarks.getText()).toString());
 
-
         ApiClient client = ApiClient.getInstance();
         Call<JsonObject> call = client.getApiService().updateDuplicateLeadDetails(jsonObject);
         call.enqueue(new Callback<JsonObject>() {
@@ -5555,8 +5807,6 @@ public class AddNewLeadActivity extends AppCompatActivity
         });
     }
 
-
-
     private void post_UpdateLead()
     {
         final JsonObject jsonObject = new JsonObject();
@@ -5593,16 +5843,22 @@ public class AddNewLeadActivity extends AppCompatActivity
                 Log.e(TAG, "checkSubValidation: "+ Arrays.toString(getIntegerArray().toArray()));
 
                 JsonArray jsonArray = new JsonArray();
-                for (int i=0; i<getIntegerArray().size(); i++)
-                {
+                for (int i=0; i<getIntegerArray().size(); i++) {
                     jsonArray.add(getIntegerArray().get(i));
                 }
 
                 jsonObject.add("lead_type_lvl2", jsonArray);
 //                    jsonObject.addProperty("lead_type_lvl2",Arrays.toString(getIntegerArray().toArray()));
-                jsonObject.addProperty("lead_type_extra_info", tv_leadGen_thrw.getText().toString());
-                jsonObject.addProperty("reference_name", edt_fullName_referer.getText().toString());
-                jsonObject.addProperty("reference_mobile", edt_refererMobile_no.getText().toString());
+                /* jsonObject.addProperty("lead_type_extra_info", sendNewsDate!=null && !sendNewsDate.trim().isEmpty() ? sendNewsDate : lead_subSource);*/
+                if (LeadType_ID==6) {
+                    jsonObject.addProperty("lead_type_extra_info", tv_leadGen_thrw.getText().toString());
+                }
+
+                if (LeadType_ID==5) {
+                    jsonObject.addProperty("lead_type_extra_info", lead_source_news_date!=null && !lead_source_news_date.trim().isEmpty() ? lead_source_news_date : sendNewsDate);
+                }
+                jsonObject.addProperty("reference_name", Objects.requireNonNull(edt_fullName_referer.getText()).toString());
+                jsonObject.addProperty("reference_mobile", Objects.requireNonNull(edt_refererMobile_no.getText()).toString());
             }
         }
 
@@ -5655,6 +5911,257 @@ public class AddNewLeadActivity extends AppCompatActivity
                 else showErrorLog(e.toString());
             }
         });
+    }
+
+
+    private void showOfflineLeadPopup()
+    {
+
+        if(Build.VERSION.SDK_INT>=24){
+            try{
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        final Dialog builder_accept=new BottomSheetDialog(context);
+        builder_accept.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder_accept.setContentView(R.layout.layout_add_offline_lead_popup);
+        builder_accept.setCancelable(false);
+        Objects.requireNonNull(builder_accept.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        AppCompatImageView iv_close = builder_accept.findViewById(R.id.iv_addOfflineLeadPopup_close);
+        MaterialButton mBtn_addOfflineLead= builder_accept.findViewById(R.id.mBtn_addOfflineLeadPopup_addOfflineLead);
+        MaterialButton mBtn_openNetworkSettings= builder_accept.findViewById(R.id.mBtn_addOfflineLeadPopup_openNetworkSettings);
+
+        //show confirm dialog
+        Objects.requireNonNull(mBtn_addOfflineLead).setOnClickListener(view -> {
+            //dismiss dialog
+            builder_accept.dismiss();
+
+            showSubmitOfflineLeadAlertDialog();
+        });
+
+        //Open n/w settings
+        Objects.requireNonNull(mBtn_openNetworkSettings).setOnClickListener(view -> {
+
+            //dismiss dialog
+            builder_accept.dismiss();
+
+            new Helper().openWirelessNetworkSettingsIntent(context);
+        });
+
+
+        //close popup
+        Objects.requireNonNull(iv_close).setOnClickListener(view -> {
+            //hide keyboard
+            //Helper.hideSoftKeyboard(context, edt_time);
+
+            builder_accept.dismiss();
+        });
+        builder_accept.show();
+    }
+
+
+
+    private void showSubmitOfflineLeadAlertDialog()
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        assert alertLayout != null;
+        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
+        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
+        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        tv_msg.setText(getString(R.string.submit_offline_lead_question));
+        tv_desc.setText(getString(R.string.submit_offline_lead_confirmation));
+        btn_negativeButton.setText(getString(R.string.cancel));
+        btn_positiveButton.setText(getString(R.string.submit));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //call add offline lead
+            call_addOfflineSalesLead();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        //show alert dialog
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+        //set the width and height to alert dialog
+        int pixel= getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+    }
+
+
+    private void call_addOfflineSalesLead()
+    {
+        OfflineLeadModel offlineLeadModel=new OfflineLeadModel();
+        offlineLeadModel.setApi_token(api_token);
+        offlineLeadModel.setPrefix_id(selectedNamePrefixId);
+        offlineLeadModel.setPrefix(selectedNamePrefix);
+        offlineLeadModel.setCustomer_name(Objects.requireNonNull(edt_leadFirstName.getText()).toString());
+        offlineLeadModel.setCustomer_email( Objects.requireNonNull(edt_leadEmail.getText()).toString());
+        offlineLeadModel.setCountry_code(countryPhoneCode);
+        offlineLeadModel.setCountry_code_1(countryPhoneCode_1);
+        offlineLeadModel.setMobile_number(Objects.requireNonNull(edt_leadMobileNo.getText()).toString());
+        offlineLeadModel.setAlternate_mobile_number(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
+        offlineLeadModel.setAddress_line_1(Objects.requireNonNull(edt_leadAddress.getText()).toString());
+        offlineLeadModel.setProject_id(selectedProjectId);
+        offlineLeadModel.setCustomer_project_name(selectedProjectName);
+        offlineLeadModel.setUnit_category_id(selectedUnitId);
+        offlineLeadModel.setCustomer_unit_type(selectedUnitCategory);
+        offlineLeadModel.setLead_profession(selectedLeadProfessionName);
+        offlineLeadModel.setLead_ni_reason(Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
+        offlineLeadModel.setLead_ni_other_reason(Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
+        offlineLeadModel.setBudget_limit_id(selectedBudgetLimitId);
+        offlineLeadModel.setBudget_limit(selectedBudgetLimit);
+        offlineLeadModel.setIncome_range_id(selectedIncomeRangeId);
+        offlineLeadModel.setIncome_range(selectedIncomeRange);
+        offlineLeadModel.setLead_profession_id(selectedProfessionId);
+        offlineLeadModel.setLead_profession(selectedLeadProfessionName);
+        offlineLeadModel.setIs_first_home(FirstHomeID);
+        offlineLeadModel.setLead_stage_id(selectedLeadStageId);
+        offlineLeadModel.setLead_stage(selectedLeadStageName);
+        offlineLeadModel.setLead_status_id(isAlreadySiteVisited ? 2 : 1);
+        offlineLeadModel.setDob(sendDateOfBirth!=null ? sendDateOfBirth : "");
+        offlineLeadModel.setLead_types_id(LeadType_ID);
+        offlineLeadModel.setLead_types(lead_type_name);
+        offlineLeadModel.setSales_person_id(user_id);
+        offlineLeadModel.setIs_site_visited(isAlreadySiteVisited ? 1 : 0);
+        offlineLeadModel.setVisit_date(sendAlreadySiteVisitDate);
+        offlineLeadModel.setVisit_time(sendAlreadySiteVisitTime);
+        offlineLeadModel.setVisit_remark( Objects.requireNonNull(edt_alreadySiteVisitRemark.getText()).toString());
+        offlineLeadModel.setRemarks(Objects.requireNonNull(edt_leadRemarks.getText()).toString());
+        SaveOfflineLeadData(offlineLeadModel);
+
+        isLeadSubmitted = true;
+        onOfflineLeadSubmit();
+    }
+
+    private void SaveOfflineLeadData(OfflineLeadModel model) {
+        sharedPreferences = new Helper().getSharedPref(getApplicationContext());
+        editor = sharedPreferences.edit();
+
+
+        if (sharedPreferences != null) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("prefix_id", model.getPrefix_id());
+                jsonObject.put("prefix", model.getPrefix());
+                jsonObject.put("full_name", model.getCustomer_name());
+                jsonObject.put("email", model.getCustomer_email());
+                jsonObject.put("country_code", model.getCountry_code());
+                jsonObject.put("country_code_1", model.getCountry_code_1());
+                jsonObject.put("mobile_number", model.getMobile_number());
+                jsonObject.put("alternate_mobile_number", model.getAlternate_mobile_number());
+                jsonObject.put("address_line_1", model.getAddress_line_1());
+                jsonObject.put("project_id", model.getProject_id());
+                jsonObject.put("project_name", model.getCustomer_project_name());
+                jsonObject.put("unit_category_id", model.getUnit_category_id());
+                jsonObject.put("unit_type", model.getCustomer_unit_type());
+                jsonObject.put("lead_profession_id", model.getLead_profession_id());
+                jsonObject.put("lead_profession", model.getLead_profession());
+                jsonObject.put("lead_ni_reason", model.getLead_ni_reason());
+                jsonObject.put("lead_ni_other_reason", model.getLead_ni_other_reason());
+                jsonObject.put("budget_limit_id", model.getBudget_limit_id());
+                jsonObject.put("budget_limit", model.getBudget_limit());
+                jsonObject.put("income_range_id", model.getIncome_range_id());
+                jsonObject.put("income_range", model.getIncome_range());
+                jsonObject.put("lead_profession_id", model.getLead_profession_id());
+                jsonObject.put("lead_profession", model.getLead_profession());
+                jsonObject.put("is_first_home", model.getIs_first_home());
+                jsonObject.put("lead_stage_id", model.getLead_stage_id());
+                jsonObject.put("lead_stage", model.getLead_stage());
+                jsonObject.put("lead_status_id", model.getLead_status_id());
+                jsonObject.put("dob", model.getDob());
+                jsonObject.put("sales_person_id", model.getSales_person_id());
+                jsonObject.put("lead_types_id", model.getLead_types_id());
+                jsonObject.put("lead_types", model.getLead_types());
+                jsonObject.put("is_site_visited", model.getIs_site_visited());
+                jsonObject.put("visit_date", model.getVisit_date());
+                jsonObject.put("visit_time", model.getVisit_time());
+                jsonObject.put("visit_remark", model.getVisit_remark());
+                jsonObject.put("remarks", model.getRemarks());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String notification = null;
+            if (sharedPreferences.getString("DownloadModel", null) != null)
+                notification = sharedPreferences.getString("DownloadModel", null);
+
+            Log.e(TAG, "Save enquiries: " + notification);
+
+            if (notification != null) {
+
+                try {
+                    int count = 0;
+
+                    JSONArray newJsonArray = new JSONArray();
+                    newJsonArray.put(jsonObject);
+
+                    JSONArray oldJsonArray = new JSONArray(notification);
+                    try {
+                        for (int i = 0; i < oldJsonArray.length(); i++) {
+                            // prev json objects
+                            newJsonArray.put(oldJsonArray.get(i));
+                        }
+                        count = newJsonArray.length();
+                    } catch (JSONException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+
+                    if (sharedPreferences != null) {
+                        editor = sharedPreferences.edit();
+                        editor.putString("DownloadModel", newJsonArray.toString());
+                        editor.putInt("DownloadModelcount", count);
+                        editor.apply();
+                        Log.e("NewAry", newJsonArray.toString());
+                        Log.e(TAG, "offline lead count: "+count);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.put(jsonObject);
+
+                if (sharedPreferences != null) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("DownloadModel", jsonArray.toString());
+                    editor.apply();
+                }
+            }
+        }
+        editor.apply();
+
     }
 
 
@@ -5738,22 +6245,29 @@ public class AddNewLeadActivity extends AppCompatActivity
 
     }
 
-    public void onLeadSubmit()
+    public void onOfflineLeadSubmit()
     {
         runOnUiThread(() -> {
             hideProgressBar();
-            if(isLeadSubmitted)
-            {
-                if(idDocSelected)
-                {
-//                        hideProgressBar();
-                    addPostDoc();
-                }
-                else showSuccessAlert();
+            if(isLeadSubmitted) {
+                showSuccessOfflineLeadAlert();
             }
             else showErrorLog("Lead failed to submit..");
         });
     }
+
+
+    public void onLeadSubmit()
+    {
+        runOnUiThread(() -> {
+            hideProgressBar();
+            if(isLeadSubmitted) {
+                showSuccessAlert();
+            }
+            else showErrorLog("Lead failed to submit..");
+        });
+    }
+
     @SuppressLint("InflateParams")
     private void showSuccessAlert()
     {
@@ -5785,6 +6299,46 @@ public class AddNewLeadActivity extends AppCompatActivity
                 closeView();
                 //do backPress
                 onBackPressed();
+            }, 4000);
+        });
+
+    }
+
+    @SuppressLint("InflateParams")
+    private void showSuccessOfflineLeadAlert()
+    {
+        runOnUiThread(() -> {
+
+            //open disabled View
+            openView();
+            //set gif
+            gif_newLead.setImageResource(R.drawable.gif_success);
+            //set animation
+            new Animations().scaleEffect(ll_success);
+            //visible view
+            ll_success.setVisibility(View.VISIBLE);
+            //show success toast
+            new Helper().showSuccessCustomToast(context, getString(R.string.offline_lead_added_successfully));
+
+            flagExit=true;
+            if(sharedPreferences!=null) {
+                editor = sharedPreferences.edit();
+                editor.putInt("isLeadAdd",1);
+                editor.apply();
+            }
+
+            //do backPress
+            new Handler().postDelayed(() -> {
+                //share_dialog.dismiss();
+                ll_success.setVisibility(View.GONE);
+                //close view
+                closeView();
+                //do backPress
+                //onBackPressed();
+
+                startActivity(new Intent(context, AllOfflineLeads_Activity.class));
+                finish();
+
             }, 4000);
         });
 
@@ -5999,9 +6553,7 @@ public class AddNewLeadActivity extends AppCompatActivity
 
         if (isLeadSubmitted) setResult(Activity.RESULT_OK, new Intent().putExtra("result", "Lead Submitted"));
 
-        if(!flagExit)
-        {
-
+        if(!flagExit) {
             showBackPressedIcons();
         }
         else

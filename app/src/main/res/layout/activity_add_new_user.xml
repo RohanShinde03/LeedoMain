@@ -8,634 +8,782 @@
     tools:context="com.tribeappsoft.leedo.admin.users.AddNewUserActivity">
     <!--    android:transitionName="@string/transition_string"-->
 
-        <!-- ll_add new user main -->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_newUser_main"
+    <!-- ll_add new user main -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_newUser_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:isScrollContainer="true">
 
-            <androidx.core.widget.NestedScrollView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:isScrollContainer="true">
+                android:background="@color/bg_grey"
+                android:orientation="vertical">
+
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/bg_grey"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/main_white">
 
 
+                    <!-- user details -->
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_newUser_viewLeadDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@color/main_white">
+                        android:visibility="visible"
+                        android:gravity="center">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.4dp"
+                            android:background="@color/lighter" />
 
 
-                        <!-- user details -->
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/ll_newUser_viewLeadDetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="visible"
-                            android:gravity="center">
+                            android:paddingTop="15dp"
+                            android:paddingBottom="6dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:orientation="vertical">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.4dp"
-                                android:background="@color/lighter" />
-
-
+                            <!-- lead first name -->
                             <androidx.appcompat.widget.LinearLayoutCompat
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="15dp"
-                                android:paddingBottom="6dp"
-                                android:paddingLeft="15dp"
-                                android:paddingRight="15dp"
-                                android:orientation="vertical">
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
 
-                                <!-- lead first name -->
+                                <!-- mr/miss -->
                                 <androidx.appcompat.widget.LinearLayoutCompat
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp">
-
-                                    <!-- mr/miss -->
-                                    <androidx.appcompat.widget.LinearLayoutCompat
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_marginLeft="0dp"
-                                        android:layout_marginRight="3dp"
-                                        android:layout_weight="7"
-                                        android:background="@color/main_white">
-
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:theme="@style/styleFontMediumText"
-                                            android:textColorHint="@color/grey_m"
-                                            android:hint="@string/mr_mrs">
-
-                                            <AutoCompleteTextView
-                                                android:id="@+id/acTv_newUser_mrs"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:editable="false"
-                                                android:ellipsize="end"
-                                                android:paddingLeft="10dp"
-                                                android:paddingRight="10dp"
-                                                android:textColor="@color/BlackLight"
-                                                android:textSize="14sp"
-                                                android:theme="@style/styleFontMediumText" />
-
-                                        </com.google.android.material.textfield.TextInputLayout>
-                                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/til_newUser_FullName"
-                                        style="@style/TextInputLayout.OutlineBox.CustomFont"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:layout_weight="3"
-                                        android:layout_marginLeft="3dp"
-                                        android:hint="@string/full_name_star">
-
-                                        <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/edt_newUser_FullName"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:theme="@style/styleFontMediumText"
-                                            android:inputType="textPersonName|textCapSentences"
-                                            android:textColor="@color/BlackLight"
-                                            android:singleLine="true" />
-                                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                <!-- member middle name -->
-                                <com.google.android.material.textfield.TextInputLayout
-                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:hint="@string/middle_name"
-                                    android:textColorHint="@color/grey_m">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:inputType="textPersonName|textCapSentences"
-                                        android:textColor="@color/colorPrimary"
-                                        android:singleLine="true"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                                <!-- member last name -->
-                                <com.google.android.material.textfield.TextInputLayout
-                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:hint="@string/last_name"
-                                    android:textColorHint="@color/grey_m">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:inputType="textPersonName|textCapSentences"
-                                        android:textColor="@color/BlackLight"
-                                        android:singleLine="true"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-
-
-                                <!-- user email -->
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newUser_Email"
-                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
-                                    android:layout_width="match_parent"
-                                    android:theme="@style/styleFontMediumText"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:hint="@string/email_address_star"
-                                    android:textColorHint="@color/grey_m">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newUser_Email"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:inputType="textEmailAddress"
-                                        android:textColor="@color/BlackLight"
-                                        android:singleLine="true"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-
-
-                                <!--  mobile number  -->
-                                <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp">
-
-                                    <!-- cpp layout -->
-                                    <androidx.appcompat.widget.LinearLayoutCompat
-                                        android:id="@+id/ll_newUser_leadMobCcp"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/bg_outline_border_round_my_dob"
-                                        android:layout_gravity="center"
-                                        android:visibility="visible"
-                                        android:gravity="center|start"
-                                        android:layout_marginTop="1dp"
-                                        android:layout_marginRight="3dp"
-                                        android:paddingLeft="14dp"
-                                        android:paddingRight="14dp"
-                                        android:paddingTop="17dp"
-                                        android:paddingBottom="18dp">
-
-                                        <!-- country code picker -->
-                                        <include layout="@layout/ccp_layout_def_country_code" />
-
-
-                                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                    <!--mobile no-->
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/til_newUser_MobileNo"
-                                        android:theme="@style/textInputLayoutAppearance"
-                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                                        android:layout_marginLeft="3dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:hint="@string/mobile_no_star"
-                                        android:textColorHint="@color/grey_m">
-
-                                        <com.google.android.material.textfield.TextInputEditText
-                                            android:id="@+id/edt_newUser_MobileNo"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:freezesText="true"
-                                            style="@style/editTextPhone"
-                                            android:textColor="@color/BlackLight"
-                                            android:singleLine="true"
-                                            android:maxLength="10"
-                                            android:textSize="16sp"/>
-
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-
-                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                <!-- Role Type -->
-
-                                <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
                                     android:orientation="vertical"
-                                    android:gravity="center|start">
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:gravity="center|start"
-                                        android:paddingLeft="5dp"
-                                        android:paddingRight="5dp"
-                                        android:text="@string/assign_roles_to_user"
-                                        android:textColor="@color/colorAccent"
-                                        android:textSize="20sp"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:visibility="visible" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:visibility="gone"
-                                        android:layout_marginLeft="16dp"
-                                        android:layout_marginRight="16dp"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:orientation="horizontal">
-
-                                        <CheckBox
-                                            android:id="@+id/chk_select_all_Users"
-                                            android:layout_width="0dp"
-                                            android:visibility="visible"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_vertical"
-                                            android:layout_weight="1"
-                                            android:theme="@style/styleFontMediumText"
-                                            android:text="@string/select_all_title"
-                                            android:textSize="20sp" />
-
-                                    </LinearLayout>
-
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:text="@string/no_projects_available"
-                                        android:textColor="@color/main_medium_grey"
-                                        android:gravity="center"
-                                        android:padding="3dp"
-                                        android:visibility="gone"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:textSize="20sp" />
-
-                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:hint="@string/user_role_type"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_marginRight="3dp"
+                                    android:layout_weight="7"
                                     android:background="@color/main_white">
 
-                                    <AutoCompleteTextView
-                                        android:id="@+id/acTv_newUser_selectRoleType"
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:editable="false"
+                                        android:maxLines="3"
+                                        android:minLines="1"
+                                        android:scrollbars="vertical"
                                         android:ellipsize="end"
-                                        android:textSize="16sp"
-                                        android:theme="@style/styleFontRegularText"
-                                        android:background="@color/main_white" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-
-                                <!-- user roles list -->
-                                <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center|start">
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="0dp"
-                                        android:gravity="center|start"
-                                        android:paddingLeft="5dp"
-                                        android:paddingRight="5dp"
-                                        android:text="@string/assign_roles_to_user"
-                                        android:textColor="@color/colorAccent"
-                                        android:textSize="18sp"
                                         android:theme="@style/styleFontMediumText"
-                                        android:visibility="visible" />
+                                        android:textColorHint="@color/grey_m"
+                                        android:hint="@string/mr_mrs">
 
-                                    <com.google.android.material.card.MaterialCardView
-                                        style="@style/Widget.MaterialComponents.CardView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:id="@+id/cv_itemBlockForSale"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
-                                        app:strokeColor="@color/GrayLight"
-                                        app:strokeWidth="1dp"
-                                        app:cardCornerRadius="6dp"
-                                        app:cardElevation="0dp">
-
-                                        <!--Main Linear Layout-->
-                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                        <AutoCompleteTextView
+                                            android:id="@+id/acTv_newUser_mrs"
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
+                                            android:layout_height="wrap_content"
+                                            android:editable="false"
+                                            android:maxLines="3"
+                                            android:minLines="1"
+                                            android:scrollbars="vertical"
+                                            android:ellipsize="end"
+                                            android:paddingLeft="10dp"
+                                            android:paddingRight="10dp"
+                                            android:textColor="@color/BlackLight"
+                                            android:textSize="14sp"
+                                            android:theme="@style/styleFontMediumText" />
 
-                                            <androidx.appcompat.widget.LinearLayoutCompat
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:padding="5dp">
-
-                                                <!-- add block checkboxes here -->
-                                                <androidx.appcompat.widget.LinearLayoutCompat
-                                                    android:id="@+id/ll_newUser_addSalesRoles"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:visibility="visible"
-                                                    android:orientation="vertical"
-
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginBottom="4dp">
-
-                                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                                                <com.google.android.material.textview.MaterialTextView
-                                                    android:id="@+id/mTv_newUser_noRoles"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="10dp"
-                                                    android:layout_marginEnd="10dp"
-                                                    android:text="@string/no_roles_available"
-                                                    android:maxLines="4"
-                                                    android:visibility="gone"
-                                                    android:ellipsize="end"
-                                                    android:paddingLeft="10dp"
-                                                    android:paddingRight="10dp"
-                                                    android:paddingTop="12dp"
-                                                    android:paddingBottom="12dp"
-                                                    android:gravity="center"
-                                                    android:theme="@style/styleFontMediumText"
-                                                    android:textColor="@color/main_grey"
-                                                    android:textSize="16sp" />
-
-
-                                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                    </com.google.android.material.card.MaterialCardView>
-
+                                    </com.google.android.material.textfield.TextInputLayout>
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                                <!-- user assigned projects list -->
-                                <androidx.appcompat.widget.LinearLayoutCompat
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center|start">
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingLeft="5dp"
-                                        android:paddingRight="5dp"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="0dp"
-                                        android:gravity="center|start"
-                                        android:text="@string/projects_"
-                                        android:textColor="@color/colorAccent"
-                                        android:textSize="18sp"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:visibility="visible" />
-
-                                    <com.google.android.material.card.MaterialCardView
-                                        style="@style/Widget.MaterialComponents.CardView"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
-                                        app:strokeColor="@color/GrayLight"
-                                        app:strokeWidth="1dp"
-                                        app:cardCornerRadius="6dp"
-                                        app:cardElevation="0dp">
-
-                                        <!--Main Linear Layout-->
-                                        <androidx.appcompat.widget.LinearLayoutCompat
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-
-                                            <androidx.appcompat.widget.LinearLayoutCompat
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:padding="5dp">
-
-                                                <androidx.appcompat.widget.LinearLayoutCompat
-                                                    android:id="@+id/ll_select_all"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:visibility="gone"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginBottom="2dp"
-                                                    android:orientation="horizontal">
-
-                                                    <CheckBox
-                                                        android:id="@+id/chk_select_all"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_gravity="center_vertical"
-                                                        android:layout_weight="1"
-                                                        android:theme="@style/styleFontMediumText"
-                                                        android:text="@string/select_all_title"
-                                                        android:textSize="18sp" />
-
-                                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                                                <!-- add block checkboxes here -->
-                                                <androidx.appcompat.widget.LinearLayoutCompat
-                                                    android:id="@+id/ll_newUser_addAssignedProjects"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:visibility="visible"
-                                                    android:orientation="vertical"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginBottom="4dp">
-
-                                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                                                <com.google.android.material.textview.MaterialTextView
-                                                    android:id="@+id/mTv_newUser_noAssignedProjects"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="10dp"
-                                                    android:layout_marginEnd="10dp"
-                                                    android:text="@string/no_projects_avail_to_assigned"
-                                                    android:maxLines="4"
-                                                    android:visibility="gone"
-                                                    android:ellipsize="end"
-                                                    android:paddingLeft="10dp"
-                                                    android:paddingRight="10dp"
-                                                    android:paddingTop="12dp"
-                                                    android:paddingBottom="12dp"
-                                                    android:gravity="center"
-                                                    android:theme="@style/styleFontMediumText"
-                                                    android:textColor="@color/main_grey"
-                                                    android:textSize="16sp" />
-
-
-                                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                    </com.google.android.material.card.MaterialCardView>
-
-                                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                                <!-- password -->
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newUser_password"
-                                    android:theme="@style/textInputLayoutAppearance"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:id="@+id/til_newUser_FullName"
+                                    style="@style/TextInputLayout.OutlineBox.CustomFont"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:textColorHint="@color/grey_m"
-                                    app:errorEnabled="true"
-                                    app:passwordToggleEnabled="true">
+                                    android:theme="@style/styleFontMediumText"
+                                    android:layout_weight="3"
+                                    android:layout_marginLeft="3dp"
+                                    android:hint="@string/full_name_star">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newUser_password"
-                                        style="@style/editTextPassword"
+                                        android:id="@+id/edt_newUser_FullName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textColorHint="@color/grey_m"
                                         android:theme="@style/styleFontMediumText"
+                                        android:inputType="textPersonName|textCapSentences"
                                         android:textColor="@color/BlackLight"
-                                        android:hint="@string/password_star"
-                                        android:textSize="16sp" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                                <!-- confirm password -->
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_newUser_confirmPassword"
-                                    android:theme="@style/textInputLayoutAppearance"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="10dp"
-                                    app:errorEnabled="true"
-                                    android:textColorHint="@color/grey_m"
-                                    app:passwordToggleEnabled="true">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/edt_newUser_confirmPassword"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        style="@style/editTextPassword"
-                                        android:textColor="@color/BlackLight"
-                                        android:textColorHint="@color/grey_m"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:hint="@string/confirm_password_star"
-                                        android:textSize="16sp"/>
-
+                                        android:singleLine="true" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
-                            <View
-                                android:id="@+id/view_newUserDetails"
+                            <!-- member middle name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
                                 android:layout_width="match_parent"
-                                android:layout_height="0.2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="@color/main_medium_grey"
-                                android:visibility="gone" />
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/middle_name"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:textColor="@color/colorPrimary"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- member last name -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/last_name"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName|textCapSentences"
+                                    android:textColor="@color/BlackLight"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!-- user email -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newUser_Email"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/email_address_star"
+                                android:textColorHint="@color/grey_m">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newUser_Email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:inputType="textEmailAddress"
+                                    android:textColor="@color/BlackLight"
+                                    android:singleLine="true"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!--  mobile number  -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp">
+
+                                <!-- cpp layout -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_newUser_leadMobCcp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_outline_border_round_my_dob"
+                                    android:layout_gravity="center"
+                                    android:visibility="visible"
+                                    android:gravity="center|start"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingLeft="14dp"
+                                    android:paddingRight="14dp"
+                                    android:paddingTop="17dp"
+                                    android:paddingBottom="18dp">
+
+                                    <!-- country code picker -->
+                                    <include layout="@layout/ccp_layout_def_country_code" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!--mobile no-->
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/til_newUser_MobileNo"
+                                    android:theme="@style/textInputLayoutAppearance"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/mobile_no_star"
+                                    android:textColorHint="@color/grey_m">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edt_newUser_MobileNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:freezesText="true"
+                                        style="@style/editTextPhone"
+                                        android:textColor="@color/BlackLight"
+                                        android:singleLine="true"
+                                        android:maxLength="10"
+                                        android:textSize="16sp"/>
+
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- Role Type -->
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center|start"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:text="@string/assign_roles_to_user"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="20sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:visibility="visible" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:id="@+id/chk_select_all_Users"
+                                        android:layout_width="0dp"
+                                        android:visibility="visible"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="1"
+                                        android:theme="@style/styleFontMediumText"
+                                        android:text="@string/select_all_title"
+                                        android:textSize="20sp" />
+
+                                </LinearLayout>
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:text="@string/no_projects_available"
+                                    android:textColor="@color/main_medium_grey"
+                                    android:gravity="center"
+                                    android:padding="3dp"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:textSize="20sp" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:maxLines="3"
+                                android:minLines="1"
+                                android:scrollbars="vertical"
+                                android:ellipsize="end"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:hint="@string/user_role_type"
+                                android:background="@color/main_white">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTv_newUser_selectRoleType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:editable="false"
+                                    android:maxLines="3"
+                                    android:minLines="1"
+                                    android:scrollbars="vertical"
+                                    android:ellipsize="end"
+                                    android:textSize="16sp"
+                                    android:theme="@style/styleFontRegularText"
+                                    android:background="@color/main_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!-- user roles list -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:gravity="center|start"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:text="@string/assign_roles_to_user"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="18sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:visibility="visible" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    style="@style/Widget.MaterialComponents.CardView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/cv_itemBlockForSale"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    app:strokeColor="@color/GrayLight"
+                                    app:strokeWidth="1dp"
+                                    app:cardCornerRadius="6dp"
+                                    app:cardElevation="0dp">
+
+                                    <!--Main Linear Layout-->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+
+                                            <!-- add block checkboxes here -->
+                                            <androidx.appcompat.widget.LinearLayoutCompat
+                                                android:id="@+id/ll_newUser_addSalesRoles"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:visibility="visible"
+                                                android:orientation="vertical"
+
+                                                android:layout_marginTop="4dp"
+                                                android:layout_marginBottom="4dp">
+
+                                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                            <com.google.android.material.textview.MaterialTextView
+                                                android:id="@+id/mTv_newUser_noRoles"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="10dp"
+                                                android:layout_marginEnd="10dp"
+                                                android:text="@string/no_roles_available"
+                                                android:maxLines="4"
+                                                android:visibility="gone"
+                                                android:ellipsize="end"
+                                                android:paddingLeft="10dp"
+                                                android:paddingRight="10dp"
+                                                android:paddingTop="12dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/main_grey"
+                                                android:textSize="16sp" />
+
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <!-- user assigned projects list -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center|start">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:gravity="center|start"
+                                    android:text="@string/projects_"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="18sp"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:visibility="visible" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    style="@style/Widget.MaterialComponents.CardView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    app:strokeColor="@color/GrayLight"
+                                    app:strokeWidth="1dp"
+                                    app:cardCornerRadius="6dp"
+                                    app:cardElevation="0dp">
+
+                                    <!--Main Linear Layout-->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+
+                                        <androidx.appcompat.widget.LinearLayoutCompat
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:padding="5dp">
+
+                                            <androidx.appcompat.widget.LinearLayoutCompat
+                                                android:id="@+id/ll_select_all"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:visibility="gone"
+                                                android:layout_marginTop="4dp"
+                                                android:layout_marginBottom="2dp"
+                                                android:orientation="horizontal">
+
+                                                <CheckBox
+                                                    android:id="@+id/chk_select_all"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_weight="1"
+                                                    android:theme="@style/styleFontMediumText"
+                                                    android:text="@string/select_all_title"
+                                                    android:textSize="18sp" />
+
+                                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                            <!-- add block checkboxes here -->
+                                            <androidx.appcompat.widget.LinearLayoutCompat
+                                                android:id="@+id/ll_newUser_addAssignedProjects"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:visibility="visible"
+                                                android:orientation="vertical"
+                                                android:layout_marginTop="4dp"
+                                                android:layout_marginBottom="4dp">
+
+                                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                            <com.google.android.material.textview.MaterialTextView
+                                                android:id="@+id/mTv_newUser_noAssignedProjects"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="10dp"
+                                                android:layout_marginEnd="10dp"
+                                                android:text="@string/no_projects_avail_to_assigned"
+                                                android:maxLines="4"
+                                                android:visibility="gone"
+                                                android:ellipsize="end"
+                                                android:paddingLeft="10dp"
+                                                android:paddingRight="10dp"
+                                                android:paddingTop="12dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/main_grey"
+                                                android:textSize="16sp" />
+
+
+                                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            <View
+                                android:id="@+id/view_changePwd"
+                                android:layout_width="match_parent"
+                                android:background="@color/bg_grey"
+                                android:layout_height="6dp" />
+
+                            <!-- change password details -->
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ll_addUser_changePassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/main_white"
+                                android:orientation="vertical">
+
+                                <!-- change password text-->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="?attr/selectableItemBackground"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:gravity="center">
+
+
+                                    <com.google.android.material.switchmaterial.SwitchMaterial
+                                        android:id="@+id/sm_addUser_changePassword"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:checked="false"
+                                        android:textSize="18sp"
+                                        style="@style/Widget.MaterialComponents.CompoundButton.Switch"
+                                        android:textColor="@color/colorPrimaryDark"
+                                        android:fontFamily="@font/metropolis_medium"
+                                        android:text="@string/change_password"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <!-- change password details -->
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_addUser_viewChangePasswordData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical">
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0.5dp"
+                                        android:background="@color/lighter" />
+
+
+                                    <!-- change password editText  -->
+                                    <androidx.appcompat.widget.LinearLayoutCompat
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/main_white"
+                                        android:padding="15dp"
+                                        android:orientation="vertical">
+
+                                        <!-- password -->
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/til_newUser_change_password"
+                                            android:theme="@style/textInputLayoutAppearance"
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:textColorHint="@color/grey_m"
+                                            app:errorEnabled="true"
+                                            app:passwordToggleEnabled="true">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/edt_newUser_change_password"
+                                                style="@style/editTextPassword"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:textColorHint="@color/grey_m"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:textColor="@color/BlackLight"
+                                                android:hint="@string/password_star"
+                                                android:textSize="16sp" />
+
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+                                        <!-- confirm password -->
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/til_newUser_change_confirmPassword"
+                                            android:theme="@style/textInputLayoutAppearance"
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            app:errorEnabled="true"
+                                            android:textColorHint="@color/grey_m"
+                                            app:passwordToggleEnabled="true">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/edt_newUser_change_confirmPassword"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                style="@style/editTextPassword"
+                                                android:textColor="@color/BlackLight"
+                                                android:textColorHint="@color/grey_m"
+                                                android:theme="@style/styleFontMediumText"
+                                                android:hint="@string/confirm_password_star"
+                                                android:textSize="16sp"/>
+
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:visibility="gone"
+                                android:background="@color/bg_grey"
+                                android:layout_height="6dp" />
+
+
+                            <!-- password -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newUser_password"
+                                android:theme="@style/textInputLayoutAppearance"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColorHint="@color/grey_m"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newUser_password"
+                                    style="@style/editTextPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/BlackLight"
+                                    android:hint="@string/password_star"
+                                    android:textSize="16sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- confirm password -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newUser_confirmPassword"
+                                android:theme="@style/textInputLayoutAppearance"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                app:errorEnabled="true"
+                                android:textColorHint="@color/grey_m"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newUser_confirmPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/editTextPassword"
+                                    android:textColor="@color/BlackLight"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:hint="@string/confirm_password_star"
+                                    android:textSize="16sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
+                        <View
+                            android:id="@+id/view_newUserDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.2dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/main_medium_grey"
+                            android:visibility="gone" />
+
                     </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp" />
-
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </androidx.core.widget.NestedScrollView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
 
-            <!-- add new user -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/main_white">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/mBtn_newUser_AddNewUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_new_user"
-                    style="@style/coloredButton"
-                    app:cornerRadius="50dp"
-                    app:backgroundTint="@color/main_light_grey"
-                    android:textColor="@color/main_white"
-                    app:textAllCaps="false"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:paddingLeft="80dp"
-                    android:paddingRight="80dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- add new user -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_white">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_newUser_AddNewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_new_user"
+                style="@style/coloredButton"
+                app:cornerRadius="50dp"
+                app:backgroundTint="@color/main_light_grey"
+                android:textColor="@color/main_white"
+                app:textAllCaps="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <!-- pb layout -->
-        <include layout="@layout/pb_layout_new"
-            android:visibility="visible"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- pb layout -->
+    <include layout="@layout/pb_layout_new"
+        android:visibility="visible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

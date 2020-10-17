@@ -621,8 +621,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
         leadStagesModelArrayList=new ArrayList<>();
         leadStagesModelArrayList.clear();
 
-        for(int i=0;i<jsonArray.size();i++)
-        {
+        for(int i=0;i<jsonArray.size();i++) {
             setLeadStagesJsonArray(jsonArray,i);
         }
 
@@ -1236,8 +1235,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             //            LeadType_ID = generationModelArrayList.get(9).getLead_type_id();
 
             ll_LeadSources_Dropdown.removeAllViews();
-            for (int i = 0; i< leadGenerationModelArrayList.size(); i++)
-            {
+            for (int i = 0; i< leadGenerationModelArrayList.size(); i++) {
                 View view = getSelectCatView(i);
                 ll_LeadSources_Dropdown.addView(view);
                 //Log.e(TAG, "Tv_title: "+Tv_title);
@@ -1270,8 +1268,8 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
         {
             integerArrayList.clear();
 
-            final int typeId= leadGenerationModelArrayList.get(position).getLead_type_id();
-            LeadType_ID= typeId;
+            LeadType_ID = leadGenerationModelArrayList.get(position).getLead_type_id();
+            //LeadType_ID= typeId;
 
             Log.e(TAG, "LeadType_ID: "+LeadType_ID);
 
@@ -2167,6 +2165,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
                         }
                         else {
                             String mobileNumber=edt_leadMobileNo.getText().toString();
+                            Log.e(TAG, "onTextChanged: "+mobileNumber );
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
@@ -2200,6 +2199,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
                         }
                         else {
                             String mobileNumber= Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString();
+                            Log.e(TAG, "onTextChanged: "+mobileNumber);
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
@@ -2944,12 +2944,10 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
 
             if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
         }
-        else if (requestCode == 121 && responseCode == RESULT_CANCELED)
-        {
+        else if (requestCode == 121 && responseCode == RESULT_CANCELED) {
             new Helper().showCustomToast(context, "You cancelled!");
         }
-        else if (requestCode == 122  && responseCode  == RESULT_OK)
-        {
+        else if (requestCode == 122  && responseCode  == RESULT_OK) {
             Country country = (Country) data.getSerializableExtra("result");
             Log.e(TAG, "onActivityResult: "+country.getName() +" \n"+country.getPhoneCode() );
             //set country
@@ -2964,8 +2962,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             new Helper().showCustomToast(context, "selected "+ country.getName() );
             if ( isRefLead && ( countryPhoneCode.equalsIgnoreCase(countryPhoneCode_ref) && Objects.requireNonNull(edt_refMobileNo.getText()).toString().equalsIgnoreCase(Objects.requireNonNull(edt_leadMobileNo.getText()).toString()))) new Helper().showCustomToast(context, "Reference mobile number and Lead mobile number should be different!");
         }
-        else if (requestCode == 122 && responseCode == RESULT_CANCELED)
-        {
+        else if (requestCode == 122 && responseCode == RESULT_CANCELED) {
             new Helper().showCustomToast(context, "You cancelled!");
         }
 
@@ -3086,7 +3083,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             //   else if ( isRefLead &&  Objects.requireNonNull(edt_refFlatNumber.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please Enter Reference Remarks!");
         else
         {
-            if(edt_leadOtherMobileNo.getText().toString().trim().isEmpty()){
+            if(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().trim().isEmpty()){
                 countryPhoneCode_1 ="";
             }
             //show confirmation dialog

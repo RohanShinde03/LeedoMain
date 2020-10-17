@@ -7,6 +7,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -32,6 +33,8 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +49,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -62,8 +66,11 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.razorpay.Checkout;
 import com.tribeappsoft.leedo.R;
@@ -96,6 +103,7 @@ import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.CircularAnim;
 import com.tribeappsoft.leedo.util.CustomTypefaceSpan;
 import com.tribeappsoft.leedo.util.Helper;
+import com.tribeappsoft.leedo.util.NetworkStateReceiver;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -115,7 +123,7 @@ import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 import static com.tribeappsoft.leedo.util.Helper.isValidContextForGlide;
 import static com.tribeappsoft.leedo.util.Helper.onErrorSnack;
 
-public class SalesPersonHomeNavigationActivity extends AppCompatActivity implements WSCallerVersionListener {
+public class SalesPersonHomeNavigationActivity extends AppCompatActivity implements WSCallerVersionListener, NetworkStateReceiver.NetworkStateReceiverListener {
 
     @BindView(R.id.app_bar_salesPerson) AppBarLayout app_bar;
     LinearLayoutCompat navHeader_user_profile_ll;
@@ -157,6 +165,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     //private int[] grantResults;
     //private AppUpdateManager appUpdateManager;
     //private InstallStateUpdatedListener installStateUpdatedListener;
+    private NetworkStateReceiver networkStateReceiver;
 
     @SuppressLint("HardwareIds")
     @Override
@@ -205,12 +214,9 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         rotate_backward = AnimationUtils.loadAnimation(context, R.anim.fab_rotate_backward);
 
         FloatingActionButton fab = findViewById(R.id.fab_salesPerson_add);
-
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout_salesPerson);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -518,6 +524,9 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             new GooglePlayStoreAppVersionNameLoader(getApplicationContext(), SalesPersonHomeNavigationActivity.this).execute();
 
 
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
     }
 
@@ -546,6 +555,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             //tv_home_title.setText(getString(R.string.app_name));
         }
     }
+
 
     @Override
     protected void onStart()
@@ -583,6 +593,11 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //update UserProfile
         updateUser();
 
+        //set offline leads badge count
+        setSideNavBadge();
+
+        //check offline leads available for sync
+        setOfflineLeads();
 
         //if (isNetworkAvailable(Objects.requireNonNull(context))) {
         // getCheckTokenValidity();
@@ -591,6 +606,26 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //checkNewAppVersionState();
         //}else NetworkError(context);
 
+    }
+
+    public void setSideNavBadge()
+    {
+        MenuItem item = navigationView.getMenu().findItem(R.id.nav_salesPerson_offlineLeads);
+        MenuItemCompat.setActionView(item, R.layout.badge_layout_offline_leads);
+        RelativeLayout relativeLayout = (RelativeLayout) MenuItemCompat.getActionView(item);
+        MaterialTextView tv =  relativeLayout.findViewById(R.id.mTv_badgeOfflineLeadsCount);
+
+        sharedPreferences = new Helper().getSharedPref(context);
+        editor = sharedPreferences.edit();
+        editor.apply();
+        int total_duplicate_leads = sharedPreferences.getInt("total_duplicate_leads", 0);
+
+        if (total_duplicate_leads > 0) {
+            tv.setText(String.valueOf(total_duplicate_leads));
+        }else{
+            tv.setText("");
+            //item.setEnabled(false);
+        }
     }
 
     private void getLastOfflineSyncedTime()
@@ -835,9 +870,123 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 }
             }
         }
-
-
     }
+
+    private void setOfflineLeads()
+    {
+        Log.e(TAG, "setOfflineLeads: ");
+        if (sharedPreferences!=null)
+        {
+            editor = sharedPreferences.edit();
+            editor.apply();
+            String offlineData = null;
+            if (sharedPreferences.getString("DownloadModel", null)!=null) offlineData = sharedPreferences.getString("DownloadModel", null);
+
+
+            if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
+                if (offlineData !=null)
+                {
+                    final JsonObject jsonObject = new JsonObject();
+                    Gson gson  = new Gson();
+                    JsonArray jsonArray = gson.fromJson(offlineData, JsonArray.class);
+                    jsonObject.addProperty("api_token",api_token);
+                    jsonObject.add("offline_leads",jsonArray);
+
+                    //showProgressBar(getString(R.string.syncing_oldEnquiry));
+                    new Handler().postDelayed(() -> {
+                        new Helper().onSnackForHomeLeadSync(context,"New offline leads detected! Syncing now...");
+                        call_SyncOfflineLeads(jsonObject);
+                    },4000); }
+
+            }
+            //else NetworkError(getActivity());
+        }
+    }
+
+
+    private void call_SyncOfflineLeads(JsonObject jsonObject)
+    {
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().add_OfflineLeads(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful())
+                {
+                    if (response.body()!=null && response.body().isJsonObject())
+                    {
+                        int isSuccess = 0, total_duplicate_leads =0;
+                        String status_msg = null;
+                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+                        if (response.body().has("duplicate_leads")) total_duplicate_leads = response.body().get("duplicate_leads").getAsInt();
+                        if (response.body().has("status_msg")) status_msg = response.body().get("status_msg").getAsString();
+
+                        if (isSuccess==1)
+                        {
+                            // clear shared pref of offline leads
+                            if (sharedPreferences!=null)
+                            {
+                                editor = sharedPreferences.edit();
+                                editor.putInt("total_duplicate_leads", total_duplicate_leads);
+                                editor.remove("DownloadModel");
+                                editor.apply();
+                            }
+
+                            onSuccessSync(status_msg);
+
+                        }
+                        else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                    }else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                }
+                else {
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again));
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void onSuccessSync(String status_msg)
+    {
+        if (context!=null) {
+
+            runOnUiThread(() -> {
+
+            //setOfflineLeads();
+            //hideProgressBar();
+
+            //show success toast
+            new Handler().postDelayed(() -> {
+
+                Toast.makeText(context, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully), Toast.LENGTH_LONG).show();
+                //new Helper().showSuccessCustomToast(getActivity(), status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully));
+            },2000);
+        });
+        }
+    }
+
 
     private void checkForDeviceAdminPermission()
     {
@@ -1543,7 +1692,6 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 //this.setTitle(getString(R.string.menu_home));
 
                 closeDrawerAndOpenActivity(CallScheduleMainActivity.class);
-
                 return true;
 
 
@@ -1930,5 +2078,29 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         }
         new Handler().postDelayed(() -> startActivity(new Intent(context, aClass)), 700);
 
+    }
+
+    @Override
+    public void networkAvailable() {
+        Log.e(TAG, "I'm in, baby!");
+        //new Helper().showCustomToast(context, "Network Available!");
+        //new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+
+        //check offline leads available for sync
+        setOfflineLeads();
+    }
+
+    @Override
+    public void networkUnavailable() {
+        Log.d(TAG, "I'm dancing with myself");
+        //new Helper().showCustomToast(context, "Network Lost again!");
+        new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost.");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        networkStateReceiver.removeListener(this);
+        this.unregisterReceiver(networkStateReceiver);
     }
 }

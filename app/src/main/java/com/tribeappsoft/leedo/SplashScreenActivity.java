@@ -13,12 +13,12 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.tribeappsoft.leedo.accountsHead.AccountsHeadHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.booked_customers.BookedCustomersActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.CallScheduleMainActivity;
 import com.tribeappsoft.leedo.admin.leads.AllLeadsActivity;
+import com.tribeappsoft.leedo.admin.offlineLeads.DuplicateLeads_Activity;
 import com.tribeappsoft.leedo.admin.project_brochures.ProjectBrochuresActivity;
 import com.tribeappsoft.leedo.admin.project_floor_plans.ProjectFloorPlanActivity;
 import com.tribeappsoft.leedo.admin.project_quotations.ProjectQuotationActivity;
@@ -28,7 +28,6 @@ import com.tribeappsoft.leedo.admin.user_profile.UserProfileActivity;
 import com.tribeappsoft.leedo.admin.users.AllUsersActivity;
 import com.tribeappsoft.leedo.loginModule.LoginActivity;
 import com.tribeappsoft.leedo.models.NotificationModel;
-import com.tribeappsoft.leedo.profile.ViewProfileActivity;
 import com.tribeappsoft.leedo.salesPerson.salesHead.MainActivity;
 import com.tribeappsoft.leedo.util.Helper;
 
@@ -202,7 +201,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 editor.apply();
 
                 int user_type_id = sharedPreferences.getInt("user_type_id",0);
-
                 Log.e(TAG, "onResume: user_type_id"+user_type_id );
 
                 if (user_type_id == 1)
@@ -272,7 +270,17 @@ public class SplashScreenActivity extends AppCompatActivity {
                             intent.putExtra("notify", true);  //Notifications
                             break;
 
+                        case "offline_leads_duplicate":
+                            intent = new Intent(this, DuplicateLeads_Activity.class);
+                            intent.putExtra("notify", true); //unClaimed Leads
+                            //editor.putBoolean("applicationCreated", true);
+                            break;
 
+                        case "offline_leads_merge":
+                            intent = new Intent(this, AllLeadsActivity.class);
+                            intent.putExtra("notify", true); //unClaimed Leads
+                            //editor.putBoolean("applicationCreated", true);
+                            break;
 
                         default:
                             intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
@@ -282,41 +290,26 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
                 else if (user_type_id ==2)
                 {
-
                     //site engineer
-                    switch (page)
-                    {
-
-                        case "notificationPage":
-                            intent = new Intent(this, MainActivity.class);
-                            intent.putExtra("notifyNotifications", true);  //Notifications
-                            break;
-
-                        default:
-                            intent = new Intent(this, MainActivity.class);
-                            break;
+                    if ("notificationPage".equals(page)) {
+                        intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("notifyNotifications", true);  //Notifications
+                    } else {
+                        intent = new Intent(this, MainActivity.class);
                     }
 
                 }
                 else if (user_type_id ==3)
                 {
                     //accounts head
-                    switch (page)
-                    {
-
-                        case "notificationPage":
-                            intent = new Intent(this, MainActivity.class);
-                            intent.putExtra("notifyNotifications", true);  //Notifications
-                            break;
-
-                        default:
-                            intent = new Intent(this, AccountsHeadHomeNavigationActivity.class);
-                            break;
+                    if ("notificationPage".equals(page)) {
+                        intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("notifyNotifications", true);  //Notifications
+                    } else {
+                        intent = new Intent(this, AccountsHeadHomeNavigationActivity.class);
                     }
-
                 }
-                else
-                {
+                else {
                     //goto home screen
                     intent = new Intent(this, LoginActivity.class);
                 }
@@ -430,7 +423,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                     int user_type_id = sharedPreferences.getInt("user_type_id",0);
                     if (host==null)
                     {
-
                         //do normal home process
                         if (user_type_id ==1 ) {
                             //user is sales person
@@ -438,16 +430,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                         }
                         else if (user_type_id ==2) {
                             //site engineer
-
+                            Log.e(TAG, "checkUserStatus: ");
                         }
-                        else if (user_type_id ==3)
-                        {
+                        else if (user_type_id ==3) {
                             //accounts head
                             gotoAccountsHeadHomeScreen();
                         }
                         else gotoLoginScreen();
-
-
                     }
                     else
                     {
@@ -480,25 +469,20 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(webIntent);
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
-
                     }
-
                 }
-                else
-                {
+                else {
                     //go to the login screen
                     gotoLoginScreen();
                 }
             }
-            else
-            {
+            else {
                 //go to the login screen
                 gotoLoginScreen();
             }
 
         }
-        else
-        {
+        else {
             //go to the login screen
             gotoLoginScreen();
         }

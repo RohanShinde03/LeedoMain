@@ -66,6 +66,10 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:ellipsize="end"
+                        android:scrollbars="vertical"
                         android:hint="@string/project_name"
                         android:background="@color/main_white">
 
@@ -74,13 +78,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:ellipsize="end"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:paddingTop="2dp"
                             android:paddingBottom="3dp"
                             android:padding="15dp"
                             android:textSize="16sp"
+                            android:maxLines="3"
+                            android:minLines="1"
+                            android:ellipsize="end"
+                            android:scrollbars="vertical"
                             android:theme="@style/styleFontMediumText"
                             android:background="@color/main_white" />
 

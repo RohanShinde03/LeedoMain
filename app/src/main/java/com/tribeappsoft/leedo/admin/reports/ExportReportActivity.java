@@ -501,7 +501,7 @@ public class ExportReportActivity extends AppCompatActivity {
 
         final Dialog builder_accept=new BottomSheetDialog(context);
         builder_accept.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder_accept.setContentView(R.layout.layout_share_options_popup_new);
+        builder_accept.setContentView(R.layout.layout_share_options_popup_app_theme);
         Objects.requireNonNull(builder_accept.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
 

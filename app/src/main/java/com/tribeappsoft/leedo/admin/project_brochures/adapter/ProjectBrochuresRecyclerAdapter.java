@@ -171,6 +171,14 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
             context.startActivity(intent);
         });
 
+        holder.tv_DocType.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(myModel. getDocPath()));
+            context.startActivity(intent);
+        });
+
         holder.tv_share.setOnClickListener(v -> isStoragePermissionGranted(myModel,myModel.getDocPath(), holder.pb_downloadDoc,true));
 
         //For Update
@@ -386,9 +394,8 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
 
         final Dialog builder_accept=new BottomSheetDialog(context);
         builder_accept.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder_accept.setContentView(R.layout.layout_share_options_popup_new);
-        Objects.requireNonNull(builder_accept.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT);
+        builder_accept.setContentView(R.layout.layout_share_options_popup_app_theme);
+        Objects.requireNonNull(builder_accept.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
         LinearLayoutCompat ll_share_with_fb,ll_share_with_whats_app, ll_share_with_more,ll_share_with_mail;
         MaterialButton mBtn_share_with_whats_app,mBtn_share_with_mail, mBtn_share_with_more;

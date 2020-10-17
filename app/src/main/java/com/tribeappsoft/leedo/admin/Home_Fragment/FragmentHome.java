@@ -36,7 +36,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
@@ -657,7 +656,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
 
         setNewestPage();
 
-        setOfflineLeads();
+        //setOfflineLeads();
 
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
@@ -695,8 +694,6 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             }
         });*/
 
-
-
        /* if (sharedPreferences!=null) {
 
             editor = sharedPreferences.edit();
@@ -720,109 +717,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
 
     }
 
-    private void setOfflineLeads()
-    {
-        if (sharedPreferences!=null)
-        {
-            editor = sharedPreferences.edit();
-            editor.apply();
-            String offlineData = null;
-            if (sharedPreferences.getString("DownloadModel", null)!=null) offlineData = sharedPreferences.getString("DownloadModel", null);
 
-
-            if (Helper.isNetworkAvailable(Objects.requireNonNull(requireActivity()))) {
-                if (offlineData !=null)
-                {
-                    final JsonObject jsonObject = new JsonObject();
-                    Gson gson  = new Gson();
-                    JsonArray jsonArray = gson.fromJson(offlineData, JsonArray.class);
-                    jsonObject.addProperty("api_token",api_token);
-                    jsonObject.add("offline_leads",jsonArray);
-
-                    //showProgressBar(getString(R.string.syncing_olenquiry));
-                    new Handler().postDelayed(() -> {
-                        new Helper().onSnackForHomeLeadSync(requireActivity(),"New offline leads detected! Syncing now...");
-                        call_SyncOfflineLeads(jsonObject);
-                    },3000); }
-
-            }
-            //else NetworkError(getActivity());
-        }
-    }
-
-
-    private void call_SyncOfflineLeads(JsonObject jsonObject)
-    {
-        ApiClient client = ApiClient.getInstance();
-
-        client.getApiService().add_OfflineLeads(jsonObject).enqueue(new Callback<JsonObject>()
-        {
-            @Override
-            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
-            {
-                Log.e("response", ""+response.toString());
-                if (response.isSuccessful())
-                {
-                    if (response.body()!=null && response.body().isJsonObject())
-                    {
-                        int isSuccess = 0;
-                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
-
-                        if (isSuccess==1)
-                        {
-                            // clear shared pref of offline leads
-                            if (sharedPreferences!=null)
-                            {
-                                editor = sharedPreferences.edit();
-                                editor.remove("DownloadModel");
-                                editor.apply();
-                            }
-
-                            onSuccessSync();
-
-                        }
-                        else showErrorLog(getString(R.string.something_went_wrong_try_again));
-                    }else showErrorLog(getString(R.string.something_went_wrong_try_again));
-                }
-                else {
-                    // error case
-                    switch (response.code())
-                    {
-                        case 404:
-                            showErrorLog(getString(R.string.something_went_wrong_try_again));
-                            break;
-                        case 500:
-                            showErrorLog(getString(R.string.server_error_msg));
-                            break;
-                        default:
-                            showErrorLog(getString(R.string.unknown_error_try_again));
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
-            {
-                Log.e(TAG, "onError: " + e.toString());
-                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
-                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
-                else showErrorLog(e.toString());
-            }
-        });
-    }
-
-    private void onSuccessSync()
-    {
-        if (getActivity()!=null)
-        { getActivity().runOnUiThread(() -> {
-            //setOfflineLeads();
-            hideProgressBar();
-            //show success toast
-            new Handler().postDelayed(() -> new Helper().showSuccessCustomToast(getActivity(), getString(R.string.offline_lead_synced_successfully)),2000);
-        });
-        }
-    }
 
     public void onSetTabsViewPager( int CallListCount, int SiteVisitCount, int LeadsCount, int RemindersCount,
                                     int tabAt, boolean visible, boolean fromHomeFrag)

@@ -1,23 +1,9 @@
 package com.tribeappsoft.leedo.admin.offlineLeads;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.ContentLoadingProgressBar;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,9 +17,22 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.offlineLeads.adapter.DuplicateLeadListAdapter;
 import com.tribeappsoft.leedo.admin.offlineLeads.model.OfflineLeadModel;
 import com.tribeappsoft.leedo.api.ApiClient;
@@ -81,6 +80,7 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private int total=0;
+    private boolean notify = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +93,12 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
 
         if (getSupportActionBar()!=null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.all_duplicate_Leads));
+            //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
+            //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
 
+            getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -108,6 +109,10 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         editor.apply();
+
+        //get from notification click
+        if (getIntent()!=null) notify = getIntent().getBooleanExtra("notify", false);
+
 
         offlineLeadModelArrayList =new ArrayList<>();
         //temp_arrayList =new ArrayList<>();
@@ -133,6 +138,22 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
         });
 
 
+        if (isNetworkAvailable(context)) {
+
+            //call api
+            swipeRefresh.setRefreshing(true);
+
+            //call reset api
+            resetApiCall();
+        }
+        else {
+            Helper.NetworkError(context);
+            swipeRefresh.setRefreshing(false);
+            ll_noData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+
+
         //setting up scroll listener for reach to end listener
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -142,15 +163,12 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
 
                 if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE)
                 {
-
                     Log.d("-----","end");
                     //gone back to top
-                    if (ll_backToTop.getVisibility() == View.VISIBLE)
-                    {
+                    if (ll_backToTop.getVisibility() == View.VISIBLE) {
                         new Animations().slideOutBottom(ll_backToTop);
                         ll_backToTop.setVisibility(View.GONE);
                     }
-
 
                     //TODO Rohan 16-09-2019
                     if (!swipeRefresh.isRefreshing())
@@ -166,7 +184,7 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
                             {
                                 //swipeRefresh.setRefreshing(true);
                                 showProgressBar();
-                                call_getDuplicateLeads();
+                                new Handler().postDelayed(() -> call_getDuplicateLeads(), 1000);
                             } else NetworkError(Objects.requireNonNull(context));
 
                         } else Log.e(TAG, "Last page");
@@ -313,21 +331,6 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
               //  get last sync time
                 getLastOfflineSyncedTime();
             }
-        }
-
-        if (isNetworkAvailable(context)) {
-
-            //call api
-            swipeRefresh.setRefreshing(true);
-
-            //call reset api
-            resetApiCall();
-        }
-        else {
-            Helper.NetworkError(context);
-            swipeRefresh.setRefreshing(false);
-            ll_noData.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
         }
 
         perform_search();
@@ -501,8 +504,7 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
                 JsonArray jsonArray = jsonObject.get("data").getAsJsonArray();
 
                 //1. clear arrayList
-                offlineLeadModelArrayList.clear();
-
+                //offlineLeadModelArrayList.clear();
                 for (int i = 0; i < jsonArray.size(); i++) {
                     setJson(jsonArray.get(i).getAsJsonObject());
                 }
@@ -569,16 +571,8 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
 
                 Log.e(TAG, "onResume: "+total);
 
-                if (getSupportActionBar()!=null)
-                {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                    getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-                    ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(total==0 ? getString(R.string.all_offline_Leads) :getString(R.string.all_offline_Leads) + "(" + total + ")");
-
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    getSupportActionBar().setHomeButtonEnabled(true);
+                if (getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
                 }
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -614,24 +608,12 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
 
                 swipeRefresh.setRefreshing(false);
                 hideProgressBar();
-
                 Log.e(TAG, "onResume: "+total);
-
-                if (getSupportActionBar()!=null)
-                {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                    getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-                        ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
-
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    getSupportActionBar().setHomeButtonEnabled(true);
+                if (getSupportActionBar()!=null) {
+                    getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
                 }
 
-
-                if (recyclerView.getAdapter()!=null)
-                {
+                if (recyclerView.getAdapter()!=null) {
 
                     Log.e(TAG, "notifyRecyclerDataChange: sz "+ offlineLeadModelArrayList.size() );
                     //recyclerView adapter
@@ -796,122 +778,6 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
         //Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_search_self, menu);
-
-        MenuItem filterItem = menu.findItem(R.id.action_filter);
-        filterItem.setVisible(false);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search_self);
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(context).getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-            searchView.setIconified(true);  //false -- to open searchView by default
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setQueryHint(getString(R.string.search_duplicate_lead));
-
-            //Code for changing the search icon
-            ImageView icon = searchView.findViewById(androidx.appcompat.R.id.search_button);
-            // icon.setColorFilter(Color.WHITE);
-            icon.setImageResource(R.drawable.ic_home_search2);
-
-            //AutoCompleteTextView searchTextView =  searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-            AutoCompleteTextView searchTextView = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-
-            /// Code for changing the textColor and hint color for the search view
-            searchTextView.setHintTextColor(getResources().getColor(R.color.main_medium_grey));
-            searchTextView.setTextColor(getResources().getColor(R.color.main_black));
-
-            //Code for changing the voice search icon
-            //ImageView voiceIcon = searchView.findViewById(androidx.appcompat.R.id.search_voice_btn);
-            //voiceIcon.setImageResource(R.drawable.my_voice_search_icon);
-
-            //Code for changing the close search icon
-            ImageView closeIcon = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-            // closeIcon.setColorFilter(Color.WHITE);
-            // closeIcon.setImageResource(R.drawable.ic_search_close_icon);
-            closeIcon.setColorFilter(getResources().getColor(R.color.close_icon_gray));
-
-            *//*closeIcon.setOnClickListener(view -> {
-
-                searchTextView.setText("");
-                //clear search text reset all
-                doFilter("");
-            });*//*
-
-            try {
-                Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
-                mCursorDrawableRes.setAccessible(true);
-                mCursorDrawableRes.set(searchTextView, 0); //This sets the cursor resource ID to 0 or @null which will make it visible on white background
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            //searchView.setOnQueryTextListener(FragmentVisitors.this);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    doFilter(query);
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    if (!newText.trim().isEmpty()) {
-                        //doFilter(newText);
-                    }
-                    return false;
-                }
-            });
-
-
-            searchView.setOnCloseListener(() -> {
-                Log.e(TAG, "onCreateOptionsMenu: onClose ");
-                doFilter("");
-                return false;
-            });
-        }
-        *//*if (searchView != null) {
-            if (searchManager != null) {
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(context.getComponentName()));
-            }
-        }*//*
-        return true;
-    }
-*/
-   /* // Filter Class
-    public void doFilter(String charText)
-    {
-        charText = charText.toLowerCase(Locale.getDefault());
-        offlineLeadModelArrayList.clear();
-
-        if (charText.length() == 0)
-        {
-            offlineLeadModelArrayList.addAll(temp_arrayList);
-        }
-        else
-        {
-            for (OfflineLeadModel _obj : temp_arrayList)
-            {
-                if (_obj.getCustomer_name().toLowerCase(Locale.getDefault()).contains(charText)
-                        ||_obj.getCustomer_email().toLowerCase(Locale.getDefault()).contains(charText)
-                        ||_obj.getCustomer_unit_type().toLowerCase(Locale.getDefault()).contains(charText)
-                        ||_obj.getAddress_line_1().toLowerCase(Locale.getDefault()).contains(charText)
-                        ||_obj.getLead_stage().toLowerCase(Locale.getDefault()).contains(charText)
-                )
-
-                {
-                    offlineLeadModelArrayList.add(_obj);
-                }
-
-            }
-        }
-        delayRefresh();
-    }*/
 
     /*Overflow Menu*/
     @Override
@@ -938,7 +804,15 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
+        // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down);
+        if(notify) {
+            startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
+            finish();
+        }
+        else {
+            super.onBackPressed();
+            // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down);
+        }
     }
 
 }

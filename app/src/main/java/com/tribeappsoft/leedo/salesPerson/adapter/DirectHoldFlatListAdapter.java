@@ -656,7 +656,6 @@ public class DirectHoldFlatListAdapter extends RecyclerView.Adapter<DirectHoldFl
 
             builder_accept.dismiss();
         });
-
         builder_accept.show();
     }
 

@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -130,15 +131,15 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         lead_sync_time = sharedPreferences.getString("lead_sync_time", "");
         //,total_offline_leads=0;
-        //int total_duplicate_leads = sharedPreferences.getInt("total_duplicate_leads", 0);
+        int total_duplicate_leads = sharedPreferences.getInt("total_duplicate_leads", 0);
 //        Log.e(TAG, "onResume: total_offline_leads"+total_offline_leads );
         editor.apply();
 
         mTv_LastSyncTime.setText(lead_sync_time!=null&& !lead_sync_time.trim().isEmpty() ? lead_sync_time :"not synced yet");
 
         if (isNetworkAvailable(Objects.requireNonNull(context))) {
-            //mBtn_viewDuplicateLeads.setText(total_duplicate_leads !=0 ? "("+ total_duplicate_leads +")"+context.getString(R.string.view_duplicate_leads) :context.getString(R.string.view_duplicate_leads));
-            new Handler().postDelayed(this::getLastOfflineSyncedTime,100);
+            mBtn_viewDuplicateLeads.setText(total_duplicate_leads !=0 ? "("+ total_duplicate_leads +")"+context.getString(R.string.view_duplicate_leads) :context.getString(R.string.view_duplicate_leads));
+            new Handler().postDelayed(() -> getLastOfflineSyncedTime(false),100);
         } else NetworkError(context);
 
     }
@@ -194,10 +195,11 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                 hideCancellationProgressBar();
 
                 JsonArray jsonArray = new Gson().fromJson(offlineData, JsonArray.class);
-
                 for (int i = 0; i < jsonArray.size(); i++) {
                     setJson(jsonArray.get(i).getAsJsonObject());
                 }
+                temp_arrayList.addAll(offlineLeadModelArrayList);
+
                 if (sharedPreferences != null) {
                     editor = sharedPreferences.edit();
                     editor.putInt("DownloadModelcount", jsonArray.size());
@@ -205,7 +207,6 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                     Log.e(TAG, "offline lead count: "+jsonArray.size());
                 }
 
-                temp_arrayList.addAll(offlineLeadModelArrayList);
                 //set offline  data
                 setOfflineLeadsAdapter();
             }
@@ -226,11 +227,8 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                     jsonObject.addProperty("api_token",api_token);
                     jsonObject.add("offline_leads",jsonArray);
 
-                   // showCancellationProgressBar(getString(R.string.syncing_olenquiry));
-                    new Handler().postDelayed(() -> {
-                        new Helper().onSnackForHomeLeadSync(context,"New offline leads detected! Syncing now...");
-                        call_SyncOfflineLeads(jsonObject);
-                    },3000);
+                    new Helper().onSnackForHomeLeadSync(context,"New offline leads detected! Syncing now...");
+                    new Handler().postDelayed(() -> call_SyncOfflineLeads(jsonObject),3000);
                 }
 
             }
@@ -256,8 +254,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
         offlineLeadListAdapter.notifyDataSetChanged();
 
         int count = Objects.requireNonNull(rv_offline_leads.getAdapter()).getItemCount();
-        if (count==0)
-        {
+        if (count==0) {
             //no notifications available
             rv_offline_leads.setVisibility(View.GONE);
             ll_noData.setVisibility(View.VISIBLE);
@@ -286,8 +283,12 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                 {
                     if (response.body()!=null && response.body().isJsonObject())
                     {
-                        int isSuccess = 0;
+                        int isSuccess = 0, total_duplicate_leads =0;
+                        String status_msg = null;
                         if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+                        if (response.body().has("duplicate_leads")) total_duplicate_leads = response.body().get("duplicate_leads").getAsInt();
+                        if (response.body().has("status_msg")) status_msg = response.body().get("status_msg").getAsString();
+
 
                         if (isSuccess==1)
                         {
@@ -295,12 +296,13 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                             if (sharedPreferences!=null)
                             {
                                 editor = sharedPreferences.edit();
+                                editor.putInt("total_duplicate_leads", total_duplicate_leads);
                                 editor.remove("DownloadModel");
                                 editor.remove("DownloadModelcount");
                                 editor.apply();
                             }
 
-                            onSuccessSync();
+                            onSuccessSync(status_msg);
 
                         }
                         else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -334,31 +336,36 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
         });
     }
 
-    private void onSuccessSync()
+    private void onSuccessSync(String status_msg)
     {
         if (context!=null)
         { runOnUiThread(() -> {
             setOfflineLeads();
             hideCancellationProgressBar();
-            new Handler().postDelayed(() -> new Helper().showSuccessCustomToast(context, getString(R.string.offline_lead_synced_successfully)),2000);
 
-           /* if (getSupportActionBar()!=null)
-            {
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-                ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(total_offline_leads==0 ? getString(R.string.all_duplicate_Leads) : getString(R.string.all_duplicate_Leads) + "(" + total_offline_leads + ")");
+            new Handler().postDelayed(() -> {
 
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setHomeButtonEnabled(true);
-            }*/
+                Toast.makeText(context, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully), Toast.LENGTH_LONG).show();
+                //new Helper().showSuccessCustomToast(context, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully));
+            },2000);
+
+            if (isNetworkAvailable(context)) {
+
+                new Handler().postDelayed(() -> {
+                    new Helper().onSnackForHomeLeadSync(context,"Updating last sync time...");
+
+                    // call get update last sync time
+                    getLastOfflineSyncedTime(true);
+                }, 1500);
+
+            }
+
         });
         }
     }
 
 
-    private void getLastOfflineSyncedTime()
+    private void getLastOfflineSyncedTime(boolean showMsg)
     {
         ApiClient client = ApiClient.getInstance();
         client.getApiService().getLastOfflineLeadSyncTime(api_token, user_id).enqueue(new Callback<JsonObject>()
@@ -374,12 +381,11 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                             if (response.body().has("success")) isSuccess = !response.body().get("success").isJsonNull() ? response.body().get("success").getAsInt() : 0;
 
                             if (isSuccess == 1) {
-                                if (response.body().has("data"))
-                                {
+                                if (response.body().has("data")) {
                                     if (response.body().has("data")) lead_sync_time = !response.body().get("data").isJsonNull() ? response.body().get("data").getAsString() :"not synced yet";
                                 }
                                 //set delayRefresh
-                                new Handler().postDelayed(() -> delayRefresh(), 1000);
+                                new Handler().postDelayed(() -> delayRefresh(showMsg), 1000);
                             }
                             else showErrorLog(getString(R.string.something_went_wrong_try_again));
                         } else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -414,10 +420,14 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
         });
     }
 
-    private void delayRefresh() {
+    private void delayRefresh(boolean showMsg) {
         if(context!=null)
         {
-            context.runOnUiThread(() -> mTv_LastSyncTime.setText(lead_sync_time));
+            context.runOnUiThread(() -> {
+
+                mTv_LastSyncTime.setText(lead_sync_time);
+                if (showMsg) new Helper().showCustomToast(context, "Last Sync time updated successfully!");
+            });
 
             if (sharedPreferences != null) {
                 editor = sharedPreferences.edit();
@@ -515,7 +525,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
 
         MenuItem searchItem = menu.findItem(R.id.action_search_self);
         SearchManager searchManager = (SearchManager) Objects.requireNonNull(context).getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView;
+        SearchView searchView = null;
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
             searchView.setIconified(true);  //false -- to open searchView by default
@@ -570,9 +580,9 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    if (!newText.trim().isEmpty()) {
+                    //if (!newText.trim().isEmpty()) {
                         //doFilter(newText);
-                    }
+                   // }
                     return false;
                 }
             });
@@ -584,11 +594,11 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                 return false;
             });
         }
-        /*if (searchView != null) {
+        if (searchView != null) {
             if (searchManager != null) {
                 searchView.setSearchableInfo(searchManager.getSearchableInfo(context.getComponentName()));
             }
-        }*/
+        }
         return true;
     }
 

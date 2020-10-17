@@ -16,11 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -32,6 +35,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
@@ -40,7 +44,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.project_creation.model.ProjectModel;
-import com.tribeappsoft.leedo.admin.users.model.UserModel;
 import com.tribeappsoft.leedo.admin.users.model.UserRoleModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.leads.PersonNamePrefixModel;
@@ -75,11 +78,18 @@ public class AddNewUserActivity extends AppCompatActivity {
     @BindView(R.id.til_newUser_Email) TextInputLayout til_Email;
     @BindView(R.id.til_newUser_MobileNo) TextInputLayout til_MobileNo;
     @BindView(R.id.edt_newUser_MobileNo) TextInputEditText edt_MobileNo;
+    @BindView(R.id.til_newUser_password) TextInputLayout til_password;
+    @BindView(R.id.til_newUser_confirmPassword) TextInputLayout til_confirmPassword;
     @BindView(R.id.acTv_newUser_mrs) AutoCompleteTextView acTv_newUser_mrs;
     @BindView(R.id.acTv_newUser_selectRoleType) AutoCompleteTextView acTv_selectRoleType;
     @BindView(R.id.edt_newUser_password) TextInputEditText edt_password;
     @BindView(R.id.edt_newUser_confirmPassword) TextInputEditText edt_confirmPassword;
+    @BindView(R.id.til_newUser_change_password) TextInputLayout til_change_password;
+    @BindView(R.id.edt_newUser_change_password) TextInputEditText edt_change_password;
+    @BindView(R.id.til_newUser_change_confirmPassword) TextInputLayout til_change_confirmPassword;
+    @BindView(R.id.edt_newUser_change_confirmPassword) TextInputEditText edt_change_confirmPassword;
     @BindView(R.id.mBtn_newUser_AddNewUser) MaterialButton mBtn_addNewUSer;
+    @BindView(R.id.view_changePwd) View view_changePwd;
 
     @BindView(R.id.chk_select_all) CheckBox chk_select_all;
     @BindView(R.id.ll_select_all) LinearLayoutCompat ll_select_all;
@@ -89,6 +99,11 @@ public class AddNewUserActivity extends AppCompatActivity {
 
     @BindView(R.id.ll_newUser_addSalesRoles) LinearLayoutCompat ll_addSalesRoles;
     @BindView(R.id.mTv_newUser_noRoles) MaterialTextView mTv_noRoles;
+
+    //set reminder
+    @BindView(R.id.sm_addUser_changePassword) SwitchMaterial sm_changePassword;
+    @BindView(R.id.ll_addUser_viewChangePasswordData) LinearLayoutCompat ll_viewScheduleCallData;
+    @BindView(R.id.ll_addUser_changePassword) LinearLayoutCompat ll_addUser_changePassword;
 
 
     @BindView(R.id.ll_pbLayout) LinearLayoutCompat ll_pb;
@@ -103,13 +118,14 @@ public class AddNewUserActivity extends AppCompatActivity {
 
     private ArrayList<UserRoleModel> roleModelArrayList;
     private ArrayList<Integer> userRoleIdArrayList;
-    private UserModel model;
+    //private UserModel model;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    private String api_token="",selectedNamePrefix = "",selectedRole = "",user_name="",user_email="",user_mobile="",country_code="91";
+    private String api_token="",selectedNamePrefix = "",selectedRole = "",password = null,user_name="",user_email="",user_mobile="",country_code="91";
     private int selectedNamePrefixId =0, user_id=0,sales_person_id=0, person_id=0,fromOther = 1; //TODO fromOther ==> 1 - Add New User, 2- Edit/Update New User
+    private boolean isChangePassword =false, isAdmin =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +148,7 @@ public class AddNewUserActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
         sales_person_id = sharedPreferences.getInt("user_id", 0);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         Log.e(TAG, "onCreate: "+api_token);
         editor.apply();
 
@@ -147,6 +164,7 @@ public class AddNewUserActivity extends AppCompatActivity {
             user_email = getIntent().getStringExtra("user_email");
             user_mobile = getIntent().getStringExtra("user_mobile");
             selectedRole = getIntent().getStringExtra("user_role_type");
+            /*           password = getIntent().getStringExtra("password");*/
 
             //
             if(fromOther==2){
@@ -157,12 +175,12 @@ public class AddNewUserActivity extends AppCompatActivity {
                 projectNameIdArrayList.clear();
 
                 projectNameIdArrayList.addAll(Objects.requireNonNull(getIntent().getParcelableArrayListExtra("projectArrayList")));
-                model = (UserModel)getIntent().getSerializableExtra("user_model");
+                //model = (UserModel)getIntent().getSerializableExtra("user_model");
 
                 // roleModelArrayList=(ArrayList<UserModel>) getIntent().getSerializableExtra("rolesArrayList");
                 // cuidModel = (CUIDModel) getIntent().getSerializableExtra("cuidModel");
 
-                Log.e(TAG, "onCreate: model"+model );
+                //Log.e(TAG, "onCreate: model"+model );
                 Log.e(TAG, "onCreate: userRoleIdArrayList"+userRoleIdArrayList.toString() );
                 Log.e(TAG, "onCreate: projectNameIdArrayList"+projectNameIdArrayList.toString() );
                 Log.e(TAG, "onCreate: projectNameIdArrayList"+projectNameIdArrayList.size() );
@@ -181,11 +199,10 @@ public class AddNewUserActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-
-
-
-
         mBtn_addNewUSer.setText(fromOther==2 ? getString(R.string.update_new_user): getString(R.string.add_new_user));
+        ll_addUser_changePassword.setVisibility(fromOther==2 & isAdmin ? View.VISIBLE : View.GONE);
+        view_changePwd.setVisibility(fromOther==2 & isAdmin ? View.VISIBLE : View.GONE);
+
 
         if (fromOther==2) {
 
@@ -195,11 +212,20 @@ public class AddNewUserActivity extends AppCompatActivity {
             if (user_email != null && !user_email.trim().isEmpty()) edt_Email.setText(user_email);
             if (user_mobile != null && !user_mobile.trim().isEmpty()) edt_MobileNo.setText(user_mobile);
             if (selectedRole != null && !selectedRole.trim().isEmpty()) acTv_selectRoleType.setText(selectedRole);
+
+            til_password.setVisibility(View.GONE);
+            edt_password.setVisibility(View.GONE);
+            til_confirmPassword.setVisibility(View.GONE);
+            edt_confirmPassword.setVisibility(View.GONE);
+
+            checkButtonEnabled();
+           /* if (password != null && !password.trim().isEmpty()) edt_password.setText(password);
+            if (password != null && !password.trim().isEmpty()) edt_confirmPassword.setText(password);*/
         }
 
 
         hideProgressBar();
-
+        toggleView();
 
         if (isNetworkAvailable(Objects.requireNonNull(context))) {
             showProgressBar("getting User Details...");
@@ -235,7 +261,7 @@ public class AddNewUserActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (edt_Email.getText().toString().length()>4) {
+                if (Objects.requireNonNull(edt_Email.getText()).toString().length()>4) {
                     if (!isValidEmail(edt_Email)) {
                         til_Email.setErrorEnabled(true);
                         til_Email.setError("Please enter valid email! eg.user@gmail.com");
@@ -259,6 +285,51 @@ public class AddNewUserActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void toggleView()
+    {
+
+        sm_changePassword.setOnCheckedChangeListener((compoundButton, b) -> {
+
+            isChangePassword = b;
+            if (b)  //checked
+            {
+                //do expand view
+                //new Animations().toggleRotate(iv_refLead_ec, true);
+                expandSubView(ll_viewScheduleCallData);
+                //viewRefLead = true;
+            }
+            else {
+
+                // //do collapse View
+                //new Animations().toggleRotate(iv_refLead_ec, true);
+                collapse(ll_viewScheduleCallData);
+                //viewRefLead = false;
+            }
+
+            checkButtonEnabled();
+        });
+
+
+        edt_change_confirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //check button EnabledView
+                checkButtonEnabled();
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
 
     private void getPrefixData()
     {
@@ -508,13 +579,12 @@ public class AddNewUserActivity extends AppCompatActivity {
         if (jsonObject.has("role_name")) myModel.setRole_name(!jsonObject.get("role_name").isJsonNull() ? jsonObject.get("role_name").getAsString() : "" );
 
         roleModelArrayList.add(myModel);
-
-        setNameUserRoles(myModel);
+        setNameUserRoles();
 
     }//setNameUserRolesJson()
 
 
-    private void setNameUserRoles(UserRoleModel myModel)
+    private void setNameUserRoles()
     {
         runOnUiThread(() -> {
 
@@ -553,7 +623,7 @@ public class AddNewUserActivity extends AppCompatActivity {
 
         final LinearLayoutCompat ll_mainList = rowView.findViewById(R.id.ll_itemBlockName);
         final MaterialCheckBox mCb_itemRolesName = rowView.findViewById(R.id.mCb_itemBlockName);
-        final MaterialTextView mTv_flats = rowView.findViewById(R.id.mTv_itemBlockName_flats);
+        //final MaterialTextView mTv_flats = rowView.findViewById(R.id.mTv_itemBlockName_flats);
 
         UserRoleModel model = userRoleModelArrayList.get(i);
 
@@ -854,7 +924,7 @@ public class AddNewUserActivity extends AppCompatActivity {
 
         final LinearLayoutCompat ll_mainList = rowView.findViewById(R.id.ll_itemBlockName);
         final MaterialCheckBox mCb_itemRolesName = rowView.findViewById(R.id.mCb_itemBlockName);
-        final MaterialTextView mTv_flats = rowView.findViewById(R.id.mTv_itemBlockName_flats);
+        //final MaterialTextView mTv_flats = rowView.findViewById(R.id.mTv_itemBlockName_flats);
 
         ProjectModel model = projectModelArrayList.get(i);
 
@@ -977,7 +1047,7 @@ public class AddNewUserActivity extends AppCompatActivity {
         {
             runOnUiThread(() -> {
 
-                 hideProgressBar();
+                hideProgressBar();
                 // swipeRefresh.setRefreshing(false);
                 onErrorSnack(context, message);
             });
@@ -1020,12 +1090,14 @@ public class AddNewUserActivity extends AppCompatActivity {
         else if (Objects.requireNonNull(edt_MobileNo.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter User's mobile number!");
             //valid mobile
         else if (!isValidPhone(edt_MobileNo)) new Helper().showCustomToast(context, "Please enter a valid mobile number!");
+
             //password
-        else if (Objects.requireNonNull(edt_password.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter User's  password!");
+        else if (isChangePassword && Objects.requireNonNull(edt_change_password.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter User's  password!");
             //confirm password
-        else if (Objects.requireNonNull(edt_confirmPassword.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter User's confirm password!");
+        else if (isChangePassword && Objects.requireNonNull(edt_change_confirmPassword.getText()).toString().trim().isEmpty()) new Helper().showCustomToast(context, "Please enter User's confirm password!");
+
             // verified mobile
-        else if (!isSamePasswords()) new Helper().showCustomToast(context, "Passwords does not match!");
+        else if (isChangePassword && !isSameChangedPasswords()) new Helper().showCustomToast(context, "Passwords does not match!");
 
             // else  if(recyclerAdapter!=null && recyclerAdapter.getGroupIdArrayList().size()>=1) new Helper().showCustomToast(context, "Please select at least one group!");
 
@@ -1191,7 +1263,10 @@ public class AddNewUserActivity extends AppCompatActivity {
         jsonObject.addProperty("mobile_number", Objects.requireNonNull(edt_MobileNo.getText()).toString());
         jsonObject.add("roles", new Gson().toJsonTree(getUserRolesIdArrayList()).getAsJsonArray());
         jsonObject.add("projects", new Gson().toJsonTree(getUserAssignedProjectArrayList()).getAsJsonArray());
-        jsonObject.addProperty("password", Objects.requireNonNull(edt_password.getText()).toString());
+        jsonObject.addProperty("password", isChangePassword ? Objects.requireNonNull(edt_change_password.getText()).toString() : password);
+       /* if(isChangePassword) jsonObject.addProperty("password",Objects.requireNonNull(edt_change_password.getText()).toString());
+        else jsonObject.addProperty("password", password);*/
+
         ApiClient client = ApiClient.getInstance();
         Call<JsonObject> call = client.getApiService().UpdateUser(jsonObject);
         call.enqueue(new Callback<JsonObject>() {
@@ -1307,6 +1382,23 @@ public class AddNewUserActivity extends AppCompatActivity {
 
             }
         });
+
+        edt_change_confirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkButtonEnabled();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -1321,14 +1413,24 @@ public class AddNewUserActivity extends AppCompatActivity {
         else if (Objects.requireNonNull(edt_MobileNo.getText()).toString().trim().isEmpty()) setButtonDisabledView();
             //valid mobile
         else if (!isValidPhone(edt_MobileNo)) setButtonDisabledView();
+
+        if(fromOther==2 & isChangePassword)
+        {
             //password
-        else if (Objects.requireNonNull(edt_password.getText()).toString().trim().isEmpty()) setButtonDisabledView();
-            //confirm password
-        else if (Objects.requireNonNull(edt_confirmPassword.getText()).toString().trim().isEmpty()) setButtonDisabledView();
-            // verified mobile
-        else if (!isSamePasswords()) setButtonDisabledView();
+            if (Objects.requireNonNull(edt_change_password.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+                //confirm password
+            else if (Objects.requireNonNull(edt_change_confirmPassword.getText()).toString().trim().isEmpty()) setButtonDisabledView();
+                // verified mobile
+            else if (!isSameChangedPasswords()) setButtonDisabledView();
+
+            else
+            {
+                //set button enabled view
+                setButtonEnabledView();
+            }
 
             // else  if(recyclerAdapter!=null && recyclerAdapter.getGroupIdArrayList().size()>=1)setButtonDisabledView();
+        }
         else
         {
             //set button enabled view
@@ -1341,6 +1443,13 @@ public class AddNewUserActivity extends AppCompatActivity {
     {
         final String newPasswordVal = Objects.requireNonNull(edt_password.getText()).toString();
         final String confirmPasswordVal = Objects.requireNonNull(edt_confirmPassword.getText()).toString();
+        return confirmPasswordVal.equals(newPasswordVal);
+    }
+
+    private boolean isSameChangedPasswords()
+    {
+        final String newPasswordVal = Objects.requireNonNull(edt_change_password.getText()).toString();
+        final String confirmPasswordVal = Objects.requireNonNull(edt_change_confirmPassword.getText()).toString();
         return confirmPasswordVal.equals(newPasswordVal);
     }
 
@@ -1363,6 +1472,96 @@ public class AddNewUserActivity extends AppCompatActivity {
 
         mBtn_addNewUSer.setBackgroundColor(getResources().getColor(R.color.main_light_grey));
         mBtn_addNewUSer.setTextColor(getResources().getColor(R.color.main_white));
+    }
+
+
+    private void expandSubView(final View v)
+    {
+
+        v.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //final int targetHeight = v.getMeasuredHeight();
+        v.getLayoutParams().height = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                //v.getLayoutParams().height = interpolatedTime == 1 ? LinearLayout.LayoutParams.WRAP_CONTENT : (int)(targetHeight * interpolatedTime);
+                if (interpolatedTime==1) v.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                v.requestLayout();
+
+            }
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+
+        //a.setDuration((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setDuration(100);
+        a.setAnimationListener(new Animation.AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                //iv_arrow.setImageResource(R.drawable.ic_expand_icon_white);
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        v.startAnimation(a);
+
+    }
+
+
+
+    private void collapse(final View v)
+    {
+
+        final int initialHeight = v.getMeasuredHeight();
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setAnimationListener(new Animation.AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        v.startAnimation(a);
+
     }
 
 

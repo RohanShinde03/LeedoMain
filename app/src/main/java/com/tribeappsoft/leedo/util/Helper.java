@@ -28,6 +28,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.CalendarContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -123,7 +124,6 @@ public class Helper {
 
     public void onSnackForHome(Activity activity, String errorMsg)
     {
-
         Snackbar snackbar = Snackbar.make(activity.getWindow().getDecorView().getRootView(), errorMsg, Snackbar.LENGTH_SHORT);
         View snackBarView = snackbar.getView();
         snackBarView.setTranslationY(-(convertDpToPixel(110, activity)));
@@ -134,6 +134,18 @@ public class Helper {
     {
         Snackbar snackbar = Snackbar.make(activity.getWindow().getDecorView().getRootView(), errorMsg, Snackbar.LENGTH_LONG);
         //snackbar.setActionTextColor(ContextCompat.getColor(activity, R.color.colorcold));
+        View snackBarView = snackbar.getView();
+        snackBarView.setTranslationY(-(convertDpToPixel(110, activity)));
+        /*TextView textView=(TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(ContextCompat.getColor(activity, R.color.colorcold));*/
+        snackbar.show();
+    }
+
+    public void onSnackForHomeNetworkAvailable(Activity activity, String errorMsg)
+    {
+        Snackbar snackbar = Snackbar.make(activity.getWindow().getDecorView().getRootView(), errorMsg, Snackbar.LENGTH_LONG);
+        snackbar.setActionTextColor(ContextCompat.getColor(activity, R.color.main_black));
+        snackbar.setBackgroundTint(ContextCompat.getColor(activity, R.color.color_flat_available));
         View snackBarView = snackbar.getView();
         snackBarView.setTranslationY(-(convertDpToPixel(110, activity)));
         /*TextView textView=(TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -974,6 +986,19 @@ public class Helper {
         intent.putExtra(Intent.EXTRA_TEXT, bodyText); //your email body goes here
         activity.startActivity(Intent.createChooser(intent,"Send email using"));
         // startActivity(Intent.createChooser(intent, intentTitle!=null ? intentTitle : "Send feedback"));
+    }
+
+    public void openNetworkSettingsIntent(Activity activity)
+    {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.phone", "com.android.phone.NetworkSetting");
+        activity.startActivity(intent);
+    }
+
+    public void openWirelessNetworkSettingsIntent(Activity activity)
+    {
+        Intent intent=new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+        activity.startActivity(intent);
     }
 
     public void addReminderInCalendar(Activity activity, String title, String startDate, String endDate)

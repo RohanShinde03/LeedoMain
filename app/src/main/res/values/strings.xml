@@ -1592,6 +1592,7 @@
     <string name="all_offline_Leads">All Offline Leads</string>
     <string name="no_duplicate_leads_available">No Duplicate Leads Available!</string>
     <string name="add_offline_lead">Add Offline Lead</string>
+    <string name="add_offline_lead_excl">Add Offline Lead!</string>
     <string name="offline_lead_added_successfully">Offline Lead added successfully!</string>
     <string name="offline_lead_synced_successfully">Offline Lead synced successfully!</string>
     <string name="submitting_offline_lead_details">Submitting Offline Lead details…</string>
@@ -1602,6 +1603,13 @@
     <string name="not_synced">Not Synced</string>
     <string name="syncing_olenquiry">syncing offline leads…</string>
     <string name="view_duplicate_leads">View Duplicate Leads</string>
+    <string name="getting_user_list">Getting users list…</string>
+
+
+    <string name="old_msg_add_offline_lead">Due to Device network not available for adding a lead to the remote server, you can add this Lead as a offline lead within single click of button.\n\nOnce your device network will be available again, then your added all offline leads will be automatically synced with the server.</string>
+    <string name="msg_add_offline_lead">The device network is not available,the lead cannot be added online.\n\n<b>Do you wish to add this lead offline?</b>\nOnce the device network is available this lead will be automatically synced.</string>
+    <string name="yes_add_offline_lead">Yes, Add Offline Lead</string>
+    <string name="no_open_network_settings">No, Open Network Settings</string>
 
 
 </resources>
