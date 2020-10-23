@@ -1,10 +1,14 @@
 package com.tribeappsoft.leedo.admin.Home_Fragment;
 
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.CalendarContract;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -69,8 +73,7 @@ import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
 
     private String TAG="FragmentHome";
-    @BindView(R.id.tabLayout_FragHome)
-    CustomTabLayout mTabLayout;
+    @BindView(R.id.tabLayout_FragHome) CustomTabLayout mTabLayout;
     @BindView(R.id.viewPager_FragHome) ViewPager mViewPager;
     @BindView(R.id.mTv_FragHome_Today) MaterialTextView mTv_FragHome_Today;
     @BindView(R.id.mTv_FragHome_Yesterday) MaterialTextView mTv_FragHome_Yesterday;
@@ -79,6 +82,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
     @BindView(R.id.mTv_FragHome_Custom) MaterialTextView mTv_FragHome_Custom;
     @BindView(R.id.mTv_fragHome_todayDate) MaterialTextView mTv_todayDate;
     @BindView(R.id.mTv_fragHome_DayName) MaterialTextView mTv_DayName;
+    @BindView(R.id.ll_FragHome_todayDate) LinearLayoutCompat ll_todayDate;
     @BindView(R.id.ll_pbLayout) LinearLayoutCompat ll_pb;
     @BindView(R.id.tv_pbLoadingMsg) AppCompatTextView tv_loadingMsg;
 
@@ -249,6 +253,15 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         //setup swipeRefresh
         //setSwipeRefresh();
 
+        ll_todayDate.setOnClickListener(v -> {
+
+            long startMillis = System.currentTimeMillis();
+            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+            builder.appendPath("time");
+            ContentUris.appendId(builder, startMillis);
+            Intent  intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
+            startActivity(intent);
+        });
 
         return view;
     }

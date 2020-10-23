@@ -30,17 +30,16 @@
             <!--android:background="@color/home_background"-->
 
             <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsv_fragSalesPersonHomeFeed"
+                android:id="@+id/nsv_fragHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:fitsSystemWindows="true">
                 <!--  app:stickyHeader="@id/ll_home_category"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 -->
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/ll_fragCustomerHome_addImagesSlider"
+                    android:id="@+id/ll_fragHome_addImagesSlider"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -57,7 +56,7 @@
 
                         <!--todays date time-->
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/ll_callScheduleMain_curDate"
+                            android:id="@+id/ll_FragHome_todayDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center|start|top"
@@ -71,7 +70,7 @@
                             android:orientation="vertical">
 
                             <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/mTv_callScheduleMain_todayDay"
+                                android:id="@+id/mTv_fragHome_todayDay"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:theme="@style/styleFontBoldText"

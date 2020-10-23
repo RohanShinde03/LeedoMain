@@ -85,6 +85,10 @@ public interface ApiService
             @Query("user_id") int user_id);
 
 
+    //post current password and change user password
+    @POST(WebServer.POST_ChangePassword)
+    Call<JsonObject> ChangePassword(@Body JsonObject jsonObject);
+
 
     //-----------------------        Admin Create Project      ----------------------------------------//
 

@@ -1,15 +1,5 @@
 package com.tribeappsoft.leedo.admin.user_profile;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,6 +27,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -79,12 +79,11 @@ public class UserProfileActivity extends AppCompatActivity {
     @BindView(R.id.mtv_UserProfileActivity_phone) MaterialTextView mtvUserPhone;
     @BindView(R.id.mtv_UserProfileActivity_email) MaterialTextView mtvUserEmail;
     @BindView(R.id.ll_UpdateProfile_expandedImage) LinearLayoutCompat llExpandedImage;
-    @BindView(R.id.iv_UpdateProfile_expandedImage)
-    TouchImageView iv_expandedImage;
+    @BindView(R.id.iv_UpdateProfile_expandedImage) TouchImageView iv_expandedImage;
     @BindView(R.id.iv_close) AppCompatImageView iv_close;
-    @BindView(R.id.fl_itemList_AssignedProjects)
-    FlowLayout flAssignedProjects;
+    @BindView(R.id.fl_itemList_AssignedProjects) FlowLayout flAssignedProjects;
     @BindView(R.id.ll_assigned_project_layout) LinearLayoutCompat ll_assigned_project_layout;
+    @BindView(R.id.ll_change_password_layout) LinearLayoutCompat ll_change_password_layout;
 
     private String TAG = "UserProfileActivity";
     SharedPreferences sharedPreferences;
@@ -124,6 +123,8 @@ public class UserProfileActivity extends AppCompatActivity {
         ivChangeImageIcon.setOnClickListener(view -> selectUploadProfilePic());*/
 
         iv_close.setOnClickListener(v -> onBackPressed());
+
+        ll_change_password_layout.setOnClickListener(v -> startActivity(new Intent(context, UserChangePassword_Activity.class)));
     }
 
     private View getAssignedRolesView(String roleName) {
@@ -615,7 +616,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-    if(notifyProfile) {
+        if(notifyProfile) {
             startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
             finish();
         }

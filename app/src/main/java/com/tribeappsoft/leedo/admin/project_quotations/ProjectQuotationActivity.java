@@ -145,7 +145,7 @@ public class ProjectQuotationActivity extends AppCompatActivity {
         //set fab visibility only for sales head option
         //exFab_addBrochure.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
 
-        exFab_addQuotation.setOnClickListener(view -> startActivity(new Intent(context, AddNewQuotationActivity.class)));
+        exFab_addQuotation.setOnClickListener(view -> startActivity(new Intent(context, AddNewQuotationActivity.class).putExtra("selectedProjectId",selectedProjectId).putExtra("selectedProjectName",selectedProjectName)));
 
 
         //setting up our OnScrollListener

@@ -145,7 +145,7 @@ public class ProjectFloorPlanActivity extends AppCompatActivity {
         //set fab visibility only for sales head option
         //exFab_addBrochure.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
 
-        exFab_addFloorPlan.setOnClickListener(view -> startActivity(new Intent(context, AddNewFloorPlanActivity.class)));
+        exFab_addFloorPlan.setOnClickListener(view -> startActivity(new Intent(context, AddNewFloorPlanActivity.class).putExtra("selectedProjectId",selectedProjectId).putExtra("selectedProjectName",selectedProjectName)));
 
 
         //setting up our OnScrollListener

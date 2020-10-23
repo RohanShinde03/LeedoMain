@@ -93,14 +93,15 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
     private ArrayList<ProjectModel> projectNameModelArrayList;
     private ArrayList<String> nameProjectArrayList;
-    private int project_docType_id = 1,mediaTypeId = 0;
+    private int project_docType_id = 1,mediaTypeId = 0, selectedProjectId=0;
     //project_docType_id : 1 =>Brochures, 2=>floor plan, 3=>Quotations
     //mediaTypeId : 1=>document, 2=>video, 3=>audio, 4=>photo
 
     //private EventProjectDocsModel myUploadModel = null;
     Activity context;
     private int selectedProjectID=0,project_brochure_id=0,fromOther = 1; //TODO fromOther ==> 1 - Add project brochure,2.update project brochure,
-    private String api_token="",brochureUrl=null,selectedProjectName="",brochure_title="",media_path=null,project_brochure_desc="";
+    private String api_token="",brochureUrl=null,selectedProjectName="",brochure_title="",media_path=null,
+            project_brochure_desc="", selectedProjectTitle ="";
 
 
     @Override
@@ -115,6 +116,8 @@ public class AddNewBrochureActivity extends AppCompatActivity {
             fromOther = getIntent().getIntExtra("fromOther", 1);
             project_brochure_id = getIntent().getIntExtra("project_brochure_id", 0);
             selectedProjectID = getIntent().getIntExtra("project_id", 0);
+            selectedProjectId = getIntent().getIntExtra("selectedProjectId", 0);
+            selectedProjectTitle = getIntent().getStringExtra("selectedProjectName");
 
             //data from update brochure
             brochure_title = getIntent().getStringExtra("brochure_title");
@@ -169,6 +172,13 @@ public class AddNewBrochureActivity extends AppCompatActivity {
             if (media_path != null && !media_path.trim().isEmpty()) tv_addBrochure_select_file.setText(media_path);
             if (project_brochure_desc != null && !project_brochure_desc.trim().isEmpty()) edt_addBrochure_description.setText(project_brochure_desc);
             if (selectedProjectName != null && !selectedProjectName.trim().isEmpty()) acTv_select_project.setText(selectedProjectName);
+
+        }
+        else if(selectedProjectId>0 && (selectedProjectTitle != null && !selectedProjectTitle.trim().isEmpty()))
+        {
+            if (selectedProjectTitle != null && !selectedProjectTitle.trim().isEmpty()) acTv_select_project.setText(selectedProjectTitle);
+            selectedProjectID=selectedProjectId;
+            selectedProjectName=selectedProjectTitle;
 
         }
 

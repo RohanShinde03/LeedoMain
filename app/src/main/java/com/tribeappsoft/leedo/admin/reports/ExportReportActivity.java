@@ -21,6 +21,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +46,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.BuildConfig;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.project_creation.model.ProjectModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Helper;
 
@@ -61,6 +66,7 @@ import java.lang.reflect.Method;
 import java.net.SocketTimeoutException;
 import java.net.UnknownServiceException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -91,6 +97,7 @@ public class ExportReportActivity extends AppCompatActivity {
     @BindView(R.id.edt_expReport_fromDate) TextInputEditText edt_fromDate;
     @BindView(R.id.edt_expReport_toDate) TextInputEditText edt_toDate;
     @BindView(R.id.mBtn_expReport_exportReport) MaterialButton mBtn_exportReport;
+    @BindView(R.id.acTv_expReport_selectProject) AutoCompleteTextView acTv_selectProject;
 
     // Exported excel view
     @BindView(R.id.ll_expReport_viewReportMain) LinearLayoutCompat ll_viewReportMain;
@@ -106,12 +113,15 @@ public class ExportReportActivity extends AppCompatActivity {
     private AppCompatActivity context;
     private DatePickerDialog datePickerDialog;
     private int mYear, mMonth, mDay;
-    private String TAG = "ExportReportActivity", api_token = "", sendFromDate = null, sendToDate = null;
+    private String TAG = "ExportReportActivity", api_token = "",selectedProjectName="", sendFromDate = null, sendToDate = null;
     private int user_id=0;
     private static final int Permission_CODE_DOC = 657;
     private GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 456;
     private File dirFileUpload = null;
+    private ArrayList<ProjectModel> projectArrayList;
+    private ArrayList<String> projectStringArrayList;
+    private int selectedProjectId=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +130,9 @@ public class ExportReportActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         context= ExportReportActivity.this;
+
+        projectStringArrayList =new ArrayList<>();
+        projectArrayList=new ArrayList<>();
 
         //call method to hide keyBoard
         setupUI(parent);
@@ -170,6 +183,17 @@ public class ExportReportActivity extends AppCompatActivity {
             //check validation
             checkValidations();
         });
+
+        //Get project data
+        if (Helper.isNetworkAvailable(context)) {
+            showProgressBar(getString(R.string.getting_project_details));
+            new Handler().postDelayed(this::call_getAssignedProjectList,1000);
+        }
+        else {
+            Helper.NetworkError(context);
+            //hide main layouts
+            hideProgressBar();
+        }
 
     }
 
@@ -231,9 +255,144 @@ public class ExportReportActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    private void call_getAssignedProjectList()
+    {
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().getAllProjects(api_token).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        if (!response.body().isJsonNull()) {
+                            int isSuccess = 0;
+                            if (response.body().has("success")) isSuccess = !response.body().get("success").isJsonNull() ? response.body().get("success").getAsInt() : 0;
+                            if (isSuccess == 1) {
+
+                                //clear list
+                                projectArrayList.clear();
+
+                                ProjectModel model = new ProjectModel();
+                                model.setProject_id(0);
+                                model.setProject_name("All");
+                                projectStringArrayList.add("All");
+                                projectArrayList.add(model);
+
+                                //set json
+                                setJsonProjects(response.body());
+                                //set delayRefresh
+                                new Handler().postDelayed(() ->{
+                                    if(projectArrayList!=null && projectArrayList.size()>0)
+                                    {
+                                        acTv_selectProject.setText(projectStringArrayList.get(0));
+                                        selectedProjectId = projectArrayList.get(0).getProject_id();
+                                        selectedProjectName = projectArrayList.get(0).getProject_name();
+                                    }
+
+                                    //hide pb
+                                    hideProgressBar();
+
+                                    //set project adapter
+                                    setProjectAdapter();
+
+                                } , 1000);
+                            }else showErrorLog(getString(R.string.no_project_assigned));
+
+                        } else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                    }
+                }
+                else {
+
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+    private void setJsonProjects(JsonObject jsonObject)
+    {
+        if (jsonObject.has("data")) {
+            if (!jsonObject.get("data").isJsonNull() && jsonObject.get("data").isJsonArray()) {
+                JsonArray jsonArray  = jsonObject.get("data").getAsJsonArray();
+                // projectStringArrayList.clear();
+                for(int i=0;i<jsonArray.size();i++) {
+                    setProjectJson(jsonArray.get(i).getAsJsonObject());
+                }
+            }
+        }
+    }
+
+    private void setProjectJson(JsonObject jsonObject)
+    {
+        ProjectModel model = new ProjectModel();
+        if (jsonObject.has("project_id")) model.setProject_id(!jsonObject.get("project_id").isJsonNull() ? jsonObject.get("project_id").getAsInt() : 0 );
+        if (jsonObject.has("project_name")) {
+            model.setProject_name(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "");
+            projectStringArrayList.add(!jsonObject.get("project_name").isJsonNull() ? jsonObject.get("project_name").getAsString() : "");
+        }
+        projectArrayList.add(model);
+    }
+
+    private void setProjectAdapter()
+    {
+
+        //ArrayList<String> stringList2 = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.ary_project_name)));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.layout_spinner_item, projectStringArrayList);
+        //acTv_projectName.setText(projectStringArrayList.get(0));
+        acTv_selectProject.setAdapter(adapter);
+        acTv_selectProject.setThreshold(0);
+
+        //tv_selectCustomer.setSelection(0);
+        //autoComplete_firmName.setValidator(new Validator());
+        //autoComplete_firmName.setOnFocusChangeListener(new FocusListener());
+
+        acTv_selectProject.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) ->
+        {
+
+            String itemName = adapter.getItem(position);
+            for (ProjectModel pojo : projectArrayList)
+            {
+                if (pojo.getProject_name().equals(itemName))
+                {
+                    //int id = pojo.getCompany_id(); // This is the correct ID
+                    selectedProjectId = pojo.getProject_id(); // This is the correct ID
+                    selectedProjectName = pojo.getProject_name();
+
+                    //fixedEnquiryID+=2;
+                    Log.e(TAG, "Project name & id " + selectedProjectName +"\t"+ selectedProjectId);
+
+                    break; // No need to keep looping once you found it.
+                }
+            }
+        });
+    }
+
+
     private void checkValidations()
     {
-            //project
+        //project
         if (sendFromDate ==null && sendToDate ==  null) new Helper().showCustomToast(context, "Please select at report dates!");
 
             //check if only from date selected
@@ -329,7 +488,7 @@ public class ExportReportActivity extends AppCompatActivity {
     private void call_getLeadSummaryReport()
     {
         ApiClient client = ApiClient.getInstance();
-        Call<ResponseBody> call = client.getApiService().getExportToExcel(api_token, 0, user_id, sendFromDate, sendToDate, "xlsx");
+        Call<ResponseBody> call = client.getApiService().getExportToExcel(api_token, selectedProjectId, user_id, sendFromDate, sendToDate, "xlsx");
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
@@ -824,10 +983,10 @@ public class ExportReportActivity extends AppCompatActivity {
                         new Helper().showCustomToast(context, "Upload Success!");
 
                         //if (isSuccess==1) {
-                            //show success popup
-                         //   MarkAsBookSuccess();
-                       // }
-                       // else showErrorLog("Error occurred during book unit! Please try again!");
+                        //show success popup
+                        //   MarkAsBookSuccess();
+                        // }
+                        // else showErrorLog("Error occurred during book unit! Please try again!");
                     }
                 }
                 else {
@@ -862,7 +1021,7 @@ public class ExportReportActivity extends AppCompatActivity {
 
     private void checkButtonEnabled()
     {
-            //project id and dates are null
+        //project id and dates are null
         if (sendFromDate ==null && sendToDate == null) setButtonDisabledView();
 
             //check if only from date selected

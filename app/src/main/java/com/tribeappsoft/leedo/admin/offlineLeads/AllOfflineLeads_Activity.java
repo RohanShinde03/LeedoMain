@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -42,6 +43,7 @@ import com.tribeappsoft.leedo.admin.offlineLeads.adapter.OfflineLeadListAdapter;
 import com.tribeappsoft.leedo.admin.offlineLeads.model.OfflineLeadModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Helper;
+import com.tribeappsoft.leedo.util.NetworkStateReceiver;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -61,7 +63,7 @@ import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 import static com.tribeappsoft.leedo.util.Helper.onErrorSnack;
 
-public class AllOfflineLeads_Activity extends AppCompatActivity {
+public class AllOfflineLeads_Activity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
     @BindView(R.id.exFab_allOfflineLeads_addLead) ExtendedFloatingActionButton exFab_addLead;
     @BindView(R.id.mBtn_allOfflineLeads_viewDuplicateLeads) MaterialButton mBtn_viewDuplicateLeads;
     @BindView(R.id.sw_allOfflineLeads) SwipeRefreshLayout sw_offlineLeads;
@@ -79,6 +81,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
     private String api_token="",lead_sync_time="";
     private String TAG="AllOfflineLeads_Activity";
     private int user_id =0;
+    private NetworkStateReceiver networkStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +123,10 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
         });
 
         mBtn_viewDuplicateLeads.setOnClickListener(v -> startActivity(new Intent(context, DuplicateLeads_Activity.class)));
+
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
@@ -210,15 +217,28 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
                 //set offline  data
                 setOfflineLeadsAdapter();
             }
-            else
-            {
+            else {
                 //not available
                 rv_offline_leads.setVisibility(View.GONE);
                 ll_noData.setVisibility(View.VISIBLE);
             }
+        }
 
-            if (isNetworkAvailable(Objects.requireNonNull(context)))
-            {
+        runOnUiThread(() -> {
+            if (sw_offlineLeads !=null) sw_offlineLeads.setRefreshing(false);
+            hideCancellationProgressBar();
+        });
+    }
+
+    private void checkOfflineLeads()
+    {
+        if (sharedPreferences!=null) {
+            editor = sharedPreferences.edit();
+            editor.apply();
+            String offlineData = null;
+            if (sharedPreferences.getString("DownloadModel", null)!=null) offlineData = sharedPreferences.getString("DownloadModel", null);
+
+            if (isNetworkAvailable(Objects.requireNonNull(context))) {
                 if (offlineData !=null)
                 {
                     final JsonObject jsonObject = new JsonObject();
@@ -233,14 +253,6 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
 
             }
         }
-
-        { runOnUiThread(() -> {
-            if (sw_offlineLeads !=null) sw_offlineLeads.setRefreshing(false);
-            hideCancellationProgressBar();
-        });
-        }
-
-
     }
 
     private void setOfflineLeadsAdapter()
@@ -648,4 +660,35 @@ public class AllOfflineLeads_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    @Override
+    public void networkAvailable() {
+        Log.e(TAG, "I'm in, baby!");
+        //new Helper().showCustomToast(context, "Network Available!");
+        new Handler().postDelayed(() -> {
+
+            new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+
+            //check offline leads available for sync
+            checkOfflineLeads();
+        }, 1000);
+
+    }
+
+    @Override
+    public void networkUnavailable() {
+        Log.d(TAG, "I'm dancing with myself");
+        //new Helper().showCustomToast(context, "Network Lost again!");
+
+        new Handler().postDelayed(() -> new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost..."), 1000);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        networkStateReceiver.removeListener(this);
+        this.unregisterReceiver(networkStateReceiver);
+    }
+
 }

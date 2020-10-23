@@ -58,6 +58,9 @@ public class WebServer {
     //GET check token validity status
     public static final String GET_checkTokenValidity = BASE_URL + "checkTokenValidity";
 
+    //POST Change Password
+    public static final String POST_ChangePassword = BASE_URL + "forgotPassword";
+
 
 
     //-----------------------       Admin Create Project      ----------------------------------------//

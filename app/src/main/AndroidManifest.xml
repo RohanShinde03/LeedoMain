@@ -296,6 +296,12 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
+
+        <activity android:name=".admin.user_profile.UserChangePassword_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name="com.tribeappsoft.leedo.profile.ViewProfileActivity"
             android:screenOrientation="portrait"

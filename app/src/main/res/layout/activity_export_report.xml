@@ -10,6 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg_grey"
         android:isScrollContainer="true">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -17,12 +18,75 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--  project filter -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_white"
+                android:padding="15dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_report_project"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:theme="@style/styleFontMediumText"
+                    android:textSize="17sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"/>
+
+
+                <!-- select project text-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center">
+
+                    <!--Select project name -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:ellipsize="end"
+                        android:scrollbars="vertical"
+                        android:hint="@string/select_project_name"
+                        android:theme="@style/styleFontMediumText">
+                        <AutoCompleteTextView
+                            android:id="@+id/acTv_expReport_selectProject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:maxLines="3"
+                            android:minLines="1"
+                            android:ellipsize="end"
+                            android:scrollbars="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textSize="16sp"
+                            android:focusable="false"
+                            android:theme="@style/styleFontMediumText" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
             <!-- report from and to date -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="15dp"
+                android:background="@color/main_white"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp">
@@ -126,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@color/main_white"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/dimen_10dp"
                 android:layout_marginRight="@dimen/dimen_10dp"

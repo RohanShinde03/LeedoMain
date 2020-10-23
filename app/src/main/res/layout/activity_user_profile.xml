@@ -145,7 +145,7 @@
                         android:text="@string/mobile_no"
                         android:textSize="16sp"
                         android:textColor="@color/main_black"
-                        android:theme="@style/styleFontRegularText"/>
+                        android:theme="@style/styleFontMedium"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/email"
                         android:textSize="16sp"
-                        android:theme="@style/styleFontRegularText"
+                        android:theme="@style/styleFontMedium"
                         android:textColor="@color/main_black"/>
 
                     <View
@@ -255,6 +255,58 @@
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </HorizontalScrollView>-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:background="@color/light_grey"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- change password-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dimen_16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_autorenew_24"
+                    android:tint="@color/colorAccent"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_change_password_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/dimen_16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/choose_a_unique_password_to_protect_your_account"
+                        android:textSize="14sp"
+                        android:textColor="@color/gray_text"
+                        android:theme="@style/styleFontRegularText"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_UserProfileActivity_changePassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/change_password"
+                        android:textSize="16sp"
+                        android:padding="6dp"
+                        android:theme="@style/styleFontMedium"
+                        android:drawableRight="@drawable/ic_next_icon_white"
+                        android:background="@drawable/bg_rectangle_round"
+                        android:backgroundTint="@color/black_background"
+                        android:textColor="@color/main_black"/>
 
                     <View
                         android:layout_width="match_parent"

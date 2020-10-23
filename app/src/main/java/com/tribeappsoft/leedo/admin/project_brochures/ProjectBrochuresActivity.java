@@ -146,8 +146,8 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
         //set fab visibility only for sales head option
         //exFab_addBrochure.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
 
-        exFab_addBrochure.setOnClickListener(view -> startActivity(new Intent(context, AddNewBrochureActivity.class)));
-
+        //exFab_addBrochure.setOnClickListener(view -> startActivity(new Intent(context, AddNewBrochureActivity.class)));
+        exFab_addBrochure.setOnClickListener(view -> startActivity(new Intent(context, AddNewBrochureActivity.class).putExtra("selectedProjectId",selectedProjectId).putExtra("selectedProjectName",selectedProjectName)));
 
         //setting up our OnScrollListener
         recyclerView.addOnScrollListener(new MyRecyclerScroll() {
@@ -211,7 +211,6 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         boolean IsBrochureAdded = sharedPreferences.getBoolean("IsBrochureAdded", false);
         editor.apply();
-
         exFab_addBrochure .setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
 
         if(IsBrochureAdded)

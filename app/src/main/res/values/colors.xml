@@ -12,7 +12,6 @@
     <color name="colorPrimaryDark">#002E6E</color>
     <color name="colorAccent">#06B8ED</color>
 
-
     <color name="primaryColor">#242424</color>
     <color name="primaryLightColor">#4c4c4c</color>
     <color name="primaryDarkColor">#002d75</color>
@@ -33,6 +32,10 @@
     <color name="dark_grey">#515151</color>
     <color name="light_grey">#E2E2E2</color>
 
+    <!-- password strength-->
+    <color name="color_low_red">#D20000</color>
+    <color name="color_medium_yellow">#ECB900</color>
+    <color name="color_high_green">#00A80A</color>
 
     <!-- Main colors -->
     <color name="main_white">#ffffff</color>

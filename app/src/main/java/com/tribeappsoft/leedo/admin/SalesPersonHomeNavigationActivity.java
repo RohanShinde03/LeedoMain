@@ -46,7 +46,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
@@ -150,7 +149,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     private String TAG = "SalesPersonHomeNavigationActivity";
     private static final String TODO = null;
     private Activity context;
-    private static final int Permission_CODE_RPS = 321;
+    //private static final int Permission_CODE_RPS = 321;
     private boolean isLogout= false, isFabOpen = false;
     private Animation fab_open,fab_close,rotate_forward, rotate_backward;
     private int leadClicked = 0,user_id =0; //tabSelected = 0,
@@ -181,7 +180,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         Objects.requireNonNull(getSupportActionBar()).setElevation(16);
 
         //set status bar color
-        change_status_bar_color();
+        //change_status_bar_color();
 
         if (getSupportActionBar()!=null)
         {
@@ -597,7 +596,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         setSideNavBadge();
 
         //check offline leads available for sync
-        setOfflineLeads();
+        //setOfflineLeads();
 
         //if (isNetworkAvailable(Objects.requireNonNull(context))) {
         // getCheckTokenValidity();
@@ -1336,66 +1335,6 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     }
 
 
-    private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE);
-        return result == PackageManager.PERMISSION_GRANTED;
-    }
-
-
-    private void requestPermissionReadPhoneState()
-    {
-
-        //check permission were granted or not
-        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)
-        {
-
-            //new Helper().showCustomToast(this, getString(R.string.file_permissionRationale));
-            return;
-        }*/
-
-
-        //shows permission dialog
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE))
-        {
-
-            //new Helper().showCustomToast(this, getString(R.string.file_permissionRationale));
-        }
-
-        //And finally ask for the permission
-        ActivityCompat.requestPermissions(this, new String[]
-                {
-                        Manifest.permission.READ_PHONE_STATE
-                }, Permission_CODE_RPS);
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
-        //Checking the request code of our request
-        if (requestCode == Permission_CODE_RPS)  //handling documents permission
-        {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
-                //Displaying a toast
-                new Helper().showCustomToast(context, getString(R.string.permission_grant_success));
-                //open documents once permission is granted
-
-                //call get Token
-                //getToken();
-
-                if (isNetworkAvailable(this)) {
-                    //call UpdateFCM api
-                    call_updateFCM(false);
-
-                } else NetworkError(this);
-
-            }
-
-        }
-
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
@@ -2084,17 +2023,23 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     public void networkAvailable() {
         Log.e(TAG, "I'm in, baby!");
         //new Helper().showCustomToast(context, "Network Available!");
-        //new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
 
-        //check offline leads available for sync
-        setOfflineLeads();
+        new Handler().postDelayed(() -> {
+            new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+
+            //check offline leads available for sync
+            setOfflineLeads();
+        }, 1000);
+
     }
 
     @Override
     public void networkUnavailable() {
         Log.d(TAG, "I'm dancing with myself");
         //new Helper().showCustomToast(context, "Network Lost again!");
-        new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost.");
+
+        new Handler().postDelayed(() -> new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost..."), 1000);
+
     }
 
     @Override

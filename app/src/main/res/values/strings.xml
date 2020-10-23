@@ -1611,5 +1611,14 @@
     <string name="yes_add_offline_lead">Yes, Add Offline Lead</string>
     <string name="no_open_network_settings">No, Open Network Settings</string>
 
+    <string name="choose_a_unique_password_to_protect_your_account">Choose a unique password to protect your account</string>
+    <string name="type_your_current_password">Type your current password</string>
+    <string name="type_your_new_password">Type your new password</string>
+    <string name="retype_your_new_password">Retype your new password</string>
+    <string name="create_a_new_password">Create a new password</string>
+    <string name="password_strength">password strength</string>
+    <string name="password_updated_successfully">Password updated successfully!</string>
+    <string name="select_report_project">Select Report Project</string>
+    <string name="getting_project_details">Getting project details</string>
 
 </resources>
