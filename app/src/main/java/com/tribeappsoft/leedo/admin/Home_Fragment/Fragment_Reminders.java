@@ -141,7 +141,6 @@ public class Fragment_Reminders extends Fragment //implements CallScheduleMainAc
         editor.apply();
 
         //user_id = sharedPreferences.getInt("user_id", 0);
-        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
 
         project_id = sharedPreferences.getInt("project_id", 0);
         sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
@@ -288,8 +287,6 @@ public class Fragment_Reminders extends Fragment //implements CallScheduleMainAc
         editor.apply();
 
         //user_id = sharedPreferences.getInt("user_id", 0);
-        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-
         project_id = sharedPreferences.getInt("project_id", 0);
         sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
         api_token = sharedPreferences.getString("api_token", "");

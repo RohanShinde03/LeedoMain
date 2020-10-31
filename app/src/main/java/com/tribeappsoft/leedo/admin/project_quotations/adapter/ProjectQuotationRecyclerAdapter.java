@@ -114,12 +114,13 @@ public class ProjectQuotationRecyclerAdapter extends RecyclerView.Adapter<Projec
         SharedPreferences sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
         api_token = sharedPreferences.getString("api_token", "");
 
         //set fab visibility only for sales head option
-        holder.tv_delete.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
-        holder.tv_update.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
+        holder.tv_delete.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
+        holder.tv_update.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
 
         setAnimation(holder.cv_itemList, position);
         final EventProjectDocsModel myModel = projectDocsModelArrayList.get(position);

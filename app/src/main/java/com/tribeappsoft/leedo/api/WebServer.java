@@ -12,7 +12,7 @@ public class WebServer {
     //public static final String BASE_URL = "http://13.233.27.5/1tr/sid05/public/api/";
 
     //TODO BASE URL LEEDO DEMO ENV
-    public static final String BASE_URL = "http://13.233.27.5/leedo/lead_management_sp1/public/api/";
+    public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
 
     private static final String BASE_URL_LOGO = "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/";
 

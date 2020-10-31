@@ -131,7 +131,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        boolean isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         user_id = sharedPreferences.getInt("user_id", 0);
         editor.apply();
 
@@ -147,7 +147,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
         salesPersonArrayList=new ArrayList<>();
 
         //set visible sales person filter only if sales head or team lead
-        ll_spFilter.setVisibility(isSalesHead || isSalesTeamLead ? View.VISIBLE : View.GONE);
+        ll_spFilter.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         ll_dtFilter.setVisibility(fromCallRecordings ? View.VISIBLE : View.GONE);
 
         //select from date
@@ -196,7 +196,7 @@ public class FilterCallScheduleActivity extends AppCompatActivity {
     private void call_getAllProjects()
     {
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().getAllProjects(api_token).enqueue(new Callback<JsonObject>()
+        client.getApiService().getUserWiseAllProjects(api_token, user_id).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)

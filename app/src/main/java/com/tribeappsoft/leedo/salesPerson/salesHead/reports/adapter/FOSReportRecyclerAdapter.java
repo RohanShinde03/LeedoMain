@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatBookingDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatGHPDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatSiteVisitDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatBookingDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatGHPDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatLeadDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatSiteVisitDetailsActivity;
 import com.tribeappsoft.leedo.salesPerson.salesHead.reports.model.CPFosModel;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;

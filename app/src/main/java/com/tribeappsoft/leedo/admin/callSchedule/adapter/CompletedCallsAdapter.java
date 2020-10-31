@@ -59,6 +59,7 @@ public class CompletedCallsAdapter extends RecyclerView.Adapter<CompletedCallsAd
         SharedPreferences sharedPreferences = new Helper().getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
 
         //set animation
@@ -82,7 +83,7 @@ public class CompletedCallsAdapter extends RecyclerView.Adapter<CompletedCallsAd
         //holder.mTv_TotalCallsCount.setText(model.getTotalCalls() != null && !model.getTotalCalls().trim().isEmpty()? model.getTotalCalls(): "4");
         holder.tv_LeadsOwnTag.setText(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? model.getLead_types_name(): "");
       //  holder.ll_LeadType.setVisibility(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? View.VISIBLE :View.GONE);
-        holder.ll_scheduledBy.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
+        holder.ll_scheduledBy.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         holder.mBtn_reschedule.setVisibility(isFromSchedule ? View.VISIBLE : View.GONE);
         holder.ll_schedule_on.setVisibility(isFromSchedule ? View.VISIBLE : View.GONE);
         holder.ll_schedule_button.setVisibility(View.GONE);

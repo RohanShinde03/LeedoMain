@@ -63,7 +63,6 @@ public class OfflineLeadListAdapter extends RecyclerView.Adapter<OfflineLeadList
         SharedPreferences.Editor editor = sharedPreferences.edit();
         //String api_token = sharedPreferences.getString("api_token", "");
        // int user_id = sharedPreferences.getInt("user_id", 0);
-       // isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         editor.apply();
 
         final OfflineLeadModel model= offlineLeadModelArrayList.get(position);

@@ -173,6 +173,9 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
             sw_offlineLeads.setRefreshing(true);
             //set offline leads
             setOfflineLeads();
+
+            //check offline leads if available
+            //checkOfflineLeads();
         });
         sw_offlineLeads.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -593,8 +596,8 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //if (!newText.trim().isEmpty()) {
-                        //doFilter(newText);
-                   // }
+                    //doFilter(newText);
+                    // }
                     return false;
                 }
             });
@@ -670,7 +673,9 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
             new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
 
             //check offline leads available for sync
-            checkOfflineLeads();
+            //checkOfflineLeads();
+            //set offline leads
+            new Handler().postDelayed(this::setOfflineLeads,5000);
         }, 1000);
 
     }

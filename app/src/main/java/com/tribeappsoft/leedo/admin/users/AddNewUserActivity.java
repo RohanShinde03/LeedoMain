@@ -3,7 +3,6 @@ package com.tribeappsoft.leedo.admin.users;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -26,7 +25,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -190,10 +188,12 @@ public class AddNewUserActivity extends AppCompatActivity {
 
         if (getSupportActionBar()!=null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(fromOther==2 ? getString(R.string.update_new_user): getString(R.string.add_new_user));
+            //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
+            //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(fromOther==2 ? getString(R.string.update_new_user): getString(R.string.add_new_user));
+
+            getSupportActionBar().setTitle(fromOther==2 ? getString(R.string.update_new_user): getString(R.string.add_new_user));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -738,7 +738,7 @@ public class AddNewUserActivity extends AppCompatActivity {
     private void call_getAllProjectList()
     {
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().getAllProjects(api_token).enqueue(new Callback<JsonObject>()
+        client.getApiService().getUserWiseAllProjects(api_token, sales_person_id).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)

@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M18.898,7.784 L15.726,5.12l-0.89,1.056L18.011,8.84ZM9.156,6.176 L8.273,5.12 5.098,7.777l0.89,1.056L9.156,6.176ZM12.345,9.36L11.309,9.36v4.141l3.278,1.967 0.518,-0.849L12.345,12.981ZM11.998,6.597a6.211,6.211 0,1 0,6.211 6.211A6.212,6.212 0,0 0,11.998 6.597ZM11.998,17.639a4.831,4.831 0,1 1,4.831 -4.831A4.828,4.828 0,0 1,11.998 17.639Z"
+        android:fillColor="@color/reminder_call"/>
+</vector>

@@ -30,6 +30,7 @@ public class CUIDModel implements Serializable {
     private ArrayList<PaymentModeModel> paymentModeModel;
     private int is_kyc_uploaded;
     private int is_reminder_set;
+    private int is_call_scheduled;
     private String country_code;
     private String first_name;
     private String middle_name;
@@ -434,5 +435,12 @@ public class CUIDModel implements Serializable {
         this.lead_stage_name = lead_stage_name;
     }
 
+    public int getIs_call_scheduled() {
+        return is_call_scheduled;
+    }
+
+    public void setIs_call_scheduled(int is_call_scheduled) {
+        this.is_call_scheduled = is_call_scheduled;
+    }
 }
 

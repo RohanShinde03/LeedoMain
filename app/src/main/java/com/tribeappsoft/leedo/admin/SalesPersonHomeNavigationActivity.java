@@ -155,7 +155,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     private int leadClicked = 0,user_id =0; //tabSelected = 0,
 
     // @BindView(R.id.tv_salesPersonHome_title) AppCompatTextView tv_home_title;
-    private boolean isForceUpdate = true,isSalesHead=false;
+    private boolean isForceUpdate = true,isSalesHead=false, isAdmin= false;
     private String api_token="",android_id ="", lead_sync_time="";
     private static final int Permission_CODE_DeviceAdmin = 5912;
     private static final int REQ_CODE_VERSION_UPDATE = 530;
@@ -245,6 +245,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         editor = sharedPreferences.edit();
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
@@ -296,7 +297,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                         {
                             CircularAnim.fullActivity(context, view)
                                     .colorOrImageRes(R.color.colorPrimary)
-                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class), 111));
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class).putExtra("fromHomeScreen_AddLead",true), 111));
                         }
                         else {
 
@@ -330,7 +331,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                         if (isNetworkAvailable(Objects.requireNonNull(context))){
                             CircularAnim.fullActivity(context, view)
                                     .colorOrImageRes(R.color.colorPrimary)
-                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class), 111));
+                                    .go(() -> startActivityForResult(new Intent(context, AddNewLeadActivity.class).putExtra("fromHomeScreen_AddLead",true), 111));
                         }
                         else {
                             CircularAnim.fullActivity(context, view)
@@ -416,6 +417,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                     .colorOrImageRes(R.color.secondaryLightColor)
                     .go(() -> startActivity(new Intent(context, CustomerIdActivity.class)
                             .putExtra("fromSiteVisit_or_token", 1)
+                            .putExtra("fromHomeScreen_AddSiteVisit",true)
                             .putExtra("forId", 1))), 200);
         });
 
@@ -426,6 +428,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                     .colorOrImageRes(R.color.secondaryLightColor)
                     .go(() -> startActivity(new Intent(context, CustomerIdActivity.class)
                             .putExtra("fromSiteVisit_or_token", 1)
+                            .putExtra("fromHomeScreen_AddSiteVisit",true)
                             .putExtra("forId", 1))), 200);
             //startActivityForResult(new Intent(context, CustomerIdActivity.class), 112);
         });
@@ -473,6 +476,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             new Handler().postDelayed(() -> CircularAnim.fullActivity(context, view)
                     .colorOrImageRes(R.color.secondaryLightColor)
                     .go(() -> startActivity(new Intent(context, CustomerIdActivity.class)
+                            .putExtra("fromHomeScreen_AddBooking",true)
                             .putExtra("fromSiteVisit_or_token", 3)
                             .putExtra("forId", 3))), 200);
 
@@ -482,6 +486,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             new Handler().postDelayed(() -> CircularAnim.fullActivity(context, view)
                     .colorOrImageRes(R.color.secondaryLightColor)
                     .go(() -> startActivity(new Intent(context, CustomerIdActivity.class)
+                            .putExtra("fromHomeScreen_AddBooking",true)
                             .putExtra("fromSiteVisit_or_token", 3)
                             .putExtra("forId", 3))), 200);
             //startActivityForResult(new Intent(context, CustomerIdActivity.class), 113);
@@ -497,6 +502,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 CircularAnim.fullActivity(context, view)
                         .colorOrImageRes(R.color.secondaryLightColor)
                         .go(() -> startActivityForResult(new Intent(context, AddReminderActivity.class)
+                                .putExtra("fromHomeScreen_AddReminder",true)
                                 .putExtra("fromOther", 1), 114));
 
                 //  startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
@@ -509,6 +515,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 CircularAnim.fullActivity(context, view)
                         .colorOrImageRes(R.color.secondaryLightColor)
                         .go(() -> startActivityForResult(new Intent(context, AddReminderActivity.class)
+                                .putExtra("fromHomeScreen_AddReminder",true)
                                 .putExtra("fromOther", 1), 114));
 
                 // startActivityForResult(new Intent(context, AddReminderActivity.class).putExtra("fromOther", 1), 114);
@@ -973,16 +980,16 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
 
             runOnUiThread(() -> {
 
-            //setOfflineLeads();
-            //hideProgressBar();
+                //setOfflineLeads();
+                //hideProgressBar();
 
-            //show success toast
-            new Handler().postDelayed(() -> {
+                //show success toast
+                new Handler().postDelayed(() -> {
 
-                Toast.makeText(context, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully), Toast.LENGTH_LONG).show();
-                //new Helper().showSuccessCustomToast(getActivity(), status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully));
-            },2000);
-        });
+                    Toast.makeText(context, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully), Toast.LENGTH_LONG).show();
+                    //new Helper().showSuccessCustomToast(getActivity(), status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully));
+                },2000);
+            });
         }
     }
 
@@ -1164,10 +1171,10 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         MenuItem item_nav_lead_Reports = m.findItem(R.id.nav_salesPerson_Reports);
 
 
-        item_nav_projectList.setVisible(isSalesHead);
-        item_nav_userList.setVisible(isSalesHead);
-        item_nav_lead_reassign.setVisible(isSalesHead);
-        item_nav_lead_Reports.setVisible(isSalesHead);
+        item_nav_projectList.setVisible(isSalesHead || isAdmin);
+        item_nav_userList.setVisible(isSalesHead || isAdmin);
+        item_nav_lead_reassign.setVisible(isSalesHead || isAdmin);
+        item_nav_lead_Reports.setVisible(isSalesHead || isAdmin);
 
     }
     /**
@@ -2025,7 +2032,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //new Helper().showCustomToast(context, "Network Available!");
 
         new Handler().postDelayed(() -> {
-            new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+            //new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
 
             //check offline leads available for sync
             setOfflineLeads();

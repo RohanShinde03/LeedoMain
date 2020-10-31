@@ -90,7 +90,7 @@ public class CustomerIdActivity extends AppCompatActivity {
     private int fromSiteVisit_or_token = 0; // TODO fromSiteVisit_or_token -> 1 came from (SIte visit), 2 came from (Token), 3, came from (Direct Booking), 4 -> Add call schedule ,  0(nothing)
     private int user_id=0, forId = 0; //TODO forId => 1 - site visit , 2 - Token , 3 - Direct Booking
     private int current_page = 1, last_page = 1;
-    private boolean isSalesHead = false;
+    private boolean isSalesHead = false,isAdmin = false, fromHomeScreen_AddSiteVisit=false,fromHomeScreen_AddBooking=false;
 
 
     @Override
@@ -98,7 +98,7 @@ public class CustomerIdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customerid);
 
-      //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
+        //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
         ButterKnife.bind(this);
         //init context
         context= CustomerIdActivity.this;
@@ -117,6 +117,8 @@ public class CustomerIdActivity extends AppCompatActivity {
 
         if (getIntent()!=null){
             fromSiteVisit_or_token =  getIntent().getIntExtra("fromSiteVisit_or_token",0);
+            fromHomeScreen_AddSiteVisit =  getIntent().getBooleanExtra("fromHomeScreen_AddSiteVisit",false);
+            fromHomeScreen_AddBooking =  getIntent().getBooleanExtra("fromHomeScreen_AddBooking",false);
             forId =  getIntent().getIntExtra("forId",0);
         }
 
@@ -126,6 +128,7 @@ public class CustomerIdActivity extends AppCompatActivity {
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         Log.e(TAG, "onCreate: isSalesHead : "+isSalesHead);
 
 
@@ -314,13 +317,16 @@ public class CustomerIdActivity extends AppCompatActivity {
             if (fromSiteVisit_or_token == 1)
             {
                 //sit visits
-                startActivity(new Intent(context, AddSiteVisitActivity.class).putExtra("cuidModel",cuidModel));
+                startActivity(new Intent(context, AddSiteVisitActivity.class)
+                        .putExtra("fromHomeScreen_AddSiteVisit", fromHomeScreen_AddSiteVisit)
+                        .putExtra("cuidModel",cuidModel));
                 finish();
             }
             else if (fromSiteVisit_or_token == 3)
             {
                 //sit visits
                 startActivity(new Intent(context, MarkAsBook_Activity.class)
+                        .putExtra("fromHomeScreen_AddBooking", fromHomeScreen_AddBooking)
                         .putExtra("cuidModel",cuidModel));
                 finish();
             }
@@ -394,7 +400,7 @@ public class CustomerIdActivity extends AppCompatActivity {
     private void call_getLeadList() {
 
         ApiClient client = ApiClient.getInstance();
-        Observable<Response<JsonObject>> responseObservable = client.getApiService().getLeadList(api_token, filter_text, forId, current_page, user_id,isSalesHead ? 1 : 0);
+        Observable<Response<JsonObject>> responseObservable = client.getApiService().getLeadList(api_token, filter_text, forId, current_page, user_id, isSalesHead || isAdmin ? 1 : 0);
         responseObservable.subscribeOn(Schedulers.newThread());
         responseObservable.asObservable();
         responseObservable.doOnNext(jsonObjectResponse -> {
@@ -533,13 +539,15 @@ public class CustomerIdActivity extends AppCompatActivity {
                     {
                         //sit visits
                         startActivity(new Intent(context, AddSiteVisitActivity.class)
+                                .putExtra("fromHomeScreen_AddSiteVisit", fromHomeScreen_AddSiteVisit)
                                 .putExtra("cuidModel",cuidModel));
                         finish();
                     }
-                   else if (fromSiteVisit_or_token == 3)
+                    else if (fromSiteVisit_or_token == 3)
                     {
                         //sit visits
                         startActivity(new Intent(context, MarkAsBook_Activity.class)
+                                .putExtra("fromHomeScreen_AddBooking", fromHomeScreen_AddBooking)
                                 .putExtra("cuidModel",cuidModel));
                         finish();
                     }
@@ -912,11 +920,5 @@ public class CustomerIdActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-
-
 
 

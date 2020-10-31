@@ -45,11 +45,11 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.admin.callSchedule.CallScheduleMainActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.adapter.ScheduledCallsAdapter;
 import com.tribeappsoft.leedo.admin.callSchedule.filter.FilterCallScheduleActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.model.ScheduledCallsModel;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
 import com.tribeappsoft.leedo.util.Animations;
@@ -114,7 +114,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
     private AppCompatTextView tvFilterItemCount;
     private Calendar currentCalender;
     private SimpleDateFormat dateFormatForDisplaying, dateFormatForMonth;
-    private boolean isSalesHead = false,isSalesTeamLead = false, onStop = false;
+    private boolean isSalesHead = false, isAdmin = false, onStop = false;
     private static FragmentScheduledCalls instance = null;
 
     public FragmentScheduledCalls() {
@@ -169,7 +169,8 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+        //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
         itemArrayList = new ArrayList<>();
         onStop = false;
 
@@ -1080,7 +1081,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
 
         final MenuItem menuItem = menu.findItem(R.id.action_call_schedule_filter);
         //set visible only for SH or TL
-        menuItem.setVisible(isSalesHead || isSalesTeamLead);
+        menuItem.setVisible(isSalesHead || isAdmin);
 
         View actionView = menuItem.getActionView();
         tvFilterItemCount = actionView.findViewById(R.id.cart_badge);

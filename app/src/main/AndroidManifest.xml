@@ -44,7 +44,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.tribeappsoft.leedo.admin.reports.ExportReportActivity"></activity>
+
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.ExportReportActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.model.LeadReportActivity"
             android:screenOrientation="portrait"
@@ -102,15 +107,18 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.booked_customers.BookedCustomersActivity"
-            android:screenOrientation="unspecified"
+              android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.site_visits.AllSiteVisitsActivity"
-            android:screenOrientation="unspecified"
+              android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.users.AllUsersActivity"
-            android:screenOrientation="unspecified"
+              android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.project_quotations.AddNewQuotationActivity"
@@ -235,6 +243,8 @@
         <activity
             android:name="com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity"
             android:label="@string/title_activity_sales_person_home_navigation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
 Set color used with incoming notification messages. This is used when no color is set for the incoming
@@ -375,7 +385,8 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.leads.AllLeadsActivity"
-            android:screenOrientation="unspecified"
+              android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.claimNow.ClaimNowActivity"
@@ -491,7 +502,7 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.teamStats.TeamStatsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.teamStats.TeamStatsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
@@ -655,19 +666,19 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesHeadDashboard.SalesHeadDashboard_Activity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.SalesHeadDashboard_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatLeadDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatSiteVisitDetailsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatSiteVisitDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
@@ -679,25 +690,25 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatGHPDetailsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatGHPDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatBookingDetailsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatBookingDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatCancelBookingDetailsActivity"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatCancelBookingDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.salesHeadDashboard.filter.Filter_SalesHeadStats"
+            android:name="com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.filter.Filter_SalesHeadStats"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
@@ -815,13 +826,13 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.AllCallLogStats_Activity"
+            android:name="com.tribeappsoft.leedo.admin.reports.callLogStats.AllCallLogStats_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.filter.Filter_SalesHeadCallLogs"
+            android:name="com.tribeappsoft.leedo.admin.reports.callLogStats.filter.Filter_SalesHeadCallLogs"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
@@ -838,8 +849,18 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity" />
-        <activity android:name="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallStatsDetailsActivity" />
+
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name="com.tribeappsoft.leedo.admin.reports.callLogStats.detailedStatsList.FilterCallStatsDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme"/>
 
 
         <activity android:name=".admin.offlineLeads.AddNewOfflineLeadActivity"
@@ -847,11 +868,13 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity"/>
+
         <activity android:name=".admin.offlineLeads.AllOfflineLeads_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity"/>
+
         <activity android:name=".admin.offlineLeads.DuplicateLeads_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"

@@ -335,7 +335,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     //private int fromOther = 1; //TODO fromOther ==> 1 - Add New Lead, 2- Edit/Update Lead Info
     private int FirstHomeID=0,isSuccessNumberExist=0,isSuccessNumberExistOther=0,current_lead_status_id=0;
     private String existLeadName="",existLeadProject="",existLeadAddedBy ="", existLeadStatus="",existLeadNameOtherNo="",existLeadStatusOtherNo="",existLeadProjectOtherNo="",existOtherLeadAddedBy ="",  existLeadUnitCategory="",existLeadUnitCategoryOtherNo="";
-    private boolean flagNumduplicate=false,isExist_WhatsAppNo=false,isExist_OtherNo=false,isUpdate = false,isDuplicateLead = false;
+    private boolean flagNumduplicate=false,isExist_WhatsAppNo=false,isExist_OtherNo=false,isUpdate = false,fromHomeScreen_AddLead = false,isDuplicateLead = false;
     //private int check=1;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -386,11 +386,14 @@ public class AddNewLeadActivity extends AppCompatActivity
         if (getIntent()!=null) {
             fromShortcut = getIntent().getBooleanExtra("fromShortcut", false);
             isUpdate = getIntent().getBooleanExtra("isUpdateLead", false);
+            fromHomeScreen_AddLead = getIntent().getBooleanExtra("fromHomeScreen_AddLead", false);
             isDuplicateLead = getIntent().getBooleanExtra("isDuplicateLead", false);
             if(getIntent().getIntExtra("lead_id",0)!= 0) leadId = getIntent().getIntExtra("lead_id",0);
             if(getIntent().getIntExtra("offline_id",0)!= 0) duplicate_offline_lead_id = getIntent().getIntExtra("offline_id",0);
             current_lead_status_id = getIntent().getIntExtra("current_lead_status_id", 1);
             Log.e(TAG,"current_lead_status_id: "+current_lead_status_id);
+            Log.e(TAG, "onCreate: fromHomeScreen_AddLead :"+fromHomeScreen_AddLead );
+
         }
 
         if(isUpdate){
@@ -3632,7 +3635,14 @@ public class AddNewLeadActivity extends AppCompatActivity
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
-                    else ll_addLead_existUSer.setVisibility(View.GONE);
+                    else {
+                        //hide exist lead layout
+                        ll_addLead_existUSer.setVisibility(View.GONE);
+                        //false exists wa mobile
+                        isExist_WhatsAppNo = false;
+                        //set error null
+                        edt_leadMobileNo.setError(null);
+                    }
                 }
                 //checkButtonEnabled
                 //check button enabled
@@ -3657,7 +3667,9 @@ public class AddNewLeadActivity extends AppCompatActivity
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 Integer selections = (Integer) edt_leadOtherMobileNo.getTag();
-                if (selections > 0) {
+                Log.e(TAG, "onTextChanged: selection "+selections);
+                //if (selections > 0)
+                {
                     //check=1;
                     if(Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().length()>9) {
 
@@ -3676,8 +3688,14 @@ public class AddNewLeadActivity extends AppCompatActivity
                         }
                         //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
-                    else ll_addLead_existUSer_OtherNo.setVisibility(View.GONE);
-
+                    else {
+                        //hide exist lead layout
+                        ll_addLead_existUSer_OtherNo.setVisibility(View.GONE);
+                        //false exists other mobile
+                        isExist_OtherNo = false;
+                        //set error null
+                        edt_leadOtherMobileNo.setError(null);
+                    }
                 }
                 edt_leadOtherMobileNo.setTag(++selections); // (or even just '1')
                 //checkButtonEnabled
@@ -5643,7 +5661,6 @@ public class AddNewLeadActivity extends AppCompatActivity
             }
         }
 
-
         ApiClient client = ApiClient.getInstance();
         client.getApiService().addSalesLead(jsonObject).enqueue(new Callback<JsonObject>()
         {
@@ -5773,8 +5790,8 @@ public class AddNewLeadActivity extends AppCompatActivity
                         String success = response.body().get("success").toString();
                         if(success.equals("1")) {
                             showSuccessDuplicateUpdateAlert();
-
                         }
+                        else if (success.equals("2")) showErrorLog("Mobile Number already exists! Try again.");
                         else showErrorLog("Failed to update customer details! Try again.");
                     }
                 }
@@ -5879,8 +5896,8 @@ public class AddNewLeadActivity extends AppCompatActivity
                         if(success.equals("1")) {
                             hideProgressBar();
                             showSuccessUpdateAlert();
-
                         }
+                        else if (success.equals("2")) showErrorLog("Mobile Number already exists! Try again.");
                         else showErrorLog("Failed to update customer details! Try again.");
                     }
                 }
@@ -6288,8 +6305,10 @@ public class AddNewLeadActivity extends AppCompatActivity
             if(sharedPreferences!=null) {
                 editor = sharedPreferences.edit();
                 editor.putInt("isLeadAdd",1);
+                editor.putBoolean("fromHomeScreen_AddLead", fromHomeScreen_AddLead);
                 editor.apply();
             }
+            Log.e(TAG, "showSuccessAlert: fromHomeScreen_AddLead :"+fromHomeScreen_AddLead );
 
             //do backPress
             new Handler().postDelayed(() -> {
@@ -6336,7 +6355,9 @@ public class AddNewLeadActivity extends AppCompatActivity
                 //do backPress
                 //onBackPressed();
 
-                startActivity(new Intent(context, AllOfflineLeads_Activity.class));
+                startActivity(new Intent(context, AllOfflineLeads_Activity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                //finish this activity
                 finish();
 
             }, 4000);
@@ -6601,13 +6622,11 @@ public class AddNewLeadActivity extends AppCompatActivity
 
         btn_positiveButton.setOnClickListener(view -> {
             alertDialog.dismiss();
-            if(fromShortcut)
-            {
+            if(fromShortcut) {
                 startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
                 finish();
             }
-            else
-            {
+            else {
                 super.onBackPressed();
             }
             overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );

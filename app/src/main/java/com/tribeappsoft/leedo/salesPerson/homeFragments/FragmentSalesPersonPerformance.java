@@ -35,10 +35,10 @@ import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.salesPerson.SalesPersonBottomNavigationActivity;
 import com.tribeappsoft.leedo.salesPerson.filterFeed.FeedFilterActivity;
 import com.tribeappsoft.leedo.salesPerson.models.MyPerformanceModel;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatBookingDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatGHPDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatSiteVisitDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatBookingDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatGHPDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatLeadDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatSiteVisitDetailsActivity;
 import com.tribeappsoft.leedo.util.Helper;
 
 import java.io.IOException;

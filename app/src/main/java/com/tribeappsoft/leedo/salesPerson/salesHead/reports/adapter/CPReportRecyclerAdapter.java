@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textview.MaterialTextView;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.salesPerson.salesHead.reports.FOSReportActivity;
-import com.tribeappsoft.leedo.salesPerson.teamStats.model.TeamStatsModel;
+import com.tribeappsoft.leedo.admin.reports.teamStats.model.TeamStatsModel;
 import com.tribeappsoft.leedo.util.Animations;
 
 import java.util.ArrayList;

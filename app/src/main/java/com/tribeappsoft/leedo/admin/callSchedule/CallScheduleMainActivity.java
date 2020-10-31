@@ -104,7 +104,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_schedule_main);
-      //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
+        //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
         ButterKnife.bind(this);
         context = CallScheduleMainActivity.this;
 
@@ -157,7 +157,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             call_getCallScheduleLogCount();
 
             //get date wise count
-            call_getCallLogCount(getCurDate());
+            call_getCallLogCount(getCurDate(), false);
         }
         else {
             //network error
@@ -167,7 +167,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             //setupViewPager(getFormatDateForToDo(getTodaysDateStringToDo()));
 
             // Set Tabs inside Toolbar
-           // mTabLayout.setupWithViewPager(mViewPager);
+            // mTabLayout.setupWithViewPager(mViewPager);
 
         }
 
@@ -209,7 +209,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             insertCurDate(getPrevDate(getCurDate()));
 
             //slide in left
-           // Animation animation = AnimationUtils.loadAnimation(context, R.anim.trans_left_in);
+            // Animation animation = AnimationUtils.loadAnimation(context, R.anim.trans_left_in);
             //animation.setDuration(500);
             //ll_curDate.setAnimation(animation);
             //ll_curDate.animate();
@@ -219,14 +219,14 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             setDateToUI(setDate);
 
             new Handler().postDelayed(() -> {
-                if (isNetworkAvailable(context)) call_getCallLogCount(getCurDate());
+                if (isNetworkAvailable(context)) call_getCallLogCount(getCurDate(), true);
                 else {
 
                     NetworkError(context);
                     //set up view pager
                     //setupViewPager(setDate);
                     // Set Tabs inside Toolbar
-                   // mTabLayout.setupWithViewPager(mViewPager);
+                    // mTabLayout.setupWithViewPager(mViewPager);
                 }
             }, 500);
 
@@ -258,14 +258,14 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             setDateToUI(setDate);
 
             new Handler().postDelayed(() -> {
-                if (isNetworkAvailable(context)) call_getCallLogCount(getCurDate());
+                if (isNetworkAvailable(context)) call_getCallLogCount(getCurDate(), true);
                 else {
                     NetworkError(context);
 
                     //set up view pager
-                   // setupViewPager(setDate);
+                    // setupViewPager(setDate);
                     // Set Tabs inside Toolbar
-                  //  mTabLayout.setupWithViewPager(mViewPager);
+                    //  mTabLayout.setupWithViewPager(mViewPager);
                 }
             }, 500);
 
@@ -363,6 +363,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
         // Set Tabs inside Toolbar
         //mTabLayout.setupWithViewPager(mViewPager);
 
+        Log.e(TAG, "onSetTabsViewPager: date "+date);
         Objects.requireNonNull(mTabLayout.getTabAt(tabAt)).select();
 
         BadgeDrawable badge_scheduled = Objects.requireNonNull(mTabLayout.getTabAt(0)).getOrCreateBadge();
@@ -489,7 +490,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
     }
 
 
-    private void call_getCallLogCount(String serviceDate)
+    private void call_getCallLogCount(String serviceDate, boolean isCallToResumeMethod)
     {
         String todoDate = getSendFormatDateForToDo(serviceDate);
         ApiClient client = ApiClient.getInstance();
@@ -515,7 +516,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
                 }
 
                 // set up view pager and tabLayout
-                setTabCountViewPager(serviceDate);
+                setTabCountViewPager(serviceDate, isCallToResumeMethod);
             }
 
             @Override
@@ -523,29 +524,31 @@ public class CallScheduleMainActivity extends AppCompatActivity {
                 Log.e(TAG, "onError: " + e.toString());
 
                 // set up view pager and tabLayout
-                setTabCountViewPager(serviceDate);
+                setTabCountViewPager(serviceDate, isCallToResumeMethod);
             }
         });
     }
 
 
-    private void setTabCountViewPager(String serviceDate)
+    private void setTabCountViewPager(String serviceDate, boolean isCallToResumeMethod)
     {
         runOnUiThread(() -> {
 
             // Setting ViewPager for each Tabs
             //setupViewPager(serviceDate);
             // Set Tabs inside Toolbar
-           // mTabLayout.setupWithViewPager(mViewPager);
+            // mTabLayout.setupWithViewPager(mViewPager);
 
-            FragmentScheduledCalls.getInstance().onResume();
-            FragmentCompletedCalls.getInstance().onResume();
+            if (isCallToResumeMethod) {
+                FragmentScheduledCalls.getInstance().onResume();
+                FragmentCompletedCalls.getInstance().onResume();
+            }
 
             //set up view pager for each Tabs
             //setupViewPager(getFormatDateForToDo(getTodaysDateStringToDo()), scheduledCount, completedCount);
 
             // Set Tabs inside Toolbar
-           // mTabLayout.setupWithViewPager(mViewPager);
+            // mTabLayout.setupWithViewPager(mViewPager);
 
             //set tabs badgeCount
             onSetTabsViewPager(serviceDate, scheduledCount, completedCount, 0, true);
@@ -626,6 +629,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void showCustomCalendarAlertDialog()
     {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -671,7 +675,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
                 //dismiss the dialog
                 alertDialog.dismiss();
 
-                if (isNetworkAvailable(context)) call_getCallLogCount(getStringDateFromDate(dateClicked));
+                if (isNetworkAvailable(context)) call_getCallLogCount(getStringDateFromDate(dateClicked), true);
                 else {
                     //network error
                     NetworkError(context);
@@ -680,7 +684,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
                     //setupViewPager(getFormatDateForToDo(getStringDateFromDate(dateClicked)));
 
                     // Set Tabs inside Toolbar
-                  //  mTabLayout.setupWithViewPager(mViewPager);
+                    //  mTabLayout.setupWithViewPager(mViewPager);
                 }
 
 
@@ -806,7 +810,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
         }*/
     }
 
-    private void setToMidnight(Calendar calendar) {
+    /*private void setToMidnight(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
@@ -815,7 +819,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
 
     public interface onTabChangeInterface{
         void callOnTabChangedMethod();
-    }
+    }*/
 
 
     @Override
@@ -835,7 +839,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
                 break;
 
             case (R.id.action_eventCalendar):
-               showCustomCalendarAlertDialog();
+                showCustomCalendarAlertDialog();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -856,13 +860,12 @@ public class CallScheduleMainActivity extends AppCompatActivity {
         if(notify) {
             startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
             finish();
-            clearFilters();
         }
         else {
             super.onBackPressed();
-            clearFilters();
             // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
         }
+        clearFilters();
     }
 
 

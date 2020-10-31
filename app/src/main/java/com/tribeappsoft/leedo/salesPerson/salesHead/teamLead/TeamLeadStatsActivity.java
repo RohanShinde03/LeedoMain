@@ -32,12 +32,12 @@ import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatBookingDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatGHPDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatLeadDetailsActivity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.detailedStats.StatSiteVisitDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatBookingDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatGHPDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatLeadDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatSiteVisitDetailsActivity;
 import com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.model.TeamLeadStatsModel;
-import com.tribeappsoft.leedo.salesPerson.teamStats.model.TeamStatsModel;
+import com.tribeappsoft.leedo.admin.reports.teamStats.model.TeamStatsModel;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.ZoomLinearLayout;
 

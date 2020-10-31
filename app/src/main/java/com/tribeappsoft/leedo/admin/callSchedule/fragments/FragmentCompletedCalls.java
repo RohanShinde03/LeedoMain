@@ -117,7 +117,7 @@ public class FragmentCompletedCalls extends Fragment //implements CallScheduleMa
     private AppCompatTextView tvFilterItemCount;
     private Calendar currentCalender;
     private SimpleDateFormat dateFormatForDisplaying, dateFormatForMonth;
-    private boolean isSalesHead = false,isSalesTeamLead = false, onStop = false;
+    private boolean isSalesHead = false, isAdmin = false, onStop = false;
     private static FragmentCompletedCalls instance = null;
 
 
@@ -174,7 +174,7 @@ public class FragmentCompletedCalls extends Fragment //implements CallScheduleMa
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         itemArrayList = new ArrayList<>();
         onStop = false;
 
@@ -1102,7 +1102,7 @@ public class FragmentCompletedCalls extends Fragment //implements CallScheduleMa
 
         final MenuItem menuItem = menu.findItem(R.id.action_call_schedule_filter);
         //set visible only for SH or TL
-        menuItem.setVisible(isSalesHead || isSalesTeamLead);
+        menuItem.setVisible(isSalesHead || isAdmin);
 
         View actionView = menuItem.getActionView();
         tvFilterItemCount = actionView.findViewById(R.id.cart_badge);

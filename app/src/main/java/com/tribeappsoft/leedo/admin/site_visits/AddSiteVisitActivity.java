@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -31,7 +30,6 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -48,12 +46,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.leads.CustomerIdActivity;
+import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.leads.LeadStagesModel;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
 import com.tribeappsoft.leedo.models.project.UnitCategoriesModel;
-import com.tribeappsoft.leedo.admin.leads.CustomerIdActivity;
-import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
 import com.tribeappsoft.leedo.salesPerson.adapter.CustomerAdapter;
 import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
 import com.tribeappsoft.leedo.util.Helper;
@@ -117,8 +115,8 @@ public class AddSiteVisitActivity extends AppCompatActivity {
     private SpeechRecognizer mSpeechRecognizer;
     private Intent mSpeechRecognizerIntent;
     private static final int AUDIO_PERMISSION_REQUEST_CODE = 145;
-    private int fromOther=0;
-    private boolean flagExit=false;
+    //private int fromOther=0;
+    private boolean flagExit=false,fromHomeScreen_AddSiteVisit=false;
 
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
@@ -136,15 +134,17 @@ public class AddSiteVisitActivity extends AppCompatActivity {
             cuidModel = (CUIDModel) getIntent().getSerializableExtra("cuidModel");
             cuidNumber =  getIntent().getStringExtra("lead_cu_id");
             customer_name =  getIntent().getStringExtra("lead_name");
+            fromHomeScreen_AddSiteVisit =  getIntent().getBooleanExtra("fromHomeScreen_AddSiteVisit",false);
             lead_id = getIntent().getIntExtra("lead_id", 0);
         }
 
         if (getSupportActionBar()!=null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(fromOther==2 ? getString(R.string.update_site_visit): getString(R.string.add_site_visit));
+            //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
+            //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.add_site_visit));
+            getSupportActionBar().setTitle(getString(R.string.add_site_visit));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -1091,10 +1091,12 @@ public class AddSiteVisitActivity extends AppCompatActivity {
             {
                 editor = sharedPreferences.edit();
                 editor.putBoolean("feedActionAdded", true);
+                editor.putBoolean("fromHomeScreen_AddSiteVisit", fromHomeScreen_AddSiteVisit);
                 editor.putInt("isSiteVisitAdd", 1);
                 editor.apply();
             }
 
+            Log.e(TAG, "AddNewSiteVisit: "+fromHomeScreen_AddSiteVisit);
         });
     }
 

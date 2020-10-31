@@ -169,7 +169,7 @@ public class CallLogActivity extends AppCompatActivity {
         selectedSec = c.get(Calendar.SECOND);
 
         if (!fromPhoneCall){
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
             String currentTime = sdf.format(new Date());
             sendCallStartTime=currentTime;
             edt_startTime.setText(currentTime);

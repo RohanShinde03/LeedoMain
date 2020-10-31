@@ -71,7 +71,7 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
         SharedPreferences sharedPreferences = new Helper().getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        boolean isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         int user_id = sharedPreferences.getInt("user_id", 0);
         String api_token = sharedPreferences.getString("api_token", "");
         editor.apply();
@@ -97,7 +97,7 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
         holder.tv_LeadsOwnTag.setText(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? model.getLead_types_name(): "");
         //holder.ll_LeadType.setVisibility(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? View.VISIBLE :View.GONE);
 
-        holder.ll_scheduledBy.setVisibility(isSalesHead || isSalesTeamLead ? View.VISIBLE : View.GONE);
+        holder.ll_scheduledBy.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         holder.mBtn_reschedule.setVisibility(isFromSchedule && model.getSales_person_id() == user_id ? View.VISIBLE : View.GONE);
         //holder.mBtn_reschedule.setVisibility(model.getSchedule_status_id()==2 ? View.GONE : View.VISIBLE);
         holder.view_callScheduleMain.setVisibility(isFromSchedule ? View.GONE : View.VISIBLE);

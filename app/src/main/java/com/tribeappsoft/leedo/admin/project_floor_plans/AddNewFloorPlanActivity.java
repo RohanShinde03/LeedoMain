@@ -98,7 +98,7 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
     Activity context;
     private int selectedProjectID=0,project_floor_plan_id=0,fromOther = 1; //TODO fromOther ==> 1 - Add project Floor Plan,2.update project Floor Plan,
     private String api_token="",floorPlanUrl=null,selectedProjectName="",floor_plan_title="",selectedProjectTitle="",media_path=null,project_floor_plan_desc="";
-    private int project_docType_id = 2,mediaTypeId = 0,selectedProjectId=0;
+    private int project_docType_id = 2,mediaTypeId = 0,selectedProjectId=0, user_id =0;
     //project_docType_id : 1 =>Brochures, 2=>floor plan, 3=>Quotations
     //mediaTypeId : 1=>document, 2=>video, 3=>audio, 4=>photo
 
@@ -144,7 +144,7 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
 
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         editor = sharedPreferences.edit();
-        //user_id = sharedPreferences.getInt("user_id", 0);
+        user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         editor.apply();
 
@@ -222,7 +222,7 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
     private void call_getAllProjects()
     {
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().getAllProjects(api_token).enqueue(new Callback<JsonObject>()
+        client.getApiService().getUserWiseAllProjects(api_token, user_id).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)

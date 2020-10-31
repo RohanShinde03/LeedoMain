@@ -77,6 +77,7 @@ public class AllProjectActivity extends AppCompatActivity {
     private String api_token="";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private int user_id =0;
 
 
     @Override
@@ -102,6 +103,8 @@ public class AllProjectActivity extends AppCompatActivity {
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
+        user_id = sharedPreferences.getInt("user_id", 0);
+        //boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         Log.e(TAG, "onCreate: "+api_token);
         editor.apply();
 
@@ -132,12 +135,14 @@ public class AllProjectActivity extends AppCompatActivity {
 
         if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
             showPB("getting project list...");
-           // swipeRefresh.setRefreshing(true);
-            new Handler(getMainLooper()).postDelayed(this::call_getAllProjectList, 100);
+                // swipeRefresh.setRefreshing(true);
+                new Handler(getMainLooper()).postDelayed(this::call_getAllProjectList, 100);
         }
         else {
             Helper.NetworkError(context);
         }
+
+        //exFab_createProject.setVisibility(isAdmin ? View.VISIBLE : View.GONE);
         exFab_createProject.setOnClickListener(v -> startActivity(new Intent(context, CreateProjectActivity.class)));
 
     }
@@ -225,7 +230,7 @@ public class AllProjectActivity extends AppCompatActivity {
     private void call_getAllProjectList()
     {
         ApiClient client = ApiClient.getInstance();
-        Observable<Response<JsonObject>> responseObservable = client.getApiService().getProjectList(api_token);
+        Observable<Response<JsonObject>> responseObservable = client.getApiService().getProjectList(api_token, user_id);
         responseObservable.subscribeOn(Schedulers.newThread());
         responseObservable.asObservable();
         responseObservable.doOnNext(jsonObjectResponse -> {

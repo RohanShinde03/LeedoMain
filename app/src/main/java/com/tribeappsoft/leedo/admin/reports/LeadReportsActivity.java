@@ -20,9 +20,9 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.AllCallLogStats_Activity;
-import com.tribeappsoft.leedo.salesPerson.salesHead.salesHeadDashboard.SalesHeadDashboard_Activity;
-import com.tribeappsoft.leedo.salesPerson.teamStats.TeamStatsActivity;
+import com.tribeappsoft.leedo.admin.reports.callLogStats.AllCallLogStats_Activity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.SalesHeadDashboard_Activity;
+import com.tribeappsoft.leedo.admin.reports.teamStats.TeamStatsActivity;
 import com.tribeappsoft.leedo.util.Helper;
 
 import butterknife.BindView;

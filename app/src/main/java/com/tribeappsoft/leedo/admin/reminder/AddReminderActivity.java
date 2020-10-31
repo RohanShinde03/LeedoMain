@@ -74,7 +74,7 @@ public class AddReminderActivity extends AppCompatActivity {
     private AppCompatActivity context;
     private String TAG = "AddReminderActivity";
     private int mYear, mMonth, mDay, selectedDay, selectedMonth, selectedYear, selectedHour, selectedMinute, selectedSec ;
-    private boolean fromShortcut = false, isReminderAdded= false, isGreaterThanCurrent= false;
+    private boolean fromShortcut = false, isReminderAdded= false, isGreaterThanCurrent= false,fromHomeScreen_AddReminder=false;
     private final static int RQS_1 = 1;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -87,7 +87,7 @@ public class AddReminderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
-     //   overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
+        //   overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
         ButterKnife.bind(this);
         context = AddReminderActivity.this;
 
@@ -117,6 +117,7 @@ public class AddReminderActivity extends AppCompatActivity {
             lead_name = getIntent().getStringExtra("lead_name");
             //cu_id = getIntent().getStringExtra("cu_id");
             //project_name = getIntent().getStringExtra("project_name");
+            fromHomeScreen_AddReminder = getIntent().getBooleanExtra("fromHomeScreen_AddReminder",false);
             lead_id = getIntent().getIntExtra("lead_id", 0);
         }
 
@@ -566,6 +567,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 editor = sharedPreferences.edit();
                 editor.putBoolean("feedActionAdded", true);
                 editor.putBoolean("isReminderAdded", true);
+                editor.putBoolean("fromHomeScreen_AddReminder", fromHomeScreen_AddReminder);
                 editor.apply();
             }
 

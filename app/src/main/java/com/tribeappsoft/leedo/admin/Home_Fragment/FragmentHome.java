@@ -172,17 +172,21 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
 
         hideProgressBar();
 
-        if(!isSalesHead){
-            ll_fragHome_salesPersonDropdown.setVisibility(View.GONE);
+        if(isSalesHead || isAdmin){
+            //visible sales person filter only if Admin or SH
+            ll_fragHome_salesPersonDropdown.setVisibility(View.VISIBLE);
             selectedSalesPersonId = sharedPreferences.getInt("user_id", 0);
+        }
+        else {
+            ll_fragHome_salesPersonDropdown.setVisibility(View.GONE);
         }
 
         projectStringArrayList =new ArrayList<>();
-
         getScreenResolution(context);
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.getDefault());
@@ -209,10 +213,14 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         //Get meetings data
         if (Helper.isNetworkAvailable(Objects.requireNonNull(requireActivity()))) {
 
-            if(isSalesHead){
+            if(isAdmin){
                 new Handler(getMainLooper()).postDelayed(this::call_getAllProjectList, 20);
                 new Handler(getMainLooper()).postDelayed(this::call_getAllUsers, 50);
-            }else {
+            }else if (isSalesHead){
+                new Handler(getMainLooper()).postDelayed(this::call_getUserWiseAllProjectList, 20);
+                new Handler(getMainLooper()).postDelayed(this::call_getAllUsers, 50);
+            }
+            else {
                 new Handler(getMainLooper()).postDelayed(this::call_getUserWiseAllProjectList, 20);
             }
         }
@@ -302,7 +310,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
                                     }
 
                                     setProjectAdapter();
-                                } , 1000);
+                                }, 1000);
                             }
                             else showErrorLog(getString(R.string.no_project_assigned));
                         } else showErrorLog(getString(R.string.something_went_wrong_try_again));
@@ -666,7 +674,6 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         super.onResume();
 
         Log.e(TAG, "onResume: ");
-
         setNewestPage();
 
         //setOfflineLeads();
@@ -685,8 +692,48 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        else if(sharedPreferences.getBoolean("fromHomeScreen_AddSiteVisit", false))
+        {
+            Log.e(TAG, "onResume:fromHomeScreen_AddSiteVisit  "+sharedPreferences.getBoolean("fromHomeScreen_AddSiteVisit", false) );
+            try{
+                Objects.requireNonNull(mTabLayout.getTabAt(1)).select();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            editor.putBoolean("fromHomeScreen_AddSiteVisit", false);
 
         }
+        else if(sharedPreferences.getBoolean("fromHomeScreen_AddLead", false))
+        {
+            Log.e(TAG, "onResume:fromHomeScreen_AddLead  "+sharedPreferences.getBoolean("fromHomeScreen_AddLead", false) );
+            try{
+                Objects.requireNonNull(mTabLayout.getTabAt(2)).select();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            editor.putBoolean("fromHomeScreen_AddLead", false);
+
+        }
+
+        else if(sharedPreferences.getBoolean("fromHomeScreen_AddReminder", false))
+        {
+            Log.e(TAG, "onResume:fromHomeScreen_AddReminder  "+sharedPreferences.getBoolean("fromHomeScreen_AddReminder", false) );
+            try{
+                Objects.requireNonNull(mTabLayout.getTabAt(3)).select();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            editor.putBoolean("fromHomeScreen_AddReminder", false);
+
+        }
+
         editor.apply();
 
 

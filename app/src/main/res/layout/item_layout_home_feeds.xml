@@ -194,40 +194,40 @@
 
                                             </RelativeLayout>
 
-                                          <!--  &lt;!&ndash; tag &ndash;&gt;
-                                            <androidx.appcompat.widget.LinearLayoutCompat
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:background="@color/color_tag_background"
-                                                android:orientation="horizontal"
-                                                android:visibility="gone"
-                                                android:paddingStart="12dp"
-                                                android:paddingTop="6dp"
-                                                android:paddingBottom="6dp"
-                                                android:paddingEnd="8dp"
-                                                android:gravity="center">
+                                            <!--  &lt;!&ndash; tag &ndash;&gt;
+                                              <androidx.appcompat.widget.LinearLayoutCompat
+                                                  android:layout_width="wrap_content"
+                                                  android:layout_height="wrap_content"
+                                                  android:background="@color/color_tag_background"
+                                                  android:orientation="horizontal"
+                                                  android:visibility="gone"
+                                                  android:paddingStart="12dp"
+                                                  android:paddingTop="6dp"
+                                                  android:paddingBottom="6dp"
+                                                  android:paddingEnd="8dp"
+                                                  android:gravity="center">
 
 
-                                                <androidx.appcompat.widget.AppCompatImageView
-                                                    android:id="@+id/iv_homeFeed_ownTagIcon"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:src="@drawable/ic_tag"
-                                                    android:scaleType="centerCrop"/>
+                                                  <androidx.appcompat.widget.AppCompatImageView
+                                                      android:id="@+id/iv_homeFeed_ownTagIcon"
+                                                      android:layout_width="wrap_content"
+                                                      android:layout_height="wrap_content"
+                                                      android:src="@drawable/ic_tag"
+                                                      android:scaleType="centerCrop"/>
 
 
-                                                <androidx.appcompat.widget.AppCompatTextView
-                                                    android:id="@+id/tv_homeFeed_ownStatus"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:paddingLeft="6dp"
-                                                    android:paddingRight="2dp"
-                                                    android:text="@string/tag_r_n_l"
-                                                    android:theme="@style/styleFontMediumText"
-                                                    android:textSize="14sp"
-                                                    android:layout_gravity="center"/>
+                                                  <androidx.appcompat.widget.AppCompatTextView
+                                                      android:id="@+id/tv_homeFeed_ownStatus"
+                                                      android:layout_width="wrap_content"
+                                                      android:layout_height="wrap_content"
+                                                      android:paddingLeft="6dp"
+                                                      android:paddingRight="2dp"
+                                                      android:text="@string/tag_r_n_l"
+                                                      android:theme="@style/styleFontMediumText"
+                                                      android:textSize="14sp"
+                                                      android:layout_gravity="center"/>
 
-                                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+                                              </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
                                         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -476,6 +476,18 @@
                                                     android:layout_marginTop="3dp"
                                                     android:layout_marginBottom="3dp"
                                                     android:src="@drawable/ic_reminder_red"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="centerCrop"
+                                                    android:visibility="visible"
+                                                    android:contentDescription="@string/app_name"/>
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:id="@+id/iv_homeFeed_ownCallScheduleIcon"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="3dp"
+                                                    android:layout_marginBottom="3dp"
+                                                    android:src="@drawable/ic_reminder_blue"
                                                     android:layout_gravity="center"
                                                     android:scaleType="centerCrop"
                                                     android:visibility="visible"

@@ -121,7 +121,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
             sendAlreadySiteFormattedVisitDate="";
 
     public int selectedProjectId  = 0,user_id=0, lead_id =0, mYear, mMonth, mDay, selectedFlatTypeId =0;
-    private boolean isSalesHead=false;
+    private boolean fromHomeScreen_AddBooking=false,UnitBooked=false;
 
 
     @Override
@@ -138,6 +138,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
             cuidModel = (CUIDModel) getIntent().getSerializableExtra("cuidModel");
             cuidNumber =  getIntent().getStringExtra("lead_cu_id");
             customer_name =  getIntent().getStringExtra("lead_name");
+            fromHomeScreen_AddBooking =  getIntent().getBooleanExtra("fromHomeScreen_AddBooking",false);
             lead_id = getIntent().getIntExtra("lead_id", 0);
         }
 
@@ -159,7 +160,6 @@ public class MarkAsBook_Activity extends AppCompatActivity {
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         full_name =sharedPreferences.getString("full_name",getString(R.string.user_name));
-        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         tv_sales_representative.setText(full_name);
 
 
@@ -1208,6 +1208,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
 
             Log.e(TAG, "Mark As Booked" );
 
+            UnitBooked=true;
             showSuccessAlert();
 
             //set Feed Action Added to true
@@ -1305,8 +1306,13 @@ public class MarkAsBook_Activity extends AppCompatActivity {
     public void onBackPressed()
     {
         //if (isVisitSubmitted) setResult(Activity.RESULT_OK, new Intent().putExtra("result", "Site Visit Added"));
-        super.onBackPressed();
+        if(fromHomeScreen_AddBooking && UnitBooked) {
+            startActivity(new Intent(context, BookedCustomersActivity.class));
+            finish();
+        }
+        else{
+            super.onBackPressed();
+            overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
+        }
     }
-
-
 }

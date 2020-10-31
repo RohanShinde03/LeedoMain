@@ -52,17 +52,13 @@ public class HomeReminderAdapter extends  RecyclerView.Adapter<HomeReminderAdapt
     private Activity context;
     private Fragment_Reminders fragment_reminders;
     private String TAG = "ReminderRecyclerAdapter";
-    private boolean isSalesHead = false;
-    private SharedPreferences sharedPreferences;
 
 
     public HomeReminderAdapter(Activity context, ArrayList<ReminderModel> reminderArrayList, Fragment_Reminders fragment_reminders) {
-        sharedPreferences = new Helper().getSharedPref(context);
         this.context = context;
         this.reminderArrayList = reminderArrayList;
         this.fragment_reminders = fragment_reminders;
         this.anim = new Animations();
-        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
     }
 
 
@@ -85,6 +81,8 @@ public class HomeReminderAdapter extends  RecyclerView.Adapter<HomeReminderAdapt
     public void onBindViewHolder(@NonNull final AdapterViewHolder holder, final int position) {
         SharedPreferences sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
         api_token = sharedPreferences.getString("api_token", "");
 
@@ -92,7 +90,7 @@ public class HomeReminderAdapter extends  RecyclerView.Adapter<HomeReminderAdapt
         setAnimation(holder.cv_itemReminderList, position);
 
         final ReminderModel myModel = reminderArrayList.get(position);
-        if(isSalesHead){
+        if(isSalesHead || isAdmin){
             holder.ll_lead_addedBy.setVisibility(View.VISIBLE);
         }
         holder.tv_reminder.setText(myModel.getReminder_name() != null && !myModel.getReminder_name().trim().isEmpty() ? myModel.getReminder_name() : "");

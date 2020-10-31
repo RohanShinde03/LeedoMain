@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cl_callStatDetails"
-    tools:context="com.tribeappsoft.leedo.salesPerson.salesHead.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity">
+    tools:context="com.tribeappsoft.leedo.admin.reports.callLogStats.detailedStatsList.FilterCallCompletedDetailsActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

@@ -1052,7 +1052,7 @@ public class LoginActivity extends AppCompatActivity implements WSCallerVersionL
         //Check role_id 2 in array  for sales head
         for (UserRolesModel rolesModel: rolesModelArrayList)
         {
-            if(rolesModel.getRole_id()==1 || rolesModel.getRole_id()==2)
+            if(rolesModel.getRole_id()==2)
                 return true;
         }
         return false;

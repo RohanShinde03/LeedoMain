@@ -98,7 +98,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
     //private AppCompatTextView tvFilterItemCount;
     private Calendar currentCalender;
     private SimpleDateFormat dateFormatForDisplaying, dateFormatForMonth;
-    //private boolean isSalesHead = false,isSalesTeamLead = false, onStop = false;
     private static Fragment_CallList instance = null;
 
     public Fragment_CallList() {
@@ -151,7 +150,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
-        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
         itemArrayList = new ArrayList<>();
         //onStop = false;
@@ -188,7 +186,6 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
-        //isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         //isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
 
         //hide pb

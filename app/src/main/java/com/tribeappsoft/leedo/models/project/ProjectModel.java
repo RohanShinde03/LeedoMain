@@ -3,7 +3,7 @@ package com.tribeappsoft.leedo.models.project;
 import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
 import com.tribeappsoft.leedo.salesPerson.models.AllottedFlatListModel;
 import com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.model.TeamLeadStatsModel;
-import com.tribeappsoft.leedo.salesPerson.teamStats.model.TeamStatsModel;
+import com.tribeappsoft.leedo.admin.reports.teamStats.model.TeamStatsModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;

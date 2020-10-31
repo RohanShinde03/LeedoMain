@@ -79,7 +79,7 @@ public class ProjectFloorPlanActivity extends AppCompatActivity {
     public int user_id = 0,selectedProjectId=0, myPosition =0;
     public String selectedProjectName="", api_token ="";
     private int project_doc_type_id = 2;//project_docType_id : 1 =>Brochures, 2=>floor plan, 3=>Quotations
-    private boolean isSalesHead=false,notify=false;
+    private boolean isSalesHead=false, isAdmin = false, notify=false;
 
 
     @Override
@@ -106,6 +106,7 @@ public class ProjectFloorPlanActivity extends AppCompatActivity {
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         editor = sharedPreferences.edit();
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         editor.apply();
@@ -118,7 +119,7 @@ public class ProjectFloorPlanActivity extends AppCompatActivity {
             notify=getIntent().getBooleanExtra("notify",false);
         }
 
-        exFab_addFloorPlan.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
+        exFab_addFloorPlan.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         //setup recyclerView
         setupRecycleView();
 
@@ -211,7 +212,7 @@ public class ProjectFloorPlanActivity extends AppCompatActivity {
         boolean IsBrochureAdded = sharedPreferences.getBoolean("IsBrochureAdded", false);
         editor.apply();
 
-        exFab_addFloorPlan.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
+        exFab_addFloorPlan.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
 
         if(IsBrochureAdded)
         {

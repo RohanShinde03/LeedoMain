@@ -278,8 +278,8 @@ public class LeadReportActivity extends AppCompatActivity {
             //isTeamLeadStat = getIntent().getBooleanExtra("isTeamLeaderStat",false);
 
             //if (lead_status_id ==1) {
-                //for unclaimed leads -- send sale person id zer0
-              //  sales_person_id =0;
+            //for unclaimed leads -- send sale person id zer0
+            //  sales_person_id =0;
             //}
 
             if(full_name == null || full_name.trim().isEmpty()){
@@ -1582,6 +1582,7 @@ public class LeadReportActivity extends AppCompatActivity {
                 if (object.has("full_name"))cuidModel.setCustomer_name(!object.get("full_name").isJsonNull() ? object.get("full_name").getAsString() : "");
                 if (object.has("is_kyc_uploaded"))cuidModel.setIs_kyc_uploaded(!object.get("is_kyc_uploaded").isJsonNull() ? object.get("is_kyc_uploaded").getAsInt() : 0);
                 if (object.has("is_reminder"))cuidModel.setIs_reminder_set(!object.get("is_reminder").isJsonNull() ? object.get("is_reminder").getAsInt() : 0);
+                if (object.has("is_call_scheduled"))cuidModel.setIs_call_scheduled(!object.get("is_call_scheduled").isJsonNull() ? object.get("is_call_scheduled").getAsInt() : 0);
                 if (object.has("call_log_count"))cuidModel.setCall_log_count(!object.get("call_log_count").isJsonNull() ? object.get("call_log_count").getAsInt() : 0);
                 if (object.has("site_visit_count"))cuidModel.setSite_visit_count1(!object.get("site_visit_count").isJsonNull() ? object.get("site_visit_count").getAsInt() : 0);
                 if (object.has("call_schedule_count"))cuidModel.setCall_schedule_count(!object.get("call_schedule_count").isJsonNull() ? object.get("call_schedule_count").getAsInt() : 0);
@@ -1826,6 +1827,7 @@ public class LeadReportActivity extends AppCompatActivity {
         AppCompatTextView tv_own_elapsedTime = rowView.findViewById(R.id.tv_homeFeed_ownElapsedTime);
         AppCompatTextView tv_own_cuIdNumber = rowView.findViewById(R.id.tv_homeFeed_ownCuIdNumber);
         AppCompatImageView iv_ownReminderIcon = rowView.findViewById(R.id.iv_homeFeed_ownReminderIcon);
+        AppCompatImageView iv_ownCallScheduleIcon = rowView.findViewById(R.id.iv_homeFeed_ownCallScheduleIcon);
         AppCompatTextView tv_own_Lead_name = rowView.findViewById(R.id.tv_homeFeed_ownLeadName);
         AppCompatImageView iv_editOwnLeadName = rowView.findViewById(R.id.iv_homeFeed_update_ownLeadName);
         AppCompatTextView tv_own_projectName = rowView.findViewById(R.id.tv_homeFeed_ownProjectName);
@@ -2110,6 +2112,7 @@ public class LeadReportActivity extends AppCompatActivity {
         iv_ownLeadBusinessWhatsApp.setVisibility( myModel.getLead_status_id()==1 ?  View.VISIBLE : View.VISIBLE);
         iv_own_Lead_call.setVisibility( myModel.getLead_status_id()==1 ?  View.VISIBLE : View.VISIBLE);
         if (myModel.getCuidModel()!=null) iv_ownReminderIcon.setVisibility(myModel.getCuidModel().getIs_reminder_set() == 0 ? View.GONE : View.VISIBLE);
+        if (myModel.getCuidModel()!=null) iv_ownCallScheduleIcon.setVisibility(myModel.getCuidModel().getIs_call_scheduled() == 0 ? View.GONE : View.VISIBLE);
 
         //booked
         if (myModel.getLead_status_id() == 3) tv_own_status.setTextColor(context.getResources().getColor(R.color.color_flat_booked));

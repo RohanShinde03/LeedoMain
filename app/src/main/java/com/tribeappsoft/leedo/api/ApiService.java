@@ -102,7 +102,9 @@ public interface ApiService
 
     //get all project list
     @GET(WebServer.GET_ProjectList)
-    Observable<Response<JsonObject>> getProjectList(@Query("api_token") String api_token);
+    Observable<Response<JsonObject>> getProjectList(
+            @Query("api_token") String api_token,
+            @Query("sales_person_id") int sales_person_id);
 
     //get project types
     @GET(WebServer.GET_ProjectTypes)

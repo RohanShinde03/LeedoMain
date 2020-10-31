@@ -483,6 +483,18 @@
                                                     android:contentDescription="@string/app_name"/>
 
                                                 <androidx.appcompat.widget.AppCompatImageView
+                                                    android:id="@+id/iv_itemDrillDownLeads_CallScheduleIcon"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="3dp"
+                                                    android:layout_marginBottom="3dp"
+                                                    android:src="@drawable/ic_reminder_blue"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="centerCrop"
+                                                    android:visibility="visible"
+                                                    android:contentDescription="@string/app_name"/>
+
+                                                <androidx.appcompat.widget.AppCompatImageView
                                                     android:id="@+id/iv_homeFeed_update_ownLeadName"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"

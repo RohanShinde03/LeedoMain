@@ -1,6 +1,6 @@
 package com.tribeappsoft.leedo.salesPerson.salesHead.teamLead.model;
 
-import com.tribeappsoft.leedo.salesPerson.teamStats.model.TeamStatsModel;
+import com.tribeappsoft.leedo.admin.reports.teamStats.model.TeamStatsModel;
 
 import java.util.ArrayList;
 

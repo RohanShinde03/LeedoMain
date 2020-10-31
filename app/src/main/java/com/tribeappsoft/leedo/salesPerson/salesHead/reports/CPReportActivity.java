@@ -38,7 +38,7 @@ import com.tribeappsoft.leedo.api.ApiClient;
 
 import com.tribeappsoft.leedo.salesPerson.salesHead.reports.adapter.CPReportRecyclerAdapter;
 import com.tribeappsoft.leedo.salesPerson.salesHead.reports.cp_filter.AllProjectsActivity;
-import com.tribeappsoft.leedo.salesPerson.teamStats.model.TeamStatsModel;
+import com.tribeappsoft.leedo.admin.reports.teamStats.model.TeamStatsModel;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.MyRecyclerScroll;
