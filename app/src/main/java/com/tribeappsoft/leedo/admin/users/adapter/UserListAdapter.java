@@ -20,13 +20,18 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.users.AddNewUserActivity;
 import com.tribeappsoft.leedo.admin.users.model.UserModel;
 import com.tribeappsoft.leedo.fontAwesome.FontAwesomeManager;
+import com.tribeappsoft.leedo.scaleImage.ScaleImageActivity;
 import com.tribeappsoft.leedo.util.Animations;
+import com.tribeappsoft.leedo.util.Helper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -73,8 +78,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         // holder.ll_AssignedProjects.setVisibility(model.getAssigned_project() != null && !model.getAssigned_project().trim().isEmpty() ? View.VISIBLE :View.GONE);
         // holder.mTv_UserRole.setVisibility(model.getUser_role() != null && !model.getUser_role().trim().isEmpty() ? View.VISIBLE :View.GONE);
 
-        if (model.getProjectModelArrayList()!=null && model.getProjectModelArrayList().size()>0)
-        {
+        if (model.getProjectModelArrayList()!=null && model.getProjectModelArrayList().size()>0) {
             holder.mTv_AssignedProjects.setVisibility(View.GONE);
             holder.ll_ProjectsClick.setVisibility(View.VISIBLE);
             holder.ll_addAssignedProjects.removeAllViews();
@@ -83,9 +87,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
                 View rowView_sub = getAssignedProjectView(i,model);
                 holder.ll_addAssignedProjects.addView(rowView_sub);
             }
-
-        } else
-        {
+        }
+        else {
             holder.ll_addAssignedProjects.setVisibility(View.GONE);
             holder.mTv_AssignedProjects.setVisibility(View.VISIBLE);
             holder.ll_ProjectsClick.setVisibility(View.GONE);
@@ -104,9 +107,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
                 View rowView_sub = getAssignedRolesView(i,model);
                 holder.ll_AssignedRoles.addView(rowView_sub);
             }
-
-        } else
-        {
+        }
+        else {
             holder.ll_AssignedRoles.setVisibility(View.GONE);
             holder.hs_Horizontal_scrollView.setVisibility(View.GONE);
             // holder.mTv_AssignedProjects.setVisibility(View.VISIBLE);
@@ -120,7 +122,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
                 anim.toggleRotate(holder.iv_dropDown_projects, false);
                 collapse(holder.ll_addAssignedProjects);
                 model.setExpand(false);
-            } else    // collapsed
+            }
+            else    // collapsed
             {
                 //do expand view
                 anim.toggleRotate(holder.iv_dropDown_projects, true);
@@ -137,7 +140,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
                 anim.toggleRotate(holder.iv_dropDown_projects, false);
                 collapse(holder.ll_addAssignedProjects);
                 model.setExpand(false);
-            } else    // collapsed
+            }
+            else    // collapsed
             {
                 //do expand view
                 anim.toggleRotate(holder.iv_dropDown_projects, true);
@@ -145,6 +149,32 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
                 model.setExpand(true);
             }
         });
+
+
+        if (Helper.isValidContextForGlide(context))
+        {
+            Glide.with(context)
+                    .load(model.getProfile_photo()!=null ? model.getProfile_photo() : context.getResources().getDrawable(R.drawable.img_def_image_small_120))
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .apply(new RequestOptions().centerCrop())
+                    .apply(new RequestOptions().placeholder(R.drawable.img_def_image_small_120))
+                    .apply(new RequestOptions().error(R.drawable.img_def_image_small_120))
+                    .into(holder.cIv_UserImg);
+        }
+
+
+        //call to image Zoom activity
+        holder.ll_userList_userImg.setOnClickListener(view -> {
+            if(model.getProfile_photo()!=null && !model.getProfile_photo().trim().isEmpty())
+            {
+                context.startActivity(new Intent(context, ScaleImageActivity.class)
+                        .putExtra("banner_path", model.getProfile_photo())
+                        .putExtra("event_title", model.getFull_name() != null && !model.getFull_name().trim().isEmpty()? model.getFull_name() :"User Profile")
+                );
+
+            }else new Helper().showCustomToast(context,"No User Profile Updated!");
+        });
+
 
         //For Update
         holder.iv_item_editUser.setOnClickListener(view -> {
@@ -314,6 +344,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyHold
         @BindView(R.id.mTv_itemLayout_UserRole) MaterialTextView mTv_UserRole;
         @BindView(R.id.ll_itemList_addAssignedProjects) LinearLayoutCompat ll_addAssignedProjects;
         @BindView(R.id.ll_itemLayout_ProjectsClick) LinearLayoutCompat ll_ProjectsClick;
+        @BindView(R.id.ll_userList_userImg) LinearLayoutCompat ll_userList_userImg;
         @BindView(R.id.iv_itemLayout_dropDown_projects) AppCompatImageView iv_dropDown_projects;
 
 

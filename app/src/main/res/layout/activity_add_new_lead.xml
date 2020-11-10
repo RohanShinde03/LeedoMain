@@ -201,21 +201,21 @@
                                     style="@style/TextInputLayout.OutlineBox.CustomFont"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:textColorHint="@color/grey_m"
-                                    android:theme="@style/styleFontMediumText"
                                     android:layout_marginLeft="3dp"
-                                    android:hint="@string/full_name_star">
+                                    android:layout_weight="3"
+                                    android:hint="@string/full_name_star"
+                                    android:textColorHint="@color/grey_m"
+                                    android:theme="@style/styleFontMediumText">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/edt_newLead_leadFirstName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:theme="@style/styleFontMediumText"
-                                        android:textColor="@color/BlackLight"
-                                        android:inputType="textPersonName|textCapSentences"
                                         android:digits="@string/digits_username"
-                                        android:singleLine="true" />
+                                        android:inputType="textPersonName|textCapSentences"
+                                        android:singleLine="true"
+                                        android:textColor="@color/BlackLight"
+                                        android:theme="@style/styleFontMediumText" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -2093,12 +2093,35 @@
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
+                            <!-- budget range edittext -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_newLead_leadBudgetLimit"
+                                style="@style/TextInputLayout.OutlineBox.CustomFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="3"
+                                android:textColorHint="@color/grey_m"
+                                android:theme="@style/styleFontMediumText"
+                                android:layout_marginLeft="3dp"
+                                android:hint="@string/enter_budget_limit">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_newLead_leadBudgetLimit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:theme="@style/styleFontMediumText"
+                                    android:textColor="@color/BlackLight"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
                             <!-- budget range-->
                             <com.google.android.material.textfield.TextInputLayout
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="visible"
+                                android:visibility="gone"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:maxLines="3"
@@ -2116,6 +2139,7 @@
                                     android:layout_height="wrap_content"
                                     android:editable="false"
                                     android:maxLines="3"
+                                    android:visibility="gone"
                                     android:minLines="1"
                                     android:scrollbars="vertical"
                                     android:ellipsize="end"

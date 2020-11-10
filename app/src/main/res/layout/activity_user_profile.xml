@@ -1,347 +1,363 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tribeappsoft.leedo.admin.user_profile.UserProfileActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    android:id="@+id/container_updateProfile">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/cl_main_layout"
+        android:id="@+id/cl_updateProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".admin.user_profile.UserProfileActivity">
 
-        <!--ll_User_photo-->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_main_layout"
-            android:layout_height="wrap_content"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_gravity="top"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp"
-            android:padding="10dp">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:src="@drawable/ic_search_close_icon"/>
-
-            <!--User Profile_photo-->
             <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:id="@+id/cl_image_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:id="@+id/cl_main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_UpdateProfileActivity_userImg"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:src="@drawable/ic_profile_default_user_icon" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_UpdateProfileActivity_changeImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="1dp"
-                    android:visibility="gone"
-                    app:layout_anchor="@+id/iv_UpdateProfileActivity_userImg"
-                    app:layout_anchorGravity="end|bottom"
-                    app:srcCompat="@drawable/ic_edit_image_icon" />
-
-                <ProgressBar
-                    android:id="@+id/pb_editProfileActivity"
-                    android:layout_width="wrap_content"
+                <!--ll_User_photo-->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_main_layout"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="top"
                     android:gravity="center"
-                    android:layout_centerInParent="true"
-                    style="@style/Widget.AppCompat.ProgressBar"
-                    android:visibility="gone"
-                    android:indeterminateDuration="2000"
-                    android:indeterminate="true"
-                    android:indeterminateTintMode="src_atop"
-                    android:indeterminateTint="@color/main_black"
-                    android:layout_gravity="center"/>
-
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtv_userProfileActivity_UserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_name"
-                android:textSize="20dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:theme="@style/styleFontMediumText" />
-
-            <!--<com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtv_userProfileActivity_designation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_role_type"
-                android:textSize="16dp"
-                android:textColor="@color/dark_grey"
-                android:theme="@style/styleFontMediumText" />-->
-
-            <HorizontalScrollView
-                android:id="@+id/hs_Horizontal_scrollView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:scrollbars="none">
-                <!--project Names-->
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/ll_itemList_AssignedRoles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    android:orientation="horizontal">
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </HorizontalScrollView>
-
-
-            <!-- Mobile Number-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="24dp"
-                android:padding="@dimen/dimen_16dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_local_phone_24"
-                    android:tint="@color/colorAccent"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="@dimen/dimen_20dp">
+                    android:layout_marginLeft="5dp"
+                    android:padding="10dp">
 
-                    <com.google.android.material.textview.MaterialTextView
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_close"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_text"
-                        android:theme="@style/styleFontRegularText"/>
+                        android:layout_gravity="left"
+                        android:src="@drawable/ic_search_close_icon"/>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtv_UserProfileActivity_phone"
+                    <!--User Profile_photo-->
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:id="@+id/cl_image_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/mobile_no"
-                        android:textSize="16sp"
-                        android:textColor="@color/main_black"
-                        android:theme="@style/styleFontMedium"/>
+                        android:layout_margin="10dp">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:background="@color/light_grey"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_UpdateProfileActivity_userImg"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            app:civ_border_color="@color/GrayLight"
+                            app:civ_border_width="0.5dp"
+                            android:src="@drawable/ic_profile_default_user_icon" />
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_UpdateProfileActivity_changeImage"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="1dp"
+                            android:visibility="visible"
+                            app:layout_anchor="@+id/iv_UpdateProfileActivity_userImg"
+                            app:layout_anchorGravity="end|bottom"
+                            app:srcCompat="@drawable/ic_edit_image_icon" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        <ProgressBar
+                            android:id="@+id/pb_editProfileActivity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            style="@style/Widget.AppCompat.ProgressBar"
+                            android:visibility="gone"
+                            android:indeterminateDuration="2000"
+                            android:indeterminate="true"
+                            android:indeterminateTintMode="src_atop"
+                            android:indeterminateTint="@color/main_black"
+                            android:layout_gravity="center"/>
 
-            <!-- Email Id-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/ll_email_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dimen_16dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_email_black_24dp"
-                    android:tint="@color/colorAccent"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/dimen_20dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_text"
-                        android:theme="@style/styleFontRegularText"/>
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtv_UserProfileActivity_email"
+                        android:id="@+id/mtv_userProfileActivity_UserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/email"
-                        android:textSize="16sp"
-                        android:theme="@style/styleFontMedium"
-                        android:textColor="@color/main_black"/>
+                        android:text="@string/user_name"
+                        android:textSize="20dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:theme="@style/styleFontMediumText" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:background="@color/light_grey"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!-- Assigned Projects-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/ll_assigned_project_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:visibility="gone"
-                android:padding="@dimen/dimen_16dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_project_gray_24dp"
-                    android:tint="@color/colorAccent"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/dimen_20dp">
-
-                    <com.google.android.material.textview.MaterialTextView
+                    <!--<com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_userProfileActivity_designation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Assigned Projects"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_text"
-                        android:theme="@style/styleFontRegularText"/>
+                        android:text="@string/user_role_type"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_grey"
+                        android:theme="@style/styleFontMediumText" />-->
 
-                    <com.tribeappsoft.leedo.util.FlowLayout
-                        android:id="@+id/fl_itemList_AssignedProjects"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <!--<HorizontalScrollView
-                        android:id="@+id/hs_Horizontal_scrollView_projects"
-                        android:layout_width="match_parent"
+                    <HorizontalScrollView
+                        android:id="@+id/hs_Horizontal_scrollView"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:scrollbars="none">
-                        &lt;!&ndash;project Names&ndash;&gt;
+                        <!--project Names-->
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/ll_itemList_AssignedProjects"
+                            android:id="@+id/ll_itemList_AssignedRoles"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="visible"
                             android:orientation="horizontal">
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    </HorizontalScrollView>-->
+                    </HorizontalScrollView>
 
-                    <View
+
+                    <!-- Mobile Number-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:background="@color/light_grey"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="24dp"
+                        android:padding="@dimen/dimen_16dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_local_phone_24"
+                            android:tint="@color/colorAccent"/>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/dimen_20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_text"
+                                android:theme="@style/styleFontRegularText"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mtv_UserProfileActivity_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mobile_no"
+                                android:textSize="16sp"
+                                android:textColor="@color/main_black"
+                                android:theme="@style/styleFontMedium"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="@dimen/dimen_10dp"
+                                android:background="@color/light_grey"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Email Id-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_email_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_email_black_24dp"
+                            android:tint="@color/colorAccent"/>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/dimen_20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/email"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_text"
+                                android:theme="@style/styleFontRegularText"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mtv_UserProfileActivity_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/email"
+                                android:textSize="16sp"
+                                android:theme="@style/styleFontMedium"
+                                android:textColor="@color/main_black"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="@dimen/dimen_10dp"
+                                android:background="@color/light_grey"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Assigned Projects-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_assigned_project_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:visibility="gone"
+                        android:padding="@dimen/dimen_16dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_project_gray_24dp"
+                            android:tint="@color/colorAccent"/>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/dimen_20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Assigned Projects"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_text"
+                                android:theme="@style/styleFontRegularText"/>
+
+                            <com.tribeappsoft.leedo.util.FlowLayout
+                                android:id="@+id/fl_itemList_AssignedProjects"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                            <!--<HorizontalScrollView
+                                android:id="@+id/hs_Horizontal_scrollView_projects"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="none">
+                                &lt;!&ndash;project Names&ndash;&gt;
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/ll_itemList_AssignedProjects"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:orientation="horizontal">
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </HorizontalScrollView>-->
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="@dimen/dimen_10dp"
+                                android:background="@color/light_grey"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- change password-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_autorenew_24"
+                            android:tint="@color/colorAccent"/>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_change_password_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/dimen_16dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/choose_a_unique_password_to_protect_your_account"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_text"
+                                android:theme="@style/styleFontRegularText"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/mtv_UserProfileActivity_changePassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/change_password"
+                                android:textSize="16sp"
+                                android:padding="6dp"
+                                android:theme="@style/styleFontMedium"
+                                android:drawableRight="@drawable/ic_next_icon_white"
+                                android:background="@drawable/bg_rectangle_round"
+                                android:backgroundTint="@color/black_background"
+                                android:textColor="@color/main_black"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="@dimen/dimen_10dp"
+                                android:background="@color/light_grey"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <!-- change password-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dimen_16dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_autorenew_24"
-                    android:tint="@color/colorAccent"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/ll_change_password_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/dimen_16dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/choose_a_unique_password_to_protect_your_account"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_text"
-                        android:theme="@style/styleFontRegularText"/>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtv_UserProfileActivity_changePassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/change_password"
-                        android:textSize="16sp"
-                        android:padding="6dp"
-                        android:theme="@style/styleFontMedium"
-                        android:drawableRight="@drawable/ic_next_icon_white"
-                        android:background="@drawable/bg_rectangle_round"
-                        android:backgroundTint="@color/black_background"
-                        android:textColor="@color/main_black"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:background="@color/light_grey"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_UpdateProfile_expandedImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:background="@color/main_white">
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <com.tribeappsoft.leedo.util.TouchImageView
-            android:id="@+id/iv_UpdateProfile_expandedImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:minHeight="200dp"
-            android:visibility="invisible"
-            android:scaleType="fitCenter"
-            android:fitsSystemWindows="true"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:focusable="true" />
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</androidx.core.widget.NestedScrollView>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_UpdateProfile_expandedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="@color/main_white">
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.tribeappsoft.leedo.util.TouchImageView
+        android:id="@+id/iv_UpdateProfile_expandedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="200dp"
+        android:visibility="invisible"
+        android:scaleType="fitCenter"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true" />
+
+</FrameLayout>

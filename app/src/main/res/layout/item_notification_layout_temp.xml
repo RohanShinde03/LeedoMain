@@ -40,8 +40,8 @@
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
                         android:tint="@color/colorAccent"
-                        android:src="@drawable/leedo"
-                        app:civ_border_color="@color/GrayLight"
+                        android:src="@mipmap/app_icon_leedo_round"
+                        app:civ_border_color="@color/black_background"
                         app:civ_border_width="0.5dp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -58,7 +58,7 @@
                         android:id="@+id/mTv_notification_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:theme="@style/styleFontRegularText"
+                        android:theme="@style/styleFontMediumText"
                         android:gravity="center|start"
                         android:text="@string/date"
                         android:ellipsize="end"
@@ -87,7 +87,7 @@
                 android:id="@+id/mTv_notification_Body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/styleFontRegularText"
+                android:theme="@style/styleFontMediumText"
                 android:gravity="center|start"
                 android:text="@string/message"
                 android:layout_marginLeft="@dimen/dimen_12dp"

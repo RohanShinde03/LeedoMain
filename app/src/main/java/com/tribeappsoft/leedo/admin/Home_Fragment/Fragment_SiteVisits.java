@@ -205,7 +205,7 @@ public class Fragment_SiteVisits extends Fragment //implements CallScheduleMainA
     private void init()
     {
         //initialise shared pref
-        SharedPreferences sharedPreferences = new Helper().getSharedPref(context);
+        sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
@@ -286,7 +286,7 @@ public class Fragment_SiteVisits extends Fragment //implements CallScheduleMainA
 
         modelArrayList.clear();
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);

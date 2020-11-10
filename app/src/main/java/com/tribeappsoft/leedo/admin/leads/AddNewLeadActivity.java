@@ -193,6 +193,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     @BindView(R.id.edt_newLead_leadProfession) TextInputEditText edt_leadProfession;
     @BindView(R.id.acTv_newLead_selectAnnualIncome) AutoCompleteTextView acTv_selectAnnualIncome;
     @BindView(R.id.acTv_newLead_selectBudgetLimit) AutoCompleteTextView acTv_selectBudgetLimit;
+    @BindView(R.id.edt_newLead_leadBudgetLimit) TextInputEditText edt_newLead_leadBudgetLimit;
     @BindView(R.id.acTv_newLead_leadProfession) AutoCompleteTextView acTv_leadProfession;
     @BindView(R.id.acTv_newLead_leadStage) AutoCompleteTextView acTv_leadStage;
     @BindView(R.id.edt_siteVisit_niReason) TextInputEditText edt_newLead_niReason;
@@ -290,8 +291,8 @@ public class AddNewLeadActivity extends AppCompatActivity
     CustomerAdapter adapter = null;
     private Animations anim;
     private boolean viewLeadDetails =false, viewKycDocs =false, viewLeadCampaign =false, viewProjectDetails =false,
-            viewOtherDetails =false, isAlreadySiteVisited = false, isRefLead = false, isLeadSubmitted = false,
-            isLeadMobileVerified = false, idDocSelected=false, fromShortcut= false, isExpand =false;
+            viewOtherDetails =false, isAlreadySiteVisited = false, isRefLead = false, isLeadSubmitted = false,fromShortcut= false,
+            isExpand =false; // isLeadMobileVerified = false, idDocSelected=false,
 
     private static final String DATE_FORMAT = "dd-MM-yyyy";
     private static final String DATE_FORMAT_SEND_Date = "yyyy-MM-dd";
@@ -322,9 +323,9 @@ public class AddNewLeadActivity extends AppCompatActivity
     //private ArrayList<Integer> catIntegerArrayList;
 
     private String TAG = "AddNewLeadActivity", sendBDate = null, sendPrefVisitFromDate= null, sendPrefVisitToDate= null, sendAlreadySiteVisitDate= null,
-            sendAlreadySiteVisitTime = null, api_token ="", countryPhoneCode = "+91",countryPhoneCode_1 = "+91", countryPhoneCode_ref = "+91",
-            selectedProjectName = "", selectedIncomeRange ="", selectedBudgetLimit ="",lead_Source="",lead_subSource="",lead_source_news_date="", selectedUnitCategory ="", selectedPropertyBuyingReason ="", selectedBuyingDuration ="",
-            sendNewsDate="", selectedNamePrefix ="", selectedUserName ="", lead_id=null, lead_OTP ="", selectedLeadProfessionName = "", selectedLeadStageName = "",
+            sendAlreadySiteVisitTime = null, api_token ="", countryPhoneCode = "+91",countryPhoneCode_1 = "+91", countryPhoneCode_ref = "+91", selectedProjectName = "",
+            selectedIncomeRange ="", selectedBudgetLimit ="", lead_Source="",lead_subSource="",lead_source_news_date="", selectedUnitCategory ="", selectedPropertyBuyingReason ="",
+            selectedBuyingDuration ="", sendNewsDate="", selectedNamePrefix ="", selectedUserName ="", lead_id=null, lead_OTP ="", selectedLeadProfessionName = "", selectedLeadStageName = "",
             sendDateOfBirth="",lead_type_name = "";
 
     private int mYear, mMonth, mDay,nYear, nMonth, nDay,myPosition =0, selectedProjectId =0, selectedIncomeRangeId =0,selectedBudgetLimitId =0,
@@ -333,8 +334,8 @@ public class AddNewLeadActivity extends AppCompatActivity
             leadId =0, duplicate_offline_lead_id =0,person_id = 0;
 
     //private int fromOther = 1; //TODO fromOther ==> 1 - Add New Lead, 2- Edit/Update Lead Info
-    private int FirstHomeID=0,isSuccessNumberExist=0,isSuccessNumberExistOther=0,current_lead_status_id=0;
-    private String existLeadName="",existLeadProject="",existLeadAddedBy ="", existLeadStatus="",existLeadNameOtherNo="",existLeadStatusOtherNo="",existLeadProjectOtherNo="",existOtherLeadAddedBy ="",  existLeadUnitCategory="",existLeadUnitCategoryOtherNo="";
+    private int FirstHomeID=0,isSuccessNumberExist=0,isSuccessNumberExistOther=0,current_lead_status_id=0,lead_id_mobileExist=0;
+    private String existLeadName="",existLeadProject="",existLeadAddedBy ="", existLeadStatus="",existLeadNameOtherNo="",existLeadStatusOtherNo="",existLeadProjectOtherNo="",existOtherLeadAddedBy ="";
     private boolean flagNumduplicate=false,isExist_WhatsAppNo=false,isExist_OtherNo=false,isUpdate = false,fromHomeScreen_AddLead = false,isDuplicateLead = false;
     //private int check=1;
     private SharedPreferences sharedPreferences;
@@ -402,6 +403,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                 ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.update_lead));
             }
 
+            lead_id_mobileExist=leadId;
             mBtn_submitLead.setText(R.string.update_lead);
             rdoGrp_alreadySiteVisited.setVisibility(View.GONE);
             tv_alreadyVisitedTitle.setVisibility(View.GONE);
@@ -432,6 +434,8 @@ public class AddNewLeadActivity extends AppCompatActivity
             if(getSupportActionBar()!= null){
                 ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.update_lead));
             }
+
+            lead_id_mobileExist=duplicate_offline_lead_id;
             mBtn_submitLead.setText(R.string.update_lead);
             rdoGrp_alreadySiteVisited.setVisibility(View.GONE);
             mTv_LeadResourceNote.setVisibility(isDuplicateLead ? View.VISIBLE :View.GONE);
@@ -1127,11 +1131,11 @@ public class AddNewLeadActivity extends AppCompatActivity
 
 
                     if(jsonObject.has("budget_limit")){
-                        acTv_selectBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
+                        edt_newLead_leadBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
                     }
-                    if(jsonObject.has("budget_limit_id")){
+                   /* if(jsonObject.has("budget_limit_id")){
                         selectedBudgetLimitId = !jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0;
-                    }
+                    }*/
 
 
 
@@ -1396,12 +1400,12 @@ public class AddNewLeadActivity extends AppCompatActivity
 
 
                     if(jsonObject.has("budget_limit")){
-                        acTv_selectBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
+                        edt_newLead_leadBudgetLimit.setText(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
                     }
-                    if(jsonObject.has("budget_limit_id")){
+                 /*   if(jsonObject.has("budget_limit_id")){
                         selectedBudgetLimitId = !jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0;
                     }
-
+*/
 
 
                     if(jsonObject.has("is_first_home")){
@@ -1990,7 +1994,7 @@ public class AddNewLeadActivity extends AppCompatActivity
             setAdapterIncomeRanges();
 
             //set adapter for budget limit
-            setAdapterBudgetLimits();
+            //  setAdapterBudgetLimits();
 
             //set adapter for property buy
             setAdapterPropertyBuying();
@@ -3623,7 +3627,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                         String mob_1 = Objects.requireNonNull(edt_leadMobileNo.getText()).toString().trim();
                         String mob_2 = Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().trim();
                         if (sameNumber(mob_1, mob_2, edt_leadMobileNo)) {
-                            new Helper().showCustomToast(context, "Mobile Numbers is same as Alternative Mobile Number!");
+                            new Helper().showCustomToast(context, "Entered mobile number is same as Alternative Mobile Number!");
                         }
                         else {
 
@@ -3642,6 +3646,8 @@ public class AddNewLeadActivity extends AppCompatActivity
                         isExist_WhatsAppNo = false;
                         //set error null
                         edt_leadMobileNo.setError(null);
+                        //set helper text null
+                        til_leadMobile.setHelperText(null);
                     }
                 }
                 //checkButtonEnabled
@@ -3676,7 +3682,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                         String mob_1 = Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString().trim();
                         String mob_2 = Objects.requireNonNull(edt_leadMobileNo.getText()).toString().trim();
                         if (sameNumber(mob_1, mob_2, edt_leadOtherMobileNo)) {
-                            new Helper().showCustomToast(context, "Alternative Mobile Numbers is same as Primary Mobile Number!");
+                            new Helper().showCustomToast(context, "Alternative mobile number is same as Primary Mobile Number!");
                         }
                         else {
 
@@ -3686,7 +3692,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                                 checkMobileNumberExistOtherNo(mobileNumber, false);
                             }
                         }
-                        //sameNumber(edt_leadMobileNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
+                        //sameNumber(edt_leadMobilepnNo.getText().toString(), Objects.requireNonNull(edt_leadOtherMobileNo.getText()).toString());
                     }
                     else {
                         //hide exist lead layout
@@ -3695,6 +3701,8 @@ public class AddNewLeadActivity extends AppCompatActivity
                         isExist_OtherNo = false;
                         //set error null
                         edt_leadOtherMobileNo.setError(null);
+                        //set helper text null
+                        til_leadOtherMobile.setHelperText(null);
                     }
                 }
                 edt_leadOtherMobileNo.setTag(++selections); // (or even just '1')
@@ -3762,7 +3770,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     private void checkMobileNumberExistWhatsApp(String mobileNumber, boolean fromWhatsAppNo)
     {
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().checkMobileNumberExistWhatsApp(api_token,mobileNumber).enqueue(new Callback<JsonObject>()
+        client.getApiService().checkMobileNumberExistWhatsApp(api_token,mobileNumber,lead_id_mobileExist).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
@@ -3831,7 +3839,7 @@ public class AddNewLeadActivity extends AppCompatActivity
     private void checkMobileNumberExistOtherNo(String mobileNumber, boolean fromWhatsAppNo)
     {
         ApiClient client = ApiClient.getInstance();
-        client.getApiService().checkMobileNumberExistOther(api_token,mobileNumber).enqueue(new Callback<JsonObject>()
+        client.getApiService().checkMobileNumberExistOther(api_token,mobileNumber,lead_id_mobileExist).enqueue(new Callback<JsonObject>()
         {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
@@ -3991,7 +3999,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         {
             if(num1.equalsIgnoreCase(num2)) {
                 flagNumduplicate=true;
-                textInputEditText.setError("Mobile number already exits! Please enter another number!!");
+                textInputEditText.setError("Both mobile numbers are same! Please enter another number!!");
                 return  true;
             }
             else {
@@ -4154,7 +4162,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                     new Helper().showSuccessCustomToast(context, "Mobile number verified successfully!");
 
                     //set lead mobile Verified True
-                    isLeadMobileVerified = true;
+                    //isLeadMobileVerified = true;
 
                     //check buttonEnabled
                     //check button enabled
@@ -4230,16 +4238,10 @@ public class AddNewLeadActivity extends AppCompatActivity
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
             {
-                try {
-                    Log.e(TAG, "onError: " + e.toString());
-                    if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
-                    else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
-                    else showErrorLog(e.toString());
-                }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
-                }
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
             }
         });
     }
@@ -4913,7 +4915,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                         //tv_UploadedDoc_Name.setText(getFileName_from_filePath(finalFile.getAbsolutePath()));
 
                         setSelectedDoc(myUploadModel, finalFile.getAbsolutePath());
-                        idDocSelected=true;
+                        //idDocSelected=true;
                     } else Log.e("myDocument & pos ", "data null");
 
 
@@ -4974,7 +4976,7 @@ public class AddNewLeadActivity extends AppCompatActivity
 
 
                         setSelectedDoc(myUploadModel, photoUrl);
-                        idDocSelected=true;
+                        //idDocSelected=true;
                         //call the method that upload the profile pic
                         //call_uploadImage(photoUrl);
                     }
@@ -5014,7 +5016,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                 Log.e(TAG, "mimetype " + mimetype);
 
                 setSelectedDoc(myUploadModel, photoUrl);
-                idDocSelected=true;
+                //idDocSelected=true;
             }
 
         }
@@ -5242,7 +5244,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         else if (isExist_WhatsAppNo) new Helper().showCustomToast(context, "Mobile number already exits! Please enter another Number!!");
 
             //other mobile number exist
-        else if (isExist_OtherNo) new Helper().showCustomToast(context, "Mobile number already exits! Please enter another number!!");
+        else if (isExist_OtherNo) new Helper().showCustomToast(context, "Alternative Mobile number already exits! Please enter another number!!");
 
             //same number exist
         else if (flagNumduplicate) new Helper().showCustomToast(context, "Duplicate number found enter another number!");
@@ -5626,7 +5628,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
         jsonObject.addProperty("lead_ni_reason", Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
         jsonObject.addProperty("lead_ni_other_reason", Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
-        jsonObject.addProperty("budget_limit_id", selectedBudgetLimitId);
+        jsonObject.addProperty("budget_limit", Objects.requireNonNull(edt_newLead_leadBudgetLimit.getText()).toString());
         jsonObject.addProperty("income_range_id", selectedIncomeRangeId);
         jsonObject.addProperty("is_first_home", FirstHomeID);
         jsonObject.addProperty("lead_stage_id", selectedLeadStageId);
@@ -5728,16 +5730,10 @@ public class AddNewLeadActivity extends AppCompatActivity
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
             {
-                try {
-                    Log.e(TAG, "onError: " + e.toString());
-                    if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
-                    else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
-                    else showErrorLog(e.toString());
-                }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
-                }
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
             }
         });
     }
@@ -5761,8 +5757,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
         jsonObject.addProperty("lead_profession_id", selectedProfessionId);
         jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
-        jsonObject.addProperty("budget_limit_id", selectedBudgetLimitId);
-        jsonObject.addProperty("budget_limit", selectedBudgetLimit);
+        jsonObject.addProperty("budget_limit", Objects.requireNonNull(edt_newLead_leadBudgetLimit.getText()).toString());
         jsonObject.addProperty("income_range_id", selectedIncomeRangeId);
         jsonObject.addProperty("income_range", selectedIncomeRange);
         jsonObject.addProperty("is_first_home", FirstHomeID);
@@ -5791,7 +5786,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                         if(success.equals("1")) {
                             showSuccessDuplicateUpdateAlert();
                         }
-                        else if (success.equals("2")) showErrorLog("Mobile Number already exists! Try again.");
+                        else if (success.equals("0")) showErrorLog("Mobile Number already exists! Try again.");
                         else showErrorLog("Failed to update customer details! Try again.");
                     }
                 }
@@ -5840,7 +5835,7 @@ public class AddNewLeadActivity extends AppCompatActivity
         jsonObject.addProperty("project_id", selectedProjectId);
         jsonObject.addProperty("unit_category_id", selectedUnitId);
         jsonObject.addProperty("lead_profession", selectedLeadProfessionName);
-        jsonObject.addProperty("budget_limit_id", selectedBudgetLimitId);
+        jsonObject.addProperty("budget_limit", Objects.requireNonNull(edt_newLead_leadBudgetLimit.getText()).toString());
         jsonObject.addProperty("income_range_id", selectedIncomeRangeId);
         jsonObject.addProperty("is_first_home", FirstHomeID);
         jsonObject.addProperty("lead_stage_id", selectedLeadStageId);
@@ -6053,8 +6048,8 @@ public class AddNewLeadActivity extends AppCompatActivity
         offlineLeadModel.setLead_profession(selectedLeadProfessionName);
         offlineLeadModel.setLead_ni_reason(Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
         offlineLeadModel.setLead_ni_other_reason(Objects.requireNonNull(edt_newLead_niReason.getText()).toString());
-        offlineLeadModel.setBudget_limit_id(selectedBudgetLimitId);
-        offlineLeadModel.setBudget_limit(selectedBudgetLimit);
+        /*  offlineLeadModel.setBudget_limit_id(selectedBudgetLimitId);*/
+        offlineLeadModel.setBudget_limit(Objects.requireNonNull(edt_newLead_leadBudgetLimit.getText()).toString());
         offlineLeadModel.setIncome_range_id(selectedIncomeRangeId);
         offlineLeadModel.setIncome_range(selectedIncomeRange);
         offlineLeadModel.setLead_profession_id(selectedProfessionId);
@@ -6103,7 +6098,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                 jsonObject.put("lead_profession", model.getLead_profession());
                 jsonObject.put("lead_ni_reason", model.getLead_ni_reason());
                 jsonObject.put("lead_ni_other_reason", model.getLead_ni_other_reason());
-                jsonObject.put("budget_limit_id", model.getBudget_limit_id());
+                // jsonObject.put("budget_limit_id", model.getBudget_limit_id());
                 jsonObject.put("budget_limit", model.getBudget_limit());
                 jsonObject.put("income_range_id", model.getIncome_range_id());
                 jsonObject.put("income_range", model.getIncome_range());

@@ -97,7 +97,6 @@ import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
-import static android.os.Looper.getMainLooper;
 import static com.tribeappsoft.leedo.util.Helper.NetworkError;
 import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
@@ -142,8 +141,8 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
             skip_count =0, call_lead_id =0, call_lead_status_id =0;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
-    private String  api_token = "", filter_text="", todo_date="",startDate="",endDate="",
-            display_text ="", last_lead_updated_at = null, customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
+    private String  api_token = "", filter_text="", todo_date="",startDate="",endDate="", last_lead_updated_at = null,
+            customer_mobile = null, call_cuID= null, call_lead_name= "", call_project_name= "";
     //private Dialog claimDialog;
     private boolean stopApiCall = false,isSalesHead=false, isAdmin = false;
     private static Fragment_Leads instance = null;
@@ -216,6 +215,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
 
+        Log.e(TAG, "init: sales_person_id "+sales_person_id);
         Log.e(TAG, "onCreateView: todoDate : "+todo_date+"startDate:"+startDate+"endDate:"+ endDate);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
@@ -275,7 +275,8 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
 
-        Log.e(TAG, "onCreateView: todoDate : "+todo_date+"startDate:"+startDate+"endDate:"+ endDate);
+        Log.e(TAG, "onPageChange: sales_person_id "+sales_person_id);
+        Log.e(TAG, "onPageChange: todoDate : "+todo_date+"startDate:"+startDate+"endDate:"+ endDate);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
         refreshFeedApi();
@@ -528,138 +529,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
         }
 
-        if (openFlag == 1) {
-
-            //leads
-
-            //Set Data For Leads Added
-            tv_filterTitle.setText(String.format("%s leads", display_text));
-            ll_filter.setVisibility(View.VISIBLE);
-
-            //set search other_ids
-            // edt_search.setText(String.format("%s leads", display_text));
-            /*ll_searchBar.setVisibility(View.INVISIBLE);*/
-            //hide voice search
-            //  iv_VoiceSearch.setVisibility(View.GONE);
-            //visible clear search
-       /*     new Animations().slideInLeft(iv_clearSearch);
-            iv_clearSearch.setVisibility(View.VISIBLE);*/
-            //search for leads
-            //filterFeedApi(other_ids + " leads");
-            filterFeedApi();
-        }
-        else if (openFlag == 2) {
-
-            //site visits
-
-            //Set Data For Site Visits
-            tv_filterTitle.setText(String.format("%s site visit", display_text));
-            ll_filter.setVisibility(View.VISIBLE);
-
-            //set search other_ids
-            // edt_search.setText(String.format("%s site visit", display_text));
-            /*ll_searchBar.setVisibility(View.INVISIBLE);*/
-            //hide voice search
-            //iv_VoiceSearch.setVisibility(View.GONE);
-            //visible clear search
-          /*  new Animations().slideInLeft(iv_clearSearch);
-            iv_clearSearch.setVisibility(View.VISIBLE);*/
-            //search for ghp generated
-            //filterFeedApi(other_ids + " site visit");
-            filterFeedApi();
-        }
-        else if (openFlag == 3) {
-
-            //ghp
-
-            //Set Data For GHP generated
-            tv_filterTitle.setText(String.format("%s ghp", display_text));
-            ll_filter.setVisibility(View.VISIBLE);
-            //set search other_ids
-            //edt_search.setText(String.format("%s ghp", display_text));
-            /*ll_searchBar.setVisibility(View.INVISIBLE);*/
-            //hide voice search
-            // iv_VoiceSearch.setVisibility(View.GONE);
-            //visible clear search
-          /*  new Animations().slideInLeft(iv_clearSearch);
-            iv_clearSearch.setVisibility(View.VISIBLE);*/
-            //search for ghp generated
-            //filterFeedApi(other_ids+  " ghp");
-            filterFeedApi();
-        }
-        else if (openFlag == 4) {
-
-            //on hold
-
-            //Set Data For Bookings
-            tv_filterTitle.setText(String.format("%s hold flats", display_text));
-            ll_filter.setVisibility(View.VISIBLE);
-            //set search other_ids
-            //edt_search.setText(String.format("%s hold flats", display_text));
-            /*ll_searchBar.setVisibility(View.INVISIBLE);*/
-            //hide voice search
-            //  iv_VoiceSearch.setVisibility(View.GONE);
-            //visible clear search
-           /* new Animations().slideInLeft(iv_clearSearch);
-            iv_clearSearch.setVisibility(View.VISIBLE);*/
-            //search for booked flats
-            //filterFeedApi(other_ids + " hold flats");
-            filterFeedApi();
-        }
-        else if (openFlag == 5) {
-
-            //bookings
-
-            //Set Data For Bookings
-            tv_filterTitle.setText(String.format("%s allotted flats", display_text));
-            ll_filter.setVisibility(View.VISIBLE);
-            //set search other_ids
-            //   edt_search.setText(String.format("%s allotted flats", display_text));
-            /*ll_searchBar.setVisibility(View.INVISIBLE);*/
-            //hide voice search
-            // iv_VoiceSearch.setVisibility(View.GONE);
-            //visible clear search
-         /*   new Animations().slideInLeft(iv_clearSearch);
-            iv_clearSearch.setVisibility(View.VISIBLE);*/
-            //search for booked flats
-            //filterFeedApi(other_ids + " booked flats");
-            filterFeedApi();
-        }
-          /* else {
-
-         if (!onStop)
-            {
-                Log.e(TAG, "onResume: onStopped called" );
-                if (isNetworkAvailable(getActivity())) {
-
-                    //gone visibility
-                    ll_noData.setVisibility(View.GONE);
-                    ll_filter.setVisibility(View.GONE);
-                    //swipeRefresh.setRefreshing(true);
-
-                    //resume feed api
-                    resumeFeedApi();
-
-                    //set scrollView scroll to top
-                    // nsv.smoothScrollTo(0, 0);
-
-
-                    new Handler(getMainLooper()).postDelayed(() -> {
-                        //call events api
-                        //swipeRefresh.setRefreshing(true);
-
-                    }, 1000);
-                }
-                else
-                {
-
-                    ll_noData.setVisibility(View.VISIBLE);
-                    ll_addFeedData.setVisibility(View.GONE);
-                    ll_loadingContent.setVisibility(View.GONE);
-                    NetworkError(getActivity());
-                }
-            }
-        }*/
 
        /* FragmentHome frag = (FragmentHome)getTargetFragment();
         if(frag != null){
@@ -743,7 +612,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
 
             //4. clear other ids & display text
-            display_text = "";
+            //display_text = "";
             last_lead_updated_at = null;
 
             /*put tab value*/
@@ -771,79 +640,6 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
 
     }
 
-    private void resetFeedApi()
-    {
-        if (isNetworkAvailable(requireActivity()))
-        {
-            ll_noData.setVisibility(View.GONE);
-            //Clear Search --> reset all params
-            //1. clear arrayList
-            modelArrayList.clear();
-            //2. reset page flag to 1
-            call = openFlag = 0;
-            //3. Set search filter_text clear
-            filter_text = "";
-            //4. Set search other_ids clear
-            display_text = "";
-            last_lead_updated_at = null;
-            showProgressBar();
-            //5. call get sales feed api
-            call_getSalesFeed();
-        }
-        else NetworkError(requireActivity());
-    }
-
-    private void resetFeedApiWithDelay()
-    {
-        if (isNetworkAvailable(requireActivity()))
-        {
-            //gone visibility
-            ll_noData.setVisibility(View.GONE);
-            //Clear Search --> reset all params
-            //1. clear arrayList
-            modelArrayList.clear();
-            //ll_addFeedData.removeAllViews();
-            //2. reset page flag to 1
-            call = 0;
-            //3. Set search other_ids clear
-            filter_text = "";
-            //4. show refreshing and progress bar
-            swipeRefresh.setRefreshing(true);
-            last_lead_updated_at = null;
-
-            showProgressBar();
-            //5. call get sales feed api
-            new Handler(getMainLooper()).postDelayed(this::call_getSalesFeed, 500);
-        }
-        else NetworkError(requireActivity());
-    }
-
-    private void searchFeedApi()
-    {
-        if (isNetworkAvailable(requireActivity()))
-        {
-            //1. clear arrayList
-            modelArrayList.clear();
-            //remove all views
-            ll_addFeedData.removeAllViews();
-            //2. reset call flag to 0
-            call = 0;
-            //3. Get search other_ids
-            //   filter_text = Objects.requireNonNull(edt_search.getText()).toString().toLowerCase(Locale.getDefault());
-            // -- if flag is from performance then add project name with search other_ids else add
-            //filter_text = openFlag == 0 ? Objects.requireNonNull(edt_search.getText()).toString().toLowerCase(Locale.getDefault()) : other_ids + " "+ Objects.requireNonNull(edt_search.getText()).toString().toLowerCase(Locale.getDefault());
-
-            last_lead_updated_at = null;
-
-            //swipeRefresh.setRefreshing(true);
-            showProgressBar();
-
-            //call get sales feed api
-            call_getSalesFeed();
-            //new Handler(getMainLooper()).postDelayed(this::call_getSalesFeed, 1000);
-
-        } else NetworkError(requireActivity());
-    }
 
     private void resumeFeedApi()
     {
@@ -866,7 +662,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         }else NetworkError(requireActivity());
     }
 
-    private void filterFeedApi()
+    /*private void filterFeedApi()
     {
         if (isNetworkAvailable(requireActivity()))
         {
@@ -887,7 +683,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
             //new Handler(getMainLooper()).postDelayed(this::call_getSalesFeed, 0);
 
         }else NetworkError(requireActivity());
-    }
+    }*/
 
 
     private void getLeadData()

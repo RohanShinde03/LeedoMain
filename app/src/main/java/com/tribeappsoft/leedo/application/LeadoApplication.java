@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,17 +25,33 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.firebase.FireBaseMessageService;
 import com.tribeappsoft.leedo.util.Helper;
+import com.tribeappsoft.leedo.util.NetworkStateReceiver;
 
+import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
-public class LeadoApplication extends Application implements Application.ActivityLifecycleCallbacks
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LeadoApplication extends Application implements Application.ActivityLifecycleCallbacks, NetworkStateReceiver.NetworkStateReceiverListener
 {
 
     private String TAG ="LeadoSalesApplication";
     private static LeadoApplication instance;
+    private NetworkStateReceiver networkStateReceiver;
+    public onSuccessNetworkListener onSuccessListener;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private String api_token="";
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -42,7 +60,6 @@ public class LeadoApplication extends Application implements Application.Activit
 
     }
 
-
     @Override
     public void onCreate()
     {
@@ -50,8 +67,9 @@ public class LeadoApplication extends Application implements Application.Activit
         LeadoApplication.instance = this;
         Log.e(TAG, "onCreate: Application Create" );
 
-        SharedPreferences sharedPreferences = new Helper().getSharedPref(instance);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        sharedPreferences = new Helper().getSharedPref(instance);
+        editor = sharedPreferences.edit();
+        api_token = sharedPreferences.getString("api_token", "");
         editor.putBoolean("applicationCreated", true);
         editor.apply();
 
@@ -59,6 +77,16 @@ public class LeadoApplication extends Application implements Application.Activit
         if (broadcastReceiver!=null) registerReceiver(broadcastReceiver, new IntentFilter(FireBaseMessageService.BROADCAST_ACTION));
 
 //        showConfirmDialog();
+
+        //register receiver here for network connection check
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+
+        //set
+        //if (activity instanceof SalesPersonHomeNavigationActivity) {
+        //onSuccessListener = (com.tribeappsoft.leedo.application.LeadoApplication.onSuccessNetworkListener) instance;
+        //}
     }
 
 
@@ -78,6 +106,11 @@ public class LeadoApplication extends Application implements Application.Activit
             LeadoApplication.instance = new LeadoApplication();
         }
         return LeadoApplication.instance;
+    }
+
+
+    public void setOnNetworkSetListener(onSuccessNetworkListener onSuccessNetworkListener) {
+        this.onSuccessListener = onSuccessNetworkListener;
     }
 
 
@@ -189,6 +222,11 @@ public class LeadoApplication extends Application implements Application.Activit
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
 
+        sharedPreferences = new Helper().getSharedPref(getInstance());
+        editor = sharedPreferences.edit();
+        api_token = sharedPreferences.getString("api_token", "");
+        editor.apply();
+
     }
 
     @Override
@@ -199,8 +237,15 @@ public class LeadoApplication extends Application implements Application.Activit
     @Override
     public void onActivityStopped(@NonNull Activity activity) {
         Log.e(TAG, "onActivityStopped: ");
-        // new Helper().showCustomToast(activity, "Activity Stopeed!");
+        // new Helper().showCustomToast(activity, "Activity Stopped!");
         if (broadcastReceiver!=null) unregisterReceiver(broadcastReceiver);
+
+        //un-register network receiver
+        if (networkStateReceiver!=null) {
+            networkStateReceiver.removeListener(this);
+            this.unregisterReceiver(networkStateReceiver);
+        }
+
     }
 
     @Override
@@ -296,4 +341,150 @@ public class LeadoApplication extends Application implements Application.Activit
         alertDialog.getWindow().setAttributes(wmlp);
     }
 
+    @Override
+    public void networkAvailable() {
+        Log.e(TAG, "networkAvailable: ");
+
+        new Handler().postDelayed(() -> {
+            //new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+            Toast.makeText(this, "Device Network Available!", Toast.LENGTH_LONG).show();
+
+            //set call to interface network available listener
+            //setOnNetworkSetListener(this::networkAvailable);
+
+            //check offline leads available for sync
+            setOfflineLeads();
+        }, 1000);
+    }
+
+    @Override
+    public void networkUnavailable() {
+        Log.e(TAG, "networkUnavailable: ");
+        new Handler().postDelayed(() -> {
+            Toast.makeText(this, "Oops, Device Network Lost...!", Toast.LENGTH_LONG).show();
+        }, 1000);
+    }
+
+    public interface onSuccessNetworkListener{
+        void onSuccessNetworkListener();
+    }
+
+
+    private void setOfflineLeads()
+    {
+        Log.e(TAG, "setOfflineLeads: ");
+        if (sharedPreferences!=null)
+        {
+            editor = sharedPreferences.edit();
+            editor.apply();
+            String offlineData = null;
+            api_token = sharedPreferences.getString("api_token", "");
+            if (sharedPreferences.getString("DownloadModel", null)!=null) offlineData = sharedPreferences.getString("DownloadModel", null);
+
+
+            if (Helper.isNetworkAvailableContext(Objects.requireNonNull(instance))) {
+                if (offlineData !=null)
+                {
+                    Log.e(TAG, "offlineData: "+offlineData );
+                    final JsonObject jsonObject = new JsonObject();
+                    Gson gson  = new Gson();
+                    JsonArray jsonArray = gson.fromJson(offlineData, JsonArray.class);
+                    jsonObject.addProperty("api_token",api_token);
+                    jsonObject.add("offline_leads",jsonArray);
+
+                    //showProgressBar(getString(R.string.syncing_oldEnquiry));
+                    new Handler().postDelayed(() -> {
+                        //new Helper().onSnackForHomeLeadSync(instance,"New offline leads detected! Syncing now...");
+                        Toast.makeText(instance, "New offline leads detected! Syncing now...", Toast.LENGTH_SHORT).show();
+                        call_SyncOfflineLeads(jsonObject);
+                    },4000); }
+
+            }
+            //else NetworkError(getActivity());
+        }
+    }
+
+    private void call_SyncOfflineLeads(JsonObject jsonObject)
+    {
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().add_OfflineLeads(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response)
+            {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful())
+                {
+                    if (response.body()!=null && response.body().isJsonObject())
+                    {
+                        int isSuccess = 0;
+                        String status_msg = null;
+                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+                        //if (response.body().has("duplicate_leads")) total_duplicate_leads = response.body().get("duplicate_leads").getAsInt();
+                        if (response.body().has("status_msg")) status_msg = response.body().get("status_msg").getAsString();
+
+                        if (isSuccess==1)
+                        {
+                            // clear shared pref of offline leads
+                            if (sharedPreferences!=null) {
+                                editor = sharedPreferences.edit();
+                                //editor.putInt("total_duplicate_leads", total_duplicate_leads);
+                                editor.remove("DownloadModel");
+                                editor.apply();
+                            }
+                            //onSuccessSync Leads
+                            onSuccessSync(status_msg);
+                        }
+                        else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                    }else showErrorLog(getString(R.string.something_went_wrong_try_again));
+                }
+                else {
+                    // error case
+                    switch (response.code())
+                    {
+                        case 404:
+                            showErrorLog(getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(getString(R.string.unknown_error_try_again));
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void onSuccessSync(String status_msg)
+    {
+        new Handler().postDelayed(() -> {
+
+            Toast.makeText(instance, status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully), Toast.LENGTH_LONG).show();
+            //new Helper().showSuccessCustomToast(getActivity(), status_msg != null ? status_msg : getString(R.string.offline_lead_synced_successfully));
+
+            Log.e(TAG, "onSuccessSync: ");
+
+            //call myFunction() from MainActivity here
+            if(onSuccessListener!=null){
+                onSuccessListener.onSuccessNetworkListener();
+                Log.e(TAG, "onSuccessSync: onSuccessListener");
+            }
+
+        },2000);
+    }
+
+    private void showErrorLog(final String message) {
+            Toast.makeText(instance, message, Toast.LENGTH_LONG).show();
+    }
 }

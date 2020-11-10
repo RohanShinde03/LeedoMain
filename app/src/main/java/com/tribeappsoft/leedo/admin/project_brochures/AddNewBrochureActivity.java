@@ -50,19 +50,21 @@ import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
 import com.tribeappsoft.leedo.util.Helper;
-import com.tribeappsoft.leedo.util.filepicker.MaterialFilePicker;
-import com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.Constant;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.NormalFilePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.AudioFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.ImageFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.NormalFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.VideoFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.SocketTimeoutException;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,7 +75,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddNewBrochureActivity extends AppCompatActivity {
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.BaseActivity.IS_NEED_FOLDER_LIST;
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity.IS_NEED_CAMERA;
+
+public class AddNewBrochureActivity extends AppCompatActivity /*implements EasyPermissions.PermissionCallbacks*/ {
 
     private String TAG = "AddNewBrochureActivity";
     @BindView(R.id.edt_addBrochure_title) TextInputEditText edt_addBrochure_title;
@@ -91,6 +96,8 @@ public class AddNewBrochureActivity extends AppCompatActivity {
     public SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
+    //public static final int RC_FILE_PICKER_PERM = 321;
+
     private ArrayList<ProjectModel> projectNameModelArrayList;
     private ArrayList<String> nameProjectArrayList;
     private int project_docType_id = 1,mediaTypeId = 0, selectedProjectId=0, user_id =0;
@@ -99,9 +106,12 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
     //private EventProjectDocsModel myUploadModel = null;
     Activity context;
+    //private int MAX_ATTACHMENT_COUNT = 10;
     private int selectedProjectID=0,project_brochure_id=0,fromOther = 1; //TODO fromOther ==> 1 - Add project brochure,2.update project brochure,
-    private String api_token="",brochureUrl=null,selectedProjectName="",brochure_title="",media_path=null,
-            project_brochure_desc="", selectedProjectTitle ="";
+    private String api_token="",brochureUrl=null,selectedProjectName="",selectedProjectTitle="",brochure_title="",media_path=null,project_brochure_desc="";
+    //private ArrayList<Uri> docPaths = new ArrayList<>();
+    //private ArrayList<Uri> photoPaths = new ArrayList<>();
+    private String filePath="";
 
 
     @Override
@@ -161,7 +171,6 @@ public class AddNewBrochureActivity extends AppCompatActivity {
         {
             //hide pb
             hideProgressBar();
-
             Helper.NetworkError(context);
         }
 
@@ -169,7 +178,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
             //update team lead info
             if (brochure_title != null && !brochure_title.trim().isEmpty()) edt_addBrochure_title.setText(brochure_title);
-            if (media_path != null && !media_path.trim().isEmpty()) tv_addBrochure_select_file.setText(media_path);
+            if (media_path != null && !media_path.trim().isEmpty()) tv_addBrochure_select_file.setText(getFileName_from_filePath(media_path));
             if (project_brochure_desc != null && !project_brochure_desc.trim().isEmpty()) edt_addBrochure_description.setText(project_brochure_desc);
             if (selectedProjectName != null && !selectedProjectName.trim().isEmpty()) acTv_select_project.setText(selectedProjectName);
 
@@ -217,8 +226,6 @@ public class AddNewBrochureActivity extends AppCompatActivity {
         //set keyboard open
         Helper.showSoftKeyboard(context, edt_addBrochure_title);
     }
-
-
 
     private void call_getAllProjects()
     {
@@ -428,7 +435,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
     {
 
         //project id
-        Log.e(TAG, "checkButtonEnabled: selectedProjectID"+selectedProjectID );
+        // Log.e(TAG, "checkButtonEnabled: selectedProjectID"+selectedProjectID );
         if (selectedProjectID==0)setButtonDisabledView();
 
             //project title
@@ -508,6 +515,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
         //documents
         Objects.requireNonNull(linearLayout_option3).setOnClickListener(view -> {
             //doNormalShare(videoDetail);
+            //pickDocClicked();
             askPermissionForDocuments();
             builder_accept.dismiss();
         });
@@ -520,6 +528,16 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
     }
 
+ /*   @AfterPermissionGranted(RC_FILE_PICKER_PERM)
+    public void pickDocClicked() {
+        if (EasyPermissions.hasPermissions(this, FilePickerConst.PERMISSIONS_FILE_PICKER)) {
+            onPickDoc();
+        } else {
+            // Ask for one permission
+            EasyPermissions.requestPermissions(this, getString(R.string.rationale_doc_picker),
+                    RC_FILE_PICKER_PERM, FilePickerConst.PERMISSIONS_FILE_PICKER);
+        }
+    }*/
 
     void askPermissionForCamera() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -580,11 +598,83 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
     void OpenGallery()
     {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 2);
+        Intent intent1 = new Intent(this, ImagePickActivity.class);
+        intent1.putExtra(IS_NEED_CAMERA, true);
+        intent1.putExtra(Constant.MAX_NUMBER, 1);
+        intent1.putExtra(IS_NEED_FOLDER_LIST, true);
+        startActivityForResult(intent1, Constant.REQUEST_CODE_PICK_IMAGE);
+
+        /*Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 2);*/
     }
 
-    private void OpenDocuments()
+    private void OpenDocuments() {
+        Intent intent4 = new Intent(context, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", "pptx", "pdf","csv","txt","docx"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+    }
+
+   /* private void OpenDocuments() {
+        String[] zips = {"zip", "rar"};
+        String[] pdfs = {"aac"};
+        int maxCount = MAX_ATTACHMENT_COUNT - photoPaths.size();
+        if ((docPaths.size() + photoPaths.size()) == MAX_ATTACHMENT_COUNT) {
+            Toast.makeText(this, "Cannot select more than " + MAX_ATTACHMENT_COUNT + " items",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            FilePickerBuilder.getInstance()
+                    .setMaxCount(maxCount)
+                    .setSelectedFiles(docPaths)
+                    .setActivityTheme(R.style.FilePickerTheme)
+                    .setActivityTitle("Please select doc")
+                    .addFileSupport("ZIP", zips)
+                    .addFileSupport("AAC", pdfs, R.drawable.fp_ic_pdf_box)
+                    .enableDocSupport(true)
+                    .enableSelectAll(true)
+                    .sortDocumentsBy(SortingTypes.name)
+                    .withOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                    .pickFile(this);
+        }
+    }*/
+
+
+    private void OpenDocuments2(){
+
+        String[] mimeTypes =
+                {"application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
+                        "application/vnd.ms-powerpoint","application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
+                        "application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
+                        "text/plain",
+                        "application/msword",
+                        "application/x-wav",
+                        "application/rtf",
+                        "text/csv",
+                        "text/comma-separated-values",
+                        "application/pdf",
+                        "application/zip"};
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            intent.setType(mimeTypes.length == 1 ? mimeTypes[0] : "*/*");
+            if (mimeTypes.length > 0) {
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+            }
+        } else {
+            String mimeTypesStr = "";
+            for (String mimeType : mimeTypes) {
+                mimeTypesStr += mimeType + "|";
+            }
+            intent.setType(mimeTypesStr.substring(0,mimeTypesStr.length() - 1));
+        }
+        startActivityForResult(Intent.createChooser(intent,"ChooseFile"), 3);
+
+    }
+
+   /* private void OpenDocuments()
     {
         new MaterialFilePicker()
                 .withActivity(this)
@@ -598,7 +688,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
                 .start();
 
     }
-
+*/
 
     private void requestPermission_for_Camera()
     {
@@ -744,6 +834,65 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, responseCode, data);
 
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_IMAGE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
+                    StringBuilder builder = new StringBuilder();
+                    for (ImageFile file : list) {
+                        String path = file.getPath();
+                        brochureUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_VIDEO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<VideoFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_VIDEO);
+                    StringBuilder builder = new StringBuilder();
+                    for (VideoFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()):"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_AUDIO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<AudioFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_AUDIO);
+                    StringBuilder builder = new StringBuilder();
+                    for (AudioFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    StringBuilder builder = new StringBuilder();
+                    for (NormalFile file : list) {
+                        String path = file.getPath();
+                        filePath=path;
+                        brochureUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    Log.e(TAG, "onActivityResult: filePath"+filePath);
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+        }
+
         if (requestCode == 1)   //From Camera
         {
 
@@ -808,7 +957,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
 
             }
 
-        } else if (requestCode == 2)  //From Gallery
+        } /*else if (requestCode == 2)  //From Gallery
         {
             if (responseCode == RESULT_OK) {
                 try {
@@ -878,7 +1027,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
                 setSelectedDoc(photoUrl);
             }
 
-        }
+        }*/
 
     }
 
@@ -920,7 +1069,7 @@ public class AddNewBrochureActivity extends AppCompatActivity {
         //hide pb
         hideProgressBar();
 
-        tv_addBrochure_select_file.setText(absolutePath!=null?absolutePath : getString(R.string.no_file_choose));
+        tv_addBrochure_select_file.setText(absolutePath!=null? getFileName_from_filePath(absolutePath): getString(R.string.no_file_choose));
         brochureUrl=absolutePath;
         Log.e(TAG, "setSelectedDoc: brochureUrl"+brochureUrl );
 

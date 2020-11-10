@@ -38,6 +38,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -70,6 +73,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,6 +81,7 @@ import retrofit2.Response;
 
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.tribeappsoft.leedo.util.Helper.isValidContextForGlide;
 
 
 public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<ProjectFloorPlanRecyclerAdapter.AdapterViewHolder> {
@@ -137,9 +142,112 @@ public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<Projec
         holder.tv_docDesc.setText(myModel.getBrochure_description() != null && !myModel.getBrochure_description().trim().isEmpty()? myModel.getBrochure_description():"--");
 
         String extension = myModel.getDocPath().substring(myModel.getDocPath().lastIndexOf(".")+1);
-       // String extension = ff.getAbsolutePath().substring(ff.getAbsolutePath().lastIndexOf("."));
+        // String extension = ff.getAbsolutePath().substring(ff.getAbsolutePath().lastIndexOf("."));
         holder.tv_DocType.setText(extension);
         holder.tv_DocType.setVisibility(extension!=null && !extension.trim().isEmpty() ? View.VISIBLE :View.GONE );
+
+
+        if (extension.endsWith("jpg") || extension.endsWith("png")|| extension.endsWith("jpeg")|| extension.endsWith("gif")|| extension.endsWith("eps")|| extension.endsWith("bmp")) {
+
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (myModel.getDocPath()!=null)
+            {
+                final Context context = getApplicationContext();
+                if (isValidContextForGlide(context))
+                {
+                    Glide.with(getApplicationContext())
+                            .load(myModel.getDocPath())
+                            .thumbnail(0.5f)
+                            .apply(new RequestOptions().centerCrop())
+                            .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                            .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                            .apply(new RequestOptions().error(R.drawable.icon_file_unknown))
+                            //.skipMemoryCache(true)
+                            .into(holder.iv_docType_Image);
+                }
+            }
+
+        } else if (extension.endsWith("doc") || extension.endsWith("docx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            // holder.iv_docType_Image.setImageResource(R.drawable.icon_file_doc);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_doc)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_doc)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+
+        } else if (extension.endsWith("ppt") || extension.endsWith("pptx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_ppt)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_ppt)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        } else if (extension.endsWith("pdf")||extension.endsWith("PDF")){
+            holder.tv_DocType.setText(R.string.pdf);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_pdf)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_pdf)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        }else if (extension.endsWith("xls")||extension.endsWith("xlsx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_xls)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_xls)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+
+        } else if (extension.endsWith("txt")){
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_unknown)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        } else {
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_unknown)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        }
+
 
         //first create parent directory
         File parentDirFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/Lead_Management/");
@@ -173,6 +281,14 @@ public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<Projec
         });
 
         holder.tv_DocType.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(myModel. getDocPath()));
+            context.startActivity(intent);
+        });
+
+        holder.iv_docType_Image.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
@@ -305,6 +421,7 @@ public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<Projec
         @BindView(R.id.iv_itemProjectDocs_delete) AppCompatImageView tv_delete;
         @BindView(R.id.iv_itemProjectDocs_update) AppCompatImageView tv_update;
         @BindView(R.id.mBtn_itemProjectDocs_share) MaterialButton tv_share;
+        @BindView(R.id.iv_docType_Image) CircleImageView iv_docType_Image;
 
         //@BindView(R.id.tv_itemProjectDocs_docDescription) AppCompatTextView tv_docDescription;
         //@BindView(R.id.tv_itemProjectDocs_date) AppCompatTextView tv_itemProjectDocs_date;
@@ -522,7 +639,7 @@ public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<Projec
         {
             share.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             share.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(dirFile));
-           // share.putExtra(Intent.EXTRA_TEXT, extra_text);
+            // share.putExtra(Intent.EXTRA_TEXT, extra_text);
             share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             share.setType("*/*");
             //share.setType("image/*");
@@ -585,7 +702,7 @@ public class ProjectFloorPlanRecyclerAdapter extends RecyclerView.Adapter<Projec
             //shareIntent.setType("image/jpeg");
             shareIntent.setType("*/*");
             //shareIntent.setPackage(getResources().getString(R.string.pkg_whatsapp));
-           // shareIntent.putExtra(Intent.EXTRA_TEXT, extra_text);
+            // shareIntent.putExtra(Intent.EXTRA_TEXT, extra_text);
             // shareIntent.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(context, resource));
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             try {

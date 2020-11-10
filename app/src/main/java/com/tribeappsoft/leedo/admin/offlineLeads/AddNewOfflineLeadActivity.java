@@ -170,6 +170,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
     @BindView(R.id.edt_newOfflineLead_leadProfession) TextInputEditText edt_leadProfession;
     @BindView(R.id.acTv_newOfflineLead_selectAnnualIncome) AutoCompleteTextView acTv_selectAnnualIncome;
     @BindView(R.id.acTv_newOfflineLead_selectBudgetLimit) AutoCompleteTextView acTv_selectBudgetLimit;
+    @BindView(R.id.edt_newOfflineLead_leadBudgetLimit) TextInputEditText edt_leadBudgetLimit;
     @BindView(R.id.acTv_newOfflineLead_leadProfession) AutoCompleteTextView acTv_leadProfession;
     @BindView(R.id.acTv_newOfflineLead_leadStage) AutoCompleteTextView acTv_leadStage;
     @BindView(R.id.edt_newOfflineLead_siteVisit_niReason) TextInputEditText edt_newOfflineLead_niReason;
@@ -263,7 +264,8 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
     CustomerAdapter adapter = null;
     private Animations anim;
     private boolean viewLeadDetails =false, viewKycDocs =false, viewLeadCampaign =false, viewProjectDetails =false,
-            viewOtherDetails =false, isAlreadySiteVisited = false, isRefLead = false, isLeadSubmitted = false,idDocSelected=false, fromShortcut= false, isExpand =false;
+            viewOtherDetails =false, isAlreadySiteVisited = false, isRefLead = false, isLeadSubmitted = false,
+            fromShortcut= false, isExpand =false; //idDocSelected=false,
 
     private static final String DATE_FORMAT = "dd-MM-yyyy";
     private static final String DATE_FORMAT_SEND_Date = "yyyy-MM-dd";
@@ -571,10 +573,10 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             if (sharedPreferences.getString("income_range_types", null) != null) JsonObjArray_income_range_types = sharedPreferences.getString("income_range_types", null);
             if (JsonObjArray_income_range_types!=null) setIncomeRangeData(JsonObjArray_income_range_types);
 
-            //set budget type
+        /*    //set budget type
             String JsonObjArray_budget_limit_types = null;
             if (sharedPreferences.getString("budget_limit_types", null) != null) JsonObjArray_budget_limit_types = sharedPreferences.getString("budget_limit_types", null);
-            if (JsonObjArray_budget_limit_types!=null) setBudgetRangeData(JsonObjArray_budget_limit_types);
+            if (JsonObjArray_budget_limit_types!=null) setBudgetRangeData(JsonObjArray_budget_limit_types);*/
 
             //set professions type
             String JsonObjArray_professions = null;
@@ -2822,7 +2824,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
                         //tv_UploadedDoc_Name.setText(getFileName_from_filePath(finalFile.getAbsolutePath()));
 
                         //setSelectedDoc(myUploadModel, finalFile.getAbsolutePath());
-                        idDocSelected=true;
+                        //idDocSelected=true;
                     } else Log.e("myDocument & pos ", "data null");
 
 
@@ -2883,7 +2885,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
 
 
                         //setSelectedDoc(myUploadModel, photoUrl);
-                        idDocSelected=true;
+                        //idDocSelected=true;
                         //call the method that upload the profile pic
                         //call_uploadImage(photoUrl);
                     }
@@ -2923,7 +2925,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
                 Log.e(TAG, "mimetype " + mimetype);
 
                 //setSelectedDoc(myUploadModel, photoUrl);
-                idDocSelected=true;
+                //idDocSelected=true;
             }
 
         }
@@ -3056,9 +3058,9 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             //lead stage
         else if (selectedLeadStageId==0) new Helper().showCustomToast(context, "Please select lead status!");
             //project
-       // else if (selectedProjectId==0) new Helper().showCustomToast(context, "Please select project name!");
+            // else if (selectedProjectId==0) new Helper().showCustomToast(context, "Please select project name!");
             // unit type
-       // else if (selectedUnitId==0) new Helper().showCustomToast(context, "Please select unit category!");
+            // else if (selectedUnitId==0) new Helper().showCustomToast(context, "Please select unit category!");
             //pref. visit dates
             //  else if (sendPrefVisitFromDate==null && sendPrefVisitToDate== null) new Helper().showCustomToast(context, "Please select preferred site visit dates!");
             //pref. visit from date
@@ -3123,9 +3125,9 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
             //lead stage
         else if (selectedLeadStageId==0) setButtonDisabledView();
             //project
-       // else if (selectedProjectId==0) setButtonDisabledView();
+            // else if (selectedProjectId==0) setButtonDisabledView();
             // unit type
-       // else if (selectedUnitId==0) setButtonDisabledView();
+            // else if (selectedUnitId==0) setButtonDisabledView();
             //pref. visit dates
             //   else if (sendPrefVisitFromDate==null && sendPrefVisitToDate== null) setButtonDisabledView();
             //pref. visit from date
@@ -3251,8 +3253,8 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
         offlineLeadModel.setLead_profession(selectedLeadProfessionName);
         offlineLeadModel.setLead_ni_reason(Objects.requireNonNull(edt_newOfflineLead_niReason.getText()).toString());
         offlineLeadModel.setLead_ni_other_reason(Objects.requireNonNull(edt_newOfflineLead_niReason.getText()).toString());
-        offlineLeadModel.setBudget_limit_id(selectedBudgetLimitId);
-        offlineLeadModel.setBudget_limit(selectedBudgetLimit);
+        /* offlineLeadModel.setBudget_limit_id(selectedBudgetLimitId);*/
+        offlineLeadModel.setBudget_limit(Objects.requireNonNull(edt_leadBudgetLimit.getText()).toString());
         offlineLeadModel.setIncome_range_id(selectedIncomeRangeId);
         offlineLeadModel.setIncome_range(selectedIncomeRange);
         offlineLeadModel.setLead_profession_id(selectedProfessionId);
@@ -3301,7 +3303,7 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
                 jsonObject.put("lead_profession", model.getLead_profession());
                 jsonObject.put("lead_ni_reason", model.getLead_ni_reason());
                 jsonObject.put("lead_ni_other_reason", model.getLead_ni_other_reason());
-                jsonObject.put("budget_limit_id", model.getBudget_limit_id());
+                // jsonObject.put("budget_limit_id", model.getBudget_limit_id());
                 jsonObject.put("budget_limit", model.getBudget_limit());
                 jsonObject.put("income_range_id", model.getIncome_range_id());
                 jsonObject.put("income_range", model.getIncome_range());
@@ -3382,9 +3384,9 @@ public class AddNewOfflineLeadActivity extends AppCompatActivity
     public void onLeadSubmit()
     {
         runOnUiThread(() -> {
+            //hide pb
             hideProgressBar();
-            if(isLeadSubmitted)
-            {
+            if(isLeadSubmitted) {
                 showSuccessAlert();
             }
             else showErrorLog("Lead failed to submit..");

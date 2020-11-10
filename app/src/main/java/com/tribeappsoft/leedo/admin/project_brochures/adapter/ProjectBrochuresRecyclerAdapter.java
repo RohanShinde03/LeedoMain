@@ -1,6 +1,5 @@
 package com.tribeappsoft.leedo.admin.project_brochures.adapter;
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -37,7 +36,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -49,10 +52,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonObject;
+import com.like.LikeButton;
 import com.tribeappsoft.leedo.BuildConfig;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
 import com.tribeappsoft.leedo.admin.project_brochures.AddNewBrochureActivity;
+import com.tribeappsoft.leedo.admin.project_brochures.ProjectBrochuresActivity;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
@@ -70,6 +75,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,6 +83,7 @@ import retrofit2.Response;
 
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.tribeappsoft.leedo.util.Helper.isValidContextForGlide;
 
 
 public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<ProjectBrochuresRecyclerAdapter.AdapterViewHolder> {
@@ -87,12 +94,14 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
     private int lastPosition = -1;
     private static final int Permission_CODE_DOC = 657;
     private ShareDialog shareDialog;
+    private SwipeRefreshLayout swipeRefresh;
     private String api_token = "";
 
-    public ProjectBrochuresRecyclerAdapter(Activity activity, ArrayList<EventProjectDocsModel> eventModelArrayList) {
+    public ProjectBrochuresRecyclerAdapter(Activity activity, ArrayList<EventProjectDocsModel> eventModelArrayList, SwipeRefreshLayout swipeRefresh) {
 
         this.projectDocsModelArrayList = eventModelArrayList;
         this.context = activity;
+        this.swipeRefresh = swipeRefresh;
         this.anim = new Animations();
     }
 
@@ -137,9 +146,241 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         holder.tv_docDesc.setText(myModel.getBrochure_description() != null && !myModel.getBrochure_description().trim().isEmpty()? myModel.getBrochure_description():"--");
 
         String extension = myModel.getDocPath().substring(myModel.getDocPath().lastIndexOf(".")+1);
-       // String extension = ff.getAbsolutePath().substring(ff.getAbsolutePath().lastIndexOf("."));
+        // String extension = ff.getAbsolutePath().substring(ff.getAbsolutePath().lastIndexOf("."));
         holder.tv_DocType.setText(extension);
         holder.tv_DocType.setVisibility(extension!=null && !extension.trim().isEmpty() ? View.VISIBLE :View.GONE );
+
+        if (extension.endsWith("jpg") || extension.endsWith("png")|| extension.endsWith("jpeg")|| extension.endsWith("gif")|| extension.endsWith("eps")|| extension.endsWith("bmp")) {
+
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (myModel.getDocPath()!=null)
+            {
+                final Context context = getApplicationContext();
+                if (isValidContextForGlide(context))
+                {
+                    Glide.with(getApplicationContext())
+                            .load(myModel.getDocPath())
+                            .thumbnail(0.5f)
+                            .apply(new RequestOptions().centerCrop())
+                            .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                            .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                            .apply(new RequestOptions().error(R.drawable.icon_file_unknown))
+                            //.skipMemoryCache(true)
+                            .into(holder.iv_docType_Image);
+                }
+            }
+
+        } else if (extension.endsWith("doc") || extension.endsWith("docx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            // holder.iv_docType_Image.setImageResource(R.drawable.icon_file_doc);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_doc)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_doc)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+
+        } else if (extension.endsWith("ppt") || extension.endsWith("pptx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_ppt)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_ppt)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        } else if (extension.endsWith("pdf")||extension.endsWith("PDF")){
+            holder.tv_DocType.setText(R.string.pdf);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_pdf)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_pdf)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        }else if (extension.endsWith("xls")||extension.endsWith("xlsx")){
+            holder.tv_DocType.setVisibility(View.GONE);
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_xls)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_xls)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+
+        } else if (extension.endsWith("txt")){
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_unknown)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        } else {
+            if (isValidContextForGlide(context))
+            {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.icon_file_unknown)
+                        .thumbnail(0.5f)
+                        .apply(new RequestOptions().centerCrop())
+                        .apply(new RequestOptions().placeholder(context.getResources().getDrawable(R.drawable.icon_file_unknown)))
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                        //.skipMemoryCache(true)
+                        .into(holder.iv_docType_Image);
+            }
+        }
+
+
+    /*    holder.hb_addToWishList.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+
+                if (projectDocsModelArrayList != null && projectDocsModelArrayList.size() > 0) {
+                    if (myModel.getLiked()!=1)
+                    {
+                        //call marked as liked
+                        if (Helper.isNetworkAvailable(context))
+                        {
+                            //api_call
+                            call_postMarksAsLiked(holder,myModel.getDocId());
+
+                        }else Helper.NetworkError(context);
+
+                        Log.e(TAG, "onBindViewHolder: Add to wishList - " + projectDocsModelArrayList.get(position).getDocId());
+                        // addToWishlist(holder, position);
+                    } else {
+
+                        Log.e(TAG, "onBindViewHolder: Remove from wishList - " + projectDocsModelArrayList.get(position).getDocId());
+                        int deal_id = projectDocsModelArrayList.get(position).getDocId();
+
+                        //call marked as unLiked
+                        if (Helper.isNetworkAvailable(context))
+                        {
+                            //api_call
+                            call_postMarksAsUnLiked(holder,myModel.getDocId());
+
+                        }else Helper.NetworkError(context);
+
+                        // removeFromWishlist(holder, deal_id);
+                    }
+                }
+
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+
+                if (projectDocsModelArrayList != null && projectDocsModelArrayList.size() > 0) {
+                    if (myModel.getLiked()!=1) {
+
+                        //call marked as liked
+                        if (Helper.isNetworkAvailable(context))
+                        {
+                            //api_call
+                            call_postMarksAsLiked(holder,myModel.getDocId());
+
+                        }else Helper.NetworkError(context);
+
+                        Log.e(TAG, "onBindViewHolder: Add to wishList - " + projectDocsModelArrayList.get(position).getDocId());
+
+                        //addToWishlist(holder, position);
+                    } else {
+
+                        //call marked as unLiked
+                        if (Helper.isNetworkAvailable(context))
+                        {
+                            //api_call
+                            call_postMarksAsUnLiked(holder,myModel.getDocId());
+
+                        }else Helper.NetworkError(context);
+
+                        Log.e(TAG, "onBindViewHolder: Remove from wishList - " + projectDocsModelArrayList.get(position).getDocId());
+                        int deal_id = projectDocsModelArrayList.get(position).getDocId();
+                        // removeFromWishlist(holder, deal_id);
+                    }
+                }
+
+            }
+        });*/
+
+
+        /*holder.iv_add_wishList.setOnClickListener(v -> {
+
+            if (projectDocsModelArrayList != null && projectDocsModelArrayList.size() > 0) {
+                if (myModel.getLiked()!=1) {
+
+                    //call marked as liked
+                    if (Helper.isNetworkAvailable(context))
+                    {
+                        //api_call
+                        call_postMarksAsLiked(holder,myModel.getDocId());
+
+                    }else Helper.NetworkError(context);
+
+                    Log.e(TAG, "onBindViewHolder: Add to wishList - " + projectDocsModelArrayList.get(position).getDocId());
+                    addToWishlist(holder, position);
+                } else {
+
+                    //call marked as unLiked
+                    if (Helper.isNetworkAvailable(context))
+                    {
+                        //api_call
+                        call_postMarksAsUnLiked(holder,myModel.getDocId());
+
+                    }else Helper.NetworkError(context);
+
+                    Log.e(TAG, "onBindViewHolder: Remove from wishList - " + projectDocsModelArrayList.get(position).getDocId());
+                    int deal_id = projectDocsModelArrayList.get(position).getDocId();
+                    removeFromWishlist(holder, deal_id);
+                }
+            }
+        });*/
+
+
+        /*holder.heart_button.setOnAnimationEndListener(new OnAnimationEndListener() {
+            @Override
+            public void onAnimationEnd(LikeButton likeButton) {
+
+            }
+        });*/
+
+        /*holder.iv_add_wishList.setOnClickListener(v -> {
+
+            if (dealsListModelArrayList != null && dealsListModelArrayList.size() > 0) {
+                if (!checkExistingWishlist(myModel.getDeal_id())) {
+
+                    Log.e(TAG, "onBindViewHolder: Add to wishList - " + dealsListModelArrayList.get(position).getDeal_id());
+                    addToWishlist(holder, position);
+                } else {
+
+                    Log.e(TAG, "onBindViewHolder: Remove from wishList - " + dealsListModelArrayList.get(position).getDeal_id());
+                    int deal_id = dealsListModelArrayList.get(position).getDeal_id();
+                    removeFromWishlist(holder, deal_id);
+                }
+            }
+        });
+*/
 
         //first create parent directory
         File parentDirFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/Lead_Management/");
@@ -173,6 +414,14 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         });
 
         holder.tv_DocType.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(myModel. getDocPath()));
+            context.startActivity(intent);
+        });
+
+        holder.iv_docType_Image.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
@@ -278,6 +527,260 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
 
     }
 
+    private void call_postMarksAsUnLiked(AdapterViewHolder holder, int project_doc_id)
+    {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("api_token", api_token);
+        jsonObject.addProperty("project_doc_id", project_doc_id );
+
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().markLeadsAsUnclaimed(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful()) {
+                    if (response.body()!=null && response.body().isJsonObject()) {
+                        int isSuccess = 0;
+                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+
+                        if (isSuccess==1) {
+
+                            onSuccessDocUnLiked(holder);
+                        }
+                        else {
+                            showErrorLog("Failed to marked as favourite!");
+                        }
+                    }
+                }
+                else
+                {
+                    // error case
+                    switch (response.code()) {
+                        case 404:
+                            showErrorLog(context.getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(context.getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(context.getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(context.getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(context.getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void onSuccessDocUnLiked(AdapterViewHolder holder) {
+        if (context != null)
+        {
+            context.runOnUiThread(() -> {
+
+                //set inactive icon
+                holder.iv_add_wishList.setImageResource(R.drawable.ic_home_offer_card_wishlist_icon_inactive);
+                holder.hb_addToWishList.setUnlikeDrawable(context.getResources().getDrawable(R.drawable.ic_home_offer_card_wishlist_icon_inactive));
+
+                new Handler().postDelayed(() -> new Helper().onSnackForHome(context,"Brochure removed as favourite!"), 1000);
+
+                new Handler().postDelayed(() -> {
+                    swipeRefresh.setRefreshing(true);
+                    notifyDataSetChanged();
+                    ((ProjectBrochuresActivity) context).getProjectBrochures();
+                },1000);
+
+            });
+        }
+
+    }
+
+    private void call_postMarksAsLiked(AdapterViewHolder holder, int project_doc_id)
+    {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("api_token", api_token);
+        jsonObject.addProperty("project_doc_id", project_doc_id );
+
+        ApiClient client = ApiClient.getInstance();
+        client.getApiService().markLeadsAsLiked(jsonObject).enqueue(new Callback<JsonObject>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                Log.e("response", ""+response.toString());
+                if (response.isSuccessful()) {
+                    if (response.body()!=null && response.body().isJsonObject()) {
+                        int isSuccess = 0;
+                        if (response.body().has("success")) isSuccess = response.body().get("success").getAsInt();
+
+                        if (isSuccess==1) {
+
+                            onSuccessDocLiked(holder);
+                        }
+                        else {
+                            showErrorLog("Failed to marked as favourite!");
+                        }
+                    }
+                }
+                else
+                {
+                    // error case
+                    switch (response.code()) {
+                        case 404:
+                            showErrorLog(context.getString(R.string.something_went_wrong_try_again));
+                            break;
+                        case 500:
+                            showErrorLog(context.getString(R.string.server_error_msg));
+                            break;
+                        default:
+                            showErrorLog(context.getString(R.string.unknown_error_try_again) + " "+response.code());
+                            break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable e)
+            {
+                Log.e(TAG, "onError: " + e.toString());
+                if (e instanceof SocketTimeoutException) showErrorLog(context.getString(R.string.connection_time_out));
+                else if (e instanceof IOException) showErrorLog(context.getString(R.string.weak_connection));
+                else showErrorLog(e.toString());
+            }
+        });
+    }
+
+    private void onSuccessDocLiked(AdapterViewHolder holder) {
+        if (context != null)
+        {
+            context.runOnUiThread(() -> {
+
+                //set active icon
+                holder.iv_add_wishList.setImageResource(R.drawable.ic_home_offer_card_wishlist_icon_active);
+                holder.hb_addToWishList.setLikeDrawable(context.getResources().getDrawable(R.drawable.ic_home_offer_card_wishlist_icon_active));
+
+                //show snack
+                new Handler().postDelayed(() -> new Helper().onSnackForHome(context,"Brochure marked as favourite!"), 1000);
+
+                new Handler().postDelayed(() -> {
+                    swipeRefresh.setRefreshing(true);
+                    notifyDataSetChanged();
+                    ((ProjectBrochuresActivity) context).getProjectBrochures();
+                },1000);
+
+            });
+        }
+
+    }
+
+
+
+    @SuppressLint("LongLogTag")
+    private void  addToWishList(AdapterViewHolder holder,int position)
+    {
+        if (projectDocsModelArrayList != null && projectDocsModelArrayList.size() > 0)
+        {
+            // Log.e(TAG, "deal_id  "+dealsListModelArrayList.get(position).getDeal_id());
+
+            //if (!checkExistingCart(selectCategoryModelArrayList.get(position).getVariationArrayList().get(variationPos).getDeal_variation_id()))
+            if (projectDocsModelArrayList.get(position).getDocId()!=0)
+            {
+                //set active icon
+                holder.iv_add_wishList.setImageResource(R.drawable.ic_home_offer_card_wishlist_icon_active);
+                holder.hb_addToWishList.setLikeDrawable(context.getResources().getDrawable(R.drawable.ic_home_offer_card_wishlist_icon_active));
+
+                //show snack
+                new Handler().postDelayed(() -> new Helper().onSnackForHome(context,"Brochure marked as favourite!"), 1000);
+
+            }else {
+                new Helper().onSnackForHome(context,"Brochure already marked as favourite!");
+            }
+
+        }else {
+
+            new Helper().onSnackForHome(Objects.requireNonNull(context), "Brochure details are empty from server!");
+            //new Helper().showCustomToast(context, "Offer already exist in WishList!");
+        }
+
+    }
+
+    private void removeFromWishlist(AdapterViewHolder holder, int deal_id) {
+/*
+
+        JSONArray newJsonArray = new JSONArray();
+        int count = 0;
+        for (WishlistModel model : wishlistModelArrayList) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("deal_id", model.getDeal_id());
+                jsonObject.put("merchant_id", model.getMerchant_id());
+                jsonObject.put("category_id", model.getCategory_id());
+                jsonObject.put("category", model.getCategory());
+                jsonObject.put("sub_category_id", model.getSub_category_id());
+                jsonObject.put("sub_category_name", model.getSubcategory());
+                jsonObject.put("title", model.getTitle());
+                //  jsonObject.put("vendor_rating", model.getVendor_rating());
+                jsonObject.put("is_remain", model.getIs_remain());
+                jsonObject.put("redeem_remain", model.getRedeem_remain());
+                jsonObject.put("isSuccess", model.getCardVerify());
+                jsonObject.put("company_name", model.getCompany_name());
+                jsonObject.put("vendor_img", model.getVendor_img());
+                jsonObject.put("recommonded_count", model.getRecommended_by());
+                jsonObject.put("claimed_count", model.getClaimed_count());
+                jsonObject.put("rating", model.getRating());
+                jsonObject.put("lumsum_amount", model.getLumsum_amount());
+                jsonObject.put("discount_percentage", model.getDiscount_percentage());
+                jsonObject.put("buy_amount", model.getBuy_amount());
+                jsonObject.put("get_amount", model.getGet_amount());
+                jsonObject.put("photo_path", model.getPhotoPath());
+                jsonObject.put("remaining_time",model.getRemaining_time());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            // add only those deals whoose deal id is not the same as that of removal of deal id
+            if (model.getDeal_id() != deal_id) {
+                //context.disableCartrView(count);
+                newJsonArray.put(jsonObject);
+            }
+            Log.d(TAG, "removeFrom WishList: "+count);
+            count++;
+
+        }
+
+        //save to local
+        sharedPreferences = new Helper().getSharedPref(context);
+        editor = sharedPreferences.edit();
+        editor.putString("WishlistModel", newJsonArray.toString());
+        editor.putInt("WishlistCount", newJsonArray.length());
+        editor.putBoolean("itemRemovedWishList", true);
+        editor.apply();
+*/
+
+        //set icon
+        holder.iv_add_wishList.setImageResource(R.drawable.ic_home_offer_card_wishlist_icon_inactive);
+        holder.hb_addToWishList.setUnlikeDrawable(context.getResources().getDrawable(R.drawable.ic_home_offer_card_wishlist_icon_inactive));
+
+
+        new Handler().postDelayed(() -> new Helper().onSnackForHome(context,"Brochure removed as favourite!"), 1000);
+
+        //saveWishlist(newJsonArray);
+        //fragmetCustomerHome.setWishlist();
+
+        // this.notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return (null != projectDocsModelArrayList ? projectDocsModelArrayList.size() : 0);
@@ -305,10 +808,12 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         @BindView(R.id.iv_itemProjectDocs_delete) AppCompatImageView tv_delete;
         @BindView(R.id.iv_itemProjectDocs_update) AppCompatImageView tv_update;
         @BindView(R.id.mBtn_itemProjectDocs_share) MaterialButton tv_share;
+        @BindView(R.id.iv_homeOffers_add_wishList) AppCompatImageView iv_add_wishList;
+        @BindView(R.id.hb_itemHomeOffers_addToWishList) LikeButton hb_addToWishList;
+        @BindView(R.id.iv_docType_Image) CircleImageView iv_docType_Image;
 
         //@BindView(R.id.tv_itemProjectDocs_docDescription) AppCompatTextView tv_docDescription;
         //@BindView(R.id.tv_itemProjectDocs_date) AppCompatTextView tv_itemProjectDocs_date;
-
 
 
         AdapterViewHolder(View itemView) {
@@ -521,7 +1026,7 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         {
             share.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             share.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(dirFile));
-           // share.putExtra(Intent.EXTRA_TEXT, extra_text);
+            // share.putExtra(Intent.EXTRA_TEXT, extra_text);
             share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             share.setType("*/*");
             //share.setType("image/*");
@@ -584,7 +1089,7 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
             //shareIntent.setType("image/jpeg");
             shareIntent.setType("*/*");
             //shareIntent.setPackage(getResources().getString(R.string.pkg_whatsapp));
-           // shareIntent.putExtra(Intent.EXTRA_TEXT, extra_text);
+            // shareIntent.putExtra(Intent.EXTRA_TEXT, extra_text);
             // shareIntent.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(context, resource));
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             try {

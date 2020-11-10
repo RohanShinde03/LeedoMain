@@ -25,14 +25,14 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.filter.Filter_SalesHeadStats;
-import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.model.MySalesHeadStatsModel;
-import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatBookingDetailsActivity;
 import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatCancelBookingDetailsActivity;
 import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatGHPDetailsActivity;
 import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatLeadDetailsActivity;
 import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.StatSiteVisitDetailsActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.filter.Filter_SalesHeadStats;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.model.MySalesHeadStatsModel;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Helper;
 
 import java.io.IOException;
@@ -101,13 +101,14 @@ public class SalesHeadDashboard_Activity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private ActionMode mActionMode;
     private AppCompatTextView tvFilterItemCount;
+    private boolean isFilter=false,clearFilter=false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_head_dashboard_);
-      //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
+        //  overridePendingTransition( R.anim.trans_slide_up, R.anim.no_change );
         ButterKnife.bind(this);
         context= SalesHeadDashboard_Activity.this;
 
@@ -131,8 +132,8 @@ public class SalesHeadDashboard_Activity extends AppCompatActivity {
 
         if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
 
-            // showProgressBar("Please wait...");
-           // showShimmer();
+            showProgressBar("Please wait...");
+            // showShimmer();
             new Handler().postDelayed(this::getMyPerformance, 100);
         }
         else
@@ -157,73 +158,93 @@ public class SalesHeadDashboard_Activity extends AppCompatActivity {
 
         if (sharedPreferences!=null) {
             editor = sharedPreferences.edit();
-            boolean isFilter = sharedPreferences.getBoolean("isFilter", false);
-            boolean clearFilter = sharedPreferences.getBoolean("clearFilter", false);
+            isFilter = sharedPreferences.getBoolean("isFilter", false);
+            clearFilter = sharedPreferences.getBoolean("clearFilter", false);
             editor.apply();
 
-            if(isFilter) {
 
-                if (sharedPreferences!=null) {
-                    editor = sharedPreferences.edit();
-                    project_id = sharedPreferences.getInt("project_id", 0);
-                    sales_person_id = sharedPreferences.getInt("sales_person_id", 0);
-                    if (sales_person_id==0) sales_person_id = sharedPreferences.getInt("user_id", 0);
-                    event_id = sharedPreferences.getInt("event_id",0);
-                    cp_id = sharedPreferences.getInt("cp_id",0);
-                    lead_status_id = sharedPreferences.getInt("lead_status_id",0);
-                    filterCount_dash = sharedPreferences.getInt("filterCount_dash", 0);
-                    from_date = sharedPreferences.getString("sendFromDate","");
-                    to_date = sharedPreferences.getString("sendToDate", "");
-                    sales_person_name = sharedPreferences.getString("sales_person_name","");
-                    project_name = sharedPreferences.getString("project_name","");
-                    event_name = sharedPreferences.getString("event_name","");
-                    cp_name = sharedPreferences.getString("cp_name","");
-                    lead_status = sharedPreferences.getString("lead_status_name","");
-                    editor.apply();
-                }
+        }
+        if(isFilter) {
 
-                Log.e(TAG, "onResume:Filter project_id:- "+project_id+"\n from_date:- " +from_date+"\n to_date:- "+to_date+"\n sales_person_name:- "+sales_person_name+"\n project_name:- "+project_name );
-
-                //reset api call
-                // showProgressBar();
-                if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
-
-                    showProgressBar("Please wait...");
-                    //showShimmer();
-                    new Handler().postDelayed(this::getMyPerformance, 100);
-                }
-                else
-                {
-                    //hide pb
-                    hideProgressBar();
-                    Helper.NetworkError(context);
-
-                    nsv_stats.setVisibility(View.VISIBLE);
-                    //show no data
-                    ll_noData.setVisibility(View.GONE);
-                }
-
+            if (sharedPreferences!=null) {
+                editor = sharedPreferences.edit();
+                project_id = sharedPreferences.getInt("project_id", 0);
+                sales_person_id = sharedPreferences.getInt("sales_person_id", 0);
+                if (sales_person_id==0) sales_person_id = sharedPreferences.getInt("user_id", 0);
+                event_id = sharedPreferences.getInt("event_id",0);
+                cp_id = sharedPreferences.getInt("cp_id",0);
+                lead_status_id = sharedPreferences.getInt("lead_status_id",0);
+                filterCount_dash = sharedPreferences.getInt("filterCount_dash", 0);
+                from_date = sharedPreferences.getString("sendFromDate","");
+                to_date = sharedPreferences.getString("sendToDate", "");
+                sales_person_name = sharedPreferences.getString("sales_person_name","");
+                project_name = sharedPreferences.getString("project_name","");
+                event_name = sharedPreferences.getString("event_name","");
+                cp_name = sharedPreferences.getString("cp_name","");
+                lead_status = sharedPreferences.getString("lead_status_name","");
+                editor.apply();
             }
-            else if (clearFilter) {
 
-                //all filters are cleared
+            Log.e(TAG, "onResume:Filter project_id:- "+project_id+"\n from_date:- " +from_date+"\n to_date:- "+to_date+"\n sales_person_name:- "+sales_person_name+"\n project_name:- "+project_name );
 
-                Log.e(TAG, "onResume:clearFilter  ");
+            //reset api call
+            // showProgressBar();
+            if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
 
-                if (sharedPreferences!=null) {
-                    editor = sharedPreferences.edit();
-                    editor.remove("clearFilter");
-                    sales_person_id = sharedPreferences.getInt("user_id", 0);
-                    editor.apply();
-                }
+                showProgressBar("Please wait...");
+                //showShimmer();
+                new Handler().postDelayed(this::getMyPerformance, 1000);
+            }
+            else
+            {
+                //hide pb
+                hideProgressBar();
+                Helper.NetworkError(context);
 
-                //clear fields
-                project_id = filterCount_dash = 0;
-                from_date = to_date = "";
+                nsv_stats.setVisibility(View.VISIBLE);
+                //show no data
+                ll_noData.setVisibility(View.GONE);
+            }
 
-                //reset api call
+        }
+        else if (clearFilter) {
 
-                resetData();
+            //all filters are cleared
+
+            Log.e(TAG, "onResume:clearFilter  ");
+
+            if (sharedPreferences!=null) {
+                editor = sharedPreferences.edit();
+                editor.remove("clearFilter");
+                sales_person_id = sharedPreferences.getInt("user_id", 0);
+                editor.apply();
+            }
+
+            //clear fields
+            project_id = filterCount_dash = 0;
+            from_date = to_date = "";
+
+            //reset api call
+
+            resetData();
+        }
+        else{
+            Log.e(TAG, "onResume: else ss" );
+            if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
+
+                showProgressBar("Please wait...");
+                // showShimmer();
+                new Handler().postDelayed(this::getMyPerformance, 100);
+            }
+            else
+            {
+                //hide pb
+                hideProgressBar();
+                Helper.NetworkError(context);
+
+                nsv_stats.setVisibility(View.VISIBLE);
+                //show no data
+                ll_noData.setVisibility(View.GONE);
             }
         }
 
@@ -507,15 +528,14 @@ public class SalesHeadDashboard_Activity extends AppCompatActivity {
             //clear filter fields
             project_id  = filterCount_dash = event_id = lead_status_id = cp_id = 0;
             from_date = to_date = sales_person_name = project_name = "";
-           // sales_person_id = user_id;
+            // sales_person_id = user_id;
 
 
             // showProgressBar();
             if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
-
-                 showProgressBar("Please wait...");
+                showProgressBar("Please wait...");
                 //showShimmer();
-                new Handler().postDelayed(this::getMyPerformance, 100);
+                new Handler().postDelayed(this::getMyPerformance, 1000);
             }
             else
             {
@@ -634,7 +654,7 @@ public class SalesHeadDashboard_Activity extends AppCompatActivity {
         //clear fields
         project_id = filterCount_dash = 0;
         from_date = to_date = sales_person_name = project_name = "";
-       // sales_person_id = user_id;
-       // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
+        // sales_person_id = user_id;
+        // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
     }
 }

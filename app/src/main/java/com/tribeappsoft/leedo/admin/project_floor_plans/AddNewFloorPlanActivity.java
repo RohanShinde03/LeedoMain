@@ -50,19 +50,21 @@ import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
 import com.tribeappsoft.leedo.util.Helper;
-import com.tribeappsoft.leedo.util.filepicker.MaterialFilePicker;
-import com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.Constant;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.NormalFilePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.AudioFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.ImageFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.NormalFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.VideoFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.SocketTimeoutException;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +74,9 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.BaseActivity.IS_NEED_FOLDER_LIST;
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity.IS_NEED_CAMERA;
 
 public class AddNewFloorPlanActivity extends AppCompatActivity {
 
@@ -97,7 +102,7 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
     //private EventProjectDocsModel myUploadModel = null;
     Activity context;
     private int selectedProjectID=0,project_floor_plan_id=0,fromOther = 1; //TODO fromOther ==> 1 - Add project Floor Plan,2.update project Floor Plan,
-    private String api_token="",floorPlanUrl=null,selectedProjectName="",floor_plan_title="",selectedProjectTitle="",media_path=null,project_floor_plan_desc="";
+    private String api_token="",floorPlanUrl=null,selectedProjectName="", filePath="",floor_plan_title="",selectedProjectTitle="",media_path=null,project_floor_plan_desc="";
     private int project_docType_id = 2,mediaTypeId = 0,selectedProjectId=0, user_id =0;
     //project_docType_id : 1 =>Brochures, 2=>floor plan, 3=>Quotations
     //mediaTypeId : 1=>document, 2=>video, 3=>audio, 4=>photo
@@ -581,23 +586,23 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
 
     void OpenGallery()
     {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 2);
+        Intent intent1 = new Intent(this, ImagePickActivity.class);
+        intent1.putExtra(IS_NEED_CAMERA, true);
+        intent1.putExtra(Constant.MAX_NUMBER, 1);
+        intent1.putExtra(IS_NEED_FOLDER_LIST, true);
+        startActivityForResult(intent1, Constant.REQUEST_CODE_PICK_IMAGE);
+
+        /*Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 2);*/
     }
 
-    private void OpenDocuments()
-    {
-        new MaterialFilePicker()
-                .withActivity(this)
-                .withRequestCode(3)
-                .withFilter(Pattern.compile(".*\\.(txt|pdf|doc|docx|odt|xls|xlsx)$"))
-                // .withFilter(Pattern.compile(".*\\.pdf$")) // Filtering files and directories by file name using regexp
-                // .withFilter(Pattern.compile(".*\\.directory$")) // Filtering files and directories by file name using regexp
-                .withFilterDirectories(false) // Set directories filterable (false by default)
-                .withHiddenFiles(false)
-                .withTitle("Sample title")
-                .start();
-
+    private void OpenDocuments() {
+        Intent intent4 = new Intent(context, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", ".pptx", "pdf","csv","txt"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
     }
 
 
@@ -745,6 +750,65 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, responseCode, data);
 
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_IMAGE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
+                    StringBuilder builder = new StringBuilder();
+                    for (ImageFile file : list) {
+                        String path = file.getPath();
+                        floorPlanUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addFloorPlan_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_VIDEO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<VideoFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_VIDEO);
+                    StringBuilder builder = new StringBuilder();
+                    for (VideoFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addFloorPlan_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()):"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_AUDIO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<AudioFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_AUDIO);
+                    StringBuilder builder = new StringBuilder();
+                    for (AudioFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addFloorPlan_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    StringBuilder builder = new StringBuilder();
+                    for (NormalFile file : list) {
+                        String path = file.getPath();
+                        filePath=path;
+                        floorPlanUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addFloorPlan_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    Log.e(TAG, "onActivityResult: filePath"+filePath);
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+        }
+
         if (requestCode == 1)   //From Camera
         {
 
@@ -809,7 +873,8 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
 
             }
 
-        } else if (requestCode == 2)  //From Gallery
+        }
+      /*  else if (requestCode == 2)  //From Gallery
         {
             if (responseCode == RESULT_OK) {
                 try {
@@ -879,7 +944,7 @@ public class AddNewFloorPlanActivity extends AppCompatActivity {
             }
 
         }
-
+*/
     }
 
 

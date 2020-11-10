@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -42,8 +39,8 @@ import com.tribeappsoft.leedo.admin.leads.AddNewLeadActivity;
 import com.tribeappsoft.leedo.admin.offlineLeads.adapter.OfflineLeadListAdapter;
 import com.tribeappsoft.leedo.admin.offlineLeads.model.OfflineLeadModel;
 import com.tribeappsoft.leedo.api.ApiClient;
+import com.tribeappsoft.leedo.application.LeadoApplication;
 import com.tribeappsoft.leedo.util.Helper;
-import com.tribeappsoft.leedo.util.NetworkStateReceiver;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -63,7 +60,7 @@ import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 import static com.tribeappsoft.leedo.util.Helper.onErrorSnack;
 
-public class AllOfflineLeads_Activity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
+public class AllOfflineLeads_Activity extends AppCompatActivity implements LeadoApplication.onSuccessNetworkListener {
     @BindView(R.id.exFab_allOfflineLeads_addLead) ExtendedFloatingActionButton exFab_addLead;
     @BindView(R.id.mBtn_allOfflineLeads_viewDuplicateLeads) MaterialButton mBtn_viewDuplicateLeads;
     @BindView(R.id.sw_allOfflineLeads) SwipeRefreshLayout sw_offlineLeads;
@@ -81,7 +78,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
     private String api_token="",lead_sync_time="";
     private String TAG="AllOfflineLeads_Activity";
     private int user_id =0;
-    private NetworkStateReceiver networkStateReceiver;
+    //private NetworkStateReceiver networkStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +93,12 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
 
         if (getSupportActionBar()!=null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.all_offline_Leads));
+            //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
+            //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.all_offline_Leads));
 
+            getSupportActionBar().setTitle(getString(R.string.all_offline_Leads));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -124,9 +122,12 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
 
         mBtn_viewDuplicateLeads.setOnClickListener(v -> startActivity(new Intent(context, DuplicateLeads_Activity.class)));
 
-        networkStateReceiver = new NetworkStateReceiver();
-        networkStateReceiver.addListener(this);
-        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+        //networkStateReceiver = new NetworkStateReceiver();
+        //networkStateReceiver.addListener(this);
+        //this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+
+        //set callback to interface
+        LeadoApplication.getInstance().setOnNetworkSetListener(this);
     }
 
     @Override
@@ -137,6 +138,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         lead_sync_time = sharedPreferences.getString("lead_sync_time", "");
+        api_token = sharedPreferences.getString("api_token", "");
         //,total_offline_leads=0;
         int total_duplicate_leads = sharedPreferences.getInt("total_duplicate_leads", 0);
 //        Log.e(TAG, "onResume: total_offline_leads"+total_offline_leads );
@@ -187,7 +189,6 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
         //initialise shared pref
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
-        api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         editor.apply();
 
@@ -197,6 +198,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
             String offlineData = null;
             if (sharedPreferences.getString("DownloadModel", null) != null) offlineData = sharedPreferences.getString("DownloadModel", null);
 
+            Log.e(TAG, "setOfflineLeads: ");
             if (offlineData !=null) {
 
                 offlineLeadModelArrayList.clear();
@@ -279,7 +281,6 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
             //notifications available
             rv_offline_leads.setVisibility(View.VISIBLE);
             ll_noData.setVisibility(View.GONE);
-
         }
         if (sw_offlineLeads !=null) sw_offlineLeads.setRefreshing(false);
 
@@ -492,7 +493,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
         if (jsonObject.has("lead_profession")) model.setLead_profession(!jsonObject.get("lead_profession").isJsonNull() ? jsonObject.get("lead_profession").getAsString() :"");
         if (jsonObject.has("lead_ni_reason")) model.setLead_ni_reason(!jsonObject.get("lead_ni_reason").isJsonNull() ? jsonObject.get("lead_ni_reason").getAsString() : "" );
         if (jsonObject.has("lead_ni_other_reason")) model.setLead_ni_other_reason(!jsonObject.get("lead_ni_other_reason").isJsonNull() ? jsonObject.get("lead_ni_other_reason").getAsString() : "" );
-        if (jsonObject.has("budget_limit_id")) model.setBudget_limit_id(!jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0 );
+        // if (jsonObject.has("budget_limit_id")) model.setBudget_limit_id(!jsonObject.get("budget_limit_id").isJsonNull() ? jsonObject.get("budget_limit_id").getAsInt() : 0 );
         if (jsonObject.has("budget_limit")) model.setBudget_limit(!jsonObject.get("budget_limit").isJsonNull() ? jsonObject.get("budget_limit").getAsString() : "" );
         if (jsonObject.has("income_range_id")) model.setIncome_range_id(!jsonObject.get("income_range_id").isJsonNull() ? jsonObject.get("income_range_id").getAsInt() : 0 );
         if (jsonObject.has("income_range")) model.setIncome_range(!jsonObject.get("income_range").isJsonNull() ? jsonObject.get("income_range").getAsString() : "" );
@@ -550,7 +551,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
             //Code for changing the search icon
             ImageView icon = searchView.findViewById(androidx.appcompat.R.id.search_button);
             // icon.setColorFilter(Color.WHITE);
-            icon.setImageResource(R.drawable.ic_home_search2);
+            icon.setImageResource(R.drawable.ic_home_search);
 
             //AutoCompleteTextView searchTextView =  searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
             AutoCompleteTextView searchTextView = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
@@ -664,7 +665,7 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
         super.onBackPressed();
     }
 
-    @Override
+    /*@Override
     public void networkAvailable() {
         Log.e(TAG, "I'm in, baby!");
         //new Helper().showCustomToast(context, "Network Available!");
@@ -687,13 +688,19 @@ public class AllOfflineLeads_Activity extends AppCompatActivity implements Netwo
 
         new Handler().postDelayed(() -> new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost..."), 1000);
 
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        networkStateReceiver.removeListener(this);
-        this.unregisterReceiver(networkStateReceiver);
+        //networkStateReceiver.removeListener(this);
+        //this.unregisterReceiver(networkStateReceiver);
     }
 
+    @Override
+    public void onSuccessNetworkListener() {
+        Log.e(TAG, "onSuccessNetworkListener: ");
+        //set offline leads
+        setOfflineLeads();
+    }
 }

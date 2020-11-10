@@ -174,7 +174,9 @@ public class AllLeadsActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-        if (getIntent()!=null) notify = getIntent().getBooleanExtra("notify", false);
+        if (getIntent()!=null) {
+            notify = getIntent().getBooleanExtra("notify", false);
+        }
 
         //hide pb
         hideCancellationProgressBar();
@@ -3232,7 +3234,8 @@ public class AllLeadsActivity extends AppCompatActivity {
             startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
             finish();
         }
-        else {
+        else
+        {
             super.onBackPressed();
             // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down);
         }

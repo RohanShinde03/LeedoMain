@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/tb_pick"
+        layout="@layout/vw_layout_top_bar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_file_pick"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="40dp"
+        android:layout_below="@id/tb_pick"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_customerHome_JoshCardVerification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginTop="50dp"
+        android:background="@color/red_verification"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/styleFontMediumText"
+            android:text="Select only one document at a time"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="4dp"
+            android:layout_gravity="center"
+            android:paddingBottom="4dp"
+            android:textColor="@color/main_white"
+            android:textSize="16sp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <ProgressBar android:id="@+id/pb_file_pick"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

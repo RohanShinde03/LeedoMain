@@ -954,6 +954,7 @@ public class LoginActivity extends AppCompatActivity implements WSCallerVersionL
         if (jsonObject.has("country_code")) model.setCountry_code(!jsonObject.get("country_code").isJsonNull() ? jsonObject.get("country_code").getAsString() : "");
         if (jsonObject.has("mobile_number")) model.setMobile_number(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "");
         if (jsonObject.has("profile_photo")) model.setProfile_photo((!jsonObject.get("profile_photo").isJsonNull() ? jsonObject.get("profile_photo").getAsString() : ""));
+        if (jsonObject.has("profile_photo_media_id")) model.setProfile_photo_media_id((!jsonObject.get("profile_photo_media_id").isJsonNull() ? jsonObject.get("profile_photo_media_id").getAsString() : ""));
         if (jsonObject.has("company_name")) model.setCompany_name((!jsonObject.get("company_name").isJsonNull() ? jsonObject.get("company_name").getAsString() : ""));
         if (jsonObject.has("company_name_short")) model.setCompany_name_short((!jsonObject.get("company_name_short").isJsonNull() ? jsonObject.get("company_name_short").getAsString() : ""));
         model.setUser_type_id(1);   //TODO for sales person -->1
@@ -1103,6 +1104,7 @@ public class LoginActivity extends AppCompatActivity implements WSCallerVersionL
             editor.putString("country_code", model.getCountry_code());
             editor.putString("mobile_number", model.getMobile_number());
             editor.putString("profile_photo", model.getProfile_photo());
+            editor.putString("profile_photo_media_id", model.getProfile_photo_media_id());
             editor.putString("company_name", model.getCompany_name());
             editor.putString("company_name_short", model.getCompany_name_short());
             editor.putBoolean("isAdmin", model.isAdmin());

@@ -9,10 +9,10 @@ public class WebServer {
 
 
     //TODO BASE URL LIVE
-    //public static final String BASE_URL = "http://13.233.27.5/1tr/sid05/public/api/";
+    public static final String BASE_URL = "http://15.207.242.165/1tr/suk09/public/api/";
 
     //TODO BASE URL LEEDO DEMO ENV
-    public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
+    //public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
 
     private static final String BASE_URL_LOGO = "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/";
 
@@ -208,6 +208,12 @@ public class WebServer {
 
     //delete project docs
     public static final String Post_DeleteProjectDocs = BASE_URL + "deleteProjectDocs";
+
+    // project doc liked and change sort
+    public static final String Post_ProjectDocLiked = BASE_URL + "markAsDocLiked";
+
+    // project doc unLiked and change sort
+    public static final String Post_ProjectDocUnLiked = BASE_URL + "markAsDocUnLiked";
 
 
     //-----------------------        Tokens API      ----------------------------------------//
@@ -559,6 +565,8 @@ public class WebServer {
 
     //get all home counts
     public static final String GET_HomeAllCounts = BASE_URL + "getHomeAllCounts";
+
+
 
     //-----------------------------------   Call Schedule API  ---------------------------------------------//
 

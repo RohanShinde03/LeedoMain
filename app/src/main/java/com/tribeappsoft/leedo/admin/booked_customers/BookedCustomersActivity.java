@@ -62,6 +62,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
 import com.tribeappsoft.leedo.admin.callLog.TelephonyCallService;
 import com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity;
@@ -148,7 +149,7 @@ public class BookedCustomersActivity extends AppCompatActivity {
     private String  api_token = "", filter_text="", display_text ="", last_lead_updated_at = null, customer_mobile = null,
             call_cuID= null, call_lead_name= "", call_project_name= "";
     //private Dialog claimDialog;
-    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false;
+    private boolean stopApiCall = false,isSalesHead=false, isAdmin = false, onStop = false,notify=false;
 
 
     @Override
@@ -204,6 +205,12 @@ public class BookedCustomersActivity extends AppCompatActivity {
         isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
+
+        if(getIntent()!=null)
+        {
+            notify=getIntent().getBooleanExtra("notify",false);
+        }
+
 
         //gone toolbar
         // appbar.setVisibility(View.GONE);
@@ -3151,6 +3158,10 @@ public class BookedCustomersActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (notify) {
+            startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
+            finish();
+        }
         super.onBackPressed();
     }
 

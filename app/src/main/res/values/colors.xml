@@ -94,6 +94,14 @@
     <color name="bgColor__1">#FFF3A5</color>
 
 
+    <!--filePicker SS -->
+    <color name="vw_BgToolBar">#373B3E</color>
+    <color name="vw_BgRv">#191919</color>
+    <color name="vw_BgItem">#353535</color>
+    <color name="vw_ShadowItem">#94333232</color>
+    <color name="vw_BgRvFileDivider">#EEEEEE</color>
+
+
     <!-- TODO updated colors  17-10-2019 -->
     <!-- same color code for
             1. flat sold and booked

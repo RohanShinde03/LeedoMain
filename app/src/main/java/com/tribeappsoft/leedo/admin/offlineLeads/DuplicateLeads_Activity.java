@@ -36,6 +36,7 @@ import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.offlineLeads.adapter.DuplicateLeadListAdapter;
 import com.tribeappsoft.leedo.admin.offlineLeads.model.OfflineLeadModel;
 import com.tribeappsoft.leedo.api.ApiClient;
+import com.tribeappsoft.leedo.application.LeadoApplication;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.MyRecyclerScroll;
@@ -60,7 +61,7 @@ import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 
 
-public class DuplicateLeads_Activity extends AppCompatActivity {
+public class DuplicateLeads_Activity extends AppCompatActivity implements LeadoApplication.onSuccessNetworkListener {
 
     @BindView(R.id.sr_duplicateLeadList) SwipeRefreshLayout swipeRefresh;
     @BindView(R.id.rv_duplicateLeadList) RecyclerView recyclerView;
@@ -98,7 +99,8 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
             //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
             //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
 
-            getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
+            getSupportActionBar().setTitle(getString(R.string.all_duplicate_Leads));
+            getSupportActionBar().setSubtitle(total==0 ? "" : String.valueOf(total));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -572,7 +574,9 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
                 Log.e(TAG, "onResume: "+total);
 
                 if (getSupportActionBar()!=null) {
-                    getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
+                    //getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
+                    getSupportActionBar().setTitle(getString(R.string.all_duplicate_Leads));
+                    getSupportActionBar().setSubtitle(total==0 ? "" : String.valueOf(total));
                 }
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -610,7 +614,9 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
                 hideProgressBar();
                 Log.e(TAG, "onResume: "+total);
                 if (getSupportActionBar()!=null) {
-                    getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
+                    //getSupportActionBar().setTitle(total==0 ? getString(R.string.all_duplicate_Leads) : "All Duplicate Leads (" + total + ")");
+                    getSupportActionBar().setTitle(getString(R.string.all_duplicate_Leads));
+                    getSupportActionBar().setSubtitle(total==0 ? "" : String.valueOf(total));
                 }
 
                 if (recyclerView.getAdapter()!=null) {
@@ -815,4 +821,9 @@ public class DuplicateLeads_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSuccessNetworkListener() {
+        //reset the api call
+        resetApiCall();
+    }
 }

@@ -7,7 +7,6 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -102,7 +101,6 @@ import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.CircularAnim;
 import com.tribeappsoft.leedo.util.CustomTypefaceSpan;
 import com.tribeappsoft.leedo.util.Helper;
-import com.tribeappsoft.leedo.util.NetworkStateReceiver;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -122,7 +120,7 @@ import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
 import static com.tribeappsoft.leedo.util.Helper.isValidContextForGlide;
 import static com.tribeappsoft.leedo.util.Helper.onErrorSnack;
 
-public class SalesPersonHomeNavigationActivity extends AppCompatActivity implements WSCallerVersionListener, NetworkStateReceiver.NetworkStateReceiverListener {
+public class SalesPersonHomeNavigationActivity extends AppCompatActivity implements WSCallerVersionListener{
 
     @BindView(R.id.app_bar_salesPerson) AppBarLayout app_bar;
     LinearLayoutCompat navHeader_user_profile_ll;
@@ -164,7 +162,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     //private int[] grantResults;
     //private AppUpdateManager appUpdateManager;
     //private InstallStateUpdatedListener installStateUpdatedListener;
-    private NetworkStateReceiver networkStateReceiver;
+    //private NetworkStateReceiver networkStateReceiver;
 
     @SuppressLint("HardwareIds")
     @Override
@@ -529,10 +527,10 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         if (isNetworkAvailable(context))//check for app update
             new GooglePlayStoreAppVersionNameLoader(getApplicationContext(), SalesPersonHomeNavigationActivity.this).execute();
 
-
-        networkStateReceiver = new NetworkStateReceiver();
-        networkStateReceiver.addListener(this);
-        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+        //register receiver here
+        //networkStateReceiver = new NetworkStateReceiver();
+        //networkStateReceiver.addListener(this);
+        //this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
     }
 
@@ -729,16 +727,10 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                     public void onError(final Throwable e)
                     {
 
-                        try {
-                            Log.e(TAG, "onError: " + e.toString());
-                            if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
-                            else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
-                            else showErrorLog(e.toString());
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.printStackTrace();
-                        }
+                        Log.e(TAG, "onError: " + e.toString());
+                        if (e instanceof SocketTimeoutException) showErrorLog(getString(R.string.connection_time_out));
+                        else if (e instanceof IOException) showErrorLog(getString(R.string.weak_connection));
+                        else showErrorLog(e.toString());
                     }
                     @SuppressLint("LongLogTag")
                     @Override
@@ -1551,6 +1543,8 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         bottomUp.setDuration(100);
         viewDisableLayout.startAnimation(bottomUp);
         viewDisableLayout.setVisibility(View.VISIBLE);
+        //set status bar color main
+        new Helper().setStatusBarColor(context, R.color.main_light_grey);
     }
 
     private void closeView()
@@ -1562,6 +1556,9 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         bottomUp.setDuration(100);
         viewDisableLayout.startAnimation(bottomUp);
         viewDisableLayout.setVisibility(View.GONE);
+
+        //set status bar color as it is primary
+        new Helper().setStatusBarColor(context, R.color.primaryDarkColor);
     }
 
 
@@ -2026,7 +2023,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
 
     }
 
-    @Override
+    /*@Override
     public void networkAvailable() {
         Log.e(TAG, "I'm in, baby!");
         //new Helper().showCustomToast(context, "Network Available!");
@@ -2046,13 +2043,29 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //new Helper().showCustomToast(context, "Network Lost again!");
 
         new Handler().postDelayed(() -> new Helper().onSnackForHomeLeadSync(context,"Oops, Device Network Lost..."), 1000);
-
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        networkStateReceiver.removeListener(this);
-        this.unregisterReceiver(networkStateReceiver);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //networkStateReceiver.removeListener(this);
+        //this.unregisterReceiver(networkStateReceiver);
+    }
+
+    //@Override
+    public void onSuccessNetworkListener() {
+        Log.e(TAG, "onSuccessNetworkListener: ");
+
+        new Handler().postDelayed(() -> {
+            new Helper().onSnackForHomeNetworkAvailable(context,"Device Network Available!");
+
+            //check offline leads available for sync
+            setOfflineLeads();
+        }, 1000);
     }
 }

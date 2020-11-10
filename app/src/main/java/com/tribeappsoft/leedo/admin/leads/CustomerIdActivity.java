@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,7 +22,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -41,11 +39,11 @@ import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.booked_customers.MarkAsBook_Activity;
 import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
-import com.tribeappsoft.leedo.api.ApiClient;
-import com.tribeappsoft.leedo.admin.leads.adapter.CUIDAdapter;
 import com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity;
+import com.tribeappsoft.leedo.admin.leads.adapter.CUIDAdapter;
 import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
 import com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;
@@ -105,11 +103,12 @@ public class CustomerIdActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null)
         {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            getSupportActionBar().setCustomView(R.layout.layout_ab_center);
-            ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.select_customer));
+            //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            //getSupportActionBar().setCustomView(R.layout.layout_ab_center);
+            //((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.select_customer));
 
+            getSupportActionBar().setTitle(getString(R.string.select_customer));
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);

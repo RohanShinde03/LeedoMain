@@ -18,18 +18,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -81,7 +71,6 @@ public class FireBaseMessageService extends FirebaseMessagingService
 
     private String title = "", body ="", page = null,  picture = null,lead_uid="",country_code="",mobile_number="",full_name="",project_name="",unit_category="",call_remarks="";
     private int notId = 0,lead_id=0,lead_status_id=0,lead_call_schedule_id=0;
-    private Intent intent = null;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     public static final String BROADCAST_ACTION = "com.tribeappsoft.leado.ClaimNow";
@@ -234,6 +223,7 @@ public class FireBaseMessageService extends FirebaseMessagingService
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         editor = sharedPreferences.edit();
         editor.apply();
+        Intent intent;
         if (sharedPreferences.getInt("user_id", 0) != 0)
         {
 
@@ -279,7 +269,11 @@ public class FireBaseMessageService extends FirebaseMessagingService
                         break;
 
                     case "new_lead_reassign"://Lead Reassign from on eto other sales person
-                        intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
+
+                    case "offline_leads_merge":
+
+                    case "cancel_booking":
+                        intent = new Intent(this, AllLeadsActivity.class);
                         intent.putExtra("notify", true);  //Notifications
                         break;
 
@@ -305,7 +299,7 @@ public class FireBaseMessageService extends FirebaseMessagingService
                         break;
 
                     case "ScheduledCallNow":
-                        intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
+                        intent = new Intent(this, CallScheduleMainActivity.class);
                         intent.putExtra("notify", true); //unClaimed Leads
                         editor.putBoolean("applicationCreated", true);
                         break;
@@ -315,12 +309,9 @@ public class FireBaseMessageService extends FirebaseMessagingService
                         intent.putExtra("notify", true); //unClaimed Leads
                         //editor.putBoolean("applicationCreated", true);
                         break;
-
-                    case "offline_leads_merge":
-                        intent = new Intent(this, AllLeadsActivity.class);
-                        intent.putExtra("notify", true); //unClaimed Leads
-                        //editor.putBoolean("applicationCreated", true);
-                        break;
+                    //editor.putBoolean("applicationCreated", true);
+                    //unClaimed Leads
+                    //editor.putBoolean("applicationCreated", true);
 
                     default:
                         intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
@@ -840,95 +831,6 @@ public class FireBaseMessageService extends FirebaseMessagingService
             }
         }
 
-    }
-
-
-
-    private void showConfirmDialog()
-    {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
-
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_material, null) : null;
-        alertDialogBuilder.setView(alertLayout);
-        alertDialogBuilder.setCancelable(true);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        assert alertLayout != null;
-        AppCompatTextView tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
-        AppCompatTextView tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_desc);
-        AppCompatButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_negativeButton);
-        AppCompatButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_positiveButton);
-        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
-
-        tv_msg.setText("Claim Lead?");
-        tv_desc.setText("Are you sure you want to claim this lead?");
-        btn_negativeButton.setText(getString(R.string.no));
-        btn_positiveButton.setText(getString(R.string.yes));
-
-        btn_positiveButton.setOnClickListener(view -> {
-
-            // showSuccessPopup();
-            alertDialog.dismiss();
-            //if(claimDialog!=null) claimDialog.dismiss();
-
-            //To stop audio, call
-            //if (mp!=null) mp.stop();
-            //if (vibrator!=null) vibrator.cancel();
-
-           /* if (isNetworkAvailable(Objects.requireNonNull(context))) {
-                //showProgressBar("Adding site visit...");
-                call_claimNow();
-            } else NetworkError(context);*/
-
-        });
-
-
-        btn_negativeButton.setOnClickListener(view -> {
-            alertDialog.dismiss();
-            //if(claimDialog!=null) claimDialog.dismiss();
-
-            //To stop audio, call
-            //if (mp!=null) mp.stop();
-            //if (vibrator!=null) vibrator.cancel();
-
-            if (sharedPreferences!=null) {
-                //update sharedPref with flag
-                editor = sharedPreferences.edit();
-                editor.putBoolean("applicationCreated", false);
-                editor.apply();
-            }
-
-            //finish this activity
-            //finish();
-
-        });
-
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.show();
-
-        //set the width and height to alert dialog
-        //int pixel= Objects.requireNonNull(getApplicationContext()).getWindowManager().getDefaultDisplay().getWidth();
-
-        WindowManager window = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        Display display = window.getDefaultDisplay();
-        //int width = display.getWidth();
-        //int height = display.getHeight();
-        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
-        wmlp.gravity =  Gravity.CENTER;
-        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        wmlp.width = display.getWidth() -100;
-
-        //wmlp.x = 100;   //x position
-        //wmlp.y = 100;   //y position
-
-
-        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        alertDialog.getWindow().setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.bg_claim_popup));
-        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
-        alertDialog.getWindow().setAttributes(wmlp);
     }
 
 }

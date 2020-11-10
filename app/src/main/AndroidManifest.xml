@@ -168,7 +168,9 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity> <!-- End FB SDK -->
+        </activity>
+        <!-- End FB SDK -->
+
         <!-- Splash Screen -->
         <activity
             android:name="com.tribeappsoft.leedo.SplashScreenActivity"
@@ -224,6 +226,7 @@
 
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity"
             android:screenOrientation="portrait"
@@ -246,6 +249,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <!--
 Set color used with incoming notification messages. This is used when no color is set for the incoming
      notification message. See README(https://goo.gl/6BKBk7) for more.
@@ -266,7 +270,9 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:value="@string/default_notification_channel_id" /> <!-- RazorPay Key -->
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="@string/razorPay_live_key" /> <!-- android:name=".firebase.FirebaseIDService" -->
+            android:value="@string/razorPay_live_key" />
+
+        <!-- android:name=".firebase.FirebaseIDService" -->
         <!-- android:enabled="true" -->
         <!-- android:exported="false" -->
         <!-- android:stopWithTask="false"> -->
@@ -282,11 +288,17 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service> <!-- END Firebase -->
+        </service>
+        <!-- END Firebase -->
+
+
         <!-- Alarm broadcast receiver -->
         <receiver
             android:name="com.tribeappsoft.leedo.admin.reminder.AlarmReceiver"
-            android:process=":remote" /> <!-- File Provider -->
+            android:process=":remote" />
+
+
+        <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -295,7 +307,41 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider> <!-- End File Provider -->
+        </provider>
+        <!-- End File Provider -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".util.filepicker_ss.activity.ImagePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+
+        <activity android:name=".util.filepicker_ss.activity.ImageBrowserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme"
+            android:hardwareAccelerated="false" />
+
+        <activity android:name=".util.filepicker_ss.activity.VideoPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+
+        <activity android:name=".util.filepicker_ss.activity.AudioPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+
+        <activity android:name=".util.filepicker_ss.activity.NormalFilePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.MainActivity"
             android:screenOrientation="portrait"

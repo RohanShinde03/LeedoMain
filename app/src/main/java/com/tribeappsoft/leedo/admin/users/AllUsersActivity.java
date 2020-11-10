@@ -37,6 +37,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.project_creation.model.ProjectModel;
 import com.tribeappsoft.leedo.admin.users.adapter.UserListAdapter;
 import com.tribeappsoft.leedo.admin.users.model.UserModel;
@@ -88,6 +89,7 @@ public class AllUsersActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private int user_id=0;
+    private boolean notify=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,11 @@ public class AllUsersActivity extends AppCompatActivity {
         user_id = sharedPreferences.getInt("user_id", 0);
         Log.e(TAG, "onCreate: "+api_token +"user_id : "+user_id);
         editor.apply();
+
+        if(getIntent()!=null)
+        {
+            notify=getIntent().getBooleanExtra("notify",false);
+        }
 
         userModelArrayList =new ArrayList<>();
         temp_userModelArrayList =new ArrayList<>();
@@ -624,6 +631,10 @@ public class AllUsersActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (notify) {
+            startActivity(new Intent(context, SalesPersonHomeNavigationActivity.class));
+            finish();
+        }
         super.onBackPressed();
     }
 }

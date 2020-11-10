@@ -58,21 +58,23 @@ import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.models.project.ProjectModel;
 import com.tribeappsoft.leedo.models.project.UnitCategoriesModel;
 import com.tribeappsoft.leedo.util.Helper;
-import com.tribeappsoft.leedo.util.filepicker.MaterialFilePicker;
-import com.tribeappsoft.leedo.util.filepicker.ui.FilePickerActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.Constant;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.activity.NormalFilePickActivity;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.AudioFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.ImageFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.NormalFile;
+import com.tribeappsoft.leedo.util.filepicker_ss.filter.entity.VideoFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.SocketTimeoutException;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +87,9 @@ import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
+
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.BaseActivity.IS_NEED_FOLDER_LIST;
+import static com.tribeappsoft.leedo.util.filepicker_ss.activity.ImagePickActivity.IS_NEED_CAMERA;
 
 public class MarkAsBook_Activity extends AppCompatActivity {
 
@@ -116,7 +121,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
     private ArrayList<ProjectModel> projectModelArrayList;
     private ArrayList<String> projectStringArrayList, flatStringArrayList;
 
-    private String cuidNumber, customer_name="", selectedProjectName = "", selectedFlatType = "",
+    private String cuidNumber, customer_name="", selectedProjectName = "", selectedFlatType = "",filePath="",
             sendAlreadySiteVisitTime = null, full_name ="",api_token="",BookingApplicationUrl=null, sendBookingDate = null, sendBookingTimeFormatted ="",
             sendAlreadySiteFormattedVisitDate="";
 
@@ -689,6 +694,27 @@ public class MarkAsBook_Activity extends AppCompatActivity {
 
     void OpenGallery()
     {
+        Intent intent1 = new Intent(this, ImagePickActivity.class);
+        intent1.putExtra(IS_NEED_CAMERA, true);
+        intent1.putExtra(Constant.MAX_NUMBER, 1);
+        intent1.putExtra(IS_NEED_FOLDER_LIST, true);
+        startActivityForResult(intent1, Constant.REQUEST_CODE_PICK_IMAGE);
+
+        /*Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 2);*/
+    }
+
+    private void OpenDocuments() {
+        Intent intent4 = new Intent(context, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(IS_NEED_FOLDER_LIST, true);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX,
+                new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", "pptx", "pdf","csv","txt","docx"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+    }
+
+/*    void OpenGallery()
+    {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 2);
     }
@@ -706,7 +732,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
                 .withTitle("Sample title")
                 .start();
 
-    }
+    }*/
 
 
     private void requestPermission_for_Camera()
@@ -853,6 +879,65 @@ public class MarkAsBook_Activity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, responseCode, data);
 
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_PICK_IMAGE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
+                    StringBuilder builder = new StringBuilder();
+                    for (ImageFile file : list) {
+                        String path = file.getPath();
+                        BookingApplicationUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_VIDEO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<VideoFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_VIDEO);
+                    StringBuilder builder = new StringBuilder();
+                    for (VideoFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()):"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_AUDIO:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<AudioFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_AUDIO);
+                    StringBuilder builder = new StringBuilder();
+                    for (AudioFile file : list) {
+                        String path = file.getPath();
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (responseCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    StringBuilder builder = new StringBuilder();
+                    for (NormalFile file : list) {
+                        String path = file.getPath();
+                        filePath=path;
+                        BookingApplicationUrl=path;
+                        builder.append(path + "\n");
+                    }
+                    tv_addBrochure_select_file.setText(!builder.toString().trim().isEmpty() && builder.toString()!=null ? getFileName_from_filePath(builder.toString()) :"No file chosen");
+                    Log.e(TAG, "onActivityResult: filePath"+filePath);
+                    //check button Enabled
+                    checkButtonEnabled();
+                }
+                break;
+        }
+
         if (requestCode == 1)   //From Camera
         {
 
@@ -917,7 +1002,8 @@ public class MarkAsBook_Activity extends AppCompatActivity {
 
             }
 
-        } else if (requestCode == 2)  //From Gallery
+        }
+     /*   else if (requestCode == 2)  //From Gallery
         {
             if (responseCode == RESULT_OK) {
                 try {
@@ -984,7 +1070,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
                 setSelectedDoc(photoUrl);
             }
 
-        }
+        }*/
 
     }
 

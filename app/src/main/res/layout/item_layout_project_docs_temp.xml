@@ -37,29 +37,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center">
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_itemProjectDocs_DocType"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        style="@style/styleFontMediumText"
-                        android:text="Type"
-                        android:gravity="center"
-                        android:layout_gravity="center|top"
-                        android:background="@drawable/bg_circle_shape_document"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:textColor="@color/main_black"
-                        android:textSize="14sp" />
-                    <!-- <de.hdodenhof.circleimageview.CircleImageView
-                         android:id="@+id/iv_hospital_Image"
-                         android:layout_width="55dp"
-                         android:layout_height="55dp"
-                         android:layout_centerInParent="true"
-                         android:src="@drawable/img_def_image_small_120"
-                         app:civ_border_color="@color/GrayLight"
-                         app:civ_border_width="0.5dp" />-->
 
+                    <RelativeLayout
+                        android:id="@+id/rL_homeOffers_relative_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
+                        <!--  <com.google.android.material.textview.MaterialTextView
+                              android:id="@+id/tv_itemProjectDocs_DocType"
+                              android:layout_width="55dp"
+                              android:layout_height="55dp"
+                              style="@style/styleFontMediumText"
+                              android:text="Type"
+                              android:gravity="center"
+                              android:layout_gravity="center|top"
+                              android:background="@drawable/bg_circle_shape_document"
+                              android:maxLines="1"
+                              android:ellipsize="end"
+                              android:textColor="@color/main_black"
+                              android:textSize="14sp" />-->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_docType_Image"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/icon_file_unknown"
+                            app:civ_border_color="@color/GrayLight"
+                            app:civ_border_width="0.5dp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_itemProjectDocs_DocType"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            style="@style/styleFontMediumText"
+                            android:text="Type"
+                            android:gravity="center"
+                            android:layout_gravity="center|top"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/main_white"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -166,6 +185,40 @@
                     android:paddingRight="6dp"
                     android:paddingLeft="10dp"
                     tools:ignore="PrivateResource" />
+                <!-- date and time -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_homeOffers_add_wishList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:visibility="gone"
+                        android:layout_gravity="center|center_horizontal"
+                        android:src="@drawable/ic_home_offer_card_wishlist_icon_inactive"/>
+
+                    <com.like.LikeButton
+                        android:id="@+id/hb_itemHomeOffers_addToWishList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:icon_type="heart"
+                        app:circle_start_color="@color/colorPrimary"
+                        app:like_drawable="@drawable/ic_home_offer_card_wishlist_icon_active"
+                        app:unlike_drawable="@drawable/ic_home_offer_card_wishlist_icon_inactive"
+                        app:dots_primary_color="@color/colorAccent"
+                        app:dots_secondary_color="@color/colorPrimary"
+                        app:circle_end_color="@color/colorAccent"
+                        app:icon_size="24dp"
+                        app:anim_scale_factor="2"
+                        app:is_enabled="true"/>
+                    <!--  app:liked="false"-->
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

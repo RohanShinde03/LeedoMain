@@ -180,9 +180,9 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         if(isSalesHead || isAdmin){
             //visible sales person filter only if Admin or SH
             ll_fragHome_salesPersonDropdown.setVisibility(View.VISIBLE);
-            selectedSalesPersonId = sharedPreferences.getInt("user_id", 0);
         }
         else {
+            selectedSalesPersonId = sharedPreferences.getInt("user_id", 0);
             ll_fragHome_salesPersonDropdown.setVisibility(View.GONE);
         }
 

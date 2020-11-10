@@ -97,7 +97,7 @@
                         android:visibility="visible"
                         android:cacheColorHint="@android:color/transparent"
                         android:clipToPadding="false"
-                        tools:listitem="@layout/item_layout_project_docs" />
+                        tools:listitem="@layout/item_layout_project_docs_temp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

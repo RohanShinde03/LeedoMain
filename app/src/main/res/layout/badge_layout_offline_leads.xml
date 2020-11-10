@@ -11,11 +11,11 @@
         android:text="@string/_0"
         android:layout_marginTop="@dimen/dimen_12dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/red"
+        android:textColor="@color/color_claim_now_red"
         android:textStyle="bold"
         android:theme="@style/styleFontBold"
-        android:textSize="16sp"
-        android:alpha="0.6"/>
+        android:textSize="15sp"
+        android:alpha="0.8"/>
 
     <!--         android:layout_alignParentEnd="true"
     android:alpha="0.6"

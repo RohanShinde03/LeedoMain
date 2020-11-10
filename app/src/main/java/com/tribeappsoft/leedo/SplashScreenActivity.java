@@ -250,13 +250,15 @@ public class SplashScreenActivity extends AppCompatActivity {
                             break;
 
                         case "ScheduledCallNow":
-                            intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
+                            intent = new Intent(this, CallScheduleMainActivity.class);
                             intent.putExtra("notify", true); //unClaimed Leads
                             editor.putBoolean("applicationCreated", true);
                             break;
 
                         case "new_lead_reassign"://Lead Reassign from on eto other sales person
-                            intent = new Intent(this, SalesPersonHomeNavigationActivity.class);
+
+                        case "offline_leads_merge":
+                            intent = new Intent(this, AllLeadsActivity.class);
                             intent.putExtra("notify", true); //unClaimed Leads
                             break;
 
@@ -275,12 +277,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             intent.putExtra("notify", true); //unClaimed Leads
                             //editor.putBoolean("applicationCreated", true);
                             break;
-
-                        case "offline_leads_merge":
-                            intent = new Intent(this, AllLeadsActivity.class);
-                            intent.putExtra("notify", true); //unClaimed Leads
-                            //editor.putBoolean("applicationCreated", true);
-                            break;
+                        //editor.putBoolean("applicationCreated", true);
 
                         default:
                             intent = new Intent(this, SalesPersonHomeNavigationActivity.class);

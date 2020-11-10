@@ -23,6 +23,7 @@
             android:padding="5dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_userList_userImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10dp"

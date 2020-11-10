@@ -102,8 +102,7 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
-        if(getIntent()!=null)
-        {
+        if(getIntent()!=null) {
             notify=getIntent().getBooleanExtra("notify",false);
         }
 
@@ -310,7 +309,7 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
     }
 
 
-    private void getProjectBrochures() {
+    public void getProjectBrochures() {
 
         ApiClient client = ApiClient.getInstance();
         Observable<Response<JsonObject>> responseObservable = client.getApiService().getProjectDocs(api_token,project_doc_type_id,user_id);
@@ -416,7 +415,7 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
                     ArrayList<EventProjectDocsModel> arrayList = new ArrayList<>();
                     arrayList.clear();
                     for (int j = 0; j < jsonArray.size(); j++) {
-                        setProjectBrochuresJson(jsonArray.get(j).getAsJsonObject(), arrayList,projectModel);
+                        setProjectBrochuresJson(jsonArray.get(j).getAsJsonObject(), arrayList);
                     }
                     projectModel.setEventProjectDocsModelArrayList(arrayList);
                 }
@@ -426,7 +425,7 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
     }
 
 
-    private void setProjectBrochuresJson(JsonObject jsonObject, ArrayList<EventProjectDocsModel> arrayList, ProjectModel projectModel)
+    private void setProjectBrochuresJson(JsonObject jsonObject, ArrayList<EventProjectDocsModel> arrayList)
     {
         EventProjectDocsModel eventProjectDocsModel = new EventProjectDocsModel();
 
@@ -516,7 +515,7 @@ public class ProjectBrochuresActivity extends AppCompatActivity {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setHasFixedSize(true);
-                recyclerAdapter = new ProjectBrochuresRecyclerAdapter(context, projectModelArraylist.get(myPosition).getEventProjectDocsModelArrayList());
+                recyclerAdapter = new ProjectBrochuresRecyclerAdapter(context, projectModelArraylist.get(myPosition).getEventProjectDocsModelArrayList(),swipeRefresh);
                 recyclerView.setAdapter(recyclerAdapter);
 
                 recyclerAdapter.notifyDataSetChanged();

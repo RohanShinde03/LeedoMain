@@ -126,7 +126,7 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
 
             showProgressBar();
             //showShimmer();
-            new Handler().postDelayed(this::getMyCallLogesCount, 100);
+            new Handler().postDelayed(this::getMyCallLogesCount, 1000);
         }
         else
         {
@@ -175,9 +175,9 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
                 // showProgressBar();
                 if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
 
-                   // showProgressBar();
+                    // showProgressBar();
                     //showShimmer();
-                    new Handler().postDelayed(this::getMyCallLogesCount, 100);
+                    new Handler().postDelayed(this::getMyCallLogesCount, 1000);
                 }
                 else
                 {
@@ -445,9 +445,9 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
             // showProgressBar();
             if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
 
-                 showProgressBar();
+                showProgressBar();
                 //showShimmer();
-                new Handler().postDelayed(this::getMyCallLogesCount, 100);
+                new Handler().postDelayed(this::getMyCallLogesCount, 1000);
             }
             else
             {
@@ -544,7 +544,7 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-       // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
+        // overridePendingTransition( R.anim.no_change, R.anim.trans_slide_down );
 
         //clear filter if applied from sharedPref
         if (sharedPreferences!=null) {

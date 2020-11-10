@@ -200,6 +200,16 @@ public class UserModel implements Serializable
 
 
     private int user_id;
+
+    public String getProfile_photo_media_id() {
+        return profile_photo_media_id;
+    }
+
+    public void setProfile_photo_media_id(String profile_photo_media_id) {
+        this.profile_photo_media_id = profile_photo_media_id;
+    }
+
+    private String profile_photo_media_id;
     private int user_type_id;  //TODO 1. -> Sales Person,   2-> Site Engineer  3-> Accounts Head
     private String username;
     private String api_token;

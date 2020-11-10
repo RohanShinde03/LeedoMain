@@ -239,8 +239,8 @@ public interface ApiService
 
     //get lead details
     @GET(WebServer.GET_LeadDetails) Call<JsonObject> getLeadDetails
-            (@Query("api_token") String api_token,
-             @Query("lead_id") int lead_id);
+    (@Query("api_token") String api_token,
+     @Query("lead_id") int lead_id);
 
 
     //Post Add Sales Lead
@@ -254,12 +254,14 @@ public interface ApiService
 
     @GET(WebServer.GET_whatsAppNumber) Call<JsonObject>checkMobileNumberExistWhatsApp(
             @Query("api_token") String api_token,
-            @Query("mobile_number") String mobile_number);
+            @Query("mobile_number") String mobile_number,
+            @Query("lead_id") int lead_id);
 
 
     @GET(WebServer.GET_whatsAppNumber) Call<JsonObject>checkMobileNumberExistOther(
             @Query("api_token") String api_token,
-            @Query("alternate_mobile_number") String alternate_mobile_number);
+            @Query("alternate_mobile_number") String alternate_mobile_number,
+            @Query("lead_id") int lead_id);
 
 
 
@@ -381,6 +383,14 @@ public interface ApiService
     Call<JsonObject> deleteProjectDocs
     (@Body JsonObject jsonObject);
 
+
+    //project doc liked and change sort
+    @POST(WebServer.Post_ProjectDocLiked)
+    Call<JsonObject> markLeadsAsLiked(@Body JsonObject jsonObject);
+
+    //project doc unLiked and change sort
+    @POST(WebServer.Post_ProjectDocUnLiked)
+    Call<JsonObject> markLeadsAsUnLiked(@Body JsonObject jsonObject);
 
 
 
@@ -668,6 +678,14 @@ public interface ApiService
             @Part("api_token") RequestBody api_token,
             @Part("user_id") RequestBody staff_id);
 
+    //upload sales Profile pic
+    @Multipart
+    @POST(WebServer.POST_updateSalesPersonsProfileImage)
+    Call<JsonObject> updateSalesPersonsProfilePhoto(
+            @Part MultipartBody.Part profile_path,
+            @Part("api_token") RequestBody api_token,
+            @Part("user_id") RequestBody user_id,
+            @Part("media_id") RequestBody media_id);
 
     //Post Sales Profile
     @POST(WebServer.POST_UserDetails)
@@ -1036,17 +1054,17 @@ public interface ApiService
     //GET_CancelBookingDetails
     @GET(WebServer.Get_CancelBookingDetails)
     Observable<Response<JsonObject>> getStatCancelBookingDetails(@Query("api_token") String api_token,
-                                                           @Query("project_id") int project_id,
-                                                           @Query("start_date") String start_date,
-                                                           @Query("end_date") String end_date,
-                                                           @Query("sales_person_id") int sales_person_id,
-                                                           @Query("cp_executive_id") int cp_executive_id,
-                                                           @Query("cp_id") int cp_id,
-                                                           @Query("event_id") int event_id,
-                                                           @Query("lead_status_id") int lead_status_id,
-                                                           @Query("sales_team_lead_stats") boolean sales_team_lead_stats,
-                                                           @Query("page") int page,
-                                                           @Query("filter_text") String filter_text);
+                                                                 @Query("project_id") int project_id,
+                                                                 @Query("start_date") String start_date,
+                                                                 @Query("end_date") String end_date,
+                                                                 @Query("sales_person_id") int sales_person_id,
+                                                                 @Query("cp_executive_id") int cp_executive_id,
+                                                                 @Query("cp_id") int cp_id,
+                                                                 @Query("event_id") int event_id,
+                                                                 @Query("lead_status_id") int lead_status_id,
+                                                                 @Query("sales_team_lead_stats") boolean sales_team_lead_stats,
+                                                                 @Query("page") int page,
+                                                                 @Query("filter_text") String filter_text);
     //GET_LeadTokenDetails
     @GET(WebServer.Get_LeadTokenDetails)
     Observable<Response<JsonObject>> getLeadTokenDetails(@Query("api_token") String api_token,
@@ -1124,14 +1142,14 @@ public interface ApiService
     //GET_lead Details
     @GET(WebServer.Get_leadDataDetails)
     Observable<Response<JsonObject>> getLeadDetails(@Query("api_token") String api_token,
-                                                        @Query("project_id") int project_id,
-                                                        @Query("start_date") String start_date,
-                                                        @Query("end_date") String end_date,
-                                                        @Query("sales_person_id") int sales_person_id,
-                                                        @Query("lead_status_id") int lead_status_id,
-                                                        @Query("sales_team_lead_stats") boolean sales_team_lead_stats,
-                                                        @Query("page") int page,
-                                                        @Query("filter_text") String filter_text);
+                                                    @Query("project_id") int project_id,
+                                                    @Query("start_date") String start_date,
+                                                    @Query("end_date") String end_date,
+                                                    @Query("sales_person_id") int sales_person_id,
+                                                    @Query("lead_status_id") int lead_status_id,
+                                                    @Query("sales_team_lead_stats") boolean sales_team_lead_stats,
+                                                    @Query("page") int page,
+                                                    @Query("filter_text") String filter_text);
 
 
 //
@@ -1265,14 +1283,14 @@ public interface ApiService
 
     //Get Home Reminders
     @GET(WebServer.Get_HomeReminders) Observable<Response<JsonObject>> getHomeReminders
-            (@Query("api_token") String api_token,
-             @Query("sales_person_id") int user_id,
-             @Query("project_id") int project_id,
-             @Query("page") int page,
-             @Query("filter_text") String search_text,
-             @Query("date") String date,
-             @Query("from_date") String from_date,
-             @Query("to_date") String to_date);
+    (@Query("api_token") String api_token,
+     @Query("sales_person_id") int user_id,
+     @Query("project_id") int project_id,
+     @Query("page") int page,
+     @Query("filter_text") String search_text,
+     @Query("date") String date,
+     @Query("from_date") String from_date,
+     @Query("to_date") String to_date);
 
 
     //GET Call logs count

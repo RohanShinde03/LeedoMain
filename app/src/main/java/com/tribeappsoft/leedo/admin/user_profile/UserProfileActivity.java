@@ -47,8 +47,10 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.FlowLayout;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.TouchImageView;
@@ -58,6 +60,7 @@ import com.tribeappsoft.leedo.util.crop_image.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -65,11 +68,21 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.tribeappsoft.leedo.util.Helper.isNetworkAvailable;
+import static com.tribeappsoft.leedo.util.Helper.isValidContextForGlide;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     @BindView(R.id.cl_main_layout) CoordinatorLayout clMainLayout;
     @BindView(R.id.ll_main_layout) LinearLayoutCompat llMainLayout;
+    @BindView(R.id.cl_updateProfile) CoordinatorLayout cl_updateProfile;
     @BindView(R.id.cl_image_layout) CoordinatorLayout clImageLayout;
     @BindView(R.id.iv_UpdateProfileActivity_userImg) CircleImageView ivUserImage;
     @BindView(R.id.iv_UpdateProfileActivity_changeImage) AppCompatImageView ivChangeImageIcon;
@@ -85,7 +98,7 @@ public class UserProfileActivity extends AppCompatActivity {
     @BindView(R.id.ll_assigned_project_layout) LinearLayoutCompat ll_assigned_project_layout;
     @BindView(R.id.ll_change_password_layout) LinearLayoutCompat ll_change_password_layout;
 
-    private String TAG = "UserProfileActivity";
+    private String TAG = "UserProfileActivity",api_token="",profile_photo_media_id="";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private Animator currentAnimator;
@@ -94,6 +107,8 @@ public class UserProfileActivity extends AppCompatActivity {
     String profile = null;
     private boolean notifyProfile=false;
     private static final int Permission_CODE_STORAGE = 321;
+    private int user_id=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +117,10 @@ public class UserProfileActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         sharedPreferences = new Helper().getSharedPref(getApplicationContext());
+        user_id = sharedPreferences.getInt("user_id", 0);
+        profile_photo_media_id = sharedPreferences.getString("profile_photo_media_id", "");
+        api_token = sharedPreferences.getString("api_token", "");
+        profile = sharedPreferences.getString("profile_photo", "");
         editor = sharedPreferences.edit();
         editor.apply();
 
@@ -114,13 +133,14 @@ public class UserProfileActivity extends AppCompatActivity {
         // Retrieve and cache the system's default "short" animation time.
         shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        /*//click image to zoom
+        //click image to zoom
         ivUserImage.setOnClickListener(view -> {
 
             if (profile!=null) zoomImageFromThumb(ivUserImage);
         });
 
-        ivChangeImageIcon.setOnClickListener(view -> selectUploadProfilePic());*/
+        ivChangeImageIcon.setOnClickListener(view -> selectUploadProfilePic());
+
 
         iv_close.setOnClickListener(v -> onBackPressed());
 
@@ -144,6 +164,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private void updateUser() {
 
         if (sharedPreferences != null) {
+            editor = sharedPreferences.edit();
+            editor.apply();
             mtvUserName.setText(sharedPreferences.getString("full_name", ""));
             mtvUserPhone.setText(sharedPreferences.getString("mobile_number", ""));
             mtvUserEmail.setText(sharedPreferences.getString("email",""));
@@ -151,7 +173,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 llAssignedRoles.removeAllViews();
                 int numberOfRoles = sharedPreferences.getInt("number_of_roles",0);
                 for(int i=0 ;i < numberOfRoles ; i++){
-                    Log.e(TAG,sharedPreferences.getString("role_"+i,""));
+                    Log.e(TAG, Objects.requireNonNull(sharedPreferences.getString("role_" + i, "")));
                     View rowView_sub = getAssignedRolesView(sharedPreferences.getString("role_"+i,""));
                     llAssignedRoles.addView(rowView_sub);
                 }
@@ -162,7 +184,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 flAssignedProjects.removeAllViews();
                 int numberOfProjects = sharedPreferences.getInt("number_of_projects",0);
                 for(int i=0 ;i < numberOfProjects ; i++){
-                    Log.e(TAG,sharedPreferences.getString("project_"+i,""));
+                    Log.e(TAG, Objects.requireNonNull(sharedPreferences.getString("project_" + i, "")));
                     View rowView_sub = getAssignedRolesView(sharedPreferences.getString("project_"+i,""));
                     flAssignedProjects.addView(rowView_sub);
                 }
@@ -181,6 +203,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(context);
             else requestPermissionWriteStorage();
         } else CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(this);
+
     }
 
     private boolean checkPermission() {
@@ -206,6 +229,25 @@ public class UserProfileActivity extends AppCompatActivity {
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE
                 }, Permission_CODE_STORAGE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //Checking the request code of our request
+        if (requestCode == Permission_CODE_STORAGE)  //handling documents permission
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //Displaying a toast
+                new Helper().showCustomToast(context, getString(R.string.permission_grant_success));
+                //open documents once permission is granted
+                CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(this);
+            } else {
+                //Displaying another toast if permission is not granted
+                new Helper().showCustomToast(context, getString(R.string.file_permissionRationale));
+            }
+        }
+
     }
 
     @Override
@@ -319,16 +361,19 @@ public class UserProfileActivity extends AppCompatActivity {
     private void callUploadImage(String filePath) {
 
         Log.e(TAG,"PhotoPath : "+filePath);
-       /* if (isNetworkAvailable(Objects.requireNonNull(context)))
+        if (isNetworkAvailable(Objects.requireNonNull(context)))
         {
             progressBar.setVisibility(View.VISIBLE);
             File profile_path_part = new File(filePath);
             RequestBody uploadFile = RequestBody.create(MediaType.parse("image/*"), profile_path_part);
-            MultipartBody.Part fileUpload = MultipartBody.Part.createFormData("photoPath", profile_path_part.getName(), uploadFile);
-            RequestBody memberIDPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(memberID));
+            MultipartBody.Part fileUpload = MultipartBody.Part.createFormData("file_url", profile_path_part.getName(), uploadFile);
+            RequestBody api_tokenPart = RequestBody.create(MediaType.parse("text/plain"), api_token);
+            RequestBody user_ID = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(user_id));
+            RequestBody media_id = RequestBody.create(MediaType.parse("text/plain"), profile_photo_media_id);
 
             ApiClient client = ApiClient.getInstance();
-            client.getApiService().uploadUserProfilePicture(client_base_url + WebServer.POST_userProfilePhotoUpload, fileUpload,memberIDPart).enqueue(new Callback<JsonObject>() {
+            /* client.getApiService().uploadUserProfilePicture(client_base_url + WebServer.POST_userProfilePhotoUpload, fileUpload,api_tokenPart,user_ID).enqueue(new Callback<JsonObject>() {*/
+            client.getApiService().updateSalesPersonsProfilePhoto(fileUpload,api_tokenPart,user_ID,media_id).enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                     Log.e("response", "" + response.toString());
@@ -344,12 +389,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
                                         if (!response.body().get("data").isJsonNull() &&  response.body().get("data").isJsonObject()) {
                                             JsonObject jsonObject = response.body().get("data").getAsJsonObject();
-                                            if (jsonObject.has("photoPath")) profile = !jsonObject.get("photoPath").isJsonNull() ?  jsonObject.get("photoPath").getAsString() : sharedPreferences.getString("photoPath", "");
+                                            if (jsonObject.has("profile_photo")) profile = !jsonObject.get("profile_photo").isJsonNull() ?  jsonObject.get("profile_photo").getAsString() : sharedPreferences.getString("profile_photo", "");
 
                                             // photoPath
                                             if (sharedPreferences != null) {
                                                 editor = sharedPreferences.edit();
-                                                editor.putString("photoPath", profile);
+                                                editor.putString("profile_photo", profile);
                                                 editor.apply();
                                                 //model.setProfile(profile);
                                             }
@@ -392,7 +437,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         } else {
             new Helper().showCustomToast(context, "Network not available! Please turn on your network.");
-        }*/
+        }
     }
 
 
@@ -400,7 +445,7 @@ public class UserProfileActivity extends AppCompatActivity {
         context.runOnUiThread(() -> {
 
             Log.e(TAG, "setProfilePic: "+photopath);
-            if (Helper.isValidContextForGlide(context)) {
+            if (isValidContextForGlide(context)) {
                 Glide.with(context)
                         .load(photopath)
                         .thumbnail(0.5f)
@@ -461,7 +506,7 @@ public class UserProfileActivity extends AppCompatActivity {
         //final ImageView expandedImageView = (ImageView) findViewById(R.id.expanded_image);
         //expanded_image.setImageResource(imageResId);
 
-        if (Helper.isValidContextForGlide(context))
+        if (isValidContextForGlide(context))
         {
             Glide.with(context)//getActivity().this
                     .load(profile)
@@ -485,7 +530,7 @@ public class UserProfileActivity extends AppCompatActivity {
         // bounds, since that's the origin for the positioning animation
         // properties (X, Y).
         thumbView.getGlobalVisibleRect(startBounds);
-        findViewById(R.id.cl_main_layout).getGlobalVisibleRect(finalBounds, globalOffset);
+        findViewById(R.id.container_updateProfile).getGlobalVisibleRect(finalBounds, globalOffset);
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
@@ -520,19 +565,20 @@ public class UserProfileActivity extends AppCompatActivity {
         llExpandedImage.setVisibility(View.VISIBLE);
         //iv_expandedImage.setBackgroundColor(getResources().getColor(R.color.main_black));
         //container_updateProfile.setBackgroundColor(getResources().getColor(R.color.primaryColor));
-        llMainLayout.setVisibility(View.GONE);
+        cl_updateProfile.setVisibility(View.GONE);
 
         // Set the pivot point for SCALE_X and SCALE_Y transformations
         // to the top-left corner of the zoomed-in view (the default
         // is the center of the view).
         iv_expandedImage.setPivotX(0f);
-        llExpandedImage.setPivotY(0f);
+        iv_expandedImage.setPivotY(0f);
 
         // Construct and run the parallel animation of the four translation and
         // scale properties (X, Y, SCALE_X, and SCALE_Y).
         AnimatorSet set = new AnimatorSet();
-        set.play(ObjectAnimator.ofFloat(iv_expandedImage, View.X,
-                startBounds.left, finalBounds.left))
+        set
+                .play(ObjectAnimator.ofFloat(iv_expandedImage, View.X,
+                        startBounds.left, finalBounds.left))
                 .with(ObjectAnimator.ofFloat(iv_expandedImage, View.Y,
                         startBounds.top, finalBounds.top))
                 .with(ObjectAnimator.ofFloat(iv_expandedImage, View.SCALE_X,
@@ -587,7 +633,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     iv_expandedImage.setVisibility(View.GONE);
                     llExpandedImage.setVisibility(View.GONE);
                     //container_updateProfile.setBackgroundColor(Color.TRANSPARENT);
-                    llMainLayout.setVisibility(View.VISIBLE);
+                    cl_updateProfile.setVisibility(View.VISIBLE);
                     currentAnimator = null;
                 }
 
@@ -597,7 +643,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     iv_expandedImage.setVisibility(View.GONE);
                     llExpandedImage.setVisibility(View.GONE);
                     //container_updateProfile.setBackgroundColor(Color.TRANSPARENT);
-                    llMainLayout.setVisibility(View.VISIBLE);
+                    cl_updateProfile.setVisibility(View.VISIBLE);
                     currentAnimator = null;
                 }
             });
