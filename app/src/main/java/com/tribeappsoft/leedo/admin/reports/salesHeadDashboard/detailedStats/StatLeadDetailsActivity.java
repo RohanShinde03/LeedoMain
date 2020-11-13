@@ -999,6 +999,7 @@ public class StatLeadDetailsActivity extends AppCompatActivity {
         //  mtvLeadDetailsCuIdNumber.setText(myModel.getLead_uid() != null && !myModel.getLead_uid().trim().isEmpty() ? myModel.getLead_uid() : "");
         mtvLeadName.setText(myModel.getFull_name() != null && !myModel.getFull_name().trim().isEmpty() ? myModel.getFull_name() : "");
         mtvProjectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
+        mtvProjectName.setVisibility(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? View.VISIBLE :View.GONE);
         mtvLeadStatus.setText(myModel.getLead_type() != null && !myModel.getLead_type().trim().isEmpty() ?  "| "+myModel.getLead_type() : "");
         mtvElapsedTime.setText(myModel.getTag_elapsed_time() !=null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
         mtvElapsedTime.setTextColor(myModel.getOffline_lead_synced()==1 ? context.getResources().getColor(R.color.offline_synced) : context.getResources().getColor(R.color.color_card_sub_title));

@@ -108,7 +108,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
     private ArrayList<ScheduledCallsModel> itemArrayList;
     private ScheduledCallsAdapter recyclerAdapter;
     private Context context;
-    private int current_page =1, user_id = 0, last_page =1, filterCount = 0, project_id =0, scheduledCount = 0, completedCount = 0;
+    private int current_page =1, user_id = 0, sales_person_id =0, last_page =1, filterCount = 0, project_id =0, scheduledCount = 0, completedCount = 0;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private AppCompatTextView tvFilterItemCount;
@@ -167,6 +167,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
         editor = sharedPreferences.edit();
         editor.apply();
         user_id = sharedPreferences.getInt("user_id", 0);
+        sales_person_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
         isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         isAdmin = sharedPreferences.getBoolean("isAdmin", false);
@@ -347,13 +348,11 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
                 Log.e(TAG, "onResume: isFilter "+ sharedPreferences.getBoolean("isFilter", false));
 
                 project_id = sharedPreferences.getInt("project_id", 0);
-                user_id = sharedPreferences.getInt("sales_person_id",  0);
-                if(user_id == 0){
-                    user_id = sharedPreferences.getInt("user_id",0);
-                }
+                //user_id = sharedPreferences.getInt("sales_person_id",  0);
+                sales_person_id = sharedPreferences.getInt("sales_person_id", 0);
+                if(sales_person_id == 0)  sales_person_id = sharedPreferences.getInt("user_id",0);
 
                 filterCount = sharedPreferences.getInt("filterCount", 0);
-
                 Log.e(TAG,"Project Id : "+ project_id);
                 Log.e(TAG,"salesPersonId : "+ sharedPreferences.getInt("sales_person_id",0));
                 Log.e(TAG,"user Id : "+ sharedPreferences.getInt("user_id",0));
@@ -376,6 +375,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
                 //clear fields
                 project_id = filterCount = 0;
                 user_id = Objects.requireNonNull(sharedPreferences).getInt("user_id", 0);
+                sales_person_id = sharedPreferences.getInt("user_id", 0);
 
                 //reset api call
                 resetApiCall();
@@ -568,7 +568,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
 
         String todoDate = getSendFormatDateForToDo(getCurDate());
         ApiClient client = ApiClient.getInstance();
-        Observable<Response<JsonObject>> responseObservable = client.getApiService().getScheduledCallLeads(api_token, user_id, todoDate, current_page, project_id, filter_text);
+        Observable<Response<JsonObject>> responseObservable = client.getApiService().getScheduledCallLeads(api_token, sales_person_id, todoDate, current_page, project_id, filter_text, user_id == sales_person_id);
         responseObservable.subscribeOn(Schedulers.newThread());
         responseObservable.asObservable();
         responseObservable.doOnNext(jsonObjectResponse -> {
@@ -908,6 +908,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
             //clear fields
             project_id = filterCount = 0;
             user_id = Objects.requireNonNull(sharedPreferences).getInt("user_id", 0);
+            sales_person_id = sharedPreferences.getInt("user_id", 0);
 
             //call api
             swipeRefresh.setRefreshing(true);
@@ -928,6 +929,7 @@ public class FragmentScheduledCalls extends Fragment //implements CallScheduleMa
     {
         if (isNetworkAvailable(Objects.requireNonNull(requireActivity())))
         {
+            Log.e(TAG, "resetApiCall: ");
             //1. clear arrayList
             itemArrayList = new ArrayList<>();
             itemArrayList.clear();

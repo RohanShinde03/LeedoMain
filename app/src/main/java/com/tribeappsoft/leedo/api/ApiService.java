@@ -1336,7 +1336,8 @@ public interface ApiService
             @Query("call_schedule_date") String from_date,
             @Query("page") int page,
             @Query("project_id") int project_id,
-            @Query("filter_text") String filter_text);
+            @Query("filter_text") String filter_text,
+            @Query("sales_team_lead_stats") boolean sales_team_lead_stats);
 
 
     //GET_CallScheduleCompletedList
@@ -1347,7 +1348,8 @@ public interface ApiService
             @Query("call_schedule_date") String from_date,
             @Query("page") int page,
             @Query("project_id") int project_id,
-            @Query("filter_text") String filter_text);
+            @Query("filter_text") String filter_text,
+            @Query("sales_team_lead_stats") boolean sales_team_lead_stats);
 
 
 

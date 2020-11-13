@@ -290,11 +290,11 @@ public class CallScheduleMainActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         callScheduled = sharedPreferences.getInt("callScheduled",0);
 
-        int tabAt = sharedPreferences.getInt("tabAt",0);
+        //int tabAt = sharedPreferences.getInt("tabAt",0);
         if (sharedPreferences.getBoolean("isFilter", false)) {
 
             Log.e(TAG, "onResume: isFilter "+ sharedPreferences.getBoolean("isFilter", false));
-            Objects.requireNonNull(mTabLayout.getTabAt(tabAt)).select();
+            //Objects.requireNonNull(mTabLayout.getTabAt(tabAt)).select();
         }
 
         editor.apply();
@@ -364,7 +364,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
         //mTabLayout.setupWithViewPager(mViewPager);
 
         Log.e(TAG, "onSetTabsViewPager: date "+date);
-        Objects.requireNonNull(mTabLayout.getTabAt(tabAt)).select();
+        //Objects.requireNonNull(mTabLayout.getTabAt(tabAt)).select();
 
         BadgeDrawable badge_scheduled = Objects.requireNonNull(mTabLayout.getTabAt(0)).getOrCreateBadge();
         badge_scheduled.setVisible(visible);

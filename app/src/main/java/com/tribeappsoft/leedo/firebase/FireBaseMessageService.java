@@ -273,6 +273,8 @@ public class FireBaseMessageService extends FirebaseMessagingService
                     case "offline_leads_merge":
 
                     case "cancel_booking":
+
+                    case "new_offline_lead":
                         intent = new Intent(this, AllLeadsActivity.class);
                         intent.putExtra("notify", true);  //Notifications
                         break;

@@ -245,6 +245,11 @@ public class NotificationsRecyclerAdapter extends RecyclerView.Adapter<Notificat
                             intent.putExtra("notifyPush_newOffLeadAdded", true); //unClaimed Leads
                             break;
 
+                        case "new_offline_lead"://new offline duplicate lead Added
+                            intent = new Intent(activity, AllLeadsActivity.class);
+                            intent.putExtra("notifyPush_newDuplicateLeadAdded", true); //unClaimed Leads
+                            break;
+
 
                         case "cancel_booking"://booking cancelled
                             intent = new Intent(activity, AllLeadsActivity.class);

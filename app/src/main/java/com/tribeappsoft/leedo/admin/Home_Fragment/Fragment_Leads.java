@@ -210,7 +210,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         todo_date = sharedPreferences.getString("todoDate", "");
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
@@ -270,7 +270,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         todo_date = sharedPreferences.getString("todoDate", "");
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
@@ -1262,6 +1262,7 @@ public class Fragment_Leads extends Fragment //implements CallScheduleMainActivi
         tv_lead_AddedBy.setText(myModel.getCuidModel().getAssigned_by()!= null && !myModel.getCuidModel().getAssigned_by().trim().isEmpty() ? myModel.getCuidModel().getAssigned_by() : "--");
         //project name
         tv_own_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
+        tv_own_projectName.setVisibility(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? View.VISIBLE :View.GONE);
         //lead stage name
         tv_ownLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
         tv_ownLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));

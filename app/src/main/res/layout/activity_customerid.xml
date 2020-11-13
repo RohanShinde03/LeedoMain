@@ -94,6 +94,7 @@
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:scaleType="centerCrop"
+                app:tint="@color/color_Gray"
                 app:srcCompat="@drawable/ic_people_black_128dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -101,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/styleFontMediumText"
+                android:textColor="@color/main_medium_grey"
                 android:text="@string/no_customer_id_available"
                 android:gravity="center"
                 android:padding="3dp"
@@ -125,28 +127,28 @@
             android:layout_centerHorizontal="true"
             android:visibility="gone" />
 
-       <!-- <com.google.android.material.button.MaterialButton
-            android:id="@+id/mBtn_cuIDListBackToTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/rv_cuIdList"
-            android:layout_alignEnd="@id/rv_cuIdList"
-            android:text="@string/back_to_top"
-            android:layout_margin="12dp"
-            style="@style/coloredButton"
-            app:icon="@drawable/ic_arrow_upward_white_24dp"
-            app:iconPadding="5dp"
-            android:textSize="16sp"
-            android:visibility="visible"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            app:textAllCaps="false"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            app:cornerRadius="50dp"/>-->
+        <!-- <com.google.android.material.button.MaterialButton
+             android:id="@+id/mBtn_cuIDListBackToTop"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBottom="@id/rv_cuIdList"
+             android:layout_alignEnd="@id/rv_cuIdList"
+             android:text="@string/back_to_top"
+             android:layout_margin="12dp"
+             style="@style/coloredButton"
+             app:icon="@drawable/ic_arrow_upward_white_24dp"
+             app:iconPadding="5dp"
+             android:textSize="16sp"
+             android:visibility="visible"
+             android:layout_gravity="center"
+             android:layout_marginTop="5dp"
+             android:layout_marginBottom="5dp"
+             app:textAllCaps="false"
+             android:paddingLeft="20dp"
+             android:paddingRight="20dp"
+             android:paddingTop="12dp"
+             android:paddingBottom="12dp"
+             app:cornerRadius="50dp"/>-->
 
         <!-- ll-back to top -->
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -191,11 +193,6 @@
     </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-
-
-
 
 
     <!-- &lt;!&ndash; Search bar &ndash;&gt;
@@ -247,12 +244,3 @@
                         android:visibility="gone" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>-->
-
-
-
-
-
-
-
-
-

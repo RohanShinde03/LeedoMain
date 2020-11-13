@@ -107,7 +107,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:padding="8dp"
-                android:backgroundTint="@color/color_site_visit"
+                android:backgroundTint="@color/colorAccent"
                 android:background="@drawable/baground_border_primary_dark_more_rounded"
                 android:orientation="horizontal">
 
@@ -145,7 +145,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:padding="8dp"
-                android:backgroundTint="@color/color_site_visit"
+                android:backgroundTint="@color/colorAccent"
                 android:background="@drawable/baground_border_primary_dark_more_rounded"
                 android:orientation="horizontal">
 
@@ -183,7 +183,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:padding="8dp"
-                android:backgroundTint="@color/color_site_visit"
+                android:backgroundTint="@color/colorAccent"
                 android:background="@drawable/baground_border_primary_dark_more_rounded"
                 android:orientation="horizontal">
 
@@ -382,22 +382,3 @@
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

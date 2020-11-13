@@ -1546,6 +1546,7 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
         tv_own_Lead_name.setText(myModel.getMain_title() != null && !myModel.getMain_title().trim().isEmpty() ? myModel.getMain_title() : "");
         //project name
         tv_own_projectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
+        tv_own_projectName.setVisibility(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? View.VISIBLE :View.GONE);
         //lead stage name
         tv_ownLeadStage.setText(myModel.getCuidModel() != null && myModel.getCuidModel().getLead_stage_name()!=null ? myModel.getCuidModel().getLead_stage_name() : "");
         tv_ownLeadStage_dot.setTypeface(FontAwesomeManager.getTypeface(context, FontAwesomeManager.FONTAWESOME));

@@ -146,7 +146,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);
@@ -182,7 +182,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         editor.apply();
 
         Log.e(TAG, "onCreateView: todoDate :"+todoDate+"  startDate:"+startDate+"  endDate:"+ endDate);

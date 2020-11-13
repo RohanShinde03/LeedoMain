@@ -9,7 +9,7 @@ public class WebServer {
 
 
     //TODO BASE URL LIVE
-    public static final String BASE_URL = "http://15.207.242.165/1tr/suk09/public/api/";
+    public static final String BASE_URL = "http://65.0.167.173/1tr/vai12/public/api/";
 
     //TODO BASE URL LEEDO DEMO ENV
     //public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
@@ -620,11 +620,11 @@ public class WebServer {
 
 
     //GET_StudentEventList
-    public static final String GET_StudentEventList = BASE_URL + "student/getEventListForApp";
+    //public static final String GET_StudentEventList = BASE_URL + "student/getEventListForApp";
 
 
     //GET_Event details list for student
-    public static final String GET_EVENT_DETAILS_STUDENTS = BASE_URL + "student/getEventDetailsForApp";
+    //public static final String GET_EVENT_DETAILS_STUDENTS = BASE_URL + "student/getEventDetailsForApp";
 
 
     //GET RegisteredEventList
@@ -632,10 +632,10 @@ public class WebServer {
 
 
     //POST studentForgotPasswordSendOTP
-    public static final String POST_studentForgotPasswordSendOTP = BASE_URL + "studentForgetPasswordSendOtp";
+    //public static final String POST_studentForgotPasswordSendOTP = BASE_URL + "studentForgetPasswordSendOtp";
 
     //POST studentUpdatePassword
-    public static final String POST_studentUpdatePassword = BASE_URL + "updateStudentPassword";
+    //public static final String POST_studentUpdatePassword = BASE_URL + "updateStudentPassword";
 
     //updateStudentFCM
     public static final String POST_UpdateStudentFCM = BASE_URL + "student/addAndUpdateFcmToken";

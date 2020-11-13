@@ -122,21 +122,6 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
         }*/
 
         // showProgressBar();
-        if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
-
-            showProgressBar();
-            //showShimmer();
-            new Handler().postDelayed(this::getMyCallLogesCount, 1000);
-        }
-        else
-        {
-            //hide pb
-            hideProgressBar();
-            Helper.NetworkError(context);
-            nsv_stats.setVisibility(View.VISIBLE);
-            //show no data
-            ll_noData.setVisibility(View.GONE);
-        }
 
 
     }
@@ -208,6 +193,42 @@ public class AllCallLogStats_Activity extends AppCompatActivity {
                 //reset api call
 
                 resetData();
+            }
+            else {
+                if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
+
+                    showProgressBar();
+                    //showShimmer();
+                    new Handler().postDelayed(this::getMyCallLogesCount, 1000);
+                }
+                else
+                {
+                    //hide pb
+                    hideProgressBar();
+                    Helper.NetworkError(context);
+                    nsv_stats.setVisibility(View.VISIBLE);
+                    //show no data
+                    ll_noData.setVisibility(View.GONE);
+                }
+            }
+        }
+        else
+        {
+            Log.e(TAG, "onResume: null shared Pref");
+            if (Helper.isNetworkAvailable(Objects.requireNonNull(context))) {
+
+                showProgressBar();
+                //showShimmer();
+                new Handler().postDelayed(this::getMyCallLogesCount, 1000);
+            }
+            else
+            {
+                //hide pb
+                hideProgressBar();
+                Helper.NetworkError(context);
+                nsv_stats.setVisibility(View.VISIBLE);
+                //show no data
+                ll_noData.setVisibility(View.GONE);
             }
         }
 

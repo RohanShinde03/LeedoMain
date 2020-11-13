@@ -697,7 +697,11 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         {
             Log.e(TAG, "onResume:fromHomeScreen_AddSiteVisit  "+sharedPreferences.getBoolean("fromHomeScreen_AddSiteVisit", false) );
             try{
-                Objects.requireNonNull(mTabLayout.getTabAt(1)).select();
+                if (Objects.requireNonNull(mTabLayout.getTabAt(1)).isSelected()) {
+                    Log.e(TAG, "onResume: al_TabSelected Site Visits ");
+                    Fragment_SiteVisits.getInstance().onPageChange();
+                }
+                else Objects.requireNonNull(mTabLayout.getTabAt(1)).select();
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -710,7 +714,11 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         {
             Log.e(TAG, "onResume:fromHomeScreen_AddLead  "+sharedPreferences.getBoolean("fromHomeScreen_AddLead", false) );
             try{
-                Objects.requireNonNull(mTabLayout.getTabAt(2)).select();
+                if (Objects.requireNonNull(mTabLayout.getTabAt(2)).isSelected()) {
+                    Log.e(TAG, "onResume: al_TabSelected Home Leads ");
+                    Fragment_Leads.getInstance().onPageChange();
+                }
+                else Objects.requireNonNull(mTabLayout.getTabAt(2)).select();
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -724,7 +732,12 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         {
             Log.e(TAG, "onResume:fromHomeScreen_AddReminder  "+sharedPreferences.getBoolean("fromHomeScreen_AddReminder", false) );
             try{
-                Objects.requireNonNull(mTabLayout.getTabAt(3)).select();
+
+                if (Objects.requireNonNull(mTabLayout.getTabAt(3)).isSelected()) {
+                    Log.e(TAG, "onResume: alTabSelected Reminders ");
+                    Fragment_Reminders.getInstance().onPageChange();
+                }
+                else Objects.requireNonNull(mTabLayout.getTabAt(3)).select();
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -733,7 +746,6 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             editor.putBoolean("fromHomeScreen_AddReminder", false);
 
         }
-
         editor.apply();
 
 
@@ -1005,7 +1017,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         Objects.requireNonNull(requireActivity()).runOnUiThread(() -> {
 
             int position = mTabLayout.getSelectedTabPosition();
-
+            Log.e(TAG, "setTabCountViewPager: position "+position );
             switch (position)
             {
                 case  0:
@@ -1486,7 +1498,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             editor.putString("startDate",startDate);
             editor.putString("endDate",endDate);
             editor.putInt("project_id",project_id);
-            editor.putInt("sales_person_id",sales_person_id);
+            editor.putInt("selected_sales_person_id",sales_person_id);
             editor.apply();
             //2019-01-08
         }

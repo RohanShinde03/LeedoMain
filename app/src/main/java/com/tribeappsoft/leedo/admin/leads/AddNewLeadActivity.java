@@ -435,7 +435,7 @@ public class AddNewLeadActivity extends AppCompatActivity
                 ((AppCompatTextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_abs_title)).setText(getString(R.string.update_lead));
             }
 
-            lead_id_mobileExist=duplicate_offline_lead_id;
+            //lead_id_mobileExist=duplicate_offline_lead_id;
             mBtn_submitLead.setText(R.string.update_lead);
             rdoGrp_alreadySiteVisited.setVisibility(View.GONE);
             mTv_LeadResourceNote.setVisibility(isDuplicateLead ? View.VISIBLE :View.GONE);

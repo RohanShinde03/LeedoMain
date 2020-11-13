@@ -962,7 +962,7 @@
     <string name="ghp_number_text">GHP Number</string>
     <string name="ghp_type_">GHP Type :</string>
     <string name="event_">Event :</string>
-    <string name="lorem_ipsum_is_simply_dummy_text_">Lorem Ipsum is simply dummy text</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="source_details_">Source Details</string>
     <string name="a_101_2_bhk_yashone_wakad_">A-101 | 2 Bhk | YashOne Wakad</string>
     <string name="duration">1 : 20s</string>
@@ -1636,5 +1636,6 @@
     <string name="getting_project_details">Getting project details</string>
 
     <string name="enter_budget_limit">Enter Budget Limit</string>
+    <string name="no_cancelled_bookings_available">No Cancelled Bookings Available!</string>
 
 </resources>

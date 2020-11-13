@@ -32,9 +32,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.admin.leadreassign.adapter.SelectSalesPersonRecyclerAdapter;
 import com.tribeappsoft.leedo.admin.leadreassign.model.SalesPersonModel;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.MyRecyclerScroll;
 
@@ -66,7 +66,7 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
     private String TAG = "SelectSalesPersonActivity",api_token ="";
     private int from_or_to =1,user_id=0,repeat_sales_person_id=0; // TODO from -> 1 , to -> 2
     //private SelectSalesPersonRecyclerAdapter recyclerAdapter;
-    private ArrayList<SalesPersonModel> itemArrayList, tempArrayList,salesPersonModelArrayList;
+    private ArrayList<SalesPersonModel> itemArrayList, tempArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,6 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
         //user_id = sharedPreferences.getInt("user_id", 0);
 
         itemArrayList = new ArrayList<>();
-        salesPersonModelArrayList = new ArrayList<>();
         tempArrayList = new ArrayList<>();
 
         //setup recyclerView
@@ -157,7 +156,7 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
             dividerItemDecoration.setDrawable(verticalDivider);
         }
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(new SelectSalesPersonRecyclerAdapter(context, salesPersonModelArrayList, model -> {
+        recyclerView.setAdapter(new SelectSalesPersonRecyclerAdapter(context, itemArrayList, model -> {
 
             if (from_or_to == 1) {
 
@@ -296,28 +295,11 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
                                                 itemArrayList = new ArrayList<>();
                                                 itemArrayList.clear();
                                                 tempArrayList.clear();
-                                                salesPersonModelArrayList.clear();
                                                 for (int i = 0; i < jsonArray.size(); i++) {
                                                     setJson(jsonArray.get(i).getAsJsonObject());
                                                 }
-                                                //tempArrayList.addAll(itemArrayList);
-                                                for (int j1 = 0; j1 < itemArrayList.size(); j1++)
-                                                {
-                                                    if(itemArrayList.get(j1).getUser_id()!= repeat_sales_person_id)
-                                                    {
-                                                        SalesPersonModel salesPersonModel=new SalesPersonModel();
-                                                        salesPersonModel.setUser_id(itemArrayList.get(j1).getUser_id());
-                                                        salesPersonModel.setUser_member_id(itemArrayList.get(j1).getUser_member_id());
-                                                        salesPersonModel.setFull_name(itemArrayList.get(j1).getFull_name());
-                                                        salesPersonModel.setMobile_number(itemArrayList.get(j1).getMobile_number());
-                                                        salesPersonModel.setEmail(itemArrayList.get(j1).getEmail());
-
-                                                        salesPersonModelArrayList.add(salesPersonModel);
-                                                        Log.e(TAG, "setJson: salesPersonModelArrayList"+salesPersonModelArrayList.size());
-                                                        Log.e(TAG, "setJson: salesPersonModelArrayList"+salesPersonModelArrayList.toString());
-                                                    }
-                                                }
-                                                tempArrayList.addAll(salesPersonModelArrayList);
+                                                tempArrayList.addAll(itemArrayList);
+                                                //tempArrayList.addAll(salesPersonModelArrayList);
 
                                             } else showErrorLog("Server response is empty!");
 
@@ -358,7 +340,12 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
         if (jsonObject.has("mobile_number")) model.setMobile_number(!jsonObject.get("mobile_number").isJsonNull() ? jsonObject.get("mobile_number").getAsString() : "" );
         if (jsonObject.has("email")) model.setEmail(!jsonObject.get("email").isJsonNull() ? jsonObject.get("email").getAsString() : "" );
 
-        itemArrayList.add(model);
+
+        //add user only iff user id is not repeated
+        if(model.getUser_id()!= repeat_sales_person_id) {
+            itemArrayList.add(model);
+        }
+
     }
 
 
@@ -373,7 +360,7 @@ public class SelectSalesPersonActivity extends AppCompatActivity {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setHasFixedSize(true);
-                recyclerView.setAdapter(new SelectSalesPersonRecyclerAdapter(context, salesPersonModelArrayList, model -> {
+                recyclerView.setAdapter(new SelectSalesPersonRecyclerAdapter(context, itemArrayList, model -> {
 
                     if (from_or_to == 1) {
                         /*//select from Sales person

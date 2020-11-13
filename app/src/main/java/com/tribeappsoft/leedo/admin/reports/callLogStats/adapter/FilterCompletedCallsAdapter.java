@@ -16,6 +16,14 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
@@ -29,13 +37,6 @@ import com.tribeappsoft.leedo.util.Helper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -71,6 +72,7 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
         SharedPreferences sharedPreferences = new Helper().getSharedPref(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         int user_id = sharedPreferences.getInt("user_id", 0);
         String api_token = sharedPreferences.getString("api_token", "");
         editor.apply();
@@ -96,7 +98,7 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
         //holder.mTv_TotalCallsCount.setText(model.getTotalCalls() != null && !model.getTotalCalls().trim().isEmpty()? model.getTotalCalls(): "4");
         holder.tv_LeadsOwnTag.setText(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? model.getLead_types_name(): "");
         //holder.ll_LeadType.setVisibility(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? View.VISIBLE :View.GONE);
-        holder.ll_scheduledBy.setVisibility(isSalesHead ? View.VISIBLE : View.GONE);
+        holder.ll_scheduledBy.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         holder.mBtn_reschedule.setVisibility(isFromSchedule ? View.GONE : View.GONE);
         holder.ll_schedule_on.setVisibility(isFromSchedule ? View.VISIBLE : View.GONE);
 

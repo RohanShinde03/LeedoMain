@@ -13,6 +13,7 @@
         <domain includeSubdomains="true">www.pdf995.com</domain>
         <domain includeSubdomains="true">13.233.27.5</domain>
         <domain includeSubdomains="true">15.207.242.165</domain>
+        <domain includeSubdomains="true">65.0.167.173</domain>
         <domain includeSubdomains="true">www.googleapis.com</domain>
     </domain-config>
 </network-security-config>

@@ -16,6 +16,14 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
@@ -30,19 +38,12 @@ import com.tribeappsoft.leedo.util.Helper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class FilterScheduledCallsAdapter extends RecyclerView.Adapter<FilterScheduledCallsAdapter.MyHolder> {
-    private static final String TAG ="FilterScheduledCallsAdapter" ;
+    private static final String TAG ="FilterSchCallsAdapter" ;
     public Activity context;
     public ArrayList<ScheduledCallsModel> itemArrayList,multiSelect_list;
     private final Animations anim;
@@ -73,7 +74,7 @@ public class FilterScheduledCallsAdapter extends RecyclerView.Adapter<FilterSche
         SharedPreferences sharedPreferences = new Helper().getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
-        boolean isSalesTeamLead = sharedPreferences.getBoolean("isSalesTeamLead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         int user_id = sharedPreferences.getInt("user_id", 0);
         String api_token = sharedPreferences.getString("api_token", "");
         editor.apply();
@@ -100,7 +101,7 @@ public class FilterScheduledCallsAdapter extends RecyclerView.Adapter<FilterSche
         holder.tv_LeadsOwnTag.setText(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? model.getLead_types_name(): "");
         //holder.ll_LeadType.setVisibility(model.getLead_types_name() != null && !model.getLead_types_name().trim().isEmpty()? View.VISIBLE :View.GONE);
 
-        holder.ll_scheduledBy.setVisibility(isSalesHead || isSalesTeamLead ? View.VISIBLE : View.GONE);
+        holder.ll_scheduledBy.setVisibility(isSalesHead || isAdmin ? View.VISIBLE : View.GONE);
         holder.mBtn_reschedule.setVisibility(isFromSchedule && model.getSales_person_id() == user_id ? View.GONE : View.GONE);
         holder.view_callScheduleMain.setVisibility(isFromSchedule ? View.GONE : View.VISIBLE);
 

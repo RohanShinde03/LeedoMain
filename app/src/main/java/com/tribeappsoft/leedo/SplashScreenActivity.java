@@ -258,6 +258,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                         case "new_lead_reassign"://Lead Reassign from on eto other sales person
 
                         case "offline_leads_merge":
+
+                        case "new_offline_lead":
                             intent = new Intent(this, AllLeadsActivity.class);
                             intent.putExtra("notify", true); //unClaimed Leads
                             break;

@@ -143,7 +143,7 @@ public class Fragment_Reminders extends Fragment //implements CallScheduleMainAc
         //user_id = sharedPreferences.getInt("user_id", 0);
 
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         api_token = sharedPreferences.getString("api_token", "");
         todoDate = sharedPreferences.getString("todoDate", "");
         startDate = sharedPreferences.getString("startDate", "");
@@ -288,13 +288,13 @@ public class Fragment_Reminders extends Fragment //implements CallScheduleMainAc
 
         //user_id = sharedPreferences.getInt("user_id", 0);
         project_id = sharedPreferences.getInt("project_id", 0);
-        sales_person_id = sharedPreferences.getInt("sales_person_id",  sharedPreferences.getInt("user_id", 0));
+        sales_person_id = sharedPreferences.getInt("selected_sales_person_id",  sharedPreferences.getInt("user_id", 0));
         api_token = sharedPreferences.getString("api_token", "");
         todoDate = sharedPreferences.getString("todoDate", "");
         startDate = sharedPreferences.getString("startDate", "");
         endDate = sharedPreferences.getString("endDate", "");
 
-        Log.e(TAG, "onCreateView: todoDate : "+todoDate+"startDate:"+startDate+"endDate:"+ endDate);
+        Log.e(TAG, "onPageChange: todoDate : "+todoDate+"startDate:"+startDate+"endDate:"+ endDate);
         if(Helper.isNetworkAvailableContext(requireActivity())){
             swipeRefresh.setRefreshing(true);
             //1. clear arrayList
@@ -333,15 +333,13 @@ public class Fragment_Reminders extends Fragment //implements CallScheduleMainAc
                     //set home tab count
                     call_getCallLogCount();
 
-                    swipeRefresh.setRefreshing(true);
+                    /*swipeRefresh.setRefreshing(true);
                     //1. clear arrayList
                     itemArrayList.clear();
                     //2. reset page flag to 1
                     current_page = last_page = 1;
-
                     //3.call reminder api
-                    call_getAllReminder();
-
+                    call_getAllReminder();*/
                 }
                 else
                 {

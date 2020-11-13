@@ -1001,6 +1001,7 @@ public class StatSiteVisitDetailsActivity extends AppCompatActivity {
         //  mtvLeadDetailsCuIdNumber.setText(myModel.getLead_uid() != null && !myModel.getLead_uid().trim().isEmpty() ? myModel.getLead_uid() : "");
         mtvLeadName.setText(myModel.getFull_name() != null && !myModel.getFull_name().trim().isEmpty() ? myModel.getFull_name() : "");
         mtvProjectName.setText(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? myModel.getDescription() : "");
+        mtvProjectName.setVisibility(myModel.getDescription() != null && !myModel.getDescription().trim().isEmpty() ? View.VISIBLE :View.GONE);
         mtvLeadStatus.setText(myModel.getLead_status_name() != null && !myModel.getLead_status_name().trim().isEmpty() ?  "| "+myModel.getLead_status_name() : "");
         mtvElapsedTime.setText(myModel.getTag_elapsed_time() !=null && !myModel.getTag_elapsed_time().trim().isEmpty() ? myModel.getTag_elapsed_time() : "");
         mtvLeadDate.setText(myModel.getTag_date() != null && !myModel.getTag_date().trim().isEmpty() ? myModel.getTag_date() : "");
