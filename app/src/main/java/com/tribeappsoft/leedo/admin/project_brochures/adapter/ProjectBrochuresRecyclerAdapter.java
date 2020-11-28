@@ -1138,7 +1138,8 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
                     if(isShare)shareDataForSocial(myModel,file);
                     else openFileIntent(file, pb_donationList);
                 }
-                else requestPermissionViewFile(myModel,path, file,  false, pb_donationList,isShare);
+                else showPermissionDialogue(myModel,path, file,  false, pb_donationList,isShare);
+                    //requestPermissionViewFile(myModel,path, file,  false, pb_donationList,isShare);
             } else{
                 if(isShare)shareDataForSocial(myModel,file);
                 else openFileIntent(file, pb_donationList);
@@ -1149,7 +1150,8 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         {
             //download and open
             //showProgressBar(getString(R.string.downloading_your_document));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) requestPermissionViewFile(myModel, path, file, true, pb_donationList, isShare);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) showPermissionDialogue(myModel, path, file, true, pb_donationList, isShare);
+                //requestPermissionViewFile(myModel, path, file, true, pb_donationList, isShare);
             else downloadFile(myModel,path, file, pb_donationList,isShare);
         }
 
@@ -1161,6 +1163,71 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
+    private void showPermissionDialogue(EventProjectDocsModel myModel, String path, File file, boolean flag, ProgressBar pb_donationList, boolean isShare)
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        View view_camera =  alertLayout.findViewById(R.id.view_camera);
+        View view_storage =  alertLayout.findViewById(R.id.view_storage);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        ll_storage.setVisibility(View.VISIBLE);
+        view_storage.setVisibility(View.GONE);
+
+        tv_msg.setText(context.getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(context.getString(R.string.leedo_needs_requesting_permission_project_brochure_share));
+        btn_negativeButton.setText(context.getString(R.string.deny));
+        btn_positiveButton.setText(context.getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //request for permissions
+            requestPermissionViewFile(myModel,path, file,  flag, pb_donationList,isShare);
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
+    }
 
     private void requestPermissionViewFile(EventProjectDocsModel myModel, String path, File localFile, boolean isDownload, ProgressBar pb_donationList, boolean isShare)
     {
@@ -1168,7 +1235,6 @@ public class ProjectBrochuresRecyclerAdapter extends RecyclerView.Adapter<Projec
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
         {
-
             if (isDownload) downloadFile(myModel, path, localFile, pb_donationList, isShare);
             else openFileIntent(localFile, pb_donationList);
             return;

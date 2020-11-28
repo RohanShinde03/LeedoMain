@@ -1,18 +1,5 @@
 package com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.SearchView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -40,25 +27,37 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.admin.reminder.AddReminderActivity;
-import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.model.DetailedStatFeedDetails;
-import com.tribeappsoft.leedo.api.ApiClient;
-import com.tribeappsoft.leedo.api.WebServer;
 import com.tribeappsoft.leedo.admin.callLog.CallLogActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.AddCallScheduleActivity;
+import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
+import com.tribeappsoft.leedo.admin.reminder.AddReminderActivity;
+import com.tribeappsoft.leedo.admin.reports.salesHeadDashboard.detailedStats.model.DetailedStatFeedDetails;
+import com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity;
+import com.tribeappsoft.leedo.api.ApiClient;
+import com.tribeappsoft.leedo.api.WebServer;
 import com.tribeappsoft.leedo.salesPerson.direct_allotment.AddFlatOnHoldActivity;
 import com.tribeappsoft.leedo.salesPerson.direct_allotment.DirectHoldFlatsActivity;
 import com.tribeappsoft.leedo.salesPerson.direct_allotment.FlatAllotmentActivity;
-import com.tribeappsoft.leedo.admin.leads.model.CUIDModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsModel;
 import com.tribeappsoft.leedo.salesPerson.models.LeadDetailsTitleModel;
-
-import com.tribeappsoft.leedo.admin.site_visits.AddSiteVisitActivity;
 import com.tribeappsoft.leedo.salesPerson.token.GenerateTokenActivity;
 import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.Helper;

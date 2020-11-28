@@ -241,6 +241,16 @@
         <item name="android:fontFamily">@font/metropolis_light</item>
     </style>
 
+    <!--  outlined button -->
+    <style name="outlinedButton_deny" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:buttonStyle">
+            @style/Widget.MaterialComponents.Button.OutlinedButton
+        </item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/metropolis_light</item>
+    </style>
 
     <!--style="@style/Widget.AppCompat.Button"
     style="@style/Widget.AppCompat.Button.Colored"

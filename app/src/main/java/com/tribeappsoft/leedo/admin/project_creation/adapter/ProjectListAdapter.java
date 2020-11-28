@@ -2,6 +2,7 @@ package com.tribeappsoft.leedo.admin.project_creation.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,14 @@ import com.tribeappsoft.leedo.R;
 import com.tribeappsoft.leedo.admin.project_creation.CreateProjectActivity;
 import com.tribeappsoft.leedo.admin.project_creation.model.ProjectModel;
 import com.tribeappsoft.leedo.util.Animations;
+import com.tribeappsoft.leedo.util.Helper;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.MyHolder>{
 
@@ -52,6 +56,14 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+
+        SharedPreferences sharedPreferences = new Helper().getSharedPref(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+        editor.apply();
+        //set visible to admin
+        holder.iv_editProjectDetails.setVisibility(isAdmin ? View.VISIBLE :View.GONE);
 
         //set animation
         setAnimation(holder.cv_mainList, position);

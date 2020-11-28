@@ -22,14 +22,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -46,6 +51,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
@@ -92,9 +98,11 @@ public class UserProfileActivity extends AppCompatActivity {
     @BindView(R.id.mtv_UserProfileActivity_phone) MaterialTextView mtvUserPhone;
     @BindView(R.id.mtv_UserProfileActivity_email) MaterialTextView mtvUserEmail;
     @BindView(R.id.ll_UpdateProfile_expandedImage) LinearLayoutCompat llExpandedImage;
-    @BindView(R.id.iv_UpdateProfile_expandedImage) TouchImageView iv_expandedImage;
+    @BindView(R.id.iv_UpdateProfile_expandedImage)
+    TouchImageView iv_expandedImage;
     @BindView(R.id.iv_close) AppCompatImageView iv_close;
-    @BindView(R.id.fl_itemList_AssignedProjects) FlowLayout flAssignedProjects;
+    @BindView(R.id.fl_itemList_AssignedProjects)
+    FlowLayout flAssignedProjects;
     @BindView(R.id.ll_assigned_project_layout) LinearLayoutCompat ll_assigned_project_layout;
     @BindView(R.id.ll_change_password_layout) LinearLayoutCompat ll_change_password_layout;
 
@@ -199,9 +207,9 @@ public class UserProfileActivity extends AppCompatActivity {
         //anim.clickEffect(user_profile_upload_image_btn);
         //selectImage();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkPermission())
-                CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(context);
-            else requestPermissionWriteStorage();
+            if (checkPermission()) CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(context);
+            else showPermissionDialogue();
+                //requestPermissionWriteStorage();
         } else CropImage.activity(null).setGuidelines(CropImageView.Guidelines.ON).start(this);
 
     }
@@ -209,6 +217,71 @@ public class UserProfileActivity extends AppCompatActivity {
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(Objects.requireNonNull(context), Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void showPermissionDialogue()
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        ll_camera.setVisibility(View.VISIBLE);
+        ll_storage.setVisibility(View.VISIBLE);
+
+        tv_msg.setText(getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(getString(R.string.leedo_needs_requesting_permission_profile));
+        btn_negativeButton.setText(getString(R.string.deny));
+        btn_positiveButton.setText(getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //request for permissions
+            // if (checkCallPermissions()) prepareToMakePhoneCall();
+            requestPermissionWriteStorage();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
     }
 
     private void requestPermissionWriteStorage() {
@@ -485,6 +558,8 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     private void showErrorLog(final String message)
     {

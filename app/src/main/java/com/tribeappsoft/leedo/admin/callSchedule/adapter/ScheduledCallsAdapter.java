@@ -3,20 +3,25 @@ package com.tribeappsoft.leedo.admin.callSchedule.adapter;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -51,7 +56,7 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
     private boolean isFromSchedule;
     private static final int CALL_PERMISSION_REQUEST_CODE = 123;
 
-    public ScheduledCallsAdapter(Activity context, ArrayList<ScheduledCallsModel> modelArrayList,boolean isFromSchedule) {
+    public ScheduledCallsAdapter(Activity context, ArrayList<ScheduledCallsModel> modelArrayList, boolean isFromSchedule) {
         this.context = context;
         this.itemArrayList = modelArrayList;
         this.isFromSchedule = isFromSchedule;
@@ -140,7 +145,7 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkCallPermissions()) prepareToMakePhoneCall(api_token,user_id, model.getLead_id(), model.getLead_uid(), model.getLead_status_id(), model.getPrev_call_schedule_id(), model.getMobile_number(),model.getFull_name(),model.getProject_name());
-                    else requestPermissionCall();
+                    else showPermissionDialogue();
                 }
                 else prepareToMakePhoneCall(api_token,user_id, model.getLead_id(), model.getLead_uid(), model.getLead_status_id(), model.getPrev_call_schedule_id(), model.getMobile_number(),model.getFull_name(),model.getProject_name());
 
@@ -319,9 +324,76 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
     private boolean checkCallPermissions() {
         return  (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+                && ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private void showPermissionDialogue()
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_telephone =  alertLayout.findViewById(R.id.ll_app_permissions_telephone);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        View view_call_logs =  alertLayout.findViewById(R.id.view_call_logs);
+
+        ll_storage.setVisibility(View.GONE);
+        ll_telephone.setVisibility(View.VISIBLE);
+        view_call_logs.setVisibility(View.VISIBLE);
+        ll_call_logs.setVisibility(View.VISIBLE);
+        ll_microphone.setVisibility(View.GONE);
+        tv_msg.setText(context.getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(context.getString(R.string.leedo_needs_requesting_permission));
+        btn_negativeButton.setText(context.getString(R.string.deny));
+        btn_positiveButton.setText(context.getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+
+            //request for permissions
+            //if (checkCallPermissions()) prepareToMakePhoneCall();
+            requestPermissionCall();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
     }
 
     //request camera permission
@@ -330,8 +402,6 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
         if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.CALL_PHONE)
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.READ_PHONE_STATE))
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.PROCESS_OUTGOING_CALLS))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.RECORD_AUDIO))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.WRITE_EXTERNAL_STORAGE))
         )
         {
             //If the user has denied the permission previously your code will come to this block
@@ -347,8 +417,6 @@ public class ScheduledCallsAdapter extends RecyclerView.Adapter<ScheduledCallsAd
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.PROCESS_OUTGOING_CALLS,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 }, CALL_PERMISSION_REQUEST_CODE);
     }
 

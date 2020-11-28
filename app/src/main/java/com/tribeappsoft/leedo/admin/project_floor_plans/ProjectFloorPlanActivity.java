@@ -33,7 +33,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-
 import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.models.EventProjectDocsModel;
 import com.tribeappsoft.leedo.admin.project_floor_plans.adapter.ProjectFloorPlanRecyclerAdapter;

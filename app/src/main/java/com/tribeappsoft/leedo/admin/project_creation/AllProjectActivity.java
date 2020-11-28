@@ -78,6 +78,7 @@ public class AllProjectActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private int user_id =0;
+    boolean isSalesHead=false,isAdmin=false;
 
 
     @Override
@@ -86,7 +87,7 @@ public class AllProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_project);
 
         ButterKnife.bind(this);
-        context=AllProjectActivity.this;
+        context= AllProjectActivity.this;
 
         if (getSupportActionBar()!=null)
         {
@@ -104,7 +105,6 @@ public class AllProjectActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
-        //boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         Log.e(TAG, "onCreate: "+api_token);
         editor.apply();
 
@@ -159,7 +159,7 @@ public class AllProjectActivity extends AppCompatActivity {
             dividerItemDecoration.setDrawable(verticalDivider);
         }
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerAdapter = new  ProjectListAdapter(context, projectModelArrayList);
+        recyclerAdapter = new ProjectListAdapter(context, projectModelArrayList);
         recyclerView.setAdapter(recyclerAdapter);
     }
 
@@ -206,8 +206,12 @@ public class AllProjectActivity extends AppCompatActivity {
         int  isProjectCreateUpdate;
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
+        isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         isProjectCreateUpdate = sharedPreferences.getInt("isProjectCreateUpdate",0);
         editor.apply();
+
+        exFab_createProject.setVisibility(isAdmin ? View.VISIBLE :View.GONE );
 
         if(isProjectCreateUpdate == 1) {
             editor.remove("isProjectCreateUpdate");

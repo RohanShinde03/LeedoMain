@@ -9,10 +9,10 @@ public class WebServer {
 
 
     //TODO BASE URL LIVE
-    public static final String BASE_URL = "http://65.0.167.173/1tr/vai12/public/api/";
+    //public static final String BASE_URL = "http://65.0.167.173/1tr/vai12/public/api/";
 
     //TODO BASE URL LEEDO DEMO ENV
-    //public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
+    public static final String BASE_URL = "http://15.207.242.165/leedo/lead_management_sp1/public/api/";
 
     private static final String BASE_URL_LOGO = "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/";
 

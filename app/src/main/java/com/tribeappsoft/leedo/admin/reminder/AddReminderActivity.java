@@ -231,7 +231,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
     private void selectReminderDate() {
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
                     //set selected date
@@ -271,7 +271,7 @@ public class AddReminderActivity extends AppCompatActivity {
     private void selectReminderTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time
@@ -439,7 +439,8 @@ public class AddReminderActivity extends AppCompatActivity {
                     {
                         showProgressBar("Updating reminder...");
                         Call_UpdateReminder();
-                    }else requestPermissionWriteStorage();
+                    }else showPermissionDialogue();
+                        //requestPermissionWriteStorage();
 
                     /*new Helper().addReminderInCalendar(context, String.valueOf(edt_reminderText.getText()), sendReminderDate, sendReminderTime)*/
                 }
@@ -449,7 +450,7 @@ public class AddReminderActivity extends AppCompatActivity {
                     {
                         showProgressBar("Adding reminder...");
                         new Handler().postDelayed(this::Call_AddReminder,1000);
-                    }else requestPermissionWriteStorage();
+                    }else showPermissionDialogue();
                 }
 
             } else Helper.NetworkError(context);
@@ -709,7 +710,71 @@ public class AddReminderActivity extends AppCompatActivity {
 
     }
 
+    private void showPermissionDialogue()
+    {
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        View view_calender =  alertLayout.findViewById(R.id.view_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        ll_calender.setVisibility(View.VISIBLE);
+        view_calender.setVisibility(View.GONE);
+
+        tv_msg.setText(getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(getString(R.string.leedo_needs_requesting_permission_reminder));
+        btn_negativeButton.setText(getString(R.string.deny));
+        btn_positiveButton.setText(getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //request for permissions
+            // if (checkCallPermissions()) prepareToMakePhoneCall();
+            requestPermissionWriteStorage();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
+    }
     //Show Error Log
     private void showErrorLog(final String message) {
 

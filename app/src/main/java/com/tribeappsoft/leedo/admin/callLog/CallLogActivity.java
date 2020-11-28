@@ -288,7 +288,7 @@ public class CallLogActivity extends AppCompatActivity {
     private void selectScheduleDate() {
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
                     //set selected date
@@ -579,7 +579,7 @@ public class CallLogActivity extends AppCompatActivity {
         if (statusArrayList.size() >0 &&  callStatusModelArrayList.size()>0)
         {
             //ArrayList<String> stringList2 = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.ary_project_name)));
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context,R.layout.layout_spinner_item, statusArrayList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.layout_spinner_item, statusArrayList);
             acTv_callStatus.setAdapter(adapter);
             acTv_callStatus.setThreshold(0);
             //tv_selectCustomer.setSelection(0);
@@ -614,7 +614,7 @@ public class CallLogActivity extends AppCompatActivity {
 
     private void selectReminderDate() {
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
                     //set selected date
@@ -651,7 +651,7 @@ public class CallLogActivity extends AppCompatActivity {
     private void selectCallStartTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time
@@ -678,7 +678,7 @@ public class CallLogActivity extends AppCompatActivity {
     private void selectCallEndTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time
@@ -704,7 +704,7 @@ public class CallLogActivity extends AppCompatActivity {
     private void selectReminderTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time
@@ -729,7 +729,7 @@ public class CallLogActivity extends AppCompatActivity {
 
     private void selectCallScheduleDate() {
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
                     //set selected date
@@ -762,7 +762,7 @@ public class CallLogActivity extends AppCompatActivity {
     private void selectCallScheduleTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time

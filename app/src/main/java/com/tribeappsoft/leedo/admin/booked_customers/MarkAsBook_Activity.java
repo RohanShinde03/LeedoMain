@@ -475,7 +475,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
 
 
             //ArrayList<String> stringList2 = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.ary_project_name)));
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context,R.layout.layout_spinner_item, flatStringArrayList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.layout_spinner_item, flatStringArrayList);
             acTv_selectUnitType.setAdapter(adapter);
             acTv_selectUnitType.setThreshold(0);
             //tv_selectCustomer.setSelection(0);
@@ -531,7 +531,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
     {
         //startDate = MessageFormat.format("{0}-{1}-{2}", dayOfMonth, monthOfYear + 1, year);
         //tv_startDate.setText(MessageFormat.format("{0}-{1}-{2}", dayOfMonth, monthOfYear + 1, year));
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
 
@@ -560,7 +560,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
     private void selectVisitTime()
     {
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     sendAlreadySiteVisitTime = hourOfDay + ":" + minute + ":" +"00";
@@ -639,7 +639,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkCameraPermission() && checkWriteStoragePermission()) OpenCamera();
-            else requestPermission_for_Camera();
+            else showPermissionDialogue(true,false,false);
         }
         else OpenCamera();
     }
@@ -649,7 +649,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkReadPermission()) OpenGallery();
-            else requestPermission_for_Gallery();
+            else showPermissionDialogue(false,true,false);
         }
         else OpenGallery();
     }
@@ -659,7 +659,7 @@ public class MarkAsBook_Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkWriteStoragePermission()) OpenDocuments();
-            else requestPermission_for_Documents();
+            else showPermissionDialogue(false,false,true);
         }
         else OpenDocuments();
     }
@@ -711,6 +711,78 @@ public class MarkAsBook_Activity extends AppCompatActivity {
         intent4.putExtra(NormalFilePickActivity.SUFFIX,
                 new String[] {"xlsx", "xls", "doc", "dOcX", "ppt", "pptx", "pdf","csv","txt","docx"});
         startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+    }
+
+
+    private void showPermissionDialogue(boolean isCamera,boolean isGalary,boolean isStorage)
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        View view_camera =  alertLayout.findViewById(R.id.view_camera);
+        View view_storage =  alertLayout.findViewById(R.id.view_storage);
+        // tv_line =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_line);
+
+        ll_camera.setVisibility(isCamera ? View.VISIBLE :View.GONE);
+        view_camera.setVisibility(isCamera ? View.GONE :View.GONE);
+
+        ll_storage.setVisibility(isGalary || isStorage ? View.VISIBLE :View.GONE);
+        view_storage.setVisibility(isGalary || isStorage ? View.GONE :View.GONE);
+
+        tv_msg.setText(getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(getString(R.string.leedo_needs_requesting_permission_ba_application));
+        btn_negativeButton.setText(getString(R.string.deny));
+        btn_positiveButton.setText(getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //request for permissions
+            if (isCamera) requestPermission_for_Camera();
+            else if (isGalary) requestPermission_for_Gallery();
+            else if (isStorage) requestPermission_for_Documents();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
     }
 
 /*    void OpenGallery()

@@ -408,7 +408,6 @@ public class AddSiteVisitActivity extends AppCompatActivity {
         //And finally ask for the permission
         ActivityCompat.requestPermissions(context, new String[]
                 {
-                        Manifest.permission.RECORD_AUDIO,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 }, AUDIO_PERMISSION_REQUEST_CODE);
     }
@@ -782,7 +781,7 @@ public class AddSiteVisitActivity extends AppCompatActivity {
 
 
             //ArrayList<String> stringList2 = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.ary_project_name)));
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context,R.layout.layout_spinner_item, flatStringArrayList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.layout_spinner_item, flatStringArrayList);
             acTv_flatType.setAdapter(adapter);
             acTv_flatType.setThreshold(0);
             //tv_selectCustomer.setSelection(0);
@@ -828,7 +827,7 @@ public class AddSiteVisitActivity extends AppCompatActivity {
     {
         //startDate = MessageFormat.format("{0}-{1}-{2}", dayOfMonth, monthOfYear + 1, year);
         //tv_startDate.setText(MessageFormat.format("{0}-{1}-{2}", dayOfMonth, monthOfYear + 1, year));
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
 
@@ -857,7 +856,7 @@ public class AddSiteVisitActivity extends AppCompatActivity {
     private void selectVisitTime()
     {
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     sendAlreadySiteVisitTime = hourOfDay + ":" + minute + ":" +"00";

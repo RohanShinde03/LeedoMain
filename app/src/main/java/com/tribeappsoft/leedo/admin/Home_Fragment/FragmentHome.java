@@ -21,10 +21,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.view.GravityCompat;
@@ -43,6 +45,7 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
+import com.tribeappsoft.leedo.admin.SalesPersonHomeNavigationActivity;
 import com.tribeappsoft.leedo.admin.callSchedule.model.CallScheduleLogsModel;
 import com.tribeappsoft.leedo.admin.project_creation.model.ProjectModel;
 import com.tribeappsoft.leedo.api.ApiClient;
@@ -50,6 +53,9 @@ import com.tribeappsoft.leedo.salesPerson.salesHead.salesExecutiveList.model.Sal
 import com.tribeappsoft.leedo.util.CustomTabLayout;
 import com.tribeappsoft.leedo.util.Helper;
 import com.tribeappsoft.leedo.util.discreteScrollView.DiscreteScrollView;
+import com.tribeappsoft.leedo.util.showCaseView.MaterialShowcaseSequence;
+import com.tribeappsoft.leedo.util.showCaseView.MaterialShowcaseView;
+import com.tribeappsoft.leedo.util.showCaseView.ShowcaseConfig;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -70,7 +76,7 @@ import retrofit2.Response;
 import static android.os.Looper.getMainLooper;
 import static com.tribeappsoft.leedo.util.Helper.hideSoftKeyboard;
 
-public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
+public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> , SalesPersonHomeNavigationActivity.onDismissAddFabListener {
 
     private String TAG="FragmentHome";
     @BindView(R.id.tabLayout_FragHome) CustomTabLayout mTabLayout;
@@ -83,8 +89,10 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
     @BindView(R.id.mTv_fragHome_todayDate) MaterialTextView mTv_todayDate;
     @BindView(R.id.mTv_fragHome_DayName) MaterialTextView mTv_DayName;
     @BindView(R.id.ll_FragHome_todayDate) LinearLayoutCompat ll_todayDate;
+    @BindView(R.id.ll_FragHome_Filters) LinearLayout ll_FragHome_Filters;
     @BindView(R.id.ll_pbLayout) LinearLayoutCompat ll_pb;
     @BindView(R.id.tv_pbLoadingMsg) AppCompatTextView tv_loadingMsg;
+    @BindView(R.id.iv_google_calendar_icon) AppCompatImageView iv_google_calendar_icon;
 
     @BindView(R.id.acTv_SalesHome_selectProject) AutoCompleteTextView acTv_SalesHome_selectProject;
     @BindView(R.id.acTv_SalesHome_selectSalesPerson) AutoCompleteTextView acTv_SalesHome_selectSalesPerson;
@@ -115,8 +123,10 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
     private String dayOfTheWeek="";
     private String selected_date="";
     private String api_token="";
+    //boolean isLeadAdd_Click=false;
     private static FragmentHome instance = null;
     private int tabAt=0;
+    private static final String SHOWCASE_ID = "FragmentHome";
 
     public FragmentHome() {
         projectStringArrayList =new ArrayList<>();
@@ -169,8 +179,10 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
 
         sharedPreferences = new Helper().getSharedPref(Objects.requireNonNull(requireActivity()));
         editor = sharedPreferences.edit();
+       // isLeadAdd_Click = sharedPreferences.getBoolean("isLeadAdd_Click", false);
         api_token = sharedPreferences.getString("api_token", "");
         user_id = sharedPreferences.getInt("user_id", 0);
+        //isLeadAdd_Click = sharedPreferences.getBoolean("isLeadAdd_Click", false);
         boolean isSalesHead = sharedPreferences.getBoolean("isSalesHead", false);
         boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         editor.apply();
@@ -270,7 +282,7 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
             Intent  intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
             startActivity(intent);
         });
-
+        ((SalesPersonHomeNavigationActivity) requireActivity()).setOnDismissAddFabListener(this);
         return view;
     }
 
@@ -938,6 +950,11 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         });
     }
 
+    @Override
+    public void onDismiss() {
+
+        presentShowcaseSequence();
+    }
 
     public static class SectionsPagerAdapter extends FragmentPagerAdapter
     {
@@ -1602,4 +1619,98 @@ public class FragmentHome extends Fragment implements DiscreteScrollView.OnItemC
         editor.apply();
 
     }
+
+    /*    @Override
+        public void onClick(View v) {
+
+            if (v.getId() == R.id.iv_google_calendar_icon || v.getId() == R.id.mTv_FragHome_Today) {
+
+                presentShowcaseSequence();
+
+            } else if(v.getId() == R.id.tabLayout_FragHome)
+            {
+                if(sharedPreferences!=null) {
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("isLeadAdd_Click",false);
+                    editor.apply();
+                    isLeadAdd_Click=true;
+                }
+                presentShowcaseSequence();
+
+
+
+            }
+            *//*else if (v.getId() == R.id.fab_salesPerson_directBooking) {
+
+            MaterialShowcaseView.resetSingleUse(getActivity(), SHOWCASE_ID);
+            Toast.makeText(getActivity(), "Showcase reset", Toast.LENGTH_SHORT).show();
+        }*//*
+
+
+
+
+
+    }*/
+    private void presentShowcaseSequence() {
+
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(getActivity(), SHOWCASE_ID);
+
+        sequence.setOnItemShownListener((itemView, position) -> {
+            // Toast.makeText(itemView.getContext(), "" /*+ position*/, Toast.LENGTH_SHORT).show();
+        });
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(ll_todayDate, "Tap the icon to go to your calender.", "Got it");
+
+
+
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(getActivity())
+                        .setSkipText("Skip")
+                        .setTarget(acTv_SalesHome_selectProject)
+                        .setDismissText("Got it")
+                        .setContentText("Tap to filter your data Project wise.")
+                        .withRectangleShape()
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(getActivity())
+                        .setSkipText("Skip")
+                        .setTarget(mTv_FragHome_Yesterday)
+                        .setDismissText("Got it")
+                        .setContentText("Tap to filter your data Date wise.")
+                        .withCircleShape()
+                        .build()
+        );
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(getActivity())
+                        .setTarget(mTabLayout.getTabAt(2).view)
+                        .setDismissText("Got it")
+                        .setContentText("Change View like Scheduled Calls,Site Visits,Leads & Reminders.")
+                        .withCircleShape()
+                        .build()
+        );
+
+        sequence.start();
+
+    }
+
+
+
+   /* void mainShowCases()
+    {
+        Log.e(TAG, "mainShowCases: " );
+        sharedPreferences = new Helper().getSharedPref(Objects.requireNonNull(requireActivity()));
+        editor = sharedPreferences.edit();
+        isLeadAdd_Click = sharedPreferences.getBoolean("isLeadAdd_Click", false);
+        editor.apply();
+        if(isLeadAdd_Click) ((SalesPersonHomeNavigationActivity) getActivity()).presentShowcaseSequence();
+        Log.e(TAG, "mainShowCases flag "+ isLeadAdd_Click );
+    }*/
 }

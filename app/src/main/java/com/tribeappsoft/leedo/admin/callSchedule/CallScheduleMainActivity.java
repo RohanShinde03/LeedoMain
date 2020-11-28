@@ -123,7 +123,7 @@ public class CallScheduleMainActivity extends AppCompatActivity {
             //getSupportActionBar().setTitle(R.string.menu_all_call_logs);
         }
 
-        new Helper().setStatusBarColor(context,R.color.colorPrimaryDark);
+        new Helper().setStatusBarColor(context, R.color.colorPrimaryDark);
         sharedPreferences = new Helper().getSharedPref(context);
         editor = sharedPreferences.edit();
         user_id = sharedPreferences.getInt("user_id", 0);

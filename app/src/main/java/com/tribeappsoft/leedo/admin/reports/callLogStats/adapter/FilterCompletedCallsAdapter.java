@@ -114,8 +114,15 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
 
         });
 
-
         //mobile number/call
+        holder.iv_ownLeadCall.setOnClickListener(v -> {
+            if (model.getMobile_number()!=null) {
+                new Helper().openPhoneDialer(Objects.requireNonNull(context), model.getMobile_number());
+            }else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
+        });
+
+
+/*        //mobile number/call
         holder.iv_ownLeadCall.setOnClickListener(v -> {
             if (model.getMobile_number()!=null) {
 
@@ -129,7 +136,7 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
 
 
             }else new Helper().showCustomToast(Objects.requireNonNull(context), "Customer number not found!");
-        });
+        });*/
 
         //Set Lead Details
         if (model.getDetailsTitleModelArrayList()!=null && model.getDetailsTitleModelArrayList().size()>0)
@@ -340,9 +347,7 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
     private boolean checkCallPermissions() {
         return  (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+                && ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED);
     }
 
     //request camera permission
@@ -351,8 +356,6 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
         if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.CALL_PHONE)
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.READ_PHONE_STATE))
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.PROCESS_OUTGOING_CALLS))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.RECORD_AUDIO))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.WRITE_EXTERNAL_STORAGE))
         )
         {
             //If the user has denied the permission previously your code will come to this block
@@ -368,8 +371,6 @@ public class FilterCompletedCallsAdapter extends RecyclerView.Adapter<FilterComp
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.PROCESS_OUTGOING_CALLS,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 }, CALL_PERMISSION_REQUEST_CODE);
     }
 

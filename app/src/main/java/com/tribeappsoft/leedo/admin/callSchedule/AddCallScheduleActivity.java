@@ -28,8 +28,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonObject;
 import com.tribeappsoft.leedo.R;
-import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.admin.leads.CustomerIdActivity;
+import com.tribeappsoft.leedo.api.ApiClient;
 import com.tribeappsoft.leedo.util.Helper;
 
 import java.io.IOException;
@@ -220,7 +220,7 @@ public class AddCallScheduleActivity extends AppCompatActivity {
 
     private void selectScheduleDate() {
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.MyDatePicker,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.MyDatePicker,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
                     //set selected date
@@ -253,7 +253,7 @@ public class AddCallScheduleActivity extends AppCompatActivity {
     private void selectScheduleTime() {
 
         final Calendar c = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.MyDatePicker,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.MyDatePicker,
                 (TimePicker view, int hourOfDay, int minute) -> {
 
                     //set selected time

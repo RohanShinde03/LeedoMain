@@ -8,12 +8,11 @@
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    <uses-feature android:name="android.hardware.telephony" /> <!-- These 2 permissions needed for Android 10 Open Activity as in Background -->
+    <uses-feature android:name="android.hardware.telephony" />
+    <!-- These 2 permissions needed for Android 10 Open Activity as in Background -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="info.androidhive.googlemapsv2.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,8 +23,7 @@
         android:name="android.permission.INSTALL_PACKAGES"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
@@ -107,17 +105,17 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.booked_customers.BookedCustomersActivity"
-              android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.site_visits.AllSiteVisitsActivity"
-              android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.users.AllUsersActivity"
-              android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
@@ -431,7 +429,7 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.tribeappsoft.leedo.admin.leads.AllLeadsActivity"
-              android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme" />
         <activity
@@ -589,18 +587,18 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-      <!--  <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectLeadsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectSalesPersonActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="LockedOrientationActivity" />-->
+        <!--  <activity
+              android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectLeadsActivity"
+              android:screenOrientation="portrait"
+              android:theme="@style/AppTheme"
+              android:windowSoftInputMode="stateHidden"
+              tools:ignore="LockedOrientationActivity" />
+          <activity
+              android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.SelectSalesPersonActivity"
+              android:screenOrientation="portrait"
+              android:theme="@style/AppTheme"
+              android:windowSoftInputMode="stateHidden"
+              tools:ignore="LockedOrientationActivity" />-->
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.CPReportActivity"
             android:screenOrientation="portrait"
@@ -631,12 +629,12 @@ Set custom default icon. This is used when no icon is set for incoming notificat
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-<!--        <activity-->
-<!--            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.LeadReAssign_Activity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/AppTheme"-->
-<!--            android:windowSoftInputMode="stateHidden"-->
-<!--            tools:ignore="LockedOrientationActivity" />-->
+        <!--        <activity-->
+        <!--            android:name="com.tribeappsoft.leedo.salesPerson.salesHead.leadReAssign.LeadReAssign_Activity"-->
+        <!--            android:screenOrientation="portrait"-->
+        <!--            android:theme="@style/AppTheme"-->
+        <!--            android:windowSoftInputMode="stateHidden"-->
+        <!--            tools:ignore="LockedOrientationActivity" />-->
         <activity
             android:name="com.tribeappsoft.leedo.salesPerson.salesHead.reports.cp_filter.AllProjectsActivity"
             android:screenOrientation="portrait"

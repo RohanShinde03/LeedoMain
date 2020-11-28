@@ -54,7 +54,7 @@
     <color name="text_hint">#9A9A9A</color>
     <color name="placeholder_bg">#dddddd</color>
     <color name="orange">#FF5722</color>
-
+    <item name="tooltip_mask" type="color">#CC18407C</item>
 
 
     <!-- general color -->

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -101,6 +102,10 @@ import com.tribeappsoft.leedo.util.Animations;
 import com.tribeappsoft.leedo.util.CircularAnim;
 import com.tribeappsoft.leedo.util.CustomTypefaceSpan;
 import com.tribeappsoft.leedo.util.Helper;
+import com.tribeappsoft.leedo.util.showCaseView.MaterialShowcaseSequence;
+import com.tribeappsoft.leedo.util.showCaseView.MaterialShowcaseView;
+import com.tribeappsoft.leedo.util.showCaseView.ShowcaseConfig;
+import com.tribeappsoft.leedo.util.showCaseView.ShowcaseTooltip;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -157,6 +162,8 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
     private String api_token="",android_id ="", lead_sync_time="";
     private static final int Permission_CODE_DeviceAdmin = 5912;
     private static final int REQ_CODE_VERSION_UPDATE = 530;
+    private static final String SHOWCASE_ID = "SalesPersonHomeNavigationActivity";
+    public onDismissAddFabListener onDismissAddFabListener;
     //private int requestCode;
     //private String[] permissions;
     //private int[] grantResults;
@@ -246,6 +253,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         user_id = sharedPreferences.getInt("user_id", 0);
         api_token = sharedPreferences.getString("api_token", "");
+        //firstLaunch = sharedPreferences.getInt("firstLaunch", 0);
         //boolean applicationCreated = sharedPreferences.getBoolean("applicationCreated", false);
         editor.apply();
 
@@ -254,6 +262,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         Log.e(TAG, "onCreate: android id "+android_id );
         Log.e(TAG, "onCreate: isSalesHead "+isSalesHead );
 
+        presentShowcaseSequence(); // one second delay
         /*if (applicationCreated) {
             //check for the device admin permission allowed or not
             checkForDeviceAdminPermission();
@@ -1732,7 +1741,7 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
                 new Handler().postDelayed(this::logout, 2000);
 
                 //finally logout from app
-                // logoutUser();
+                //logoutUser();
 
             }else NetworkError(context);
 
@@ -1827,12 +1836,24 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             //normal logout
             editor = sharedPreferences.edit();
 
+            int client_id  = sharedPreferences.getInt("client_id",0);
+            String client_code = sharedPreferences.getString("client_code","");
+            String client_name = sharedPreferences.getString("client_name","");
+            String api_base_url = sharedPreferences.getString("api_base_url","");
+
             //remove donation shortcut
             new Helper().createShortCut(this,false);
 
             //clear the user data
             //clear the sharedPref data and save/commit
             editor.clear();
+            //put client info --to avoid repeatation of entering company code
+            editor.putInt("client_id",client_id);
+            editor.putString("client_code",client_code);
+            editor.putString("client_name",client_name);
+            editor.putString("api_base_url",api_base_url);
+            //put flag for Second Launch //for chat set 0
+            editor.putInt("firstLaunch", 0);
             editor.apply();
         }
 
@@ -1867,6 +1888,10 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             new Helper().createShortCut(this,false);
 
             int socialType = 0;
+            int client_id  = sharedPreferences.getInt("client_id",0);
+            String client_code = sharedPreferences.getString("client_code","");
+            String client_name = sharedPreferences.getString("client_name","");
+            String api_base_url = sharedPreferences.getString("api_base_url","");
 
             if (sharedPreferences.getInt("socialType", 0) != 0) socialType = sharedPreferences.getInt("socialType", 0);
 
@@ -1899,6 +1924,13 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
             //clear the user data
             //clear the sharedPref data and save/commit
             editor.clear();
+            //put client info --to avoid repeatation of entering company code
+            editor.putInt("client_id",client_id);
+            editor.putString("client_code",client_code);
+            editor.putString("client_name",client_name);
+            editor.putString("api_base_url",api_base_url);
+            //put flag for Second Launch //for chat set 0
+            editor.putInt("firstLaunch", 0);
             editor.apply();
         }
 
@@ -2057,6 +2089,87 @@ public class SalesPersonHomeNavigationActivity extends AppCompatActivity impleme
         //this.unregisterReceiver(networkStateReceiver);
     }
 
+    public void presentShowcaseSequence() {
+
+
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500);
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+        //sequence.setConfig(config);
+
+        ShowcaseTooltip toolTip2 = ShowcaseTooltip.build(this)
+                .corner(30)
+                .textColor(Color.parseColor("#FFFFFF"))
+                .color(Color.parseColor("#06B8ED"))
+                .text("Tap the fab to add your <b>first Lead</b>");
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(fab_add)
+                        .setToolTip(toolTip2)
+                        .setTooltipMargin(30)
+                        .setShapePadding(40)
+                        .setDismissOnTouch(true)
+                        .setMaskColour(getResources().getColor(R.color.tooltip_mask))
+                        .build()
+        );
+
+        sequence.start();
+        sequence.setOnItemDismissedListener((itemView, position) -> {
+
+            if(onDismissAddFabListener!=null)
+            {
+                onDismissAddFabListener.onDismiss();
+            }
+
+        });
+
+    }
+
+    public interface  onDismissAddFabListener{
+        void onDismiss();
+    }
+
+    public void setOnDismissAddFabListener(onDismissAddFabListener onDismissAddFabListener){
+        this.onDismissAddFabListener=onDismissAddFabListener;
+    }
+    /*    private void presentShowcaseSequence() {
+
+            ShowcaseConfig config = new ShowcaseConfig();
+            config.setDelay(500); // half second between each showcase view
+
+            MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+            sequence.setOnItemShownListener((itemView, position) -> Toast.makeText(itemView.getContext(), "Item #" + position, Toast.LENGTH_SHORT).show());
+
+            sequence.setConfig(config);
+
+            sequence.addSequenceItem(fab_add, "Tap the fab to add your first Lead", "Got it");
+
+    *//*        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setSkipText("SKIP")
+                        .setTarget(fab_addReminder)
+                        .setDismissText("GOT IT")
+                        .setContentText("This is button two")
+                        .withRectangleShape(true)
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(fab_addSiteVisit)
+                        .setDismissText("GOT IT")
+                        .setContentText("This is button three")
+                        .withRectangleShape()
+                        .build()
+        );*//*
+
+        sequence.start();
+
+    }*/
     //@Override
     public void onSuccessNetworkListener() {
         Log.e(TAG, "onSuccessNetworkListener: ");

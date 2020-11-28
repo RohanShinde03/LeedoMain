@@ -1638,4 +1638,34 @@
     <string name="enter_budget_limit">Enter Budget Limit</string>
     <string name="no_cancelled_bookings_available">No Cancelled Bookings Available!</string>
 
+
+    <string name="allow_to_make_mange_phone_calls"><![CDATA[Allow to make & mange phone calls]]></string>
+    <string name="we_will_need_your_phone_call_permission_to_allow_you_in_app_calling_with_better_experience">We will need your phone call permission to allow you in app calling with better experience.</string>
+    <string name="deny">Don\'t Agree</string>
+    <string name="allow">Agree</string>
+    <string name="allow_access_to_contacts_and_phone_log">Allow Leedo App Permissions ?</string>
+    <string name="leedo_needs_requesting_permission"> Leedo have given you a feature of In-App Calling to your leads. To work that feature efficiently, Leedo needs the following permissions of your device to Make a Phone call to your Leads. Leedo not taking any of your personal data from your device.</string>
+    <!--    <string name="leedo_needs_requesting_permission"> Leedo needs permissions of your Phone to connect with your Leads ,exchange customer input Messages and make secure Calls. Allow ?</string>-->
+    <string name="leedo_needs_requesting_permission_profile"> Leedo needs storage &amp; camera  permission in order to provide photo capture feature.</string>
+    <string name="leedo_needs_requesting_permission_camera"> Leedo needs permissions in order to upload Profile Photo.</string>
+    <string name="leedo_needs_requesting_permission_ba_application"> Leedo needs permissions in order to upload Booking Application.</string>
+    <string name="leedo_needs_requesting_permission_project_brochure"> Leedo needs permissions in order to upload Project Brochure.</string>
+    <string name="leedo_needs_requesting_permission_project_floor_plan"> Leedo needs permissions in order to upload Project Floor Plan.</string>
+    <string name="leedo_needs_requesting_permission_project_quotation"> Leedo needs permissions in order to upload Project Quotation.</string>
+    <string name="leedo_needs_requesting_permission_project_brochure_share"> Leedo needs permissions in order to share Project Brochure.</string>
+    <string name="leedo_needs_requesting_permission_project_floor_plan_share"> Leedo needs permissions in order to share Project Floor Plan.</string>
+    <string name="leedo_needs_requesting_permission_project_quotation_share"> Leedo needs permissions in order to share Project Quotation.</string>
+    <string name="leedo_needs_requesting_permission_reminder"> Leedo needs permissions in order to sync reminders with Google Calender.</string>
+    <string name="leedo_needs_requesting_permission_document"> Leedo needs permissions in order to upload Project Document.</string>
+    <string name="leedo_needs_requesting_permission_test"> Leedo needs permissions of your Phone to connect with your Leads ,exchange customer input Messages and make secure Calls.</string>
+    <string name="you_can_change_this_later_by_going_to_settings_app_permissions"><![CDATA[You can change this later by going to Settings -> App Permissions.]]></string>
+    <string name="allow_app_permissions">Allow Leedo the following App Permissions</string>
+    <string name="agree">Agree</string>
+    <string name="don_t_agree">Don\'t Agree</string>
+    <string name="leedo_will_need_your_following_phone_permissions_to_give_you_better_experience">Leedo will need your following phone permissions to give you better experience.</string>
+    <string name="telephone">Telephone</string>
+
+
+
+
 </resources>

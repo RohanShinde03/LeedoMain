@@ -1109,6 +1109,7 @@ public class Fragment_CallList extends Fragment //implements CallScheduleMainAct
 
 
 
+
     @SuppressLint("SetTextI18n")
     private void showProgressBar() {
         //hideSoftKeyboard(context, getWindow().getDecorView().getRootView());

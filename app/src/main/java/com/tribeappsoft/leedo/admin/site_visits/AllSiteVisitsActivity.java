@@ -113,7 +113,8 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
     @BindView(R.id.ll_allSiteVisit_filter) LinearLayoutCompat ll_filter;
     @BindView(R.id.tv_allSiteVisit_filterTitle) AppCompatTextView tv_filterTitle;
     @BindView(R.id.iv_allSiteVisit_closeFilter) AppCompatImageView iv_closeFilter;
-    @BindView(R.id.nsv_allSiteVisit) StickyScrollView nsv;
+    @BindView(R.id.nsv_allSiteVisit)
+    StickyScrollView nsv;
     @BindView(R.id.ll_allSiteVisit_addFeedData) LinearLayoutCompat ll_addFeedData;
     @BindView(R.id.ll_allSiteVisit_loadingContent) LinearLayoutCompat ll_loadingContent;
     @BindView(R.id.ll_allSiteVisit_backToTop) LinearLayoutCompat ll_backToTop;
@@ -1577,7 +1578,7 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
                 call_cuID = myModel.getSmall_header_title();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkCallPermissions()) prepareToMakePhoneCall();
-                    else requestPermissionCall();
+                    else  showPermissionDialogue();
                 }
                 else prepareToMakePhoneCall();
                 //new Helper().openPhoneDialer(Objects.requireNonNull(getActivity()), myModel.getCall());
@@ -1789,11 +1790,11 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
         String extra_text = isAdmin ? context.getString(R.string.cim_std_welcome_msg_wo_role, main_title,  sales_person_name, company_name, "+91-"+sales_person_mobile)  : context.getString(R.string.cim_std_welcome_msg_with_role, main_title,  sales_person_name,  isSalesHead ? "Sales Head" : "Sales Executive" , company_name, "+91-"+sales_person_mobile);
 
         try {
-            Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
+            Intent smsIntent = new Intent(Intent.ACTION_VIEW);
             smsIntent.setType("vnd.android-dir/mms-sms");
             smsIntent.putExtra("address",""+number);
             smsIntent.putExtra("sms_body",""+extra_text);
-            smsIntent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+            smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(smsIntent);
         } catch(ActivityNotFoundException ex){
             ex.printStackTrace();
@@ -2293,10 +2294,73 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
         return  (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, Manifest.permission.PROCESS_OUTGOING_CALLS) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-
         );
+    }
+
+    private void showPermissionDialogue()
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") final View alertLayout = inflater != null ? inflater.inflate(R.layout.alert_layout_allow_permission, null) : null;
+        alertDialogBuilder.setView(alertLayout);
+        alertDialogBuilder.setCancelable(true);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        AppCompatTextView tv_msg,tv_desc;
+        assert alertLayout != null;
+        tv_msg =  alertLayout.findViewById(R.id.textView_layout_custom_alert_dialog_msg);
+        tv_desc =  alertLayout.findViewById(R.id.textView_layout_custom_alert_renew_dialog_desc);
+        MaterialButton btn_negativeButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_negativeButton);
+        MaterialButton btn_positiveButton =  alertLayout.findViewById(R.id.btn_custom_alert_renew_positiveButton);
+        LinearLayoutCompat ll_storage =  alertLayout.findViewById(R.id.ll_app_permissions_storage);
+        LinearLayoutCompat ll_call_logs =  alertLayout.findViewById(R.id.ll_app_permissions_call_logs);
+        LinearLayoutCompat ll_telephone =  alertLayout.findViewById(R.id.ll_app_permissions_telephone);
+        LinearLayoutCompat ll_calender =  alertLayout.findViewById(R.id.ll_app_permissions_calender);
+        LinearLayoutCompat ll_camera =  alertLayout.findViewById(R.id.ll_app_permissions_camera);
+        LinearLayoutCompat ll_microphone =  alertLayout.findViewById(R.id.ll_app_permissions_microphone);
+        View view_call_logs =  alertLayout.findViewById(R.id.view_call_logs);
+
+        ll_storage.setVisibility(View.GONE);
+        ll_telephone.setVisibility(View.VISIBLE);
+        view_call_logs.setVisibility(View.VISIBLE);
+        ll_call_logs.setVisibility(View.VISIBLE);
+        ll_microphone.setVisibility(View.GONE);
+        tv_msg.setText(getString(R.string.allow_access_to_contacts_and_phone_log));
+        tv_desc.setText(getString(R.string.leedo_needs_requesting_permission));
+        btn_negativeButton.setText(getString(R.string.deny));
+        btn_positiveButton.setText(getString(R.string.allow));
+
+        btn_positiveButton.setOnClickListener(view -> {
+            alertDialog.dismiss();
+            //request for permissions
+            // if (checkCallPermissions()) prepareToMakePhoneCall();
+            requestPermissionCall();
+        });
+
+        btn_negativeButton.setOnClickListener(view -> alertDialog.dismiss());
+
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.show();
+
+        //set the width and height to alert dialog
+        int pixel= context.getWindowManager().getDefaultDisplay().getWidth();
+        WindowManager.LayoutParams wmlp = Objects.requireNonNull(alertDialog.getWindow()).getAttributes();
+        wmlp.gravity =  Gravity.CENTER;
+        wmlp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        wmlp.width = pixel-100;
+        //wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        //alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        alertDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_alert_background));
+        //alertDialog.getWindow().setLayout(pixel-10, wmlp.height );
+        alertDialog.getWindow().setAttributes(wmlp);
+
     }
 
     //request camera permission
@@ -2305,8 +2369,6 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
         if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.CALL_PHONE)
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.READ_PHONE_STATE))
                 && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.PROCESS_OUTGOING_CALLS))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.RECORD_AUDIO))
-                && (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.WRITE_EXTERNAL_STORAGE))
         )
         {
             //If the user has denied the permission previously your code will come to this block
@@ -2322,8 +2384,6 @@ public class AllSiteVisitsActivity extends AppCompatActivity {
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.PROCESS_OUTGOING_CALLS,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 }, CALL_PERMISSION_REQUEST_CODE);
     }
 
